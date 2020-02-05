@@ -338,7 +338,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 		}		
 	echo "$surveyIntroduction
 	</div>";
-	echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"$PHP_SELF\" method=\"post\" onSubmit=\"return ValidateForm()\">";
+	echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"$_SERVER['PHP_SELF']\" method=\"post\" onSubmit=\"return ValidateForm()\">";
 
 	//counter for questions 
 	$questionNo = 1;

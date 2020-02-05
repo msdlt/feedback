@@ -33,7 +33,7 @@ function OnbAddCriterion()
 		}
 	else
 		{
-		document.frmAnalyse.action = "<?php $PHP_SELF ?>"
+		document.frmAnalyse.action = "<?php $_SERVER['PHP_SELF'] ?>"
 		document.frmAnalyse.target = "_self";	
 		document.frmAnalyse.submit();
 		return true;
@@ -41,7 +41,7 @@ function OnbAddCriterion()
 	}
 function OnbDeleteCriterion()
 	{
-	document.frmAnalyse.action = "<?php $PHP_SELF ?>"
+	document.frmAnalyse.action = "<?php $_SERVER['PHP_SELF'] ?>"
 	document.frmAnalyse.target = "_self";	
 	document.frmAnalyse.submit();
 	return true;

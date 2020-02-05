@@ -119,7 +119,7 @@ else
 	}
 echo "<h1>$surveyInstanceTitle - $studentName - Reports</h1>";
 echo "<a name=\"maintext\" id=\"maintext\"></a>";
-echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"$PHP_SELF\" method=\"post\" onSubmit=\"return ValidateForm()\">";
+echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"$_SERVER['PHP_SELF']\" method=\"post\" onSubmit=\"return ValidateForm()\">";
 
 //get blocks
 	$qBlocks = "SELECT Blocks.blockID, Blocks.title, Blocks.text, Blocks.introduction, Blocks.epilogue, SurveyBlocks.position, Blocks.instanceable
