@@ -344,7 +344,7 @@ $qSurveys = "SELECT Surveys.surveyID, Surveys.title
 $qResSurveys = @mysqli_query($db_connection, $qSurveys);
 echo "<div class=\"block\">
 		<h2>Step 1: Choose a survey</h2>		
-		<form id=\"frmResults\" name=\"frmResults\" action=\"$_SERVER['PHP_SELF']\" method=\"post\" onSubmit=\"return ValidateForm()\">";
+		<form id=\"frmResults\" name=\"frmResults\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\" onSubmit=\"return ValidateForm()\">";
 
 if (($qResSurveys == false))
 	{

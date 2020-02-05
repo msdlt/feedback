@@ -1540,7 +1540,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		$surveyIntroduction
 		</div>";
 		} 
-	echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"$_SERVER['PHP_SELF']\" method=\"post\" onSubmit=\"return ValidateForm()\">";
+	echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\" onSubmit=\"return ValidateForm()\">";
 
 	//get blocks
 	$qBlocks = "SELECT Blocks.blockID, Blocks.title, Blocks.text, Blocks.introduction, Blocks.epilogue, SurveyBlocks.position, Blocks.instanceable

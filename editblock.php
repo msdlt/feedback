@@ -447,7 +447,7 @@ else
 	}
 echo "<a name=\"maintext\" id=\"maintext\"></a>
 <h1>$pageTitleText: $blockTitle</h1>
-<form id=\"frmEdit\" name=\"frmEdit\" action=\"$_SERVER['PHP_SELF']\" method=\"post\" onSubmit=\"return ValidateForm(this)\">
+<form id=\"frmEdit\" name=\"frmEdit\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\" onSubmit=\"return ValidateForm(this)\">
 <h2>Block properties:</h2>
 <div class=\"questionNormal\">";
 if($validationProblem==true)

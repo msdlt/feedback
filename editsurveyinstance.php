@@ -407,7 +407,7 @@ else
 	}
 echo "<a name=\"maintext\" id=\"maintext\"></a>";
 echo "<h1>Schedule: $surveyInstanceTitle</h1>";
-echo "<form id=\"frmEdit\" name=\"frmEdit\" action=\"$_SERVER['PHP_SELF']\" method=\"post\" onSubmit=\"return ValidateForm(this)\">
+echo "<form id=\"frmEdit\" name=\"frmEdit\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\" onSubmit=\"return ValidateForm(this)\">
 <div class=\"block\">
 <h2>Survey schedule properties:</h2>";
 if($validationProblem==true)

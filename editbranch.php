@@ -232,7 +232,7 @@ else
 	}
 echo "<a name=\"maintext\" id=\"maintext\"></a>
 <h1>$pageTitleText</h1>
-	<form id=\"frmBranches\" name=\"frmBranches\" action=\"$_SERVER['PHP_SELF']\" method=\"post\">
+	<form id=\"frmBranches\" name=\"frmBranches\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
 		<input type=\"hidden\" name=\"branchSurveyID\" id=\"branchSurveyID\" value=\"".$surveyID."\">
 		<input type=\"hidden\" name=\"branchBlockID\" id=\"branchBlockID\" value=\"".$branchBlockID."\">
 		<input type=\"hidden\" name=\"branchSectionID\" id=\"branchSectionID\" value=\"".$branchSectionID."\">
