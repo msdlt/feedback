@@ -112,9 +112,9 @@ else
 							WHERE surveyInstanceID = $instanceID";
 		$qResSurveyInstance = mysqli_query($db_connection, $qSurveyInstances);
 		$rowSurveyInstance = mysqli_fetch_array($qResSurveyInstance);
-		$surveyInstanceTitle = $rowSurveyInstance[title];
-		$surveyInstanceStartDate = $rowSurveyInstance[startDate];
-		$surveyInstanceFinishDate = $rowSurveyInstance[finishDate];
+		$surveyInstanceTitle = $rowSurveyInstance['title'];
+		$surveyInstanceStartDate = $rowSurveyInstance['startDate'];
+		$surveyInstanceFinishDate = $rowSurveyInstance['finishDate'];
 		echo"<li>For schedule \"$surveyInstanceTitle\"</li>";
 		}
 	if($startDate!="NULL")
