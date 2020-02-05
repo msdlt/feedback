@@ -1,2 +1,6 @@
 log/
 config.php
+/script/ckeditor/
+/script/fckeditor/
+/script/tinymce/
+/script/widgEditor/
