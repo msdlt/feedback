@@ -1,0 +1,886 @@
+
+
+/* ##### Common Styles ##### */
+
+body {
+
+  font-family: verdana, helvetica, arial, sans-serif;
+  font-size: 0.8em;  /* Enables font size scaling in MSIE */
+  margin: 0;
+  padding: 0;
+  color:black;
+  background-color:white;
+  
+}
+
+html>body {font-size: 8.5pt;}
+
+acronym, .titleTip {
+  border-bottom: 1px dotted rgb(153,153,153);
+  cursor: help;
+  margin: 0;
+  padding: 0 0 0.4px 0;
+
+}
+
+.doNotDisplay {
+  display: none;
+}
+
+.hidden
+	{
+	position:absolute;
+ 	left:0px;
+ 	top:-500px;
+ 	width:1px;
+ 	height:1px;
+ 	overflow:hidden;
+ 	}
+
+
+.smallCaps {
+  font-size: 110%;
+  font-variant: small-caps;
+}
+
+
+/* ##### Header ##### */
+/*everything to do with the top of the page*/
+/* - though if you want the main navigation menu across the top */
+/*scroll further down for navlist*/
+
+#header {background-color:#000066;}
+
+#superHeader {
+  
+  height: 1.3em; 
+  color: white;
+  background-color:#000000;
+  font-weight: bold;
+
+}
+
+#superHeader a {
+
+  background-color: transparent;
+  text-decoration: none;
+  margin: 0;
+  padding: 0 0.5ex 0 0.25ex;
+  color: white;
+  
+}
+
+#superHeader a:hover {
+  text-decoration: underline;
+}
+
+#superHeader .left {
+  position: absolute;
+  left: 2mm;
+  top: 0ex;
+  font-size: 100%;
+  
+  color:#000000;
+  left:6.5em;
+}
+
+#superHeader .right {
+  position: absolute;
+  right: 1.5mm;
+  top: 0;
+  text-align: right;
+  }
+
+#midHeader {
+	height: 8.3em;
+	height: 7.5em;
+	background-image: url('../images/interface/testbanner4.jpg');
+    background-repeat: no-repeat;
+    background-position: top right;
+	background-color:#000066;
+	border-bottom:none;
+	}
+
+
+#midHeader div#siteTitle {
+	padding:0; 
+	margin:0; 
+	padding-top:1.1em; 
+	width:45em;
+	}
+
+#midHeader div#siteTitle  h1.headerTitle {
+  font-size: 4.1em;
+  font-weight: normal;
+  line-height:0.9em;
+  margin: 0;
+  padding: 0;
+  font-family:Arial, Verdana, Helvetica, sans-serif;
+  color:#FFFFFF;
+  text-align:right;
+  /*height:0.9em; removed because messes up Opera 6 Mac*/
+  display:block;
+  }
+
+#midHeader div#subSiteTitle {
+	width:45em; 
+	padding:0; 
+	margin:0;
+	}
+
+#midHeader div#subSiteTitle h1.univTitle {
+  font-weight:bold;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-size: 1.2em;
+  margin:0;
+  padding:0;
+  color:#cccccc;
+  text-transform:uppercase;
+  text-align:right;
+  letter-spacing:0.1em;
+  display:block;
+  }
+
+
+
+#subHeader {
+  color: white;
+  background-color: rgb(0,51,153);
+  margin: 0;
+  padding:0;
+  padding-left:12.5em;
+  height:2.5em;
+}
+
+#subHeader a {
+
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0;
+  padding: 0 0.75ex 0 0.5ex;
+  color: white;
+  background-color: transparent;
+
+}
+
+#subHeader a:hover {
+  text-decoration: underline;
+}
+
+
+		
+#crest { 
+		position:absolute; left:1.5em; top:0.5em; 
+		padding-top:3px; 
+		margin-top:3px; 
+		width:11em; 
+		padding-bottom:0px; 
+		margin-bottom:0px;
+		}
+
+
+
+/* ##### Left Side Bar ##### */
+
+
+#leftSideBar {
+  width: 12.5em;
+  left: 0;
+  position: absolute;
+  top: 11.3em;
+  padding-top:0em;
+  background-color: white;
+  
+}
+
+/*temporary hack for things to work in Opera 7 */
+/* uses CSS3 media query */
+
+@media all and (min-width: 0px){
+  div#leftSideBar {
+     top:11.4em;
+  }
+}
+
+
+
+#leftSideBar a {
+
+  background-color: transparent;
+  text-decoration: none;
+}
+
+#leftSideBar a:hover {
+
+  background-color: transparent;
+  text-decoration: none;
+}
+
+/*buff background for indicating the section*/
+
+#leftSideBar .title {
+	
+	margin:0;
+	padding: 1ex 1ex;
+	background-color: #F3F2EB;
+	color:black;
+	font-weight:bold;
+	border-bottom: 1px solid rgb(230,223,207);
+ 	border-top: 1px solid rgb(230,223,207);
+	}
+	
+#leftSideBar .title p  {	 
+	color: white;
+	color: black;
+	margin: 0;
+	padding:0;
+	
+	}
+	
+/*not currently used - did put a link to the previous section*/
+  
+#leftSideBar .prev {
+	padding:0;
+	margin:0;
+	font-weight: bold;
+	background-color:transparent; 
+	background-color: #F3F2EB;
+	background-color:white;
+	}
+	
+#leftSideBar .prev p {
+	margin:0; 
+	padding: 0.8ex 1ex;
+	}
+
+#leftSideBar .prev p a {
+	color: black;
+	}
+	
+/*section contents menu*/
+
+#leftSideBar .submenu {
+	
+	color: black; 
+	padding:0; 
+	padding-bottom:2em; 
+	margin:0; 
+	background-color:white; 
+	}
+					
+#leftSideBar .submenu ul {
+	padding:0; 
+	margin:0; 
+	background-color: transparent;
+	}
+				
+#leftSideBar .submenu ul li {
+	padding-left:2.5ex; 
+	margin:0; 
+	border-bottom: 1px dotted black; 
+	padding-top:1ex; 
+	padding-bottom:1ex;
+	}
+				
+#leftSideBar .submenu ul li a {
+	margin:0; 
+	color:black;
+	}
+
+#leftSideBar .submenu ul li span.current {
+	font-weight:bold;
+	}
+
+/*used for the related sites links - both on the home page and the normal pages */
+
+div.related {
+	background-color: transparent;
+	background-color: white;
+	margin:0;
+	padding:0;
+	
+	}
+
+ div.related ul li a {
+	font-weight:bold;
+ 	text-decoration: none; color:#ff9900;
+ 	color:black;
+	 }
+ 
+ div.related a:visited, 
+ div.related a:active, 
+ div.related a:link {
+	color:#ff9900;
+	color:black; 
+		}
+
+ div.related ul {
+		
+		padding: 0 0 0 0.5em;
+		margin: 0 0 0 0.5em;
+		
+		}
+		
+/*background image used to get the red pointer and padding and margin adjusted accordingly*/
+
+ div.related ul li {
+		padding:0em 0.5em 0.5em 15px; 
+		margin:0.5em 0 0 0;
+		color:white;
+		background-image:url(/i/rightpointred.png); 
+		background-repeat:no-repeat;
+		background-position:top left;
+		}
+		
+ 
+
+/* code for search form for both the homepage and the normal pages*/		
+.searchform {
+		position:absolute;
+		top:11.5em;
+		right:1em;
+		width:12.5em;
+		background-color: white;
+		padding:0;
+		margin:0;
+		text-align:right;}
+	
+.searchform form{
+		
+		width:12.5em;
+		padding:0;
+		margin:0;
+		background-color:white;
+		
+		}
+		
+.searchform form input {margin:0; padding:0; margin-top:0.3em;}
+.searchform form label {padding:0; margin:0; font-weight:bold; color:white;}
+
+
+
+/* ##### Right Side Bar ##### */
+
+/*margin probably shouldn't be set on the rightSideBar*/
+
+#rightSideBar {
+  width: 13em;
+  margin: 2ex 1em 0 0;
+  padding: 0;
+  position: absolute;
+  right: 0px;
+  top: 18em;
+  
+  font-weight:normal;
+  font-style:italic;
+  }
+
+[class~="rightSideBar"] {
+  margin-right: 1.5ex;
+}
+
+/*titles in the sidebar are always heading 5*/
+
+#rightSideBar h5 {
+  font-size:100%;
+  font-weight: bold;
+  font-style:normal;
+  margin: 1.25ex 1ex;
+  padding: 0.9ex 1ex;
+  color: black;
+  background-color: rgb(230,223,207);
+  border-top: 1px solid #75633d;
+  border-bottom: 1px solid #75633d;
+}
+
+/* these elements used for both the home page and normal pages*/
+
+#rightSideBar a, #homeRight a, #homeRight ul a{
+  
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: normal;
+  font-style:normal;
+  
+  color:#333333;
+}
+
+#rightSideBar a:hover {
+  text-decoration: underline;
+}
+
+#rightSideBar p, #rightSideBar ul, #homeRight div.loginBox ul {
+  line-height: 1.5em;
+  margin: 0;
+  font-size:90%;
+  padding-left:1em;
+}
+
+#rightSideBar ul, #homeRight div.loginBox ul {
+line-height: 1.2em; 
+text-align:left;
+list-style-type:none;
+padding-left: 0em; 
+margin: 0;
+margin-left:1em;
+margin-bottom:1em;
+
+
+}
+
+#rightSideBar ul li, #homeRight div.loginBox ul li {
+padding-top:0em; 
+margin-top:5px; 
+margin-left:0em;
+padding-left:11px; 
+background-image:url(/i/rightpointred.png); 
+background-repeat:no-repeat;
+background-position:top left;}
+
+#rightSideBar .more {
+  text-decoration: none;
+  text-align: right;
+  margin: 0;
+  padding: 0 2ex 1em 2ex;
+  display: block;
+}
+
+#rightSideBar .more:hover {
+  text-decoration: underline;
+}
+
+/*not sure if this one is used,*/
+#rightSideBar div {text-align:right;}
+#rightSideBar .sideBarTitle {
+  color: black;
+  background-color: rgb(230,223,207);
+
+}
+
+#rightSideBar img {
+		margin-top:0.1em; 
+		margin-bottom:0.1em;
+}
+
+/* this defines the difference between an ordinary side bar for putting pictures in*/
+/* and a sidebar with links and a border around the edge */
+
+.links {border: 1px solid rgb(216,210,195);}
+
+
+/* ##### Main Copy ##### */
+
+/* margins and padding set so that absolute columns left and right don't overlap */
+
+#main-copy {
+
+  text-align: justify;
+  line-height: 1.5em;
+  margin: 0 0 0 12.5em;
+  padding: 0.5ex 18em 4.2em 1em;
+  border-left: 1px solid rgb(153,153,153);
+  color: black;
+  background-color: white;
+
+}
+
+/* this is for lists with a picture floated to the left */
+
+#main-copy div.picturelist {clear:left; padding-top:1em; padding-bottom:1em;}
+
+#main-copy p {
+  margin: 1em 1ex 2em 0.5em;
+  padding: 0;
+}
+
+#main-copy p.large {font-size: 120%; font-weight:bold; margin-left:5em; margin-right:5em;}
+
+/* some styles shared by the homepage and normal pages */
+
+#main-copy a, #homeText a, #centreRight a, #homeFooter a {
+	color: rgb(0,102,204);
+  	background-color: transparent;
+  	text-decoration: underline;
+}
+
+#main-copy a:hover, #homeText a:hover, #centreRight a:hover, #homeFooter a:hover {
+  	text-decoration: none;
+}
+
+/*classes for images*/
+
+#main-copy img {
+		margin-top:1em; 
+		margin-bottom:1em;
+}
+
+#main-copy img.right {
+	float:right;
+	padding-left: 2em;
+	padding-bottom: 2em;
+	margin-left:1em;
+	
+	}
+	
+#main-copy img.left {
+	float:left;
+	padding-right: 2em;
+	padding-bottom: 2em;
+	margin-right:1em;
+
+}
+
+#main-copy h1 {
+
+  
+  line-height: 1em;
+   
+  font-family: arial, verdana, helvetica, sans-serif;
+  font-size: 250%;
+  font-weight: bold;
+  font-style: normal;
+  text-align: left;
+  margin: 0.5em 0 1em 0;
+  padding: 0 0 0em 0;
+  
+  color: black;
+  background-color: transparent;
+
+}
+
+
+#main-copy h2{
+
+  
+  line-height: 1.2em;
+  background-color: transparent;
+  color:  black;
+  font-family: arial, verdana, helvetica, sans-serif;
+  font-size: 175%;
+  font-weight: bold;
+  font-style: normal;
+  text-align: left;
+  margin: 1em 0 0 0;
+  padding: 1em 0 0 0;
+  border-top: 1px solid rgb(216,210,195);
+  clear:both;
+
+}
+
+#main-copy h3 {
+   font-weight:bold;
+   font-size:100%;
+   padding-bottom: 0.2em;
+   }
+   
+#main-copy h4 {
+   font-weight:normal;
+   text-decoration: underline;
+   font-size:100%;
+   padding-bottom: 0.2em;
+   }
+   
+/*this is for a fancy index list using pictures*/
+
+#main-copy .detailedindexlist ul {
+	list-style-type:none;
+}
+
+#main-copy .detailedindexlist ul li {
+	clear:left; padding-top: 1em;
+}
+
+#main-copy .detailedindexlist ul li img {padding-bottom: 4em;}
+
+#main-copy dl {
+  margin: 1em 1ex 2em 1ex;
+  padding: 0;
+}
+
+#main-copy dt {
+  font-weight: bold;
+  margin: 0 0 0 0;
+  padding: 0;
+}
+
+#main-copy dd {
+  margin: 0 0 2em 2em;
+  padding: 0;
+}
+
+/*inherited from the previous site, used for the back-to-top link*/
+#main-copy p.bcr {text-align:right;}
+
+#main-copy p.bcr a {padding-left:20px;  height:20px; 
+background-image:url('uparrow.gif'); 
+background-position:left top; 
+background-repeat:no-repeat;
+color: #bfab86;
+}
+
+/*used for next and previous links in sets of linked pages*/
+#main-copy p.nextprev {text-align:right;}
+
+
+/*Damion - removed because it interfered with survey forms*/
+
+/*used for the contact form*/
+/*#main-copy form label {
+	margin: 1em 1ex 2em 1ex;
+  	padding: 0;
+	padding-top: 2em;
+	padding-bottom: 2em;
+  	font-weight: bold;
+	}
+	
+#main-copy form input {margin: 0 1ex 2em 1ex;}
+	
+#main-copy form fieldset {border: 1px solid black;}
+#main-copy form fieldset label {font-weight: normal;}
+#main-copy form fieldset input {margin: 0px;}*/
+
+
+
+
+
+/* ##### Footer ##### */
+
+#footer1, #homeFooter {
+
+  
+  margin: 0 0 0 12.5em;
+  padding: 0.5ex 15em 4.2em 0em;
+  border-top: 0px solid rgb(153,153,153);
+  background-color:white;
+  border-left: 1px solid rgb(153,153,153);
+}
+
+#footer1 p, #homeFooter p {font-size: 91%;
+	margin: 0;
+	padding: 0 0 0.2em 2.5em;
+}
+
+#footer1 a, #homeFooter a {
+			color:black;}
+			
+#footer1 a:visited, #homeFooter a:visited {
+			color:#666666;}
+
+#homeFooter {
+			padding-top: 6em; 
+			border-left:0px;
+			}
+#homeFooter p {
+			padding-left:0.5em;
+			}
+
+
+.contact {	
+			margin:0; 
+			padding:0; 
+			background-color: #FF9900; 
+			background-color:transparent;
+			}
+
+.contact p {margin:0; 
+			padding:2ex 1ex;}
+
+
+
+
+
+
+
+/* ######the navigation list###### */
+/* this is the list across the top of the page */
+
+div#navlist {  
+		margin:0; 
+		padding:0.5em; 
+		margin-left:0em;
+
+}
+
+#subHeader div#navlist ul
+{
+
+			margin:0;
+			padding:0;
+			white-space: nowrap;
+
+
+}
+
+#subHeader div#navlist ul li
+			{
+			font-size:110%;
+			display: inline;
+			list-style-type: none;
+			padding-top:3px; padding-bottom:3px;
+			margin-top:0px; margin-bottom: 0px;
+			}
+
+#subHeader div#navlist ul li a { 
+			padding: 0px 5px; 
+			border-right: 1px solid #cccccc;
+			}
+			
+#subHeader div#navlist ul li.last a {
+			border-right: 0px solid white;
+			}
+
+#subHeader div#navlist ul li a:link, #subHeader div#navlist ul li a:visited {
+			color: #fff;
+			text-decoration: none;
+			}
+
+#subHeader div#navlist ul li a:hover {
+			color: #fff;
+			background-color: #369;
+			text-decoration: none;
+			}
+
+/*these are for the hidden jump to links in the menu*/
+
+#subHeader div#navlist ul li.hiddenlink a:active, 
+#subHeader div#navlist ul li.hiddenlink a:active:focus,
+#subHeader div#navlist ul li.hiddenlink a:visited:focus,
+#subHeader div#navlist ul li.hiddenlink a:focus,
+#subHeader div#navlist ul li.hiddenlink a:link:focus
+
+			{
+			color:#fff;
+			}
+
+#subHeader div#navlist ul li.hiddenlink a:link, 
+#subHeader div#navlist ul li.hiddenlink a, 
+#subHeader div#navlist ul li.hiddenlink a:visited, 
+#subHeader div#navlist ul li.hiddenlink a:hover {
+			color: rgb(0,51,153);
+			background-color: rgb(0,51,153);
+			border:none;
+			} 
+
+/* ######Miscellaneous####### */
+/*this is good for putting comments in the text of pages that you want to strip out later using DW search and replace*/
+
+.dev {color:red;}
+
+
+/* intranet styles - used for the document repository*/
+
+.intranetContent {
+
+		margin-left: 13.5em;
+		
+		}
+#intranetTitleLeft {font-size:1.5em; float:left; font-weight:bold; padding-top:0.2em; padding-left:0.5em;}
+#intranetTitleRight {font-size:1.5em; float:right; text-align:right; font-weight:bold; padding-top:0.2em;padding-right:1em;}
+#intranetFooter {text-align:right; padding-right:1em;}
+
+/* these are all styles for the homepage, they probably need some rationalisation and integration with the main stylesheet */
+
+#homeText div#homeTop {margin-left:13.5em; margin-top:1.5em; }
+#homeText div#homeTop h1 {font-size:3.5em; font-weight:normal; margin-bottom:0; padding-bottom:0;}
+#homeText div#homeTop p {margin-left:1em; margin-top:0.5em; padding-top:0.5em; padding-bottom:2em;}
+
+#homeText div#homeCentre {margin-left:13.5em; margin-right:18em;}
+
+div#centreRight {position:absolute; right:18em; top:19em; width:16em;}
+div#centreRight h5 {color:black; 
+  background-color:white; 
+  font-size:100%;
+  font-weight: bold;
+  font-style:normal;
+  margin: 1.25ex 1ex 1.25ex 0ex;
+  padding: 0.9ex 1ex 0.9ex 0ex;}
+
+
+
+
+#homeText div#homeCentre div#centre2 {margin-right:19em; }
+div.features div.featureItem {clear:left; padding-top:0.3em;}
+div.features div.featureItem img {float: left; padding-right:1em;}
+ 
+div.features div.featureItem p {padding-top:0; margin-top:0;}
+
+#homeRight {width: 16em;
+  margin: 0 1em 0 0;
+  padding: 0;
+  float:right;
+  font-weight:normal;
+  position:absolute;
+  top:19em;
+  right:0em;}
+  
+  #homeRight div.loginBox {border: 1px solid rgb(216,210,195);
+  
+  }
+  
+  #homeRight div.loginBox p {
+  margin: 1.25ex 1ex;
+  padding: 0.9ex 1ex;
+  }
+  
+  #homeRight div.loginBox h5
+  
+ { font-size:100%;
+  font-weight: bold;
+  font-style:normal;
+  margin: 1.25ex 1ex;
+  padding: 0.9ex 1ex;
+  color: black;
+  background-color: rgb(230,223,207);
+  border-top: 1px solid #75633d;
+  border-bottom: 1px solid #75633d;}
+  
+  #homeRight a {
+  color: rgb(166,140,83);
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: bold;
+  font-style:normal;
+  color:#990033;
+  
+}
+  
+  #homeLeft {
+  width: 12.5em;
+  left: 0;
+  position: absolute;
+  top: 8.9em;
+  top:11.3em;
+  padding-top:0em;
+  margin-top:0em;
+  background-color: white;
+  
+  }
+  
+  #homeLeft div.infoBox {
+  background-color: #F3F2EB;
+  padding-top:0;
+  margin-top:0;
+  margin-right:1em;
+  margin-left:0em;
+  }
+  
+  #homeLeft div.infoBox h5 {
+  font-size:100%;
+  font-weight: bold;
+  font-style:normal;
+  margin: 1.25ex 1ex;
+  padding: 0 1ex;
+  color: black;
+  }
+  
+  
+  #homeLeft div.loginBox p {
+  margin: 1.25ex 1ex;
+  padding: 0.9ex 1ex;
+  }
+  
+  #homeLeftImages {margin-bottom:2em;}
+  
+  #homeCentre {margin-top:2.5em;}
+  
+  

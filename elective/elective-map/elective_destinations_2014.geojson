@@ -1,0 +1,1886 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Seychelles"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [55.480396,-4.6826693]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Solomon Islands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.2436258,29.9678096]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [150.9921389,-33.802537]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Jordan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [35.9456951,31.9565783]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-76.5929319,39.297644]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Myanmar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [96.195132,16.8660694]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Indonesia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [115.2126293,-8.6704582]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.6131093,-33.9116201]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [33.3991028,-12.7117365]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [33.3991028,-12.7117365]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Seychelles"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [55.480396,-4.6826693]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-71.0588801,42.3600825]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [78.394656,30.3454803]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [35.0216061,-15.802993]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Singapore"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [103.8475531,1.3195322]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Swaziland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.307845,45.8485768]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.2563134,50.8407113]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [172.626952,-43.5354706]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.1248085,51.5235376]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Saint Lucia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.985579,43.677589]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [34.2810541,-12.9316863]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [34.2810541,-12.9316863]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [144.9823161,-37.8453309]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Vanuatu"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [167.2002745,-15.5064326]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Thailand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [100.7730417,18.7756318]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.6131093,-33.9116201]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Cuba"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-82.3873922,23.1295356]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Hong Kong"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.201794,22.380916]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [151.2069902,-33.8674869]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-91.5475035,41.6598888]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [35.0216061,-15.802993]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Saint Lucia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-60.9874687,14.0101094]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-99.7334839,32.485186]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Hong Kong"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.201794,22.380916]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Rwanda"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.6325305,-1.5034616]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.1048742,51.0021915]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Nepal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [83.9964116,28.2376892]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Canada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-123.1207375,49.2827291]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-76.5929319,39.297644]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-92.4827067,44.0187119]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-1.2577263,51.7520209]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.6917064,35.6894875]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Swaziland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-119.307845,45.8485768]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.9244751,-41.2035371]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [172.626952,-43.5354706]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Thailand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [94.3600501,18.465154]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malaysia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.3250434,4.1784542]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Pakistan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [74.3571581,31.5546061]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-84.745231,39.5069974]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Nepal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [85.2893877,27.6768145]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [35.0216061,-15.802993]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Canada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.567256,45.5016889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.4953026,-33.5646215]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [150.9290357,-33.9209167]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Nepal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [83.9970756,28.2142016]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malaysia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.3785438,1.6076812]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.4953026,-33.5646215]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.4953026,-33.5646215]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [151.2069902,-33.8674869]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [31.0218404,-29.8586804]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.7576589,-27.0002374]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.9359801,26.74632]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Peru"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-71.9848218,-13.5213431]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-76.5929319,39.297644]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [172.626952,-43.5354706]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.290845,13.129269]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Tanzania, United Republic Of"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [37.1459599,-6.1813127]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Nicaragua"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-104.6421356,24.0325466]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Sri Lanka"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.5967828,7.2504322]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Singapore"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [73.8393103,32.7788193]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Rwanda"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.6325305,-1.5034616]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [33.3991028,-12.7117365]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Zimbabwe"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-77.0182505,38.9185785]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Rwanda"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.6325305,-1.5034616]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [33.3991028,-12.7117365]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Vietnam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [105.8341598,21.0277644]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malaysia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.686855,3.139003]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.201794,22.380916]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malaysia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.3250434,4.1784542]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Uganda"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.5355063,0.1326964]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "East Timor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [125.5603143,-8.5568557]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Sri Lanka"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.5966093,7.2565929]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malaysia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.3785438,1.6076812]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.290845,13.129269]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.839542,-36.96339]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Canada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.6614861,45.6387281]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Canada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.567256,45.5016889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Rwanda"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [29.6325305,-1.5034616]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [33.3991028,-12.7117365]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.6131093,-33.9116201]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Canada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.9573563,50.1163196]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Nepal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [85.3239605,27.7172453]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Peru"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-66.1057217,18.4663338]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Singapore"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [103.819836,1.352083]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Ghana"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-1.6162709,6.6666004]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Vietnam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [105.8341598,21.0277644]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Hong Kong"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.131083,22.269084]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.4463502,34.0660586]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [172.6362254,-43.5320544]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Arab Emirates"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [55.2707828,25.2048493]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Kenya"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [39.9093269,-3.5106508]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [144.9823161,-37.8453309]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Vanuatu"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [167.2002745,-15.5064326]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-81.1980874,28.6030573]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Thailand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [98.5746649,16.7124054]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "China"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [120.2023592,30.2564492]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Hong Kong"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.201794,22.380916]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-5.8840044,54.5966475]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [145.0602346,-37.7562472]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Indonesia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [115.188916,-8.4095178]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Nepal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [83.9970756,28.2142016]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malaysia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.3395777,1.5443134]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Nepal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [85.3239605,27.7172453]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Uganda"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.5355063,0.1326964]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Rwanda"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [33.3991028,-12.7117365]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Belgium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.3517103,50.8503396]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Vietnam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [105.8341598,21.0277644]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [115.8504291,-31.9487759]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-76.557493,39.3042055]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Saint Lucia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-1.8353288,52.6786503]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.64343,-33.945509]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0.0138875,51.3728196]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Argentina"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-68.1202252,-16.5049221]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Nicaragua"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-92.2215053,18.6140862]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [176.8965401,-39.4893781]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Vanuatu"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [168.3212772,-17.7427246]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-8.4689386,52.481216]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.426355,56.798152]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.1277583,51.5073509]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malawi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [40.1168906,-3.2191864]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.2090212,28.6139391]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Peru"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-66.1057217,18.4663338]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Nepal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-8.9833165,52.8510808]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malaysia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.3785438,1.6076812]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-71.0692299,42.3636643]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Kenya"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [39.9093269,-3.5106508]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.140529,25.811997]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Korea, Republic Of"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [126.9779692,37.566535]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.9251361,51.449874]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Malaysia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.3250434,4.1784542]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [151.1598462,-33.8628753]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [151.1348123,-33.9647789]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.8666188,42.1729528]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Cuba"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.8073168,20.0172114]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Comoros"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [43.2473146,-11.7172157]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.4135465,-33.9016932]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-1.2577263,51.7520209]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [150.711885,-33.7607986]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [172.626952,-43.5354706]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "New Zealand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [176.1488318,-37.7083187]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [145.0602346,-37.7562472]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Uganda"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [32.290275,1.373333]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Indonesia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [115.188916,-8.4095178]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "China"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.5549141,37.8520888]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [72.8776559,19.0759837]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Canada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.9573563,50.1163196]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.2932553,10.0328936]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [151.2069902,-33.8674869]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Madagascar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [47.5079055,-18.8791902]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "South Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [18.64343,-33.945509]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [150.9872768,-33.8076889]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [151.2069902,-33.8674869]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.2932553,10.0328936]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "United States"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-76.936365,39.2417726]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.2932553,10.0328936]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Norway"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [23.6819665,70.6634382]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [151.2416416,-33.9144373]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.2932553,10.0328936]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Australia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [151.2380995,-33.9209953]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "India"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.2932553,10.0328936]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "year": "2014",
+        "country": "Sri Lanka"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.219384,6.0262752]
+      }
+    }
+  ]
+}

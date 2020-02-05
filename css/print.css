@@ -1,0 +1,71 @@
+/* CSS Document */
+body {       
+        color: #999999;
+        color: #333366;
+        color: #000000;
+        background-color: #ffffff;
+        }
+h1 {color:#000000; font-size: 14pt; padding:0;}
+h1.headerTitle {font-size:24px;}
+h2 {color:#000000; font-size: 13pt;}
+h3 {color:#000000; font-size: 12pt;}
+ul {font-size: 11pt;}
+
+#main-copy p {color:#000000; font-size: 11pt;}
+#main-copy p.bcr {display:none;}
+#main-copy p.nextprev {display:none;}
+#main-copy img.right {float:right; padding-left:20px;}
+#main-copy img.left {float:left; padding-right:20px;}
+
+.homelinks , .legallinks, .contactlinks
+{display:none;}
+
+.breadcrumbs {display:none;}
+
+li {color:#000000}
+
+div#univ {display: none;}
+div#leftSideBar {display: none; position:relative;}
+div#superHeader {display: none;}
+div#subHeader {display: none;}
+
+div#main-copy {margin:0; margin-left: 20px; margin-right: 10px; padding:0; border:none; position:relative;}
+
+div#subrow {border-top: 1px solid #999999; border-bottom: 1px solid #999999;}
+
+div.searchform {display:none;}
+div#crest {position: absolute; top: 10px; right: 5px;}
+
+div#footer1 {position:relative; border-top: 1px solid #999999; margin:0; margin-left:20px; padding:0; margin-right:10px;}
+
+#rightSideBar {margin:0; margin-left: 20px; border-top: 1px dashed #999999; }
+
+#main-copy .detailedindexlist ul {
+	list-style-type:none;
+}
+
+#main-copy .detailedindexlist ul li {
+	clear:left; padding-top: 10px; margin-left:10px;
+}
+
+.widgIframe
+{
+	width: 100%;
+	height: 2000px;
+	border-top-width: 1px;
+	float: none;
+}
+
+.widgContainer textarea.widgEditor
+{
+	clear: left;
+	width: 100%;
+	height: 2000px;
+	border-top-width: 1px;
+	padding: 0;
+}
+
+.widgContainer
+{
+float: none;
+}

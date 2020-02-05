@@ -1,0 +1,202 @@
+/* CSS Document */
+/* Styles for bLibrary tutorials */
+body 
+	{
+	background-color: white;
+	font-family: Verdana, Aria, Helvetica, Sans-Serif;
+	font-size: 0.9em;
+	}
+h1
+	{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1.3em;
+	color: #000066;
+	}
+h2
+	{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1.1em;
+	color: #000066;
+	}
+
+span.errorMessage
+	{
+	color: #FF0000;
+	}
+
+div.section
+	{
+	border: 1px solid rgb(216,210,195);
+	padding: 5px;
+	width: 98%;
+	margin:5px; 
+	}
+
+div.questionNormal
+	{
+	/*background: #EEDDFF;*/
+	/*color:black;*/
+	/*border: 1px solid #003408;*/
+	/*border: 1px solid rgb(216,210,195);*/
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.0em;
+	padding: 5px;
+	/*width: 97%;*/
+	margin:5px;
+	text-align:left; 
+	}
+	
+div.sectionMatrix
+	{
+	/*background: #EEDDFF;*/
+	/*color:black;*/
+	/*border: 1px solid #003408;*/
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.0em;
+	padding: 5px;
+	width: 98%;
+	margin:5px; 
+	}
+	
+div.resultsTable
+	{
+	background: #FFFFFF;
+	color:black;
+	border: 1px solid #000066;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.0em;
+	padding: 5px;
+	width: 98%;
+	margin:5px; 
+	}
+	
+tr.matrixHeader
+	{
+	/*background: #9999FF;*/
+	/*background: #000066;*/
+	/*color: #FFFFFF;*/
+	font-size:100%;
+  	font-weight: bold;
+  	font-style:normal;
+  	margin: 1.25ex 1ex;
+  	padding: 0.9ex 1ex;
+  	color: black;
+  	background-color: rgb(230,223,207);
+  	border-top: 1px solid #75633d;
+  	border-bottom: 1px solid #75633d;
+	}
+	
+tr.matrixHeaderHidden
+	{
+	/*background: #9999FF;*/
+	/*background: #000066;*/
+	/*color: #FFFFFF;*/
+	font-size:100%;
+  	font-weight: bold;
+  	font-style:normal;
+  	margin: 1.25ex 1ex;
+  	padding: 0.9ex 1ex;
+  	color: black;
+  	background-color: rgb(190,190,190);
+  	border-top: 1px solid #75633d;
+  	border-bottom: 1px solid #75633d;
+	}
+	
+tr.matrixRowOdd
+	{
+	/*background: #9999FF;*/
+	background: #CFD0FF;
+	}
+	
+tr.matrixRowEven
+	{
+	/*background: #EEDDFF;*/
+	background: #FFFFFF;
+	}
+	
+textarea.comments
+	{
+	width: 98%;
+	}
+	
+table.normal_1
+	{
+	width: 98%;
+	}
+
+table.normal_2
+	{
+	width: 98%;
+	}
+	
+table.normal_3
+	{
+	width: 98%;
+	}
+table.normal_4
+	{
+	width: 98%;
+	}
+	
+table.matrix
+	{
+	width: 98%;
+	border: 1px solid rgb(216,210,195);
+	}
+	
+td.question
+	{
+	font-weight:bold;
+	}
+	
+td.questionNoAnswer
+	{
+	font-weight:bold;
+	color: #FF0000;
+	}
+td.topMenuBottom
+	{
+	border-bottom: 2px solid #000066;
+	}
+td.topMenuTop
+	{
+	border-top: 2px solid #BABAC5;
+	color: #FF9900
+	}
+td.bottomMenuTop
+	{
+	border-top: 2px solid #000066;
+	}
+td.leftMenu
+	{
+	/*border-right: 2px solid #BABAC5;*/
+	}
+/* Global menu is menu at very top of page */
+a.globalMenu:link { font-family: Arial, Helvetica, sans-serif; font-size: 0.8em;  color: #FF9900; text-decoration: none}
+a.globalMenu:active { font-family: Arial, Helvetica, sans-serif; font-size: 0.8em;  color: #FF9900; text-decoration: none}
+a.globalMenu:visited { font-family: Arial, Helvetica, sans-serif; font-size: 0.8em;  color: #FF9900; text-decoration: none}
+a.globalMenu:hover { font-family: Arial, Helvetica, sans-serif; font-size: 0.8em;  color: #F56432; text-decoration: none}
+
+/*Left-hand menu*/
+a.menu:link { font-family: Arial, Helvetica, sans-serif; font-size: 1.1em; font-weight:normal; color: #000066; text-decoration: none}
+a.menu:active { font-family: Arial, Helvetica, sans-serif; font-size: 1.1em; font-weight:normal; color: #000066; text-decoration: none}
+a.menu:visited { font-family: Arial, Helvetica, sans-serif; font-size: 1.1em; font-weight:normal; color: #000066; text-decoration: none}
+a.menu:hover { font-family: Arial, Helvetica, sans-serif; font-size: 1.1em; font-weight:normal; color: #FF9900; text-decoration: none}
+/* particpant order links */
+a.participants:link { font-family: Arial, Helvetica, sans-serif; font-size: 1em;  color: #FFFFFF; text-decoration: none}
+a.participants:active { font-family: Arial, Helvetica, sans-serif; font-size: 1em;  color: #FFFFFF; text-decoration: none}
+a.participants:visited { font-family: Arial, Helvetica, sans-serif; font-size: 1em;  color: #FFFFFF; text-decoration: none}
+a.participants:hover { font-family: Arial, Helvetica, sans-serif; font-size: 1em;  color: #FF9900; text-decoration: none}
+
+a.breadcrumb:link { font-family: Arial, Helvetica, sans-serif; font-size: 0.8em;  color: #BABAC5; text-decoration: none}
+a.breadcrumb:active { font-family: Arial, Helvetica, sans-serif; font-size: 0.8em;  color: #BABAC5; text-decoration: none}
+a.breadcrumb:visited { font-family: Arial, Helvetica, sans-serif; font-size: 0.8em;  color: #BABAC5; text-decoration: none}
+a.breadcrumb:hover { font-family: Arial, Helvetica, sans-serif; font-size: 0.8em;  color: #FF9900; text-decoration: none}
+
+span.breadcrumb
+	{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;  
+	color: #BABAC5; 
+	text-decoration: none
+	}

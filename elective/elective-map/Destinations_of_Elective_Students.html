@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Destinations of Elective Students 2010-2015</title>
+	<meta charset="utf-8">
+	<meta name="generator" content="leafletR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<link rel="dat1" type="application/json" href="elective_destinations.geojson" />
+	<style type="text/css">
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		html, body, #map {
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+<h2>Destinations of Elective Students 2010-2015</h2>
+<p>
+	<a href="Destinations_of_Elective_Students_2015.html">Destinations 2015</a> ~
+	<a href="Destinations_of_Elective_Students_2014.html">Destinations 2014</a> ~ 
+	<a href="Destinations_of_Elective_Students_2013.html">Destinations 2013</a> ~
+	<a href="Destinations_of_Elective_Students.html">Destinations All years</a> (please note that there are omissions from the 2010-2012 data)
+</p>
+	<div id="map"></div>
+	<script type="text/javascript">
+		var map = L.map('map');
+		
+		// scale bar
+		L.control.scale().addTo(map);
+
+		// base layer
+		var baseMaps = {};
+		var baseMap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {"attribution":"&copy; <a href=\"http://openstreetmap.org/copyright\", target=\"_blank\">OpenStreetMap contributors</a>"});
+		baseMap.addTo(map);
+		baseMaps["OpenStreetMap"] = baseMap;
+
+		// data layers
+        var layers = {};
+        var group = new L.featureGroup;
+		function addDataToMap(data, style, layer) {
+			layers[layer] = L.geoJson(data, {
+				onEachFeature: (typeof onEachFeature == "undefined") ? undefined : onEachFeature,
+				pointToLayer: function (feature, latlng) {return L.circleMarker(latlng);},
+				style: style
+			});
+			layers[layer].addTo(map);	
+        	group.addLayer(layers[layer])
+			map.fitBounds(group.getBounds());
+		};
+		
+		if(typeof style1 == "undefined") style1 = undefined;
+		$.getJSON($("link[rel='dat1']").attr("href"), function(x) {addDataToMap(x, style1, "elective destinations")});
+	</script>
+</body>
+</html>
