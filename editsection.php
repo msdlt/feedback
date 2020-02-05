@@ -394,14 +394,14 @@ function dumpList(from,target,output)
 $qSurveys = "SELECT title
 			FROM Surveys
 			WHERE surveyID = $surveyID";
-$qResSurvey = mysqli_query($qSurveys);
+$qResSurvey = mysqli_query($db_connection, $qSurveys);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
 $surveyTitle = $rowSurvey[title];
 //Get info about block
 $qBlocks = "SELECT title
 			FROM Blocks
 			WHERE blockID = $blockID";
-$qResBlock = mysqli_query($qBlocks);
+$qResBlock = mysqli_query($db_connection, $qBlocks);
 $rowBlock = mysqli_fetch_array($qResBlock);
 $blockTitle = $rowBlock[title];
 //Get info about section
@@ -410,7 +410,7 @@ if($sectionID!="add")
 	$qSections = "	SELECT title, text, introduction, epilogue, sectionTypeID, lastModified, instanceable 
 					FROM Sections
 					WHERE sectionID = $sectionID";
-	$qResSections = mysqli_query($qSections);
+	$qResSections = mysqli_query($db_connection, $qSections);
 	$rowSection = mysqli_fetch_array($qResSections);
 	$sectionTitle = $rowSection[title];
 	$sectionText = $rowSection[text];
@@ -447,7 +447,7 @@ else
 	}
 $qSectionTypes = "	SELECT sectionTypeID, type
 					FROM SectionTypes";
-$qResSectionTypes = mysqli_query($qSectionTypes);					
+$qResSectionTypes = mysqli_query($db_connection, $qSectionTypes);					
 if(IsAuthor($heraldID))
 	{
 	require_once("includes/html/adminheadernew.html");
@@ -569,7 +569,7 @@ if($sectionID !="add")
 					AND Questions.questionID = SectionQuestions.questionID
 					ORDER BY SectionQuestions.position";
 		
-	$qResQuestions = mysqli_query($qQuestions);
+	$qResQuestions = mysqli_query($db_connection, $qQuestions);
 	
 	if (($qResQuestions == false))
 		{
@@ -584,7 +584,7 @@ if($sectionID !="add")
 							FROM SurveyBlocks
 							WHERE blockID = $blockID
 							AND surveyID = $surveyID";
-		$qResBlockPosition = mysqli_query($qBlockPosition);
+		$qResBlockPosition = mysqli_query($db_connection, $qBlockPosition);
 		$rowBlockPosition = mysqli_fetch_array($qResBlockPosition);
 		$blockPosition = $rowBlockPosition[position];
 		//then find out no of questions which occur in previous blocks:
@@ -596,14 +596,14 @@ if($sectionID !="add")
 										AND BlockSections.visible = 1
 										AND SectionQuestions.sectionID = BlockSections.sectionID
 										AND SectionQuestions.visible = 1 ";
-		$qResQuestionsInPreviousBlocks = mysqli_query($qQuestionsInPreviousBlocks);
+		$qResQuestionsInPreviousBlocks = mysqli_query($db_connection, $qQuestionsInPreviousBlocks);
 		$questionNo = mysqli_num_rows($qResQuestionsInPreviousBlocks);
 		//now find out position of this section within this block
 		$qSectionPosition = "	SELECT position
 								FROM BlockSections
 								WHERE sectionID = $sectionID
 								AND blockID = $blockID";
-		$qResSectionPosition = mysqli_query($qSectionPosition);
+		$qResSectionPosition = mysqli_query($db_connection, $qSectionPosition);
 		$rowSectionPosition = mysqli_fetch_array($qResSectionPosition);
 		$sectionPosition = $rowSectionPosition[position];
 		//then find out questions which occur before this one:
@@ -614,7 +614,7 @@ if($sectionID !="add")
 						AND SectionQuestions.sectionID = BlockSections.sectionID
 						AND SectionQuestions.visible = 1 ";
 		
-		$qResPreviousQuestions = mysqli_query($qPreviousQuestions);
+		$qResPreviousQuestions = mysqli_query($db_connection, $qPreviousQuestions);
 		$questionNo = $questionNo + mysqli_num_rows($qResPreviousQuestions) + 1;
 		echo "
 		<h2>Questions in this section:</h2>
@@ -650,7 +650,7 @@ if($sectionID !="add")
 													AND Items.itemID = QuestionItems.itemID
 													ORDER BY QuestionItems.position";
 											
-										$qResItems = mysqli_query($qItems);
+										$qResItems = mysqli_query($db_connection, $qItems);
 										if (($qResItems == false))
 											{
 											echo "problem querying Items" . mysqli_error();
@@ -808,7 +808,7 @@ if($sectionID !="add")
 					AND Questions.questionID = SectionQuestions.questionID
 					ORDER BY SectionQuestions.position";
 		
-	$qResQuestions = mysqli_query($qHiddenQuestions);
+	$qResQuestions = mysqli_query($db_connection, $qHiddenQuestions);
 	
 	if (($qResQuestions == false))
 		{
@@ -851,7 +851,7 @@ if($sectionID !="add")
 													AND Items.itemID = QuestionItems.itemID
 													ORDER BY QuestionItems.position";
 											
-										$qResItems = mysqli_query($qItems);
+										$qResItems = $db_connection, $qItems);
 										if (($qResItems == false))
 											{
 											echo "problem querying Items" . mysqli_error();

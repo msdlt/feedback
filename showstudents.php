@@ -40,7 +40,7 @@
 	$qSurveys = "SELECT title
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-	$qResSurvey = mysqli_query($qSurveys);
+	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey[title];
 	
@@ -110,7 +110,7 @@ else
 		$qSurveyInstances = "SELECT title, startDate, finishDate
 							FROM SurveyInstances
 							WHERE surveyInstanceID = $instanceID";
-		$qResSurveyInstance = mysqli_query($qSurveyInstances);
+		$qResSurveyInstance = mysqli_query($db_connection, $qSurveyInstances);
 		$rowSurveyInstance = mysqli_fetch_array($qResSurveyInstance);
 		$surveyInstanceTitle = $rowSurveyInstance[title];
 		$surveyInstanceStartDate = $rowSurveyInstance[startDate];

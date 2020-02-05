@@ -94,7 +94,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 			//Server-side validation of data entered - 
 			//**********************************************************
 			/* Checking and ensure that the item title does not already exist in the database */
-			$sql_title_check = mysqli_query("SELECT title FROM Items
+			$sql_title_check = mysqli_query($db_connection, "SELECT title FROM Items
 											WHERE title=$updateTitle " . ($itemID !="add" && $itemID !="upload"?"AND itemID <> $itemID ":""));
 											//that last if statement allows edited item to have the same name as it had before
 											//but prevents added items having the same name as an existing item.
@@ -120,7 +120,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$updateLastModified = "CURDATE()";
 				//Still need to check for repeat item titles as there could be repeats within the data pasted in
 				/* Checking and ensure that the item title does not already exist in the database */
-				$sql_title_check = mysqli_query("SELECT title FROM Items
+				$sql_title_check = mysqli_query($db_connection, "SELECT title FROM Items
 												WHERE title=$updateTitle " . ($itemID !="add" && $itemID !="upload"?"AND itemID <> $itemID ":""));
 												//that last if statement allows edited item to have the same name as it had before
 												//but prevents added items having the same name as an existing item.
@@ -308,28 +308,28 @@ function ValidateForm(theForm)
 $qSurveys = "SELECT title
 			FROM Surveys
 			WHERE surveyID = $surveyID";
-$qResSurvey = mysqli_query($qSurveys);
+$qResSurvey = mysqli_query($db_connection, $qSurveys);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
 $surveyTitle = $rowSurvey[title];
 //Get info about block
 $qBlocks = "SELECT title
 			FROM Blocks
 			WHERE blockID = $blockID";
-$qResBlock = mysqli_query($qBlocks);
+$qResBlock = mysqli_query($db_connection, $qBlocks);
 $rowBlock = mysqli_fetch_array($qResBlock);
 $blockTitle = $rowBlock[title];
 //Get info about section
 $qSections = "	SELECT title
 				FROM Sections
 				WHERE sectionID = $sectionID";
-$qResSections = mysqli_query($qSections);
+$qResSections = mysqli_query($db_connection, $qSections);
 $rowSection = mysqli_fetch_array($qResSections);
 $sectionTitle = $rowSection[title];
 //get info about question
 $qQuestions = "	SELECT title
 				FROM Questions
 				WHERE questionID = $questionID";
-$qResQuestions = mysqli_query($qQuestions);
+$qResQuestions = mysqli_query($db_connection, $qQuestions);
 $rowQuestion = mysqli_fetch_array($qResQuestions);
 $questionTitle = $rowQuestion[title];
 //Get info about item
@@ -338,7 +338,7 @@ if($itemID!="add" && $itemID!="upload")
 	$qItems = "	SELECT title, text, lastModified 
 				FROM Items
 				WHERE itemID = $itemID";
-	$qResItems = mysqli_query($qItems);
+	$qResItems = mysqli_query($db_connection, $qItems);
 	$rowItem = mysqli_fetch_array($qResItems);
 	$itemTitle = $rowItem[title];
 	$itemText = $rowItem[text];

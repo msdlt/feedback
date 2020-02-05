@@ -32,7 +32,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 		//Server-side validation of data entered - 
 		//**********************************************************
 		/* Checking and ensure that the block title does not already exist in the database */
-		$sql_title_check = mysqli_query("SELECT title FROM Blocks
+		$sql_title_check = mysqli_query($db_connection, "SELECT title FROM Blocks
 										WHERE title=$updateTitle" . ($blockID !="add" ? "AND blockID <> $blockID" : ""));
 										//that last if statement allows edited block to have the same name as it had before
 										//but prevents added blockc having the same name as an existing block.
@@ -388,7 +388,7 @@ function dumpList(from,target,output)
 $qSurveys = "SELECT title
 			FROM Surveys
 			WHERE surveyID = $surveyID";
-$qResSurvey = mysqli_query($qSurveys);
+$qResSurvey = mysqli_query($db_connection, $qSurveys);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
 $surveyTitle = $rowSurvey[title];
 //Get info about block
@@ -397,7 +397,7 @@ if($blockID!="add")
 	$qBlocks = "	SELECT title, text, introduction, epilogue, instanceable, lastModified 
 					FROM Blocks
 					WHERE blockID = $blockID";
-	$qResBlocks = mysqli_query($qBlocks);
+	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	$rowBlock = mysqli_fetch_array($qResBlocks);
 	$blockTitle = $rowBlock[title];
 	$blockText = $rowBlock[text];
@@ -531,7 +531,7 @@ if($blockID !="add")
 					AND Sections.sectionID = BlockSections.sectionID
 					ORDER BY BlockSections.position";
 			
-	$qResSections = mysqli_query($qSections);
+	$qResSections = mysqli_query($db_connection, $qSections);
 	if (($qResSections == false))
 		{
 		echo "problem querying Sections" . mysqli_error();
@@ -545,7 +545,7 @@ if($blockID !="add")
 							WHERE blockID = $blockID
 							AND surveyID = $surveyID";
 		
-		$qResBlockPosition = mysqli_query($qBlockPosition);
+		$qResBlockPosition = mysqli_query($db_connection, $qBlockPosition);
 		$rowBlockPosition = mysqli_fetch_array($qResBlockPosition);
 		$blockPosition = $rowBlockPosition[position];
 		//then find out sections which occur before this one:
@@ -559,7 +559,7 @@ if($blockID !="add")
 						AND Sections.sectionID = BlockSections.sectionID
 						AND SectionQuestions.sectionID = Sections.sectionID";
 		
-		$qResPreviousQuestions = mysqli_query($qPreviousQuestions);
+		$qResPreviousQuestions = mysqli_query($db_connection, $qPreviousQuestions);
 		$questionNo = mysqli_num_rows($qResPreviousQuestions) + 1;
 echo "	<h2>Sections in this block:</h2>
 		<div class=\"questionNormal\">
@@ -593,7 +593,7 @@ echo "	<h2>Sections in this block:</h2>
 													AND Questions.questionID = SectionQuestions.questionID
 													ORDER BY SectionQuestions.position";
 										
-									$qResQuestions = mysqli_query($qQuestions);
+									$qResQuestions = mysqli_query($db_connection, $qQuestions);
 									
 									if (($qResQuestions == false))
 										{
@@ -749,7 +749,7 @@ echo "	<h2>Sections in this block:</h2>
 							AND Sections.sectionID = BlockSections.sectionID
 							ORDER BY BlockSections.position";
 			
-	$qResSections = mysqli_query($qHiddenSections);
+	$qResSections = mysqli_query($db_connection, $qHiddenSections);
 	if (($qResSections == false))
 		{
 		echo "problem querying Sections" . mysqli_error();
@@ -789,7 +789,7 @@ echo "	<h2>Hidden sections in this block:</h2>
 													AND Questions.questionID = SectionQuestions.questionID
 													ORDER BY SectionQuestions.position";
 										
-									$qResQuestions = mysqli_query($qQuestions);
+									$qResQuestions = mysqli_query($db_connection, $qQuestions);
 									
 									if (($qResQuestions == false))
 										{

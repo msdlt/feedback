@@ -42,7 +42,7 @@ if (isset($_POST['bUpdate'])||isset($_POST['bCreate']))
 		//**************************************************************************************
 		
 		/* Checking and ensure that the schedule title does not already exist in the database */
-		$sql_title_check = mysqli_query("SELECT title FROM SurveyInstances
+		$sql_title_check = mysqli_query($db_connection, "SELECT title FROM SurveyInstances
 										WHERE title=$updateTitle" . ($surveyInstanceID !="add" ? "AND surveyInstanceID <> $surveyInstanceID" : ""));
 		$title_check = mysqli_num_rows($sql_title_check);
 		
@@ -362,7 +362,7 @@ function CheckDates()
 $qSurveys = "	SELECT title, introduction, epilogue, lastModified
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-$qResSurvey = mysqli_query($qSurveys);
+$qResSurvey = mysqli_query($db_connection, $qSurveys);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
 $surveyTitle = $rowSurvey[title];
 if($surveyInstanceID!="add")
@@ -370,7 +370,7 @@ if($surveyInstanceID!="add")
 	$qSurveyInstances = "	SELECT title, startDate, finishDate
 							FROM SurveyInstances
 							WHERE surveyInstanceID = $surveyInstanceID";
-	$qResSurveyInstance = mysqli_query($qSurveyInstances);
+	$qResSurveyInstance = mysqli_query($db_connection, $qSurveyInstances);
 	$rowSurveyInstance = mysqli_fetch_array($qResSurveyInstance);
 	$surveyInstanceTitle = $rowSurveyInstance[title];
 	$surveyInstanceStartDate = $rowSurveyInstance[startDate];

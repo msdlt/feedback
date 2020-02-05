@@ -392,7 +392,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 				WHERE SurveyBlocks.surveyID = $surveyID
 				AND Blocks.blockID = SurveyBlocks.blockID
 				ORDER BY SurveyBlocks.position";
-	$qResBlocks = mysqli_query($qBlocks);
+	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	$questionNo = 1;
 	$aQuestions = array();
 	$aAllowAnalyseByThisQuestion = array(); //are these qestions allowed as ones to be analysed by
@@ -401,7 +401,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 		{
 		$blockID = $rowBlocks[blockID];
 		$blockVisible = $rowBlocks[visible];
-		$qResSections = mysqli_query($qSections);
+		//$qResSections = mysqli_query($db_connection, $qSections);
 		//get sections
 		$qSections = "SELECT Sections.sectionID, Sections.title, Sections.introduction, Sections.epilogue, BlockSections.position, Sections.sectionTypeID, BlockSections.visible 
 					FROM Sections, BlockSections 
@@ -409,7 +409,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 					AND Sections.sectionID = BlockSections.sectionID
 					ORDER BY BlockSections.position";
 		
-		$qResSections = mysqli_query($qSections);
+		$qResSections = mysqli_query($db_connection, $qSections);
 		//counter for questions 
 		while($rowSections = mysqli_fetch_array($qResSections))
 			{
@@ -422,7 +422,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 						AND Questions.questionID = SectionQuestions.questionID
 						ORDER BY SectionQuestions.position";
 			
-			$qResQuestions = mysqli_query($qQuestions);
+			$qResQuestions = mysqli_query($db_connection, $qQuestions);
 			
 			while($rowQuestions = mysqli_fetch_array($qResQuestions))
 				{
@@ -466,7 +466,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 						$qSurveyInstances = "SELECT surveyInstanceID, title, startDate, finishDate
 											FROM SurveyInstances
 											WHERE surveyID = $surveyID";
-						$qResSurveyInstances = mysqli_query($qSurveyInstances);
+						$qResSurveyInstances = mysqli_query($db_connection, $qSurveyInstances);
 						if ($qResSurveyInstances == false)
 							{
 							echo "problem querying SurveyInstances" . mysqli_error();

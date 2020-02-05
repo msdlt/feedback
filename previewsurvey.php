@@ -20,7 +20,7 @@ if (IsAuthor($heraldID))
 		$qSurvey = "	SELECT title  
 						FROM Surveys
 						WHERE surveyID = $surveyID";
-		$qResSurvey = mysqli_query($qSurvey);
+		$qResSurvey = mysqli_query($db_connection, $qSurvey);
 		if (($qResSurvey == false))
 			{
 			echo "problem querying Surveys" . mysqli_error();
@@ -44,7 +44,7 @@ if (IsAuthor($heraldID))
 							AND SurveyBlocks.visible = 1
 							AND Blocks.blockID = SurveyBlocks.blockID
 							ORDER BY SurveyBlocks.position";
-			$qResBlocks = mysqli_query($qBlocks);
+			$qResBlocks = mysqli_query($db_connection, $qBlocks);
 			$iBlock = 1;
 			while($rowBlocks = mysqli_fetch_array($qResBlocks))
 				{
@@ -60,7 +60,7 @@ if (IsAuthor($heraldID))
 								AND BlockSections.visible = 1
 								AND Sections.sectionID = BlockSections.sectionID
 								ORDER BY BlockSections.position";
-				$qResSections = mysqli_query($qSections);
+				$qResSections = mysqli_query($db_connection, $qSections);
 				$iSection = 1;
 				while($rowSections = mysqli_fetch_array($qResSections))
 					{
@@ -77,7 +77,7 @@ if (IsAuthor($heraldID))
 									AND SectionQuestions.visible = 1
 									AND Questions.questionID = SectionQuestions.questionID
 									ORDER BY SectionQuestions.position";
-					$qResQuestions = mysqli_query($qQuestions);
+					$qResQuestions = mysqli_query($db_connection, $qQuestions);
 					$iQuestion = 1;
 					while($rowQuestions = mysqli_fetch_array($qResQuestions))
 						{
@@ -92,7 +92,7 @@ if (IsAuthor($heraldID))
 									AND QuestionItems.visible = 1
 									AND Items.itemID = QuestionItems.itemID
 									ORDER BY QuestionItems.position";
-						$qResItems = mysqli_query($qItems);
+						$qResItems = mysqli_query($db_connection, $qItems);
 						$iItem = 1;
 						while($rowItems = mysqli_fetch_array($qResItems))
 							{
@@ -281,7 +281,7 @@ function goTo(URL)
 	$qSurveys = "SELECT title, introduction, epilogue, allowSave, allowViewByStudent
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-	$qResSurvey = mysqli_query($qSurveys);
+	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey['title'];
 	$surveyIntroduction = $rowSurvey['introduction'];
@@ -387,7 +387,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 		//is this block branched to?
 		$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 										FROM BranchDestinations";										
-		$qResThisObjectIsBranchedTo = mysqli_query($qThisObjectIsBranchedTo);
+		$qResThisObjectIsBranchedTo = mysqli_query($db_connection, $qThisObjectIsBranchedTo);
 		$ThisObjectIsBranchedTo = false;
 		while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 			{
@@ -444,7 +444,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 				//is this block branched to?
 				$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 												FROM BranchDestinations";										
-				$qResThisObjectIsBranchedTo = mysqli_query($qThisObjectIsBranchedTo);
+				$qResThisObjectIsBranchedTo = mysqli_query($db_connection, $qThisObjectIsBranchedTo);
 				$ThisObjectIsBranchedTo = false;
 				while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 					{
@@ -490,7 +490,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 								//is this question branched to?
 								$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 																FROM BranchDestinations";										
-								$qResThisObjectIsBranchedTo = mysqli_query($qThisObjectIsBranchedTo);
+								$qResThisObjectIsBranchedTo = mysqli_query($db_connection, $qThisObjectIsBranchedTo);
 								$ThisObjectIsBranchedTo = false;
 								while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 									{
@@ -533,7 +533,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 																	AND Branches.questionID = $questionID
 																	AND Branches.itemID = $itemID
 																	AND BranchDestinations.branchID = Branches.branchID";
-											$qResBranchesFromItem = mysqli_query($qBranchesFromItem);
+											$qResBranchesFromItem = mysqli_query($db_connection, $qBranchesFromItem);
 											$show = "";
 											if(mysqli_num_rows($qResBranchesFromItem)>0)
 												{
@@ -600,7 +600,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 																		AND Branches.questionID = $questionID
 																		AND Branches.itemID <> $itemID
 																		AND BranchDestinations.branchID = Branches.branchID";
-											$qResBranchesFromQuestion = mysqli_query($qBranchesFromQuestion);
+											$qResBranchesFromQuestion = mysqli_query($db_connection, $qBranchesFromQuestion);
 											$hide = "";
 											if(mysqli_num_rows($qResBranchesFromQuestion)>0)
 												{
@@ -701,7 +701,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 																	AND Branches.questionID = $questionID
 																	AND Branches.itemID = $itemID
 																	AND BranchDestinations.branchID = Branches.branchID";
-											$qResBranchesFromItem = mysqli_query($qBranchesFromItem);
+											$qResBranchesFromItem = mysqli_query($db_connection, $qBranchesFromItem);
 											$show = "";
 											if(mysqli_num_rows($qResBranchesFromItem)>0)
 												{
@@ -804,7 +804,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 																	AND Branches.questionID = $questionID
 																	AND Branches.itemID = $itemID
 																	AND BranchDestinations.branchID = Branches.branchID";
-											$qResBranchesFromItem = mysqli_query($qBranchesFromItem);
+											$qResBranchesFromItem = mysqli_query($db_connection, $qBranchesFromItem);
 											if(mysqli_num_rows($qResBranchesFromItem)>0)
 												{
 												$itemIsInvolvedInBranching = true;

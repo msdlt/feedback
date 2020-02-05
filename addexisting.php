@@ -147,7 +147,7 @@ if(isset($_GET['surveyID']))
 	$qSurvey = "SELECT title, introduction, epilogue, lastModified
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-	$qResSurvey = mysqli_query($qSurvey);
+	$qResSurvey = mysqli_query($db_connection, $qSurvey);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey[title];
 	$IdName = "blockID";
@@ -160,7 +160,7 @@ if(isset($_GET['surveyID']))
 		$qBlock = "SELECT title
 					FROM Blocks 
 					WHERE blockID = $blockID";
-		$qResBlock = mysqli_query($qBlock);
+		$qResBlock = mysqli_query($db_connection, $qBlock);
 		$rowBlock = mysqli_fetch_array($qResBlock);
 		$blockTitle = $rowBlock[title];
 		$IdName = "sectionID";
@@ -173,7 +173,7 @@ if(isset($_GET['surveyID']))
 			$qSection = "SELECT title
 						FROM Sections 
 						WHERE sectionID = $sectionID";
-			$qResSection = mysqli_query($qSection);
+			$qResSection = mysqli_query($db_connection, $qSection);
 			$rowSection = mysqli_fetch_array($qResSection);
 			$sectionTitle = $rowSection[title];
 			$IdName = "questionID";
@@ -186,7 +186,7 @@ if(isset($_GET['surveyID']))
 				$qQuestion = "SELECT title
 							FROM Questions 
 							WHERE questionID = $questionID";
-				$qResQuestion = mysqli_query($qQuestion);
+				$qResQuestion = mysqli_query($db_connection, $qQuestion);
 				$rowQuestion = mysqli_fetch_array($qResQuestion);
 				$questionTitle = $rowQuestion[title];
 				$IdName = "itemID";
@@ -295,7 +295,7 @@ switch ($addingWhat)
 		}
 	}
 
-$qResObjects = mysqli_query($qObjects);
+$qResObjects = mysqli_query($db_connection, $qObjects);
 if (($qResObjects == false))
 	{
 	echo "problem querying Objects" . mysqli_error();
@@ -345,7 +345,7 @@ else
 							break;
 							}
 						}
-					$qAlreadyInParent = mysqli_query($qAlreadyInParent);
+					$qAlreadyInParent = mysqli_query($db_connection, $qAlreadyInParent);
 					if ($qAlreadyInParent == false)
 						{
 						echo "problem querying AlreadyInParent" . mysqli_error();
@@ -394,7 +394,7 @@ else
 							}
 						if ($addingWhat != "Item")
 							{
-							$qResChildrenOfObject = mysqli_query($qChildrenOfObject);
+							$qResChildrenOfObject = mysqli_query($db_connection, $qChildrenOfObject);
 							if (($qResChildrenOfObject == false))
 								{
 								echo "problem querying ChildrenOfObject" . mysqli_error();

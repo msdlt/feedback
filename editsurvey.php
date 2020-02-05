@@ -28,7 +28,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 		//Server-side validation of data entered - 
 		//**********************************************************
 		/* Checking and ensure that the survey title does not already exist in the database */
-		$sql_title_check = mysqli_query("SELECT title FROM Surveys
+		$sql_title_check = mysqli_query($db_connection, "SELECT title FROM Surveys
 										WHERE title=$updateTitle" . ($surveyID !="add" ? "AND surveyID <> $surveyID" : ""));
 										//that last if statement allows edited survey to have the same name as it had before
 										//but prevents added surveys having the same name as an existing survey.
@@ -92,7 +92,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				FROM Authors, SurveyAuthors
 				WHERE SurveyAuthors.surveyID = $surveyID
 				AND Authors.authorID = SurveyAuthors.authorID";
-			$qResAuthors = mysqli_query($qAuthors);
+			$qResAuthors = mysqli_query($db_connection, $qAuthors);
 			if (($qResAuthors == false))
 				{
 				echo "problem querying Authors" . mysqli_error();
@@ -119,7 +119,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$qIsAuthor = "	SELECT authorID 
 								FROM Authors
 								WHERE heraldID = '$aAdded[$i]'";
-				$qResIsAuthor = mysqli_query($qIsAuthor);
+				$qResIsAuthor = mysqli_query($db_connection, $qIsAuthor);
 				if (mysqli_num_rows($qResIsAuthor)==0)
 					{
 					//if not in Authors then add them
@@ -160,7 +160,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$qAuthorID = "	SELECT authorID 
 								FROM Authors
 								WHERE heraldID = '$aRemoved[$i]'";
-				$qResAuthorID = mysqli_query($qAuthorID);
+				$qResAuthorID = mysqli_query($db_connection, $qAuthorID);
 				$rowAuthorID = mysqli_fetch_array($qResAuthorID);
 				$iRemoveAuthorID = $rowAuthorID[authorID];
 				//if so, check if this author is also an author for another survey
@@ -168,7 +168,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 									FROM SurveyAuthors
 									WHERE authorID = $iRemoveAuthorID
 									AND surveyID <> $surveyID";
-				$qResIsOtherAuthor = mysqli_query($qIsOtherAuthor);
+				$qResIsOtherAuthor = mysqli_query($db_connection, $qIsOtherAuthor);
 				if (mysqli_num_rows($qResIsOtherAuthor)==0)
 					{
 					//if not, remove from Authors
@@ -504,7 +504,7 @@ if($surveyID!="add")
 	$qSurveys = "SELECT title, introduction, epilogue, lastModified, allowSave, allowViewByStudent
 					FROM Surveys
 					WHERE surveyID = $surveyID";
-	$qResSurvey = mysqli_query($qSurveys);
+	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey['title'];
 	$surveyIntroduction = $rowSurvey['introduction'];
@@ -517,7 +517,7 @@ if($surveyID!="add")
 				FROM Authors, SurveyAuthors
 				WHERE SurveyAuthors.surveyID = $surveyID
 				AND Authors.authorID = SurveyAuthors.authorID";
-	$qResAuthors = mysqli_query($qAuthors);
+	$qResAuthors = mysqli_query($db_connection, $qAuthors);
 	}
 elseif ($validationProblem == true)
 	{
@@ -681,7 +681,7 @@ if($surveyID !="add")
 				AND Blocks.blockID = SurveyBlocks.blockID
 				ORDER BY SurveyBlocks.position";
 				
-	$qResBlocks = mysqli_query($qBlocks);
+	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	if (($qResBlocks == false))
 		{
 		echo "problem querying Blocks" . mysqli_error();
@@ -721,7 +721,7 @@ if($surveyID !="add")
 														AND Sections.sectionID = BlockSections.sectionID
 														ORDER BY BlockSections.position";
 										
-										$qResSections = mysqli_query($qSections);
+										$qResSections = mysqli_query($db_connection, $qSections);
 										
 										if (($qResSections == false))
 											{
@@ -876,7 +876,7 @@ if($surveyID !="add")
 				AND Blocks.blockID = SurveyBlocks.blockID
 				ORDER BY SurveyBlocks.position";
 				
-	$qResBlocks = mysqli_query($qHiddenBlocks);
+	$qResBlocks = mysqli_query($db_connection, $qHiddenBlocks);
 	if (($qResBlocks == false))
 		{
 		echo "problem querying Blocks" . mysqli_error();
@@ -916,7 +916,7 @@ if($surveyID !="add")
 														AND Sections.sectionID = BlockSections.sectionID
 														ORDER BY BlockSections.position";
 										
-										$qResSections = mysqli_query($qSections);
+										$qResSections = mysqli_query($db_connection, $qSections);
 										
 										if (($qResSections == false))
 											{

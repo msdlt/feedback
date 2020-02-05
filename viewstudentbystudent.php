@@ -291,7 +291,7 @@ if(isset($_POST['bChooseSurveys']))
 						$qSurveyInstances = "SELECT surveyInstanceID, title, startDate, finishDate
 											FROM SurveyInstances
 											WHERE surveyID = $surveyID";
-						$qResSurveyInstances = mysqli_query($qSurveyInstances);
+						$qResSurveyInstances = mysqli_query($db_connection, $qSurveyInstances);
 						if ($qResSurveyInstances == false)
 							{
 							echo "problem querying SurveyInstances" . mysqli_error();

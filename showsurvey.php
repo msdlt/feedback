@@ -43,7 +43,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 		$qSurvey = "	SELECT surveyID, title, startDate, finishDate  
 						FROM SurveyInstances
 						WHERE surveyInstanceID = $surveyInstanceID";
-		$qResSurvey = mysqli_query($qSurvey);
+		$qResSurvey = mysqli_query($db_connection, $qSurvey);
 		if (($qResSurvey == false))
 			{
 			echo "problem querying SurveyInstances" . mysqli_error();
@@ -84,7 +84,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 							AND SurveyBlocks.visible = 1
 							AND Blocks.blockID = SurveyBlocks.blockID
 							ORDER BY SurveyBlocks.position";
-			$qResBlocks = mysqli_query($qBlocks);
+			$qResBlocks = mysqli_query($db_connection, $qBlocks);
 			$iBlock = 1;
 			while($rowBlocks = mysqli_fetch_array($qResBlocks))
 				{
@@ -100,7 +100,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 								AND BlockSections.visible = 1
 								AND Sections.sectionID = BlockSections.sectionID
 								ORDER BY BlockSections.position";
-				$qResSections = mysqli_query($qSections);
+				$qResSections = mysqli_query($db_connection, $qSections);
 				$iSection = 1;
 				while($rowSections = mysqli_fetch_array($qResSections))
 					{
@@ -117,7 +117,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 									AND SectionQuestions.visible = 1
 									AND Questions.questionID = SectionQuestions.questionID
 									ORDER BY SectionQuestions.position";
-					$qResQuestions = mysqli_query($qQuestions);
+					$qResQuestions = mysqli_query($db_connection, $qQuestions);
 					$iQuestion = 1;
 					while($rowQuestions = mysqli_fetch_array($qResQuestions))
 						{
@@ -132,7 +132,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 									AND QuestionItems.visible = 1
 									AND Items.itemID = QuestionItems.itemID
 									ORDER BY QuestionItems.position";
-						$qResItems = mysqli_query($qItems);
+						$qResItems = mysqli_query($db_connection, $qItems);
 						$iItem = 1;
 						while($rowItems = mysqli_fetch_array($qResItems))
 							{
@@ -487,7 +487,7 @@ function goTo(URL)
 												//AND SectionQuestions.visible = 1
 												//AND Questions.questionID = SectionQuestions.questionID
 												//ORDER BY SectionQuestions.position";
-								$qResQuestions = mysqli_query($qQuestions);
+								$qResQuestions = mysqli_query($db_connection, $qQuestions);
 								for($sinst=1;$sinst<=$noOfSectionInstances;$sinst++)
 									{
 									//if(mysql_num_rows($qResQuestions)>0)
@@ -638,7 +638,7 @@ function goTo(URL)
 	$qSurveys = "SELECT title, introduction, epilogue, allowSave, allowViewByStudent
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-	$qResSurvey = mysqli_query($qSurveys);
+	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey['title'];
 	$surveyIntroduction = $rowSurvey['introduction'];
@@ -687,7 +687,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 						FROM AnswerComments
 						WHERE answerID = $answerID";
 
-		$qResAnswerComments = mysqli_query($qAnswerComments);
+		$qResAnswerComments = mysqli_query($db_connection, $qAnswerComments);
 		$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
 		//if so, write the text into the textarea
 		$textOutput = $textOutput . $text;
@@ -740,7 +740,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 						FROM AnswerDates
 						WHERE answerID = $answerID";
 
-		$qResAnswerDates = mysqli_query($qAnswerDates);
+		$qResAnswerDates = $db_connection, $qAnswerDates);
 		$textOutput = $textOutput . "<td>";
 		$textOutput = $textOutput . $date;
 		$textOutput = $textOutput . "</td></tr>";
@@ -795,12 +795,12 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 						FROM AnswerItems
 						WHERE answerID = $answerID";
 		//print_r($qAnswerItems);
-		$qResAnswerItems = mysqli_query($qAnswerItems);
+		$qResAnswerItems = mysqli_query($db_connection, $qAnswerItems);
 		//print_r($qResAnswerItems);
 		$qItems = "	SELECT text
 					FROM Items
 					WHERE itemID = $itemID";
-		$qResItems = mysqli_query($qItems);
+		$qResItems = mysqli_query($db_connection, $qItems);
 		$rowItems = mysqli_fetch_array($qResItems);
 		$textOutput = $textOutput . "<td>";
 		$textOutput = $textOutput .$rowItems['text'];
@@ -850,7 +850,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		$qAnswerItems = "SELECT answerItemID
 						FROM AnswerItems
 						WHERE answerID = $answerID";
-		$qResAnswerItems = mysqli_query($qAnswerItems);
+		$qResAnswerItems = mysqli_query($db_connection, $qAnswerItems);
 		if (mysqli_num_rows($qResAnswerItems)>0)
 			//if any records exist, delete them
 			{
@@ -879,7 +879,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 					AND QuestionItems.questionID = $questionID
 					AND Items.itemID = QuestionItems.itemID";
 					
-		$qResItems = mysqli_query($qItems);
+		$qResItems = mysqli_query($db_connection, $qItems);
 		while($rowItems = mysqli_fetch_array($qResItems))
 			{
 			$mselecName = $blockID . "_" . $sectionID . "_" . $questionID. "_" . $rowItems['itemID'] . "_i" . $inst . "_si" . $sinst;
@@ -990,7 +990,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 													AND Questions.questionID = Branches.questionID
 													AND Branches.surveyID = $surveyID
 													";
-							$qResBranchDestinations = mysqli_query($qBranchDestinations);
+							$qResBranchDestinations = mysqli_query($db_connection, $qBranchDestinations);
 							if (mysqli_num_rows($qResBranchDestinations)==0)
 								{
 								$aQuestions[$questionNo][6] = NULL;
@@ -1216,7 +1216,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 									AND sinstance = $sinst
 									AND heraldID = '$heraldID'";
 						
-							$qResAnswers = mysqli_query($qAnswers);
+							$qResAnswers = mysqli_query($db_connection, $qAnswers);
 							$textOutput = $textOutput . "<tr><td>$questionNo</td><td>".$aItems[$iBlock][$iSection][$iQuestion][0]["text"]."</td>";
 							
 							//******************************************************************************************************
@@ -1312,7 +1312,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											AND Items.itemID = QuestionItems.itemID
 											ORDER BY QuestionItems.position";
 														
-									$qResItems = mysqli_query($qItems);
+									$qResItems = $db_connection, $qItems);
 									//check whether any of the items for this question have been checked ('on')
 									$iNoOfCheckedItems = 0;
 									for($iItem=1; $iItem<=count($aItems[$iBlock][$iSection][$iQuestion])-1;$iItem++)
@@ -1602,7 +1602,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										FROM SurveyInstanceParticipants
 										WHERE surveyInstanceID = $surveyInstanceID
 										AND heraldID = '$heraldID'";
-		$qResSurveyInstanceParticipants = mysqli_query($qSurveyInstanceParticipants);
+		$qResSurveyInstanceParticipants = mysqli_query($db_connection, $qSurveyInstanceParticipants);
 		if (($qResSurveyInstanceParticipants == false))
 			{
 			echo "problem querying SurveyInstanceParticipants" . mysqli_error();
@@ -1672,7 +1672,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 					FROM SurveyInstanceParticipants
 					WHERE surveyInstanceID = $surveyInstanceID
 					AND heraldID = '$heraldID'";
-	$qResAnyAnswers = mysqli_query($qAnyAnswers);
+	$qResAnyAnswers = mysqli_query($db_connection, $qAnyAnswers);
 	$answersExist = "false";
 	$hasSubmitted = "false";
 	if (mysqli_num_rows($qResAnyAnswers)>0)
@@ -1842,7 +1842,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		//is this block branched to?
 		$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 										FROM BranchDestinations";										
-		$qResThisObjectIsBranchedTo = mysqli_query($qThisObjectIsBranchedTo);
+		$qResThisObjectIsBranchedTo = mysqli_query($db_connection, $qThisObjectIsBranchedTo);
 		$ThisObjectIsBranchedTo = false;
 		while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 			{
@@ -1916,7 +1916,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				//is this block branched to?
 				$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 												FROM BranchDestinations";										
-				$qResThisObjectIsBranchedTo = mysqli_query($qThisObjectIsBranchedTo);
+				$qResThisObjectIsBranchedTo = mysqli_query($db_connection, $qThisObjectIsBranchedTo);
 				$ThisObjectIsBranchedTo = false;
 				while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 					{
@@ -1973,7 +1973,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 								//is this question branched to?
 								$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 																FROM BranchDestinations";										
-								$qResThisObjectIsBranchedTo = mysqli_query($qThisObjectIsBranchedTo);
+								$qResThisObjectIsBranchedTo = mysqli_query($db_connection, $qThisObjectIsBranchedTo);
 								$ThisObjectIsBranchedTo = false;
 								while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 									{
@@ -2005,7 +2005,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 															AND Answers.instance = $inst
 															AND Answers.sinstance = $sinst
 															AND AnswerComments.answerID = Answers.answerID";
-										$qResCommentAnswered = mysqli_query($qCommentAnswered);
+										$qResCommentAnswered = mysqli_query($db_connection, $qCommentAnswered);
 										}
 									}
 								
@@ -2052,7 +2052,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	AND Branches.questionID = $questionID
 																	AND Branches.itemID = $itemID
 																	AND BranchDestinations.branchID = Branches.branchID";
-											$qResBranchesFromItem = mysqli_query($qBranchesFromItem);
+											$qResBranchesFromItem = mysqli_query($db_connection, $qBranchesFromItem);
 											$show = "";
 											if(mysqli_num_rows($qResBranchesFromItem)>0)
 												{
@@ -2121,7 +2121,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																		AND Branches.questionID = $questionID
 																		AND Branches.itemID <> $itemID
 																		AND BranchDestinations.branchID = Branches.branchID";
-											$qResBranchesFromQuestion = mysqli_query($qBranchesFromQuestion);
+											$qResBranchesFromQuestion = mysqli_query($db_connection, $qBranchesFromQuestion);
 											$hide = "";
 											if(mysqli_num_rows($qResBranchesFromQuestion)>0)
 												{
@@ -2241,7 +2241,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	AND Branches.questionID = $questionID
 																	AND Branches.itemID = $itemID
 																	AND BranchDestinations.branchID = Branches.branchID";
-											$qResBranchesFromItem = mysqli_query($qBranchesFromItem);
+											$qResBranchesFromItem = mysqli_query($db_connection, $qBranchesFromItem);
 											$show = "";
 											if(mysqli_num_rows($qResBranchesFromItem)>0)
 												{
@@ -2360,7 +2360,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	AND Branches.questionID = $questionID
 																	AND Branches.itemID = $itemID
 																	AND BranchDestinations.branchID = Branches.branchID";
-											$qResBranchesFromItem = mysqli_query($qBranchesFromItem);
+											$qResBranchesFromItem = mysqli_query($db_connection, $qBranchesFromItem);
 											if(mysqli_num_rows($qResBranchesFromItem)>0)
 												{
 												$itemIsInvolvedInBranching = true;
@@ -2583,7 +2583,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																AND Answers.instance = $inst
 																AND Answers.sinstance = $sinst
 																AND AnswerDates.answerID = Answers.answerID";
-											$qResDateAnswered = mysqli_query($qDateAnswered);
+											$qResDateAnswered = mysqli_query($db_connection, $qDateAnswered);
 											}
 											
 										echo "<table class=\"normal_4\">";
@@ -2784,7 +2784,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																AND Answers.instance = $inst
 																AND Answers.sinstance = $sinst
 																AND AnswerComments.answerID = Answers.answerID";
-											$qResCommentAnswered = mysqli_query($qCommentAnswered);
+											$qResCommentAnswered = mysqli_query($db_connection, $qCommentAnswered);
 											}
 										switch ($aItems[$iBlock][$iSection][$iQuestion][0]["questionTypeID"])
 											{
@@ -3080,7 +3080,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												AND Answers.instance = $inst
 												AND Answers.sinstance = $sinst
 												AND AnswerItems.AnswerID = Answers.answerID";
-							$qResItemAnswered = mysqli_query($qItemAnswered);
+							$qResItemAnswered = mysqli_query($db_connection, $qItemAnswered);
 							}
 						//write a bit of javascript to click the appropriate button
 						$questionType = $aItems[$iBlock][$iSection][$iQuestion][0]["questionTypeID"];
@@ -3151,7 +3151,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 															AND Branches.questionID = $questionID
 															AND Branches.itemID = $itemID
 															AND BranchDestinations.branchID = Branches.branchID";
-									$qResBranchesFromItem = mysqli_query($qBranchesFromItem);
+									$qResBranchesFromItem = mysqli_query($db_connection, $qBranchesFromItem);
 									$show = "";
 									if(mysqli_num_rows($qResBranchesFromItem)>0)
 										{
@@ -3258,7 +3258,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 															AND Branches.questionID = $questionID
 															AND Branches.itemID = $itemID
 															AND BranchDestinations.branchID = Branches.branchID";
-									$qResBranchesFromItem = mysqli_query($qBranchesFromItem);
+									$qResBranchesFromItem = mysqli_query($db_connection, $qBranchesFromItem);
 									if(mysqli_num_rows($qResBranchesFromItem)>0)
 										{
 										if($j > 1)

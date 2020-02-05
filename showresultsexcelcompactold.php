@@ -56,7 +56,7 @@
 	//delete any exirting records in ParticipantItems as this is only a temporary table used 
 	//to simplify queries within this .php file.
 	$dParticipantItems = "DELETE FROM ParticipantItems";
-	$dResParticipantItems = mysqli_query($dParticipantItems);
+	$dResParticipantItems = mysqli_query($db_connection, $dParticipantItems);
 	//This is an array to hold the items in each question by which other questions are being analysed 
 	//$aQuestionToAnalyseByItems[x][y][z]
 	// x = criterion number
@@ -90,7 +90,7 @@
 						"AND Items.itemID = QuestionItems.itemID
 						ORDER BY position";
 		
-		$qResQuestionItems = mysqli_query($qQuestionItems);
+		$qResQuestionItems = mysqli_query($db_connection, $qQuestionItems);
 		$itemCounter = 0;
 		while($rowQuestionItems = mysqli_fetch_array($qResQuestionItems))
 			{
@@ -118,7 +118,7 @@
 								AND AnswerItems.answerID = Answers.answerID
 								AND AnswerItems.itemID = $QuestionToAnalyseByItem
 								AND SurveyInstanceParticipants.surveyInstanceID = SurveyInstances.surveyInstanceID";
-			$qResParticipants = mysqli_query($qParticipants);
+			$qResParticipants = mysqli_query($db_connection, $qParticipants);
 			$NoOfParticipants = mysqli_num_rows($qResParticipants);
 			//now write those participants to a table to store them temporarily next to the item they chose
 			while($rowParticipants = mysqli_fetch_array($qResParticipants))
@@ -140,7 +140,7 @@
 	$qSurveys = "SELECT title
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-	$qResSurvey = mysqli_query($qSurveys);
+	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey[title];
 	$surveyTitleNoSpaces = str_replace(' ', '', $surveyTitle);
@@ -220,7 +220,7 @@ $qBlocks = "SELECT Blocks.blockID, Blocks.title, Blocks.text, Blocks.introductio
 			WHERE SurveyBlocks.surveyID = $surveyID
 			AND Blocks.blockID = SurveyBlocks.blockID
 			ORDER BY SurveyBlocks.position";
-$qResBlocks = mysqli_query($qBlocks);
+$qResBlocks = mysqli_query($db_connection, $qBlocks);
 //counter for questions 
 $questionNo = 1;	
 while($rowBlocks = mysqli_fetch_array($qResBlocks))
@@ -235,7 +235,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					AND Sections.sectionID = BlockSections.sectionID
 					ORDER BY BlockSections.position";
 	
-	$qResSections = mysqli_query($qSections);
+	$qResSections = mysqli_query($db_connection, $qSections);
 
 	while($rowSections = mysqli_fetch_array($qResSections))
 		{
@@ -250,7 +250,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					AND Questions.questionID = SectionQuestions.questionID
 					ORDER BY SectionQuestions.position";
 		
-		$qResQuestions = mysqli_query($qQuestions);
+		$qResQuestions = mysqli_query($db_connection, $qQuestions);
 		
 		while($rowQuestions = mysqli_fetch_array($qResQuestions))
 			{
@@ -323,7 +323,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 									AND Answers.questionID = $questionID
 									";
 					
-					$qResCountAnswers = mysqli_query($qCountAnswers);
+					$qResCountAnswers = mysqli_query($db_connection, $qCountAnswers);
 					
 					$NoOfAnswers = mysqli_num_rows($qResCountAnswers);
 					//get participants comments for this item
@@ -350,7 +350,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 								AND Answers.questionID = $questionID
 								AND Answers.answerID = AnswerComments.answerID";
 					//echo $qComments;
-					$qResComments = mysqli_query($qComments);
+					$qResComments = mysqli_query($db_connection, $qComments);
 					//get participants dates for this item
 					$qDates = "SELECT AnswerDates.date
 								FROM Answers, AnswerDates, ParticipantItems, SurveyInstances, SurveyInstanceParticipants
@@ -372,7 +372,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 								AND Answers.blockID = $blockID
 								AND Answers.sectionID = $sectionID
 								AND Answers.questionID = $questionID";
-					$qResDates = mysqli_query($qDates);
+					$qResDates = mysqli_query($db_connection, $qDates);
 										
 					//get items
 					$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position, QuestionItems.visible
@@ -382,7 +382,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 							"AND Items.itemID = QuestionItems.itemID
 							ORDER BY QuestionItems.position";
 										
-					$qResItems = mysqli_query($qItems);
+					$qResItems = mysqli_query($db_connection, $qItems);
 					//check whether any of the items for this question have been checked ('on')
 					$bIsFirstRow = true;
 					$itemNo = 0;
@@ -411,7 +411,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 										AND Answers.questionID = $questionID
 										AND Answers.answerID = AnswerItems.answerID
 										AND AnswerItems.itemID = $rowItems[itemID]";
-						$qResCountItems = mysqli_query($qCountItems);
+						$qResCountItems = mysqli_query($db_connection, $qCountItems);
 						
 						$NoOfItems = mysqli_num_rows($qResCountItems);
 						if($NoOfAnswers>0)
@@ -485,7 +485,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 								AND Answers.surveyInstanceID = SurveyInstances.surveyInstanceID
 								AND Answers.blockID = $blockID
 								AND Answers.sectionID = $sectionID";
-				$qResCountAnswers = mysqli_query($qCountAnswers);
+				$qResCountAnswers = mysqli_query($db_connection, $qCountAnswers);
 				
 				$NoOfAnswers = mysqli_num_rows($qResCountAnswers);
 				
@@ -506,7 +506,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 							AND Answers.questionID = $questionID
 							AND AnswerComments.answerID = Answers.answerID";
 							
-				$qResComments = mysqli_query($qComments);
+				$qResComments = mysqli_query($db_connection, $qComments);
 				
 				//get any dates for this question
 				$qDates = "SELECT AnswerDates.date
@@ -523,7 +523,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 							AND Answers.sectionID = $sectionID
 							AND Answers.questionID = $questionID";
 							
-				$qResDates = mysqli_query($qDates);
+				$qResDates = mysqli_query($db_connection, $qDates);
 						
 				//get items
 										
@@ -534,7 +534,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 						"AND Items.itemID = QuestionItems.itemID
 						ORDER BY QuestionItems.position";
 									
-				$qResItems = mysqli_query($qItems);
+				$qResItems = mysqli_query($db_connection, $qItems);
 				$bIsFirstRow = true;
 				//check whether any of the items for this question have been checked ('on')
 				while($rowItems = mysqli_fetch_array($qResItems))
@@ -554,7 +554,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 									AND Answers.sectionID = $sectionID
 									AND Answers.questionID = $questionID
 									AND Answers.answerID = AnswerItems.answerID";
-					$qResCountItems = mysqli_query($qCountItems);
+					$qResCountItems = mysqli_query($db_connection, $qCountItems);
 					
 					$NoOfItems = mysqli_num_rows($qResCountItems);
 					if($NoOfAnswers>0)

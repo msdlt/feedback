@@ -33,7 +33,7 @@ if (isset($_POST['delete']))
 			FROM Authors, SurveyAuthors
 			WHERE Authors.authorID = SurveyAuthors.authorID
 			AND SurveyAuthors.surveyID = $aSurveys[$i]";
-		$qResAuthors = mysqli_query($qAuthors);
+		$qResAuthors = mysqli_query($db_connection, $qAuthors);
 		if (($qResAuthors == false))
 			{
 			echo "problem querying Authors" . mysqli_error();
@@ -48,7 +48,7 @@ if (isset($_POST['delete']))
 									FROM SurveyAuthors
 									WHERE authorID = $iRemoveAuthorID
 									AND surveyID <> $aSurveys[$i]";
-				$qResIsOtherAuthor = mysqli_query($qIsOtherAuthor);
+				$qResIsOtherAuthor = mysqli_query($db_connection, $qIsOtherAuthor);
 				if (mysqli_num_rows($qResIsOtherAuthor)==0)
 					{
 					//if not, remove from Authors

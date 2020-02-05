@@ -59,8 +59,8 @@ echo "<h1>Warning</h1>
 $qSurveys = "SELECT title
 			FROM Surveys
 			WHERE surveyID = $surveyID";
-$qResSurvey = mysqli_query($qSurveys);
-$rowSurvey = mysqli_fetch_array($qResSurvey);
+$qResSurvey = mysqli_query($db_connection, $qSurveys);
+$rowSurvey = mysqli_fetch_array($db_connection, $qResSurvey);
 $surveyTitle = $rowSurvey[title];
 if(IsAuthor($heraldID))
 	{
@@ -94,7 +94,7 @@ else
 							WHERE surveyID = $surveyID
 							ORDER BY startDate";
 	}
-$qResSurveyInstances = mysqli_query($qSurveyInstances);
+$qResSurveyInstances = mysqli_query($db_connection, $qSurveyInstances);
 if (($qResSurveyInstances == false))
 	{
 	echo "problem querying SurveyInstances" . mysqli_error();

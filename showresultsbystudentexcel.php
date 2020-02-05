@@ -66,7 +66,7 @@
 	$qSurveys = "SELECT title
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-	$qResSurvey = mysqli_query($qSurveys);
+	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey[title];
 	$surveyTitleNoSpaces = str_replace(' ', '', $surveyTitle);
@@ -127,7 +127,7 @@ $qBlocks = "	SELECT Blocks.blockID, Blocks.title, Blocks.introduction, Blocks.ep
 				WHERE SurveyBlocks.surveyID = $surveyID
 				AND Blocks.blockID = SurveyBlocks.blockID
 				ORDER BY SurveyBlocks.position";
-$qResBlocks = mysqli_query($qBlocks);
+$qResBlocks = mysqli_query($db_connection, $qBlocks);
 $questionNo = 1;	//counter for questions 
 while($rowBlocks = mysqli_fetch_array($qResBlocks))
 	{
@@ -138,7 +138,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					WHERE BlockSections.blockID = $blockID
 					AND Sections.sectionID = BlockSections.sectionID
 					ORDER BY BlockSections.position";
-	$qResSections = mysqli_query($qSections);
+	$qResSections = mysqli_query($db_connection, $qSections);
 	while($rowSections = mysqli_fetch_array($qResSections))
 		{
 		$sectionID = $rowSections['sectionID'];
@@ -149,7 +149,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					WHERE SectionQuestions.sectionID = $sectionID
 					AND Questions.questionID = SectionQuestions.questionID
 					ORDER BY SectionQuestions.position";
-		$qResQuestions = mysqli_query($qQuestions);
+		$qResQuestions = mysqli_query($db_connection, $qQuestions);
 		while($rowQuestions = mysqli_fetch_array($qResQuestions))
 			{
 			$questionID = $rowQuestions['questionID'];
@@ -223,7 +223,7 @@ while($rowStudent=mysqli_fetch_array($qResStudents))
 					WHERE SurveyBlocks.surveyID = $surveyID
 					AND Blocks.blockID = SurveyBlocks.blockID
 					ORDER BY SurveyBlocks.position";
-	$qResBlocks = mysqli_query($qBlocks);
+	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	while($rowBlocks = mysqli_fetch_array($qResBlocks))
 		{
 		$blockID = $rowBlocks['blockID'];
@@ -234,7 +234,7 @@ while($rowStudent=mysqli_fetch_array($qResStudents))
 						AND Sections.sectionID = BlockSections.sectionID
 						ORDER BY BlockSections.position";
 		
-		$qResSections = mysqli_query($qSections);
+		$qResSections = mysqli_query($db_connection, $qSections);
 		while($rowSections = mysqli_fetch_array($qResSections))
 			{
 			$sectionID = $rowSections['sectionID'];
@@ -246,7 +246,7 @@ while($rowStudent=mysqli_fetch_array($qResStudents))
 						AND Questions.questionID = SectionQuestions.questionID
 						ORDER BY SectionQuestions.position";
 			
-			$qResQuestions = mysqli_query($qQuestions);
+			$qResQuestions = mysqli_query($db_connection, $qQuestions);
 			while($rowQuestions = mysqli_fetch_array($qResQuestions))
 				{
 				$questionID = $rowQuestions['questionID'];
@@ -270,7 +270,7 @@ while($rowStudent=mysqli_fetch_array($qResStudents))
 								AND Answers.sectionID = $sectionID
 								AND Answers.questionID = $questionID
 								AND Answers.answerID = AnswerComments.answerID";
-					$qResComments = mysqli_query($qComments);
+					$qResComments = mysqli_query($db_connection, $qComments);
 					if($questionTypeID==1||$questionTypeID==2||$questionTypeID==3)
 						{
 						$qItemAnswers = " SELECT DISTINCT AnswerItems.itemID
@@ -286,7 +286,7 @@ while($rowStudent=mysqli_fetch_array($qResStudents))
 									AND Answers.sectionID = $sectionID
 									AND Answers.questionID = $questionID
 									AND Answers.answerID = AnswerItems.answerID";
-						$qResItemAnswers = mysqli_query($qItemAnswers);
+						$qResItemAnswers = mysqli_query($db_connection, $qItemAnswers);
 						if(mysqli_num_rows($qResItemAnswers)>0)
 							{
 							if($questionTypeID==2)
@@ -300,7 +300,7 @@ while($rowStudent=mysqli_fetch_array($qResStudents))
 								$qItems = "	SELECT Items.text
 											FROM Items
 											WHERE Items.itemID = $itemID";
-								$qResItems = mysqli_query($qItems);
+								$qResItems = mysqli_query($db_connection, $qItems);
 								if($questionTypeID==2)
 									{
 									while($rowItems = mysqli_fetch_array($qResItems))
@@ -364,7 +364,7 @@ while($rowStudent=mysqli_fetch_array($qResStudents))
 								AND Answers.blockID = $blockID
 								AND Answers.sectionID = $sectionID
 								AND Answers.questionID = $questionID";
-						$qResDates = mysqli_query($qDates);
+						$qResDates = mysqli_query($db_connection, $qDates);
 						if(mysqli_num_rows($qResDates)>0)
 							{
 							while($rowDates = mysqli_fetch_array($qResDates))

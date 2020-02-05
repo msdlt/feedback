@@ -56,14 +56,14 @@
 	$qSurveys = "SELECT title
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-	$qResSurvey = mysqli_query($qSurveys);
+	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey[title];
 	
 	$qSurveyInstances = "SELECT title, startDate, finishDate
 						FROM SurveyInstances
 						WHERE surveyInstanceID = $surveyInstanceID";
-	$qResSurveyInstance = mysqli_query($qSurveyInstances);
+	$qResSurveyInstance = mysqli_query($db_connection, $qSurveyInstances);
 	$rowSurveyInstance = mysqli_fetch_array($qResSurveyInstance);
 	$surveyInstanceTitle = $rowSurveyInstance[title];
 	
@@ -129,7 +129,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 				AND Blocks.blockID = SurveyBlocks.blockID
 				ORDER BY SurveyBlocks.position";
 	
-	$qResBlocks = mysqli_query($qBlocks);
+	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	//counter for questions 
 	$questionNo = 1;
 	//loop through sections
@@ -151,7 +151,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 		//is this block branched to?
 		$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 										FROM BranchDestinations";										
-		$qResThisObjectIsBranchedTo = mysqli_query($qThisObjectIsBranchedTo);
+		$qResThisObjectIsBranchedTo = mysqli_query($db_connection, $qThisObjectIsBranchedTo);
 		$ThisObjectIsBranchedTo = false;
 		while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 			{
@@ -191,7 +191,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 					AND Sections.sectionID = BlockSections.sectionID
 					ORDER BY BlockSections.position";
 		
-		$qResSections = mysqli_query($qSections);
+		$qResSections = mysqli_query($db_connection, $qSections);
 		for($inst=1;$inst<=$noOfInstances;$inst++)
 			{
 			echo "<div class=\"block\" id=\"div".$blockID."_i".$inst."\"".($ThisObjectIsBranchedTo?"style=\"display:none\"":(!$bThisBlockContainsLgText?"style=\"display:none\"":"")).">";
@@ -228,7 +228,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 				//is this block branched to?
 				$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 												FROM BranchDestinations";										
-				$qResThisObjectIsBranchedTo = mysqli_query($qThisObjectIsBranchedTo);
+				$qResThisObjectIsBranchedTo = mysqli_query($db_connection, $qThisObjectIsBranchedTo);
 				$ThisObjectIsBranchedTo = false;
 				while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 					{
@@ -246,7 +246,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 									WHERE SectionQuestions.sectionID = $sectionID
 									AND Questions.questionID = SectionQuestions.questionID
 									AND Questions.questionTypeID = 5";
-				$qResLgTextQuestions = @mysqli_query($db_connection, $qLgTextQuestions);
+				$qResLgTextQuestions = @mysqli_query($db_connection, $db_connection, $qLgTextQuestions);
 				if (($qResLgTextQuestions == false))
 					{
 					echo "problem querying Questions" . mysqli_error();
@@ -267,7 +267,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 							AND Questions.questionID = SectionQuestions.questionID
 							ORDER BY SectionQuestions.position";
 				
-				$qResQuestions = mysqli_query($qQuestions);
+				$qResQuestions = mysqli_query($db_connection, $qQuestions);
 				for($sinst=1;$sinst<=$noOfSectionInstances;$sinst++)
 					{
 					echo "<div class=\"section\" id=\"div".$blockID."_".$sectionID."_i".$inst."_si".$sinst."\"".($ThisObjectIsBranchedTo?"style=\"display:none\"":(!$bThisSectionContainsLgText?"style=\"display:none\"":"")).">";
@@ -302,7 +302,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 								//is this question branched to?
 								$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 																FROM BranchDestinations";										
-								$qResThisObjectIsBranchedTo = mysqli_query($qThisObjectIsBranchedTo);
+								$qResThisObjectIsBranchedTo = mysqli_query($db_connection, $qThisObjectIsBranchedTo);
 								$ThisObjectIsBranchedTo = false;
 								while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 									{
@@ -330,7 +330,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 															AND Answers.instance = $inst
 															AND Answers.sinstance = $sinst
 															AND AnswerComments.answerID = Answers.answerID";
-										$qResCommentAnswered = mysqli_query($qCommentAnswered);
+										$qResCommentAnswered = mysqli_query($db_connection, $qCommentAnswered);
 										}
 									}
 								if($rowQuestions[questionTypeID]==5)
