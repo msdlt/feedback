@@ -149,8 +149,8 @@ else
 					<td>$rowStudents[heraldID]</td>
 					<td>";
 //connect to heraldID and name database
-//$dbstudent_connection = mysql_connect ($dbstudent_info[host], $dbstudent_info[username], $dbstudent_info[password]) or die (mysql_error());
-//$db_select = mysql_select_db ($dbstudent_info[dbname], $dbstudent_connection) or die (mysql_error());
+//$dbstudent_connection = mysql_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password']) or die (mysql_error());
+//$db_select = mysql_select_db ($dbstudent_info['dbname'], $dbstudent_connection) or die (mysql_error());
 $dbstudent_connection = mysqli_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password'], $dbstudent_info['dbname']) or die (mysqli_error());
 $qStudentName = "	SELECT LASTNAME, FORENAMES
 				FROM cards
@@ -165,7 +165,7 @@ else
 	if (mysqli_num_rows($qResStudentName)==1)
 		{
 		$rowStudentName = mysqli_fetch_array($qResStudentName);
-		echo $rowStudentName[LASTNAME] . ", " . $rowStudentName[FORENAMES];
+		echo $rowStudentName['LASTNAME'] . ", " . $rowStudentName['FORENAMES'];
 		}
 	else
 		{
@@ -173,9 +173,9 @@ else
 		}
 	}
 mysqli_close($dbstudent_connection);
-//$db_connection = mysql_connect ($db_info[host], $db_info[username], $db_info[password]) or die (mysql_error());
-//$db_select = mysql_select_db ($db_info[dbname], $db_connection) or die (mysql_error());
-$db_connection = mysqli_connect ($db_info[host], $db_info[username], $db_info[password], $db_info[dbname]) or die (mysqli_error());
+//$db_connection = mysql_connect ($db_info['host'], $db_info['username'], $db_info['password']) or die (mysql_error());
+//$db_select = mysql_select_db ($db_info['dbname'], $db_connection) or die (mysql_error());
+$db_connection = mysqli_connect ($db_info['host'], $db_info['username'], $db_info['password'], $db_info['dbname']) or die (mysqli_error());
 	
 					echo"</td>
 					</tr>";

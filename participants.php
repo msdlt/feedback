@@ -114,10 +114,10 @@ else
 								<input type=\"checkbox\" id=\"check_$rowParticipants[participantID]\" name=\"check_Participants[]\" value=\"$rowParticipants[participantID]\"/>
 							</td>
 							<td>";
-		echo 					$rowParticipants[lastName] . ", " . $rowParticipants[firstName] . " " . $rowParticipants[initial] . ".";
+		echo 					$rowParticipants['LASTNAME'] . ", " . $rowParticipants[firstName] . " " . $rowParticipants[initial] . ".";
 		echo "				</td>
 							<td>
-								$rowParticipants[userName]
+								$rowParticipants['username']
 							</td>
 							<td>
 								$rowParticipants[decryptPassword]
@@ -152,7 +152,7 @@ while($rowParticipants = mysqli_fetch_array($qResParticipants))
 echo "			if (document.getElementById(\"check_$rowParticipants[participantID]\").checked == true)
 					{
 					iNoOfParticipants=iNoOfParticipants+1;
-					aParticipants[iNoOfParticipants] = \"$rowParticipants[lastName], $rowParticipants[firstName] $rowParticipants[initial]\";
+					aParticipants[iNoOfParticipants] = \"$rowParticipants['LASTNAME'], $rowParticipants[firstName] $rowParticipants[initial]\";
 					}";
 	}
 echo "			if (iNoOfParticipants == 0)
