@@ -137,7 +137,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 	while($rowBlocks = mysqli_fetch_array($qResBlocks))
 		{
 		$blockIsInstanceable = false;
-		$blockID = $rowBlocks[blockID];
+		$blockID = $rowBlocks['blockID'];
 		if($rowBlocks[instanceable]==1)
 			{
 			$blockIsInstanceable = true;
@@ -155,9 +155,9 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 		$ThisObjectIsBranchedTo = false;
 		while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 			{
-			if($rowThisObjectIsBranchedTo[blockID] == $blockID && 
-			$rowThisObjectIsBranchedTo[sectionID] == NULL && 
-			$rowThisObjectIsBranchedTo[questionID] == NULL)
+			if($rowThisObjectIsBranchedTo['blockID'] == $blockID && 
+			$rowThisObjectIsBranchedTo['sectionID'] == NULL && 
+			$rowThisObjectIsBranchedTo['questionID'] == NULL)
 				{
 				$ThisObjectIsBranchedTo = true;
 				}
@@ -196,10 +196,10 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 			{
 			echo "<div class=\"block\" id=\"div".$blockID."_i".$inst."\"".($ThisObjectIsBranchedTo?"style=\"display:none\"":(!$bThisBlockContainsLgText?"style=\"display:none\"":"")).">";
 			//begin block content
-			if($rowBlocks[text] != "")
+			if($rowBlocks['text'] != "")
 				{
 				//only output a block title if there is one
-				echo "<h2>$rowBlocks[text]";
+				echo "<h2>$rowBlocks['text']";
 				if ($rowBlocks[instanceable]==1)
 					{
 					echo ": ".$inst;
@@ -214,7 +214,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 			while($rowSections = mysqli_fetch_array($qResSections))
 				{			
 				$sectionIsInstanceable = false;
-				$sectionID = $rowSections[sectionID];
+				$sectionID = $rowSections['sectionID'];
 				if($rowSections[instanceable]==1)
 					{
 					$sectionIsInstanceable = true;
@@ -232,9 +232,9 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 				$ThisObjectIsBranchedTo = false;
 				while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 					{
-					if($rowThisObjectIsBranchedTo[blockID] == $blockID && 
-					$rowThisObjectIsBranchedTo[sectionID] == $sectionID && 
-					$rowThisObjectIsBranchedTo[questionID] == NULL)
+					if($rowThisObjectIsBranchedTo['blockID'] == $blockID && 
+					$rowThisObjectIsBranchedTo['sectionID'] == $sectionID && 
+					$rowThisObjectIsBranchedTo['questionID'] == NULL)
 						{
 						$ThisObjectIsBranchedTo = true;
 						}
@@ -273,10 +273,10 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 					echo "<div class=\"section\" id=\"div".$blockID."_".$sectionID."_i".$inst."_si".$sinst."\"".($ThisObjectIsBranchedTo?"style=\"display:none\"":(!$bThisSectionContainsLgText?"style=\"display:none\"":"")).">";
 				
 					//begin section content
-					if($rowSections[text] != "")
+					if($rowSections['text'] != "")
 						{
 						//only output a section title if there is one
-						echo "<h3> $rowSections[text]";
+						echo "<h3> $rowSections['text']";
 						if ($rowSections[instanceable]==1)
 							{
 							echo ": ".$sinst;
@@ -297,7 +297,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 							//loop through questions
 							while($rowQuestions = mysqli_fetch_array($qResQuestions))
 								{
-								$questionID = $rowQuestions[questionID];
+								$questionID = $rowQuestions['questionID'];
 								
 								//is this question branched to?
 								$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
@@ -306,9 +306,9 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 								$ThisObjectIsBranchedTo = false;
 								while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 									{
-									if($rowThisObjectIsBranchedTo[blockID] == $blockID && 
-									$rowThisObjectIsBranchedTo[sectionID] == $sectionID && 
-									$rowThisObjectIsBranchedTo[questionID] == $questionID)
+									if($rowThisObjectIsBranchedTo['blockID'] == $blockID && 
+									$rowThisObjectIsBranchedTo['sectionID'] == $sectionID && 
+									$rowThisObjectIsBranchedTo['questionID'] == $questionID)
 										{
 										$ThisObjectIsBranchedTo = true;
 										}
@@ -317,7 +317,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 								echo "<div class=\"questionNormal\" id=\"div".$blockID."_".$sectionID."_".$questionID."_i".$inst."_si".$sinst."\"".($ThisObjectIsBranchedTo?"style=\"display:none\"":"").">";
 								if (!$addingInstance && !$deletingInstance)
 									{
-									if($rowQuestions[comments]=="true" || $rowQuestions[questionTypeID] == 4 || $rowQuestions[questionTypeID] == 5)
+									if($rowQuestions[comments]=="true" || $rowQuestions['questionTypeID'] == 4 || $rowQuestions['questionTypeID'] == 5)
 										{
 										//find out if this question already has comments/text from this user
 										$qCommentAnswered = "	SELECT AnswerComments.text
@@ -333,14 +333,14 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 										$qResCommentAnswered = mysqli_query($db_connection, $qCommentAnswered);
 										}
 									}
-								if($rowQuestions[questionTypeID]==5)
+								if($rowQuestions['questionTypeID']==5)
 									{
 									//NOTE: No branching possible on a text question
 									$textName = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
 									$textID = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
 									echo "<table class=\"normal_4\">";
 									echo "	<tr>";
-									echo " 		<td class=\"question\">$questionNo $rowQuestions[text]</td>";
+									echo " 		<td class=\"question\">$questionNo $rowQuestions['text']</td>";
 									echo "	</tr>";
 									echo "	<tr>
 												<td>
@@ -349,7 +349,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 															{
 															//if so, write the text into the textarea
 															$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
-															echo stripslashes($rowCommentAnswered[text]);
+															echo stripslashes($rowCommentAnswered['text']);
 															}
 												echo "</textarea>";
 											echo "</td>

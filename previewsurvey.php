@@ -48,15 +48,15 @@ if (IsAuthor($heraldID))
 			$iBlock = 1;
 			while($rowBlocks = mysqli_fetch_array($qResBlocks))
 				{
-				$aItems[$iBlock][0]["blockID"] = $rowBlocks[blockID];
-				$aItems[$iBlock][0]["text"] = $rowBlocks[text];
+				$aItems[$iBlock][0]["blockID"] = $rowBlocks['blockID'];
+				$aItems[$iBlock][0]["text"] = $rowBlocks['text'];
 				$aItems[$iBlock][0]["introduction"] = $rowBlocks[introduction];
 				$aItems[$iBlock][0]["epilogue"] = $rowBlocks[epilogue];
 				$aItems[$iBlock][0]["position"] = $rowBlocks[position];
 				$aItems[$iBlock][0]["instanceable"] = $rowBlocks[instanceable];
 				$qSections = "	SELECT Sections.sectionID, Sections.text, Sections.introduction, Sections.epilogue, BlockSections.position, Sections.sectionTypeID, Sections.instanceable 
 								FROM Sections, BlockSections 
-								WHERE BlockSections.blockID = $rowBlocks[blockID]
+								WHERE BlockSections.blockID = $rowBlocks['blockID']
 								AND BlockSections.visible = 1
 								AND Sections.sectionID = BlockSections.sectionID
 								ORDER BY BlockSections.position";
@@ -64,8 +64,8 @@ if (IsAuthor($heraldID))
 				$iSection = 1;
 				while($rowSections = mysqli_fetch_array($qResSections))
 					{
-					$aItems[$iBlock][$iSection][0]["sectionID"] = $rowSections[sectionID];
-					$aItems[$iBlock][$iSection][0]["text"] = $rowSections[text];
+					$aItems[$iBlock][$iSection][0]["sectionID"] = $rowSections['sectionID'];
+					$aItems[$iBlock][$iSection][0]["text"] = $rowSections['text'];
 					$aItems[$iBlock][$iSection][0]["introduction"] = $rowSections[introduction];
 					$aItems[$iBlock][$iSection][0]["epilogue"] = $rowSections[epilogue];
 					$aItems[$iBlock][$iSection][0]["position"] = $rowSections[position];
@@ -73,7 +73,7 @@ if (IsAuthor($heraldID))
 					$aItems[$iBlock][$iSection][0]["instanceable"] = $rowSections[instanceable];
 					$qQuestions = "	SELECT Questions.questionID, Questions.comments, Questions.questionTypeID, Questions.text, SectionQuestions.position 
 									FROM Questions, SectionQuestions
-									WHERE SectionQuestions.sectionID = $rowSections[sectionID]
+									WHERE SectionQuestions.sectionID = $rowSections['sectionID']
 									AND SectionQuestions.visible = 1
 									AND Questions.questionID = SectionQuestions.questionID
 									ORDER BY SectionQuestions.position";
@@ -81,14 +81,14 @@ if (IsAuthor($heraldID))
 					$iQuestion = 1;
 					while($rowQuestions = mysqli_fetch_array($qResQuestions))
 						{
-						$aItems[$iBlock][$iSection][$iQuestion][0]["questionID"] = $rowQuestions[questionID];
+						$aItems[$iBlock][$iSection][$iQuestion][0]["questionID"] = $rowQuestions['questionID'];
 						$aItems[$iBlock][$iSection][$iQuestion][0]["comments"] = $rowQuestions[comments];
-						$aItems[$iBlock][$iSection][$iQuestion][0]["questionTypeID"] = $rowQuestions[questionTypeID];
-						$aItems[$iBlock][$iSection][$iQuestion][0]["text"] = $rowQuestions[text];
+						$aItems[$iBlock][$iSection][$iQuestion][0]["questionTypeID"] = $rowQuestions['questionTypeID'];
+						$aItems[$iBlock][$iSection][$iQuestion][0]["text"] = $rowQuestions['text'];
 						$aItems[$iBlock][$iSection][$iQuestion][0]["position"] = $rowQuestions[position];
 						$qItems = "	SELECT Items.itemID, Items.text, QuestionItems.position
 									FROM Items, QuestionItems
-									WHERE QuestionItems.questionID = $rowQuestions[questionID]
+									WHERE QuestionItems.questionID = $rowQuestions['questionID']
 									AND QuestionItems.visible = 1
 									AND Items.itemID = QuestionItems.itemID
 									ORDER BY QuestionItems.position";
@@ -97,7 +97,7 @@ if (IsAuthor($heraldID))
 						while($rowItems = mysqli_fetch_array($qResItems))
 							{
 							$aItems[$iBlock][$iSection][$iQuestion][$iItem]["itemID"] = $rowItems[itemID];
-							$aItems[$iBlock][$iSection][$iQuestion][$iItem]["text"] = $rowItems[text];
+							$aItems[$iBlock][$iSection][$iQuestion][$iItem]["text"] = $rowItems['text'];
 							$aItems[$iBlock][$iSection][$iQuestion][$iItem]["position"] = $rowItems[position];
 							$iItem++;
 							}						
@@ -391,9 +391,9 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 		$ThisObjectIsBranchedTo = false;
 		while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 			{
-			if($rowThisObjectIsBranchedTo[blockID] == $blockID && 
-			$rowThisObjectIsBranchedTo[sectionID] == NULL && 
-			$rowThisObjectIsBranchedTo[questionID] == NULL)
+			if($rowThisObjectIsBranchedTo['blockID'] == $blockID && 
+			$rowThisObjectIsBranchedTo['sectionID'] == NULL && 
+			$rowThisObjectIsBranchedTo['questionID'] == NULL)
 				{
 				$ThisObjectIsBranchedTo = true;
 				}
@@ -448,9 +448,9 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 				$ThisObjectIsBranchedTo = false;
 				while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 					{
-					if($rowThisObjectIsBranchedTo[blockID] == $blockID && 
-					$rowThisObjectIsBranchedTo[sectionID] == $sectionID && 
-					$rowThisObjectIsBranchedTo[questionID] == NULL)
+					if($rowThisObjectIsBranchedTo['blockID'] == $blockID && 
+					$rowThisObjectIsBranchedTo['sectionID'] == $sectionID && 
+					$rowThisObjectIsBranchedTo['questionID'] == NULL)
 						{
 						$ThisObjectIsBranchedTo = true;
 						}
@@ -494,9 +494,9 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 								$ThisObjectIsBranchedTo = false;
 								while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 									{
-									if($rowThisObjectIsBranchedTo[blockID] == $blockID && 
-									$rowThisObjectIsBranchedTo[sectionID] == $sectionID && 
-									$rowThisObjectIsBranchedTo[questionID] == $questionID)
+									if($rowThisObjectIsBranchedTo['blockID'] == $blockID && 
+									$rowThisObjectIsBranchedTo['sectionID'] == $sectionID && 
+									$rowThisObjectIsBranchedTo['questionID'] == $questionID)
 										{
 										$ThisObjectIsBranchedTo = true;
 										}
@@ -543,30 +543,30 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 												//if a branch goes to sections or questions within another block then show them within all instances of the block
 												while($rowBranchesFromItem = mysqli_fetch_array($qResBranchesFromItem))
 													{
-													if($rowBranchesFromItem[blockID] == $blockID)
+													if($rowBranchesFromItem['blockID'] == $blockID)
 														{ 
 														//if a branch goes to sections or questions within this block then we need to show them only within this instance of the block
-														if($rowBranchesFromItem[sectionID] == $sectionID)
+														if($rowBranchesFromItem['sectionID'] == $sectionID)
 															{
 															//if a branch goes to sections or questions within this section then we need to show them only within this instance of the section
 															if($i > 1)
 																{
 																$show = $show . "+";
 																}
-															$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $sinst: "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
+															$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $sinst: "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
 															$i++;
 															}
 														else
 															{
 															//find out how many branches are there of the section being branched to
-															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
 																{
 																if($i > 1)
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
 																$i++;
 																}
 															}
@@ -574,9 +574,9 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 													else //i.e. not branching within this block
 														{ 
 														//find out how many branches are there of the block being branched to
-														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem[blockID]);
+														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem['blockID']);
 														//find out how many branches are there of the section being branched to
-														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 														for($binst=1;$binst<=$noOfBranchInstances;$binst++)
 															{
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
@@ -585,7 +585,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
 																$i++;
 																}
 															}
@@ -608,36 +608,36 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 												$i = 1;
 												while($rowBranchesFromQuestion = mysqli_fetch_array($qResBranchesFromQuestion))
 													{
-													if($rowBranchesFromQuestion[blockID] == $blockID)
+													if($rowBranchesFromQuestion['blockID'] == $blockID)
 														{
-														if($rowBranchesFromQuestion[sectionID] == $sectionID)
+														if($rowBranchesFromQuestion['sectionID'] == $sectionID)
 															{
 															if($i > 1)
 																{
 																$hide = $hide . "+";
 																}
-															$hide = $hide . "div" . $rowBranchesFromQuestion[blockID] . ($rowBranchesFromQuestion[sectionID] != NULL ? "_" . $rowBranchesFromQuestion[sectionID] . ($rowBranchesFromQuestion[questionID] != NULL ? "_" . $rowBranchesFromQuestion[questionID] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
+															$hide = $hide . "div" . $rowBranchesFromQuestion['blockID'] . ($rowBranchesFromQuestion['sectionID'] != NULL ? "_" . $rowBranchesFromQuestion['sectionID'] . ($rowBranchesFromQuestion['questionID'] != NULL ? "_" . $rowBranchesFromQuestion['questionID'] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
 															$i++;
 															}
 														else
 															{
 															//find out how many branches are there of the section being branched to
-															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromQuestion[blockID],$rowBranchesFromQuestion[sectionID],$inst);
+															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromQuestion['blockID'],$rowBranchesFromQuestion['sectionID'],$inst);
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
 																{
 																if($i > 1)
 																	{
 																	$hide = $hide . "+";
 																	}
-																$hide = $hide . "div" . $rowBranchesFromQuestion[blockID] . ($rowBranchesFromQuestion[sectionID] != NULL ? "_" . $rowBranchesFromQuestion[sectionID] . ($rowBranchesFromQuestion[questionID] != NULL ? "_" . $rowBranchesFromQuestion[questionID] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
+																$hide = $hide . "div" . $rowBranchesFromQuestion['blockID'] . ($rowBranchesFromQuestion['sectionID'] != NULL ? "_" . $rowBranchesFromQuestion['sectionID'] . ($rowBranchesFromQuestion['questionID'] != NULL ? "_" . $rowBranchesFromQuestion['questionID'] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
 																$i++;
 																}
 															}
 														}
 													else
 														{
-														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromQuestion[blockID]);
-														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromQuestion[blockID],$rowBranchesFromQuestion[sectionID],$inst);
+														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromQuestion['blockID']);
+														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromQuestion['blockID'],$rowBranchesFromQuestion['sectionID'],$inst);
 														for($binst=1;$binst<=$noOfBranchInstances;$binst++)
 															{
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
@@ -646,7 +646,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 																	{
 																	$hide = $hide . "+";
 																	}
-																$hide = $hide . "div" . $rowBranchesFromQuestion[blockID] . ($rowBranchesFromQuestion[sectionID] != NULL ? "_" . $rowBranchesFromQuestion[sectionID] . ($rowBranchesFromQuestion[questionID] != NULL ? "_" . $rowBranchesFromQuestion[questionID] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
+																$hide = $hide . "div" . $rowBranchesFromQuestion['blockID'] . ($rowBranchesFromQuestion['sectionID'] != NULL ? "_" . $rowBranchesFromQuestion['sectionID'] . ($rowBranchesFromQuestion['questionID'] != NULL ? "_" . $rowBranchesFromQuestion['questionID'] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
 																$i++;
 																}
 															}
@@ -709,35 +709,35 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 												$i = 1;
 												while($rowBranchesFromItem = mysqli_fetch_array($qResBranchesFromItem))
 													{
-													if($rowBranchesFromItem[blockID] == $blockID)
+													if($rowBranchesFromItem['blockID'] == $blockID)
 														{
-														if($rowBranchesFromItem[sectionID] == $sectionID)
+														if($rowBranchesFromItem['sectionID'] == $sectionID)
 															{
 															if($i > 1)
 																{
 																$show = $show . "+";
 																}
-															$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
+															$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
 															$i++;
 															}
 														else
 															{
-															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
 																{
 																if($i > 1)
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
 																$i++;
 																}
 															}
 														}
 													else
 														{
-														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem[blockID]);
-														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem['blockID']);
+														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 														for($binst=1;$binst<=$noOfBranchInstances;$binst++)
 															{
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
@@ -746,7 +746,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
 																$i++;
 																}
 															}
@@ -817,35 +817,35 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 												$i = 1;
 												while($rowBranchesFromItem = mysqli_fetch_array($qResBranchesFromItem))
 													{
-													if($rowBranchesFromItem[blockID] == $blockID)
+													if($rowBranchesFromItem['blockID'] == $blockID)
 														{
-														if($rowBranchesFromItem[sectionID] == $sectionID)
+														if($rowBranchesFromItem['sectionID'] == $sectionID)
 															{
 															if($i > 1)
 																{
 																$show = $show . "+";
 																}
-															$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
+															$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
 															$i++;
 															}
 														else
 															{
-															$noOfBranchSectionInstances = getInstancesForBlock($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID]);
+															$noOfBranchSectionInstances = getInstancesForBlock($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID']);
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
 																{
 																if($i > 1)
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
 																$i++;
 																}
 															}
 														}
 													else
 														{
-														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem[blockID]);
-														$noOfBranchSectionInstances = getInstancesForBlock($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID]);
+														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem['blockID']);
+														$noOfBranchSectionInstances = getInstancesForBlock($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID']);
 														for($binst=1;$binst<=$noOfBranchInstances;$binst++)
 															{
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
@@ -854,7 +854,7 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
 																$i++;
 																}
 															}

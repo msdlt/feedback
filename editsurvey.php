@@ -704,7 +704,7 @@ if($surveyID !="add")
 									{
 									while($rowBlocks = mysqli_fetch_array($qResBlocks))
 										{
-										$blockID = $rowBlocks[blockID];
+										$blockID = $rowBlocks['blockID'];
 								echo "	<tr class=\"matrixHeader\">
 											<td>
 												<input type=\"checkbox\" id=\"check_$blockID\" name=\"checkBlockIDs[]\" value=\"$blockID\"/>
@@ -777,7 +777,7 @@ if($surveyID !="add")
 										mysqli_data_seek($qResBlocks, 0);
 										while($rowBlocks = mysqli_fetch_array($qResBlocks))
 											{
-											$blockID = $rowBlocks[blockID];
+											$blockID = $rowBlocks['blockID'];
 											$blockTitle = $rowBlocks[title];
 											echo "<option value=\"$blockID\">".($blockTitle==""?"Block":limitString($blockTitle,30))."";
 											}
@@ -816,7 +816,7 @@ if($surveyID !="add")
 		mysqli_data_seek($qResBlocks, 0);
 		while($rowBlocks = mysqli_fetch_array($qResBlocks))
 			{
-			$blockID = $rowBlocks[blockID];
+			$blockID = $rowBlocks['blockID'];
 			$blockTitle = $rowBlocks[title];
 		echo "	if (document.getElementById(\"check_$blockID\").checked == true)
 					{
@@ -899,7 +899,7 @@ if($surveyID !="add")
 									{
 									while($rowBlocks = mysqli_fetch_array($qResBlocks))
 										{
-										$blockID = $rowBlocks[blockID];
+										$blockID = $rowBlocks['blockID'];
 								echo "	<tr class=\"matrixHeaderHidden\">
 											<td>
 												<input type=\"checkbox\" id=\"reinstate_$blockID\" name=\"reinstateBlockIDs[]\" value=\"$blockID\"/>
@@ -970,7 +970,7 @@ if($surveyID !="add")
 		mysqli_data_seek($qResBlocks, 0);
 		while($rowBlocks = mysqli_fetch_array($qResBlocks))
 			{
-			$blockID = $rowBlocks[blockID];
+			$blockID = $rowBlocks['blockID'];
 			$blockTitle = $rowBlocks[title];
 		echo "	if (document.getElementById(\"reinstate_$blockID\").checked == true)
 					{

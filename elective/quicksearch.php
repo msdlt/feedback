@@ -73,7 +73,7 @@ echo "	<div class=\"section\">
 							<option value=\"0\" selected>Choose a host country..</option>";
 						while($rowItems = mysql_fetch_array($qResItems))
 							{
-						echo"<option value=\"15_44_115_"."$rowItems[itemID]"."\">$rowItems[text]</option>";
+						echo"<option value=\"15_44_115_"."$rowItems[itemID]"."\">$rowItems['text']</option>";
 							}
 				echo "	</select>";
 			echo"	</td>

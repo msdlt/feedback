@@ -451,9 +451,9 @@ if($questionID!="add")
 	$qResQuestions = mysqli_query($qQuestions);
 	$rowQuestion = mysqli_fetch_array($qResQuestions);
 	$questionTitle = $rowQuestion[title];
-	$questionText = $rowQuestion[text];
+	$questionText = $rowQuestion['text'];
 	$questionComments = $rowQuestion[comments];
-	$questionType = $rowQuestion[questionTypeID];
+	$questionType = $rowQuestion['questionTypeID'];
 	$questionLastModified = $rowQuestion['lastModified'];
 	}
 elseif ($validationProblem == true)
@@ -540,11 +540,11 @@ echo"
 			while($rowQuestionTypes = mysqli_fetch_array($qResQuestionTypes))
 				{
 echo "			<option ";
-				if($rowQuestionTypes[questionTypeID]==$questionType)
+				if($rowQuestionTypes['questionTypeID']==$questionType)
 					{
 					echo " selected ";
 					}
-					echo "value=\"$rowQuestionTypes[questionTypeID]\">$rowQuestionTypes[type]</option>";
+					echo "value=\"$rowQuestionTypes['questionTypeID']\">$rowQuestionTypes[type]</option>";
 				}
 echo "		</select> 
 		</td>
@@ -603,7 +603,7 @@ if($questionID !="add")
 									while($rowItems = mysqli_fetch_array($qResItems))
 										{
 										$itemID = $rowItems[itemID];
-										$itemTitle = $rowItems[text];
+										$itemTitle = $rowItems['text'];
 										$qBranchesFromItem = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 																FROM Branches, BranchDestinations
 																WHERE Branches.surveyID = $surveyID
@@ -630,7 +630,7 @@ if($questionID !="add")
 											<td width = \"5px\">
 												<input type=\"checkbox\" id=\"check_$itemID\" name=\"checkItemIDs[]\" value=\"$itemID\"/>
 											</td>
-											<td>$rowItems[text]</td>";
+											<td>$rowItems['text']</td>";
 										if($itemIsInvolvedInBranching)
 											{
 											echo"<td width = \"5px\"><input type=\"button\" id=\"editBranch_$itemID\" name=\"editBranch_$itemID\" value=\"Edit branch(es)\" onClick=\"goTo('editbranch.php?&surveyID=$surveyID&blockID=$blockID&sectionID=$sectionID&questionID=$questionID&itemID=$itemID&method=edit')\" /></td>";
@@ -676,7 +676,7 @@ if($questionID !="add")
 										while($rowItems = mysqli_fetch_array($qResItems))
 											{
 											$itemID = $rowItems[itemID];
-											$itemTitle = $rowItems[text];
+											$itemTitle = $rowItems['text'];
 											echo "<option value=\"$itemID\">".($itemTitle==""?"Item":limitString($itemTitle,30))."";
 											}
 										echo "
@@ -715,7 +715,7 @@ if($questionID !="add")
 		while($rowItems = mysqli_fetch_array($qResItems))
 			{
 			$itemID = $rowItems[itemID];
-			$itemTitle = $rowItems[text];
+			$itemTitle = $rowItems['text'];
 		echo "	if (document.getElementById(\"check_$itemID\").checked == true)
 					{
 					iNoOfItems=iNoOfItems+1;
@@ -797,7 +797,7 @@ if($questionID !="add")
 									while($rowItems = mysqli_fetch_array($qResItems))
 										{
 										$itemID = $rowItems[itemID];
-										$itemTitle = $rowItems[text];
+										$itemTitle = $rowItems['text'];
 										if($bRowOdd)
 											{
 											$rowClass = "matrixRowOdd";
@@ -811,7 +811,7 @@ if($questionID !="add")
 											<td width = \"5px\">
 												<input type=\"checkbox\" id=\"reinstate_$itemID\" name=\"reinstateItemIDs[]\" value=\"$itemID\"/>
 											</td>
-											<td>$rowItems[text]</td>
+											<td>$rowItems['text']</td>
 											<td width = \"5px\">&nbsp;</td>
 										</tr>";
 										$bRowOdd = !$bRowOdd;
@@ -845,7 +845,7 @@ if($questionID !="add")
 		while($rowItems = mysqli_fetch_array($qResItems))
 			{
 			$itemID = $rowItems[itemID];
-			$itemTitle = $rowItems[text];
+			$itemTitle = $rowItems['text'];
 		echo "	if (document.getElementById(\"reinstate_$itemID\").checked == true)
 					{
 					iNoOfItems=iNoOfItems+1;

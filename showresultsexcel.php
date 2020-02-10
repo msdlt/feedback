@@ -222,9 +222,9 @@ $bRowOdd = true;
 $colspan=3;
 while($rowBlocks = mysqli_fetch_array($qResBlocks))
 	{
-	$blockID = $rowBlocks[blockID];
-	$blockTitle = $rowBlocks[text];
-	$blockVisible = $rowBlocks[visible];
+	$blockID = $rowBlocks['blockID'];
+	$blockTitle = $rowBlocks['text'];
+	$blockVisible = $rowBlocks['visible'];
 	if($blockTitle != "" && ($blockVisible==1 || $showHidden=='on')) echo "<h3>".$blockTitle."</h3>";
 	$qSections = "	SELECT Sections.sectionID, Sections.title, Sections.text, Sections.introduction, Sections.epilogue, BlockSections.position, Sections.sectionTypeID, BlockSections.visible 
 					FROM Sections, BlockSections 
@@ -236,9 +236,9 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 
 	while($rowSections = mysqli_fetch_array($qResSections))
 		{
-		$sectionID = $rowSections[sectionID];
-		$sectionTitle = $rowSections[text];
-		$sectionVisible = $rowSections[visible];
+		$sectionID = $rowSections['sectionID'];
+		$sectionTitle = $rowSections['text'];
+		$sectionVisible = $rowSections['visible'];
 		if($blockVisible==1 && ($sectionVisible==1 || $showHidden=='on')) echo "<h4>".$sectionTitle."</h4>";
 		//get questions
 		$qQuestions = "SELECT Questions.questionID, Questions.comments, Questions.questionTypeID, Questions.text, SectionQuestions.position, SectionQuestions.visible 
@@ -251,8 +251,8 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 		
 		while($rowQuestions = mysqli_fetch_array($qResQuestions))
 			{
-			$questionID = $rowQuestions[questionID];
-			$questionVisible = $rowQuestions[visible];
+			$questionID = $rowQuestions['questionID'];
+			$questionVisible = $rowQuestions['visible'];
 			$bAnalyseThisQuestion = false;
 			//work out whether this question is being analysed by any of the criteria
 			for($i=1;$i<=$noOfCriteria;$i++)
@@ -282,7 +282,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 						{
 						echo "	<table class=\"matrix\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">
 								<tr class=\"matrixHeader\">
-									<th align=\"left\" colspan=\"".$colspan."\">".$questionNo.". ".$rowQuestions[text]." - analysed by ".$aQuestionToAnalyseByItems[$criterionNumber][$i][1]." - ".$aQuestionToAnalyseByItems[$criterionNumber][$i][2]."</th>
+									<th align=\"left\" colspan=\"".$colspan."\">".$questionNo.". ".$rowQuestions['text']." - analysed by ".$aQuestionToAnalyseByItems[$criterionNumber][$i][1]." - ".$aQuestionToAnalyseByItems[$criterionNumber][$i][2]."</th>
 								</tr>";
 						} 
 					
@@ -371,7 +371,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					//get items
 					$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
 							FROM Items, QuestionItems
-							WHERE QuestionItems.questionID = $rowQuestions[questionID]".
+							WHERE QuestionItems.questionID = $rowQuestions['questionID']".
 							($showHidden=='on'?" " : " AND QuestionItems.visible = 1 ").
 							"AND Items.itemID = QuestionItems.itemID
 							ORDER BY QuestionItems.position";
@@ -424,7 +424,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 							{
 							$PercentageOfAnswers = 0;
 							} 
-						if(($blockVisible==1 && $sectionVisible==1 && $questionVisible==1) || $showHidden=='on') echo"<tr class=\"$rowClass\"><td>$rowItems[text]</td><td>$PercentageOfAnswers</td><td>[$NoOfItems]</td></tr>";
+						if(($blockVisible==1 && $sectionVisible==1 && $questionVisible==1) || $showHidden=='on') echo"<tr class=\"$rowClass\"><td>$rowItems['text']</td><td>$PercentageOfAnswers</td><td>[$NoOfItems]</td></tr>";
 						$itemNo++;
 						$bRowOdd = !$bRowOdd;
 						if($bRowOdd)
@@ -467,7 +467,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 							$commentCount = 1;
 							while($rowComments = mysqli_fetch_array($qResComments))
 								{
-								echo $commentCount . " -  " .$rowComments[text]. "<br/>";
+								echo $commentCount . " -  " .$rowComments['text']. "<br/>";
 								$commentCount++;
 								}
 						echo"</div></td></tr>";
@@ -481,7 +481,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					{
 					echo "	<table class=\"matrix\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">
 								<tr class=\"matrixHeader\">
-									<th align=\"left\" colspan=\"".$colspan."\">".$questionNo.". ".$rowQuestions[text]."</th>
+									<th align=\"left\" colspan=\"".$colspan."\">".$questionNo.". ".$rowQuestions['text']."</th>
 								</tr>";
 					} 
 				//get number of participants who answered this question
@@ -541,7 +541,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 				//get items
 				$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
 						FROM Items, QuestionItems
-						WHERE QuestionItems.questionID = $rowQuestions[questionID]".
+						WHERE QuestionItems.questionID = $rowQuestions['questionID']".
 						($showHidden=='on'?" " : " AND QuestionItems.visible = 1 ").
 						"AND Items.itemID = QuestionItems.itemID
 						ORDER BY QuestionItems.position";
@@ -578,7 +578,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 							{
 							$PercentageOfAnswers = 0;
 							}
-					if(($blockVisible==1 && $sectionVisible==1 && $questionVisible==1) || $showHidden=='on') echo"<tr class=\"$rowClass\"><td>$rowItems[text]</td><td>$PercentageOfAnswers</td><td>[$NoOfItems]</td></tr>";
+					if(($blockVisible==1 && $sectionVisible==1 && $questionVisible==1) || $showHidden=='on') echo"<tr class=\"$rowClass\"><td>$rowItems['text']</td><td>$PercentageOfAnswers</td><td>[$NoOfItems]</td></tr>";
 					$bRowOdd = !$bRowOdd;
 					if($bRowOdd)
 						{
@@ -620,7 +620,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 								$commentCount = 1;
 								while($rowComments = mysqli_fetch_array($qResComments))
 									{
-									echo $commentCount . " - $rowComments[text] <br/>";
+									echo $commentCount . " - $rowComments['text'] <br/>";
 									$commentCount++;
 									}
 					echo"</div></td></tr>";

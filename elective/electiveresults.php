@@ -168,7 +168,7 @@ function bodyOnLoad(){
 						WHERE questionID = $QuestionToAnalyseByQuestionID";
 		$qResQuestion = mysql_query($qQuestion);
 		$rowQuestion = mysql_fetch_array($qResQuestion);
-		$rubricText = $rubricText . $rowQuestion[text] . "\" with the following:<ul>";
+		$rubricText = $rubricText . $rowQuestion['text'] . "\" with the following:<ul>";
 		if(isset($_POST['bSearchByCountry']))
 			{
 			//reset rubricText
@@ -188,7 +188,7 @@ function bodyOnLoad(){
 			$rowItem = mysql_fetch_array($qResItem);
 			if($QuestionToAnalyseByQuestionID==115)
 				{
-				$trimmedCountry = mysql_real_escape_string(trim($rowItem[text]));
+				$trimmedCountry = mysql_real_escape_string(trim($rowItem['text']));
 				$qInfoURLs = "	SELECT lonelyPlanetURL, wikipediaURL
 								FROM ElectiveLinks
 								WHERE TRIM(country) = '$trimmedCountry'";
@@ -211,8 +211,8 @@ function bodyOnLoad(){
 			//if mselec, we need to AND the items to analyse
 			if($j<count($aItemsToAnalyse[$i])-1)
 				{
-				$participantQueryString = $participantQueryString  . " AnswerItems.itemID = " . $itemID . ($rowQuestion[questionTypeID]==2?" AND ":" OR ");
-				$rubricText = $rubricText . ($rowQuestion[questionTypeID]==2?" AND</li>":" OR</li>");
+				$participantQueryString = $participantQueryString  . " AnswerItems.itemID = " . $itemID . ($rowQuestion['questionTypeID']==2?" AND ":" OR ");
+				$rubricText = $rubricText . ($rowQuestion['questionTypeID']==2?" AND</li>":" OR</li>");
 				}
 			else
 				{
@@ -255,14 +255,14 @@ function bodyOnLoad(){
 					//now check whether instances match
 					while($rowParticipantExists = mysql_fetch_array($qResParticipantExists))
 						{
-						if($QuestionToAnalyseByBlockID == $rowParticipantExists[blockID])
+						if($QuestionToAnalyseByBlockID == $rowParticipantExists['blockID'])
 							{
 							//in same block so instances must match
 							if($rowParticipantExists[instance] == $rowParticipants[instance])
 								{
 								//instances match
 								$instanceMatch = true;
-								if($QuestionToAnalyseBySectionID == $rowParticipantExists[sectionID])
+								if($QuestionToAnalyseBySectionID == $rowParticipantExists['sectionID'])
 									{
 									//in same section and block so sinstance must match
 									if($rowParticipantExists[sinstance] == $rowParticipants[sinstance])
@@ -329,14 +329,14 @@ function bodyOnLoad(){
 					//now check whether instances match
 					while($rowParticipantExists = mysql_fetch_array($qResParticipantExists))
 						{
-						if($QuestionToAnalyseByBlockID == $rowParticipantExists[blockID])
+						if($QuestionToAnalyseByBlockID == $rowParticipantExists['blockID'])
 							{
 							//in same block so instances must match
 							if($rowParticipantExists[instance] == $rowFirstCriterionParticipants[instance])
 								{
 								//instances match
 								$instanceMatch = true;
-								if($QuestionToAnalyseBySectionID == $rowParticipantExists[sectionID])
+								if($QuestionToAnalyseBySectionID == $rowParticipantExists['sectionID'])
 									{
 									//in same section and block so sinstance must match
 									if($rowParticipantExists[sinstance] == $rowFirstCriterionParticipants[sinstance])
@@ -432,11 +432,11 @@ $questionNo = 1;
 $bRowOdd = true;
 while($rowBlocks = mysql_fetch_array($qResBlocks))
 	{
-	$blockID = $rowBlocks[blockID];
-	if($rowBlocks[text] != "")
+	$blockID = $rowBlocks['blockID'];
+	if($rowBlocks['text'] != "")
 		{
 		//only output a block title if there is one
-		echo "<h2>$rowBlocks[text]</h2>";
+		echo "<h2>$rowBlocks['text']</h2>";
 		}
 	$qSections = "	SELECT Sections.sectionID, Sections.title, Sections.text, Sections.introduction, Sections.epilogue, BlockSections.position, Sections.sectionTypeID, BlockSections.visible 
 					FROM Sections, BlockSections 
@@ -448,11 +448,11 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 
 	while($rowSections = mysql_fetch_array($qResSections))
 		{
-		$sectionID = $rowSections[sectionID];
-		if($rowSections[text] != "")
+		$sectionID = $rowSections['sectionID'];
+		if($rowSections['text'] != "")
 			{
 			//only output a block title if there is one
-			echo "<h3>$rowSections[text]</h3>";
+			echo "<h3>$rowSections['text']</h3>";
 			}
 		//get questions
 		$qQuestions = "SELECT Questions.questionID, Questions.comments, Questions.questionTypeID, Questions.text, SectionQuestions.position 
@@ -465,7 +465,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 		
 		while($rowQuestions = mysql_fetch_array($qResQuestions))
 			{
-			$questionID = $rowQuestions[questionID];
+			$questionID = $rowQuestions['questionID'];
 			if ($questionID==155) //startdate
 				{
 				//do nothing
@@ -481,7 +481,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 				{
 				echo "	<table class=\"matrix\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">
 						<tr class=\"matrixHeader\">
-							<th colspan=\"2\">".$questionNo.". ".$rowQuestions[text]."</th>
+							<th colspan=\"2\">".$questionNo.". ".$rowQuestions['text']."</th>
 						</tr>"; 
 				}
 			//split question to analyse by inro Block, Section and Question IDs
@@ -546,7 +546,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 			//get items
 			$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
 					FROM Items, QuestionItems
-					WHERE QuestionItems.questionID = $rowQuestions[questionID]
+					WHERE QuestionItems.questionID = $rowQuestions['questionID']
 					AND Items.itemID = QuestionItems.itemID
 					ORDER BY QuestionItems.position";
 								
@@ -634,7 +634,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 					echo"<tr class=\"$rowClass\">";
 					if($questionID==115)
 						{
-						$trimmedCountry = mysql_real_escape_string(trim($rowItems[text]));
+						$trimmedCountry = mysql_real_escape_string(trim($rowItems['text']));
 						$qInfoURLs = "	SELECT lonelyPlanetURL, wikipediaURL
 										FROM ElectiveLinks
 										WHERE TRIM(country) = '$trimmedCountry'";
@@ -655,7 +655,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 						}
 					else
 						{
-						echo "<td>$rowItems[text]</td>";
+						echo "<td>$rowItems['text']</td>";
 						}
 					echo "<td>$PercentageOfAnswers ($NoOfItems)</td></tr>";
 					$bRowOdd = !$bRowOdd;
@@ -723,13 +723,13 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 						$commentCount = 1;
 						while($rowComments = mysql_fetch_array($qResComments))
 							{
-							if($rowComments[text] != strip_tags($rowComments[text])){
-								$comment_text = str_replace('src="ckfinder/','src="https://learntech.imsu.ox.ac.uk/feedback/ckfinder/',$rowComments[text]);
-								//$comment_text = $rowComments[text];
+							if($rowComments['text'] != strip_tags($rowComments['text'])){
+								$comment_text = str_replace('src="ckfinder/','src="https://learntech.imsu.ox.ac.uk/feedback/ckfinder/',$rowComments['text']);
+								//$comment_text = $rowComments['text'];
 								echo "<textarea class=\"ckeditorclass\" rows=\"30\" id=\"divCommentsTextArea_".$questionNo.$i."_". $commentCount . "\">" . $commentCount . " (" .ODBCDateToTextDateShort($rowComments[date]).")"." - $comment_text </textarea>";
 								}
 							else{
-								echo "<hr>" . $commentCount . " (" .ODBCDateToTextDateShort($rowComments[date]).")"." - $rowComments[text] <br/>";
+								echo "<hr>" . $commentCount . " (" .ODBCDateToTextDateShort($rowComments[date]).")"." - $rowComments['text'] <br/>";
 								}
 							$commentCount++;
 							}

@@ -413,7 +413,7 @@ if($sectionID!="add")
 	$qResSections = mysqli_query($db_connection, $qSections);
 	$rowSection = mysqli_fetch_array($qResSections);
 	$sectionTitle = $rowSection[title];
-	$sectionText = $rowSection[text];
+	$sectionText = $rowSection['text'];
 	$sectionIntroduction = $rowSection[introduction];
 	$sectionEpilogue = $rowSection[epilogue];
 	$sectionType = $rowSection[sectionTypeID];
@@ -632,13 +632,13 @@ if($sectionID !="add")
 									{
 									while($rowQuestions = mysqli_fetch_array($qResQuestions))
 										{
-										$questionID = $rowQuestions[questionID];
-										$questionTitle = $rowQuestions[text];
+										$questionID = $rowQuestions['questionID'];
+										$questionTitle = $rowQuestions['text'];
 							echo "		<tr class=\"matrixHeader\">
 											<td>
 												<input type=\"checkbox\" id=\"check_$questionID\" name=\"checkQuestionIDs[]\" value=\"$questionID\"/>
 											</td>
-											<td class=\"question\">".$questionNo." ".$rowQuestions[text]."</td>
+											<td class=\"question\">".$questionNo." ".$rowQuestions['text']."</td>
 											<td>Last modified: ".ODBCDateToTextDateShort($rowQuestions['lastModified'])."</td>
 											<td><input type=\"button\" id=\"editQuestion_$questionID\" name=\"editQuestion_$questionID\" value=\"Edit question\" onClick=\"goTo('editquestion.php?&surveyID=$surveyID&blockID=$blockID&sectionID=$sectionID&questionID=$questionID')\"".(IsSuperAuthor($heraldID, $blockID, $sectionID, $questionID)==false ? "disabled" : "" )." /></td>
 										</tr>";
@@ -671,7 +671,7 @@ if($sectionID !="add")
 												echo "			
 												<tr class=\"$rowClass\">
 													<td></td>
-													<td  colspan=\"3\" valign=\"top\">$rowItems[text]</td>
+													<td  colspan=\"3\" valign=\"top\">$rowItems['text']</td>
 												</tr>";
 												$bRowOdd = !$bRowOdd;
 												}
@@ -709,8 +709,8 @@ if($sectionID !="add")
 										mysqli_data_seek($qResQuestions, 0);
 										while($rowQuestions = mysqli_fetch_array($qResQuestions))
 											{
-											$questionID = $rowQuestions[questionID];
-											$questionTitle = $rowQuestions[text];
+											$questionID = $rowQuestions['questionID'];
+											$questionTitle = $rowQuestions['text'];
 											echo "<option value=\"$questionID\">".($questionTitle==""?"Question":limitString($questionTitle,30))."";
 											}
 										echo "
@@ -748,8 +748,8 @@ if($sectionID !="add")
 		mysqli_data_seek($qResQuestions, 0);
 		while($rowQuestions = mysqli_fetch_array($qResQuestions))
 			{
-			$questionID = $rowQuestions[questionID];
-			$questionTitle = $rowQuestions[text];
+			$questionID = $rowQuestions['questionID'];
+			$questionTitle = $rowQuestions['text'];
 		echo "	if (document.getElementById(\"check_$questionID\").checked == true)
 					{
 					iNoOfQuestions=iNoOfQuestions+1;
@@ -833,13 +833,13 @@ if($sectionID !="add")
 									{
 									while($rowQuestions = mysqli_fetch_array($qResQuestions))
 										{
-										$questionID = $rowQuestions[questionID];
-										$questionTitle = $rowQuestions[text];
+										$questionID = $rowQuestions['questionID'];
+										$questionTitle = $rowQuestions['text'];
 							echo "		<tr class=\"matrixHeader\">
 											<td>
 												<input type=\"checkbox\" id=\"reinstate_$questionID\" name=\"reinstateQuestionIDs[]\" value=\"$questionID\"/>
 											</td>
-											<td class=\"Hidden question\">".$rowQuestions[text]."</td>
+											<td class=\"Hidden question\">".$rowQuestions['text']."</td>
 											<td>Last modified: ".ODBCDateToTextDateShort($rowQuestions['lastModified'])."</td>
 											<td>nbsp;</td>
 										</tr>";
@@ -872,7 +872,7 @@ if($sectionID !="add")
 												echo "			
 												<tr class=\"$rowClass\">
 													<td></td>
-													<td  colspan=\"3\" valign=\"top\">$rowItems[text]</td>
+													<td  colspan=\"3\" valign=\"top\">$rowItems['text']</td>
 												</tr>";
 												$bRowOdd = !$bRowOdd;
 												}
@@ -908,8 +908,8 @@ if($sectionID !="add")
 		mysqli_data_seek($qResQuestions, 0);
 		while($rowQuestions = mysqli_fetch_array($qResQuestions))
 			{
-			$questionID = $rowQuestions[questionID];
-			$questionTitle = $rowQuestions[text];
+			$questionID = $rowQuestions['questionID'];
+			$questionTitle = $rowQuestions['text'];
 		echo "	if (document.getElementById(\"reinstate_$questionID\").checked == true)
 					{
 					iNoOfQuestions=iNoOfQuestions+1;

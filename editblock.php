@@ -400,7 +400,7 @@ if($blockID!="add")
 	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	$rowBlock = mysqli_fetch_array($qResBlocks);
 	$blockTitle = $rowBlock[title];
-	$blockText = $rowBlock[text];
+	$blockText = $rowBlock['text'];
 	$blockIntroduction = $rowBlock[introduction];
 	$blockEpilogue = $rowBlock[epilogue];
 	$blockInstanceable = $rowBlock[instanceable];
@@ -576,7 +576,7 @@ echo "	<h2>Sections in this block:</h2>
 								{
 								while($rowSections = mysqli_fetch_array($qResSections))
 									{
-									$sectionID = $rowSections[sectionID];
+									$sectionID = $rowSections['sectionID'];
 							echo "	<tr class=\"matrixHeader\">
 										<td>
 											<input type=\"checkbox\" id=\"check_$sectionID\" name=\"checkSectionIDs[]\" value=\"$sectionID\"/>
@@ -614,7 +614,7 @@ echo "	<h2>Sections in this block:</h2>
 												}
 										echo "<tr class=\"$rowClass\">
 												<td></td>
-												<td  colspan=\"3\" valign=\"top\">".$questionNo." ".$rowQuestions[text]."</td>
+												<td  colspan=\"3\" valign=\"top\">".$questionNo." ".$rowQuestions['text']."</td>
 											</tr>";
 											$questionNo = $questionNo + 1;
 											$bRowOdd = !$bRowOdd;
@@ -651,7 +651,7 @@ echo "	<h2>Sections in this block:</h2>
 										mysqli_data_seek($qResSections, 0);
 										while($rowSections = mysqli_fetch_array($qResSections))
 											{
-											$sectionID = $rowSections[sectionID];
+											$sectionID = $rowSections['sectionID'];
 											$sectionTitle = $rowSections[title];
 											echo "<option value=\"$sectionID\">".($sectionTitle==""?"Section":limitString($sectionTitle,30))."";
 											}
@@ -690,7 +690,7 @@ echo "	<h2>Sections in this block:</h2>
 		mysqli_data_seek($qResSections, 0);
 		while($rowSections = mysqli_fetch_array($qResSections))
 			{
-			$sectionID = $rowSections[sectionID];
+			$sectionID = $rowSections['sectionID'];
 			$sectionTitle = $rowSections[title];
 		echo "	if (document.getElementById(\"check_$sectionID\").checked == true)
 					{
@@ -772,7 +772,7 @@ echo "	<h2>Hidden sections in this block:</h2>
 								{
 								while($rowSections = mysqli_fetch_array($qResSections))
 									{
-									$sectionID = $rowSections[sectionID];
+									$sectionID = $rowSections['sectionID'];
 							echo "	<tr class=\"matrixHeaderHidden\">
 										<td>
 											<input type=\"checkbox\" id=\"reinstate_$sectionID\" name=\"reinstateSectionIDs[]\" value=\"$sectionID\"/>
@@ -810,7 +810,7 @@ echo "	<h2>Hidden sections in this block:</h2>
 												}
 										echo "<tr class=\"$rowClass\">
 												<td></td>
-												<td  colspan=\"3\" valign=\"top\">Question: ".$rowQuestions[text]."</td>
+												<td  colspan=\"3\" valign=\"top\">Question: ".$rowQuestions['text']."</td>
 											</tr>";
 											$bRowOdd = !$bRowOdd;
 											}
@@ -844,7 +844,7 @@ echo "	<h2>Hidden sections in this block:</h2>
 		mysqli_data_seek($qResSections, 0);
 		while($rowSections = mysqli_fetch_array($qResSections))
 			{
-			$sectionID = $rowSections[sectionID];
+			$sectionID = $rowSections['sectionID'];
 			$sectionTitle = $rowSections[title];
 		echo "	if (document.getElementById(\"reinstate_$sectionID\").checked == true)
 					{

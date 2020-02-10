@@ -399,8 +399,8 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 	$aTextandID = array();
 	while($rowBlocks = mysqli_fetch_array($qResBlocks))
 		{
-		$blockID = $rowBlocks[blockID];
-		$blockVisible = $rowBlocks[visible];
+		$blockID = $rowBlocks['blockID'];
+		$blockVisible = $rowBlocks['visible'];
 		//$qResSections = mysqli_query($db_connection, $qSections);
 		//get sections
 		$qSections = "SELECT Sections.sectionID, Sections.title, Sections.introduction, Sections.epilogue, BlockSections.position, Sections.sectionTypeID, BlockSections.visible 
@@ -413,8 +413,8 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 		//counter for questions 
 		while($rowSections = mysqli_fetch_array($qResSections))
 			{
-			$sectionID = $rowSections[sectionID];
-			$sectionVisible = $rowSections[visible];
+			$sectionID = $rowSections['sectionID'];
+			$sectionVisible = $rowSections['visible'];
 			//get questions 
 			$qQuestions = "SELECT Questions.questionID, Questions.comments, Questions.questionTypeID, Questions.text, SectionQuestions.position, SectionQuestions.visible
 						FROM Questions, SectionQuestions
@@ -426,11 +426,11 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 			
 			while($rowQuestions = mysqli_fetch_array($qResQuestions))
 				{
-				$questionID = $rowQuestions[questionID];
-				$questionVisible = $rowQuestions[visible];
+				$questionID = $rowQuestions['questionID'];
+				$questionVisible = $rowQuestions['visible'];
 				unset($aTextandID);
 				$drdownOptionValue = $blockID . "_" . $sectionID . "_" . $questionID;
-				$questionText = limitString($rowQuestions[text],30);
+				$questionText = limitString($rowQuestions['text'],30);
 				$questionNoForOutput = $questionNo;
 				if ($questionNoForOutput < 10)
 					{
@@ -440,7 +440,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 				$aTextandID[1] = $drdownOptionValue;
 				$aQuestions[$questionNo] = $aTextandID;
 				//only populate the drop-down with questions on which a choice could be based i.e not text/questionTypeID = 4
-				if ($rowQuestions[questionTypeID] == 1 || $rowQuestions[questionTypeID] == 2 || $rowQuestions[questionTypeID] == 3)
+				if ($rowQuestions['questionTypeID'] == 1 || $rowQuestions['questionTypeID'] == 2 || $rowQuestions['questionTypeID'] == 3)
 					{
 					$aAllowAnalyseByThisQuestion[$questionNo] = true;
 					}

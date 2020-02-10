@@ -254,7 +254,7 @@ function goTo(URL)
 					echo "var aQuestions = new Array();";
 					while($rowBlocks = mysqli_fetch_array($qResBlocks))
 						{
-						$blockID = $rowBlocks[blockID];
+						$blockID = $rowBlocks['blockID'];
 						$blockIsInstanceable = false;
 						if($rowBlocks[instanceable]==1)
 							{
@@ -294,7 +294,7 @@ function goTo(URL)
 								}
 							while($rowSections = mysqli_fetch_array($qResSections))
 								{
-								$sectionID = $rowSections[sectionID];
+								$sectionID = $rowSections['sectionID'];
 								$sectionIsInstanceable = false;
 								if($rowSections[instanceable]==1)
 									{
@@ -334,12 +334,12 @@ function goTo(URL)
 										}
 									while($rowQuestions = mysqli_fetch_array($qResQuestions))
 										{
-										$questionID = $rowQuestions[questionID];
+										$questionID = $rowQuestions['questionID'];
 										echo "aQuestions[".$questionNo."]=new Array(8);\n";
 										echo "aQuestions[".$questionNo."][0]='".$blockID."_".$sectionID."_".$questionID."_i".$inst."_si".$sinst."';\n";//questionID
 										echo "aQuestions[".$questionNo."][1]=".$questionNo.";\n";
-										echo "aQuestions[".$questionNo."][2]='".$rowQuestions[text]."';\n";	
-										echo "aQuestions[".$questionNo."][3]=".$rowQuestions[questionTypeID].";\n";
+										echo "aQuestions[".$questionNo."][2]='".$rowQuestions['text']."';\n";	
+										echo "aQuestions[".$questionNo."][3]=".$rowQuestions['questionTypeID'].";\n";
 										$qItems = "	SELECT Items.itemID, Items.text, QuestionItems.position
 													FROM Items, QuestionItems
 													WHERE QuestionItems.questionID = $questionID
@@ -712,7 +712,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		$aQuestions = array();
 		while($rowBlocks = mysqli_fetch_array($qResBlocks))
 			{
-			$blockID = $rowBlocks[blockID];
+			$blockID = $rowBlocks['blockID'];
 			if($rowBlocks[instanceable]==1)
 				{
 				$noOfInstances = $_POST[hCurrentInstance . "_" . $blockID];
@@ -738,7 +738,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 					}
 				while($rowSections = mysqli_fetch_array($qResSections))
 					{
-					$sectionID = $rowSections[sectionID];
+					$sectionID = $rowSections['sectionID'];
 					if($rowSections[instanceable]==1)
 						{
 						$noOfSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID . "_i" . $inst];
@@ -762,12 +762,12 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 							}
 						while($rowQuestions = mysqli_fetch_array($qResQuestions))
 							{
-							$questionID = $rowQuestions[questionID];
+							$questionID = $rowQuestions['questionID'];
 							$aQuestions[$questionNo]= array();
 							$aQuestions[$questionNo][0]= $blockID."_".$sectionID."_".$questionID."_i".$inst."_si".$sinst;//questionID
 							$aQuestions[$questionNo][1]= $questionNo;
-							$aQuestions[$questionNo][2]= $rowQuestions[text];	
-							$aQuestions[$questionNo][3]= $rowQuestions[questionTypeID];
+							$aQuestions[$questionNo][2]= $rowQuestions['text'];	
+							$aQuestions[$questionNo][3]= $rowQuestions['questionTypeID'];
 							$qItems = "	SELECT Items.itemID, Items.text, QuestionItems.position
 										FROM Items, QuestionItems
 										WHERE QuestionItems.questionID = $questionID
@@ -810,34 +810,34 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 								{
 								$rowBranchDestinations = mysqli_fetch_array($qResBranchDestinations);
 								//if it's in the same block as this question, then the branching item must have the same instance number
-								if($rowBranchDestinations[blockID] == $blockID)
+								if($rowBranchDestinations['blockID'] == $blockID)
 									{
-									if($rowBranchDestinations[sectionID] == $sectionID)
+									if($rowBranchDestinations['sectionID'] == $sectionID)
 										{
 										//if it's in the same section as this question, then the branching item must have the same section instance number
-										$aQuestions[$questionNo][6] = $rowBranchDestinations[blockID] . "_" . $rowBranchDestinations[sectionID] . "_" . $rowBranchDestinations[questionID] . "_" . $rowBranchDestinations[itemID] . "_i" . $inst. "_si" . $sinst;
+										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations[itemID] . "_i" . $inst. "_si" . $sinst;
 										}
 									else
 										{
 										//otherwise it must have an section instance of 1 - sections which are instanceable can only branch to questions within their own section
-										$aQuestions[$questionNo][6] = $rowBranchDestinations[blockID] . "_" . $rowBranchDestinations[sectionID] . "_" . $rowBranchDestinations[questionID] . "_" . $rowBranchDestinations[itemID] . "_i" . $inst. "_si1";
+										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations[itemID] . "_i" . $inst. "_si1";
 										}
 									}
 								else
 									{						
 									//otherwise it must have an instance of 1 - block which are instanceable can only branch to questions within their own block
-									if($rowBranchDestinations[sectionID] == $sectionID)
+									if($rowBranchDestinations['sectionID'] == $sectionID)
 										{
 										//if it's in the same section as this question, then the branching item must have the same section instance number
-										$aQuestions[$questionNo][6] = $rowBranchDestinations[blockID] . "_" . $rowBranchDestinations[sectionID] . "_" . $rowBranchDestinations[questionID] . "_" . $rowBranchDestinations[itemID] . "_i1". "_si" . $sinst;
+										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations[itemID] . "_i1". "_si" . $sinst;
 										}
 									else
 										{
 										//otherwise it must have an section instance of 1 - sections which are instanceable can only branch to questions within their own section
-										$aQuestions[$questionNo][6] = $rowBranchDestinations[blockID] . "_" . $rowBranchDestinations[sectionID] . "_" . $rowBranchDestinations[questionID] . "_" . $rowBranchDestinations[itemID] . "_i1". "_si1";
+										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations[itemID] . "_i1". "_si1";
 										}
 									}
-								$aQuestions[$questionNo][7] = $rowBranchDestinations[questionTypeID];
+								$aQuestions[$questionNo][7] = $rowBranchDestinations['questionTypeID'];
 								}
 							$questionNo++;
 							}
@@ -973,7 +973,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		
 		while($rowBlocks = mysqli_fetch_array($qResBlocks))
 			{
-			$blockID = $rowBlocks[blockID];
+			$blockID = $rowBlocks['blockID'];
 			
 			if($rowBlocks[instanceable]==1)
 				{
@@ -999,7 +999,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 					}
 				while($rowSections = mysqli_fetch_array($qResSections))
 					{
-					$sectionID = $rowSections[sectionID];
+					$sectionID = $rowSections['sectionID'];
 					if($rowSections[instanceable]==1)
 						{
 						$noOfSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst];
@@ -1024,7 +1024,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 							}
 						while($rowQuestions = mysqli_fetch_array($qResQuestions))
 							{
-							$questionID = $rowQuestions[questionID];
+							$questionID = $rowQuestions['questionID'];
 							//first check whether this participant has already entered anything for this survey/section/question
 							$qAnswers = "SELECT answerID
 									FROM Answers
@@ -1051,7 +1051,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 							$result_query = @mysqli_query($db_connection, $query);
 											
 							$bSuccess = true;//used to track whether any problems have occurred to prevent transaction being committed within this question loop
-							switch ($rowQuestions[questionTypeID])
+							switch ($rowQuestions['questionTypeID'])
 								{
 								case 1:
 									{
@@ -1573,7 +1573,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 	while($rowBlocks = mysqli_fetch_array($qResBlocks))
 		{
 		$blockIsInstanceable = false;
-		$blockID = $rowBlocks[blockID];
+		$blockID = $rowBlocks['blockID'];
 		if($rowBlocks[instanceable]==1)
 			{
 			$blockIsInstanceable = true;
@@ -1604,9 +1604,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		$ThisObjectIsBranchedTo = false;
 		while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 			{
-			if($rowThisObjectIsBranchedTo[blockID] == $blockID && 
-			$rowThisObjectIsBranchedTo[sectionID] == NULL && 
-			$rowThisObjectIsBranchedTo[questionID] == NULL)
+			if($rowThisObjectIsBranchedTo['blockID'] == $blockID && 
+			$rowThisObjectIsBranchedTo['sectionID'] == NULL && 
+			$rowThisObjectIsBranchedTo['questionID'] == NULL)
 				{
 				$ThisObjectIsBranchedTo = true;
 				}
@@ -1624,10 +1624,10 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			{
 			echo "<div class=\"block\" id=\"div".$blockID."_i".$inst."\"".($ThisObjectIsBranchedTo?"style=\"display:none\"":"").">";
 			//begin block content
-			if($rowBlocks[text] != "")
+			if($rowBlocks['text'] != "")
 				{
 				//only output a block title if there is one
-				echo "<h2>$rowBlocks[text]";
+				echo "<h2>$rowBlocks['text']";
 				if ($rowBlocks[instanceable]==1)
 					{
 					echo ": ".$inst;
@@ -1642,7 +1642,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			while($rowSections = mysqli_fetch_array($qResSections))
 				{			
 				$sectionIsInstanceable = false;
-				$sectionID = $rowSections[sectionID];
+				$sectionID = $rowSections['sectionID'];
 				if($rowSections[instanceable]==1)
 					{
 					$sectionIsInstanceable = true;
@@ -1673,9 +1673,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				$ThisObjectIsBranchedTo = false;
 				while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 					{
-					if($rowThisObjectIsBranchedTo[blockID] == $blockID && 
-					$rowThisObjectIsBranchedTo[sectionID] == $sectionID && 
-					$rowThisObjectIsBranchedTo[questionID] == NULL)
+					if($rowThisObjectIsBranchedTo['blockID'] == $blockID && 
+					$rowThisObjectIsBranchedTo['sectionID'] == $sectionID && 
+					$rowThisObjectIsBranchedTo['questionID'] == NULL)
 						{
 						$ThisObjectIsBranchedTo = true;
 						}
@@ -1695,10 +1695,10 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 					echo "<div class=\"section\" id=\"div".$blockID."_".$sectionID."_i".$inst."_si".$sinst."\"".($ThisObjectIsBranchedTo?"style=\"display:none\"":"").">";
 				
 					//begin section content
-					if($rowSections[text] != "")
+					if($rowSections['text'] != "")
 						{
 						//only output a section title if there is one
-						echo "<h3> $rowSections[text]";
+						echo "<h3> $rowSections['text']";
 						if ($rowSections[instanceable]==1)
 							{
 							echo ": ".$sinst;
@@ -1719,7 +1719,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 							//loop through questions
 							while($rowQuestions = mysqli_fetch_array($qResQuestions))
 								{
-								$questionID = $rowQuestions[questionID];
+								$questionID = $rowQuestions['questionID'];
 								
 								//is this question branched to?
 								$qThisObjectIsBranchedTo = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
@@ -1728,9 +1728,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 								$ThisObjectIsBranchedTo = false;
 								while($rowThisObjectIsBranchedTo = mysqli_fetch_array($qResThisObjectIsBranchedTo))
 									{
-									if($rowThisObjectIsBranchedTo[blockID] == $blockID && 
-									$rowThisObjectIsBranchedTo[sectionID] == $sectionID && 
-									$rowThisObjectIsBranchedTo[questionID] == $questionID)
+									if($rowThisObjectIsBranchedTo['blockID'] == $blockID && 
+									$rowThisObjectIsBranchedTo['sectionID'] == $sectionID && 
+									$rowThisObjectIsBranchedTo['questionID'] == $questionID)
 										{
 										$ThisObjectIsBranchedTo = true;
 										}
@@ -1743,7 +1743,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 									}
 								if (!$addingInstance && !$deletingInstance)
 									{
-									if($rowQuestions[comments]=="true" || $rowQuestions[questionTypeID] == 4 || $rowQuestions[questionTypeID] == 5)
+									if($rowQuestions[comments]=="true" || $rowQuestions['questionTypeID'] == 4 || $rowQuestions['questionTypeID'] == 5)
 										{
 										//find out if this question already has comments/text from this user
 										$qCommentAnswered = "	SELECT AnswerComments.text
@@ -1763,14 +1763,14 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 								//get items
 								$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
 										FROM Items, QuestionItems
-										WHERE QuestionItems.questionID = $rowQuestions[questionID]
+										WHERE QuestionItems.questionID = $rowQuestions['questionID']
 										AND QuestionItems.visible = 1
 										AND Items.itemID = QuestionItems.itemID
 										ORDER BY QuestionItems.position";
 							
 								$qResItems = mysqli_query($db_connection, $qItems);
 								
-								switch ($rowQuestions[questionTypeID])
+								switch ($rowQuestions['questionTypeID'])
 									{
 									case 1: //MCHOIC
 										{
@@ -1778,7 +1778,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										$mchoicName = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
 										echo "<table class=\"normal_1\">";
 										echo "	<tr>";
-										echo "<td colspan=\"$recordCount\" class=\"question\">$questionNo $rowQuestions[text]</td>";
+										echo "<td colspan=\"$recordCount\" class=\"question\">$questionNo $rowQuestions['text']</td>";
 										echo " </tr>
 												<tr>";
 										//loop through items
@@ -1809,30 +1809,30 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												//if a branch goes to sections or questions within another block then show them within all instances of the block
 												while($rowBranchesFromItem = mysqli_fetch_array($qResBranchesFromItem))
 													{
-													if($rowBranchesFromItem[blockID] == $blockID)
+													if($rowBranchesFromItem['blockID'] == $blockID)
 														{ 
 														//if a branch goes to sections or questions within this block then we need to show them only within this instance of the block
-														if($rowBranchesFromItem[sectionID] == $sectionID)
+														if($rowBranchesFromItem['sectionID'] == $sectionID)
 															{
 															//if a branch goes to sections or questions within this section then we need to show them only within this instance of the section
 															if($i > 1)
 																{
 																$show = $show . "+";
 																}
-															$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $sinst: "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
+															$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $sinst: "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
 															$i++;
 															}
 														else
 															{
 															//find out how many branches are there of the section being branched to
-															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
 																{
 																if($i > 1)
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
 																$i++;
 																}
 															}
@@ -1840,9 +1840,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 													else //i.e. not branching within this block
 														{ 
 														//find out how many branches are there of the block being branched to
-														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem[blockID]);
+														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem['blockID']);
 														//find out how many branches are there of the section being branched to
-														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 														for($binst=1;$binst<=$noOfBranchInstances;$binst++)
 															{
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
@@ -1851,7 +1851,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
 																$i++;
 																}
 															}
@@ -1874,36 +1874,36 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												$i = 1;
 												while($rowBranchesFromQuestion = mysqli_fetch_array($qResBranchesFromQuestion))
 													{
-													if($rowBranchesFromQuestion[blockID] == $blockID)
+													if($rowBranchesFromQuestion['blockID'] == $blockID)
 														{
-														if($rowBranchesFromQuestion[sectionID] == $sectionID)
+														if($rowBranchesFromQuestion['sectionID'] == $sectionID)
 															{
 															if($i > 1)
 																{
 																$hide = $hide . "+";
 																}
-															$hide = $hide . "div" . $rowBranchesFromQuestion[blockID] . ($rowBranchesFromQuestion[sectionID] != NULL ? "_" . $rowBranchesFromQuestion[sectionID] . ($rowBranchesFromQuestion[questionID] != NULL ? "_" . $rowBranchesFromQuestion[questionID] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
+															$hide = $hide . "div" . $rowBranchesFromQuestion['blockID'] . ($rowBranchesFromQuestion['sectionID'] != NULL ? "_" . $rowBranchesFromQuestion['sectionID'] . ($rowBranchesFromQuestion['questionID'] != NULL ? "_" . $rowBranchesFromQuestion['questionID'] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
 															$i++;
 															}
 														else
 															{
 															//find out how many branches are there of the section being branched to
-															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromQuestion[blockID],$rowBranchesFromQuestion[sectionID],$inst);
+															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromQuestion['blockID'],$rowBranchesFromQuestion['sectionID'],$inst);
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
 																{
 																if($i > 1)
 																	{
 																	$hide = $hide . "+";
 																	}
-																$hide = $hide . "div" . $rowBranchesFromQuestion[blockID] . ($rowBranchesFromQuestion[sectionID] != NULL ? "_" . $rowBranchesFromQuestion[sectionID] . ($rowBranchesFromQuestion[questionID] != NULL ? "_" . $rowBranchesFromQuestion[questionID] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
+																$hide = $hide . "div" . $rowBranchesFromQuestion['blockID'] . ($rowBranchesFromQuestion['sectionID'] != NULL ? "_" . $rowBranchesFromQuestion['sectionID'] . ($rowBranchesFromQuestion['questionID'] != NULL ? "_" . $rowBranchesFromQuestion['questionID'] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
 																$i++;
 																}
 															}
 														}
 													else
 														{
-														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromQuestion[blockID]);
-														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromQuestion[blockID],$rowBranchesFromQuestion[sectionID],$inst);
+														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromQuestion['blockID']);
+														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromQuestion['blockID'],$rowBranchesFromQuestion['sectionID'],$inst);
 														for($binst=1;$binst<=$noOfBranchInstances;$binst++)
 															{
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
@@ -1912,7 +1912,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	{
 																	$hide = $hide . "+";
 																	}
-																$hide = $hide . "div" . $rowBranchesFromQuestion[blockID] . ($rowBranchesFromQuestion[sectionID] != NULL ? "_" . $rowBranchesFromQuestion[sectionID] . ($rowBranchesFromQuestion[questionID] != NULL ? "_" . $rowBranchesFromQuestion[questionID] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
+																$hide = $hide . "div" . $rowBranchesFromQuestion['blockID'] . ($rowBranchesFromQuestion['sectionID'] != NULL ? "_" . $rowBranchesFromQuestion['sectionID'] . ($rowBranchesFromQuestion['questionID'] != NULL ? "_" . $rowBranchesFromQuestion['questionID'] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
 																$i++;
 																}
 															}
@@ -1921,11 +1921,11 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												}
 											if($itemIsInvolvedInBranching == true)
 												{
-												echo "<td><input type=\"radio\" value=\"$mchoicValue\" id=\"$mchoicID\" name=\"$mchoicName\" onclick=\"javascript:showAndHideForMCHOIC('$show','$hide');\"/>$rowItems[text]</td>";
+												echo "<td><input type=\"radio\" value=\"$mchoicValue\" id=\"$mchoicID\" name=\"$mchoicName\" onclick=\"javascript:showAndHideForMCHOIC('$show','$hide');\"/>$rowItems['text']</td>";
 												}
 											else
 												{
-												echo "<td><input type=\"radio\" value=\"$mchoicValue\" id=\"$mchoicID\" name=\"$mchoicName\"/>$rowItems[text]</td>";
+												echo "<td><input type=\"radio\" value=\"$mchoicValue\" id=\"$mchoicID\" name=\"$mchoicName\"/>$rowItems['text']</td>";
 												}
 											}
 										echo "</tr>";
@@ -1945,7 +1945,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	{
 																	//if so, write the text into the textarea
 																	$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
-																	echo stripslashes($rowCommentAnswered[text]);
+																	echo stripslashes($rowCommentAnswered['text']);
 																	}
 																else
 																	{
@@ -1963,7 +1963,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										{
 										echo "<table class=\"normal_2\">";
 										echo "	<tr>";
-										echo "<td class=\"question\">$questionNo $rowQuestions[text]</td>";
+										echo "<td class=\"question\">$questionNo $rowQuestions['text']</td>";
 										echo "  </tr>";
 										//loop through items
 										while($rowItems = mysqli_fetch_array($qResItems))
@@ -1991,35 +1991,35 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												$i = 1;
 												while($rowBranchesFromItem = mysqli_fetch_array($qResBranchesFromItem))
 													{
-													if($rowBranchesFromItem[blockID] == $blockID)
+													if($rowBranchesFromItem['blockID'] == $blockID)
 														{
-														if($rowBranchesFromItem[sectionID] == $sectionID)
+														if($rowBranchesFromItem['sectionID'] == $sectionID)
 															{
 															if($i > 1)
 																{
 																$show = $show . "+";
 																}
-															$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
+															$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
 															$i++;
 															}
 														else
 															{
-															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+															$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
 																{
 																if($i > 1)
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
 																$i++;
 																}
 															}
 														}
 													else
 														{
-														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem[blockID]);
-														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem['blockID']);
+														$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 														for($binst=1;$binst<=$noOfBranchInstances;$binst++)
 															{
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
@@ -2028,7 +2028,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
 																$i++;
 																}
 															}
@@ -2039,11 +2039,11 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 													<td>";
 											if($itemIsInvolvedInBranching == true)
 												{
-												echo "<input type=\"checkbox\" id=\"$mselecID\" name=\"$mselecName\" onclick=\"javascript:showAndHideForMSELEC(this,'$show');\"/>$rowItems[text]";
+												echo "<input type=\"checkbox\" id=\"$mselecID\" name=\"$mselecName\" onclick=\"javascript:showAndHideForMSELEC(this,'$show');\"/>$rowItems['text']";
 												}
 											else
 												{
-												echo "<input type=\"checkbox\" id=\"$mselecID\" name=\"$mselecName\"/>$rowItems[text]";
+												echo "<input type=\"checkbox\" id=\"$mselecID\" name=\"$mselecName\"/>$rowItems['text']";
 												}
 											echo "	</td>
 												</tr>";
@@ -2063,7 +2063,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	{
 																	//if so, write the text into the textarea
 																	$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
-																	echo stripslashes($rowCommentAnswered[text]);
+																	echo stripslashes($rowCommentAnswered['text']);
 																	}
 																else
 																	{
@@ -2082,7 +2082,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										echo "<table class=\"normal_3\">";
 										echo "	<tr>";
 										$drdownName = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
-										echo "<td colspan=\"$recordCount\" class=\"question\">$questionNo $rowQuestions[text]";
+										echo "<td colspan=\"$recordCount\" class=\"question\">$questionNo $rowQuestions['text']";
 										$drdownID = $blockID . "_" . $sectionID . "_" . $questionID. "_i" . $inst . "_si" . $sinst;
 										$drdownCommentName = "comments_" . $blockID . "_" . $sectionID . "_" . $questionID. "_i" . $inst . "_si" . $sinst;
 										$drdownCommentID = "comments_" . $blockID . "_" . $sectionID . "_" . $questionID. "_i" . $inst . "_si" . $sinst;
@@ -2115,35 +2115,35 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												$i = 1;
 												while($rowBranchesFromItem = mysqli_fetch_array($qResBranchesFromItem))
 													{
-													if($rowBranchesFromItem[blockID] == $blockID)
+													if($rowBranchesFromItem['blockID'] == $blockID)
 														{
-														if($rowBranchesFromItem[sectionID] == $sectionID)
+														if($rowBranchesFromItem['sectionID'] == $sectionID)
 															{
 															if($i > 1)
 																{
 																$show = $show . "+";
 																}
-															$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
+															$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
 															$i++;
 															}
 														else
 															{
-															$noOfBranchSectionInstances = getInstancesForBlock($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID]);
+															$noOfBranchSectionInstances = getInstancesForBlock($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID']);
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
 																{
 																if($i > 1)
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
 																$i++;
 																}
 															}
 														}
 													else
 														{
-														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem[blockID]);
-														$noOfBranchSectionInstances = getInstancesForBlock($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID]);
+														$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem['blockID']);
+														$noOfBranchSectionInstances = getInstancesForBlock($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID']);
 														for($binst=1;$binst<=$noOfBranchInstances;$binst++)
 															{
 															for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
@@ -2152,7 +2152,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	{
 																	$show = $show . "+";
 																	}
-																$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
+																$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
 																$i++;
 																}
 															}
@@ -2171,7 +2171,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											}
 										
 										echo "			<option value=\"0\">
-																$rowQuestions[text]
+																$rowQuestions['text']
 														</option>";
 										//loop through items
 										if(mysqli_num_rows($qResItems)>0)
@@ -2182,7 +2182,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											{
 											$drdownOptionValue = $blockID . "_" . $sectionID . "_" . $questionID . "_" . $rowItems[itemID] . "_i" . $inst . "_si" . $sinst;
 											echo "			<option value=\"$drdownOptionValue\">
-																$rowItems[text]
+																$rowItems['text']
 															</option>";
 											}
 										echo "			</select>
@@ -2204,7 +2204,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	{
 																	//if so, write the text into the textarea
 																	$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
-																	echo stripslashes($rowCommentAnswered[text]);
+																	echo stripslashes($rowCommentAnswered['text']);
 																	}
 																else
 																	{
@@ -2225,7 +2225,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										$textID = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
 										echo "<table class=\"normal_4\">";
 										echo "	<tr>";
-										echo " 		<td class=\"question\">$questionNo $rowQuestions[text]</td>";
+										echo " 		<td class=\"question\">$questionNo $rowQuestions['text']</td>";
 										echo "	</tr>";
 										echo "	<tr>
 													<td colspan=\"$recordCount\">
@@ -2240,7 +2240,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																{
 																//if so, write the text into the textarea
 																$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
-																echo stripslashes($rowCommentAnswered[text]);
+																echo stripslashes($rowCommentAnswered['text']);
 																}
 															}
 												echo "</textarea>
@@ -2256,7 +2256,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										$textID = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
 										echo "<table class=\"normal_4\">";
 										echo "	<tr>";
-										echo " 		<td class=\"question\">$questionNo $rowQuestions[text]</td>";
+										echo " 		<td class=\"question\">$questionNo $rowQuestions['text']</td>";
 										echo "	</tr>";
 										echo "	<tr>
 													<td colspan=\"$recordCount\">
@@ -2271,7 +2271,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																{
 																//if so, write the text into the textarea
 																$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
-																echo stripslashes($rowCommentAnswered[text]);
+																echo stripslashes($rowCommentAnswered['text']);
 																}
 															}
 												echo "</textarea>
@@ -2307,7 +2307,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											
 										echo "<table class=\"normal_4\">";
 										echo "	<tr>";
-										echo " 		<td class=\"question\">$questionNo $rowQuestions[text]</td>";
+										echo " 		<td class=\"question\">$questionNo $rowQuestions['text']</td>";
 										echo "	</tr>";
 										echo "	<tr>
 													<td colspan=\"$recordCount\">";
@@ -2400,7 +2400,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 							//loop through questions
 							while($rowQuestions = mysqli_fetch_array($qResQuestions))
 								{
-								$questionID = $rowQuestions[questionID];
+								$questionID = $rowQuestions['questionID'];
 								//get items
 								$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
 										FROM Items, QuestionItems
@@ -2422,7 +2422,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												<th></th>";
 										while($rowItems = mysqli_fetch_array($qResItems))
 											{
-											echo "<th align=\"center\">$rowItems[text]</th>";
+											echo "<th align=\"center\">$rowItems['text']</th>";
 											}
 										echo "</tr>";
 										$bCreatedTopRow = true;
@@ -2442,7 +2442,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										echo "<tr class=\"matrixRowEven\">";
 										}
 									$mchoicName = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
-									echo "<td class=\"question\" align=\"left\">$questionNo $rowQuestions[text]";
+									echo "<td class=\"question\" align=\"left\">$questionNo $rowQuestions['text']";
 									if($allAnswered==false&&$aQuestions[$questionNo][5]==false)
 										{
 										echo "This question was not answered";
@@ -2453,7 +2453,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 									while($rowItems = mysqli_fetch_array($qResItems))
 										{
 										$itemID = $rowItems[itemID];
-										switch ($rowQuestions[questionTypeID])
+										switch ($rowQuestions['questionTypeID'])
 											{
 											case 1: //MCHOIC					
 												{
@@ -2499,7 +2499,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																AND AnswerComments.answerID = Answers.answerID";
 											$qResCommentAnswered = mysqli_query($db_connection, $qCommentAnswered);
 											}
-										switch ($rowQuestions[questionTypeID])
+										switch ($rowQuestions['questionTypeID'])
 											{
 											case 1: //MCHOIC					
 												{
@@ -2526,7 +2526,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																{
 																//if so, write the text into the textarea
 																$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
-																echo stripslashes($rowCommentAnswered[text]);
+																echo stripslashes($rowCommentAnswered['text']);
 																} 
 															else
 																{
@@ -2553,10 +2553,10 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 						echo "<br\>";
 						echo "<input type=\"hidden\" id=\"hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID . "_i" . $inst . "\" name=\"hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID . "_i" . $inst . "\" value=\"" . $sinst."\">";
 						echo "<table width=\"100%\"><tr><td>Do you want to repeat this section ";
-						if($rowSections[text] != "")
+						if($rowSections['text'] != "")
 							{
 							//only output a block title if there is one
-							echo "(\"".$rowSections[text]."\")";
+							echo "(\"".$rowSections['text']."\")";
 							}
 						echo "? </td><td>";
 						echo "<input type=\"submit\" id=\"bAddSectionInstance" . "_" . $blockID . "_" . $sectionID . "_i" . $inst ."\" name=\"bAddSectionInstance" . "_" . $blockID . "_" . $sectionID . "_i" . $inst ."\" value=\"Repeat section\" onClick=\"javascript:sethAddedToTrue()\">";
@@ -2565,10 +2565,10 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 							{
 							//i.e if there is already more than one instance
 							echo "<tr><td>Do you want to delete this section ";
-							if($rowSections[text] != "")
+							if($rowSections['text'] != "")
 								{
 								//only output a block title if there is one
-								echo "(\"".$rowSections[text].": ".$sinst."\")";
+								echo "(\"".$rowSections['text'].": ".$sinst."\")";
 								}
 							echo "? </td><td>";
 							echo "<input type=\"submit\" id=\"bDeleteSectionInstance" . "_" . $blockID . "_" . $sectionID . "_i" . $inst ."\" name=\"bDeleteSectionInstance" . "_" . $blockID . "_" . $sectionID . "_i" . $inst ."\" value=\"Delete section\" onClick=\"javascript:sethDeletedToTrue()\">";
@@ -2589,10 +2589,10 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				echo "<br\>";
 				echo "<input type=\"hidden\" id=\"hCurrentInstance" . "_" . $blockID . "\" name=\"hCurrentInstance" . "_" . $blockID . "\" value=\"" . $inst."\">";
 				echo "<table width=\"100%\"><tr><td>Do you want to repeat this block ";
-				if($rowBlocks[text] != "")
+				if($rowBlocks['text'] != "")
 					{
 					//only output a block title if there is one
-					echo "(\"".$rowBlocks[text]."\")";
+					echo "(\"".$rowBlocks['text']."\")";
 					}
 				echo "? </td><td>";
 				echo "<input type=\"submit\" id=\"bAddInstance" . "_" . $blockID ."\" name=\"bAddInstance" . "_" . $blockID . "\" value=\"Repeat block\" onClick=\"javascript:sethAddedToTrue()\">";
@@ -2601,10 +2601,10 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 					{
 					//i.e if there is already more than one instance
 					echo "<tr><td>Do you want to delete this block ";
-					if($rowBlocks[text] != "")
+					if($rowBlocks['text'] != "")
 						{
 						//only output a block title if there is one
-						echo "(\"".$rowBlocks[text].": ".$inst."\")";
+						echo "(\"".$rowBlocks['text'].": ".$inst."\")";
 						}
 					echo "? </td><td>";
 					echo "<input type=\"submit\" id=\"bDeleteInstance" . "_" . $blockID ."\" name=\"bDeleteInstance" . "_" . $blockID . "\" value=\"Delete block\" onClick=\"javascript:sethDeletedToTrue()\">";
@@ -2645,7 +2645,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 	while($rowBlocks = mysqli_fetch_array($qResBlocks))
 		{
 		$blockIsInstanceable = false;
-		$blockID = $rowBlocks[blockID];
+		$blockID = $rowBlocks['blockID'];
 		if($rowBlocks[instanceable]==1)
 			{
 			$blockIsInstanceable = true;
@@ -2685,7 +2685,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				}
 			while($rowSections = mysqli_fetch_array($qResSections))
 				{
-				$sectionID = $rowSections[sectionID];
+				$sectionID = $rowSections['sectionID'];
 				$sectionIsInstanceable = false;
 				if($rowSections[instanceable]==1)
 					{
@@ -2727,7 +2727,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 						}
 					while($rowQuestions = mysqli_fetch_array($qResQuestions))
 						{
-						$questionID = $rowQuestions[questionID];
+						$questionID = $rowQuestions['questionID'];
 						if (!$addingInstance && !$deletingInstance)
 							{
 							//find out if this question has already been answered by this user
@@ -2744,7 +2744,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 							$qResItemAnswered = mysqli_query($db_connection, $qItemAnswered);
 							}
 						//write a bit of javascript to click the appropriate button
-						switch ($rowQuestions[questionTypeID])
+						switch ($rowQuestions['questionTypeID'])
 							{
 							
 							case 1:
@@ -2793,7 +2793,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 								//get items
 								$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
 										FROM Items, QuestionItems
-										WHERE QuestionItems.questionID = $rowQuestions[questionID]
+										WHERE QuestionItems.questionID = $rowQuestions['questionID']
 										AND QuestionItems.visible = 1
 										AND Items.itemID = QuestionItems.itemID
 										ORDER BY QuestionItems.position";
@@ -2829,35 +2829,35 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										$i = 1;
 										while($rowBranchesFromItem = mysqli_fetch_array($qResBranchesFromItem))
 											{
-											if($rowBranchesFromItem[blockID] == $blockID)
+											if($rowBranchesFromItem['blockID'] == $blockID)
 												{
-												if($rowBranchesFromItem[sectionID] == $sectionID)
+												if($rowBranchesFromItem['sectionID'] == $sectionID)
 													{
 													if($i > 1)
 														{
 														$show = $show . "+";
 														}
-													$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
+													$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
 													$i++;
 													}
 												else
 													{
-													$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+													$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 													for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
 														{
 														if($i > 1)
 															{
 															$show = $show . "+";
 															}
-														$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
+														$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
 														$i++;	
 														}
 													}
 												}
 											else
 												{
-												$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem[blockID]);
-												$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+												$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem['blockID']);
+												$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 												for($binst=1;$binst<=$noOfBranchInstances;$binst++)
 													{	
 													for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
@@ -2866,7 +2866,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 															{
 															$show = $show . "+";
 															}
-														$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
+														$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
 														$i++;
 														}
 													}
@@ -2904,7 +2904,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 								//get items
 								$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
 										FROM Items, QuestionItems
-										WHERE QuestionItems.questionID = $rowQuestions[questionID]
+										WHERE QuestionItems.questionID = $rowQuestions['questionID']
 										AND QuestionItems.visible = 1
 										AND Items.itemID = QuestionItems.itemID
 										ORDER BY QuestionItems.position";
@@ -2937,35 +2937,35 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										$i = 1;
 										while($rowBranchesFromItem = mysqli_fetch_array($qResBranchesFromItem))
 											{
-											if($rowBranchesFromItem[blockID] == $blockID)
+											if($rowBranchesFromItem['blockID'] == $blockID)
 												{
-												if($rowBranchesFromItem[sectionID] == $sectionID)
+												if($rowBranchesFromItem['sectionID'] == $sectionID)
 													{
 													if($i > 1)
 														{
 														$show = $show . "+";
 														}
-													$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
+													$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $sinst : "_i" . $inst . "_si" . $sinst): "_i" . $inst . "_si" . $sinst);
 													$i++;
 													}
 												else
 													{
-													$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+													$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 													for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
 														{
 														if($i > 1)
 															{
 															$show = $show . "+";
 															}
-														$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
+														$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $inst . "_si" . $bsinst : "_i" . $inst . "_si" . $bsinst): "_i" . $inst . "_si" . $bsinst);
 														$i++;
 														}
 													}
 												}
 											else
 												{
-												$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem[blockID]);
-												$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem[blockID],$rowBranchesFromItem[sectionID],$inst);
+												$noOfBranchInstances = getInstancesForBlock($rowBranchesFromItem['blockID']);
+												$noOfBranchSectionInstances = getInstancesForSection($rowBranchesFromItem['blockID'],$rowBranchesFromItem['sectionID'],$inst);
 												for($binst=1;$binst<=$noOfBranchInstances;$binst++)
 													{
 													for($bsinst=1;$bsinst<=$noOfBranchSectionInstances;$bsinst++)
@@ -2974,7 +2974,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 															{
 															$show = $show . "+";
 															}
-														$show = $show . "div" . $rowBranchesFromItem[blockID] . ($rowBranchesFromItem[sectionID] != NULL ? "_" . $rowBranchesFromItem[sectionID] . ($rowBranchesFromItem[questionID] != NULL ? "_" . $rowBranchesFromItem[questionID] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
+														$show = $show . "div" . $rowBranchesFromItem['blockID'] . ($rowBranchesFromItem['sectionID'] != NULL ? "_" . $rowBranchesFromItem['sectionID'] . ($rowBranchesFromItem['questionID'] != NULL ? "_" . $rowBranchesFromItem['questionID'] . "_i" . $binst . "_si" . $bsinst : "_i" . $binst . "_si" . $bsinst): "_i" . $binst . "_si" . $bsinst);
 														$i++;
 														}
 													}

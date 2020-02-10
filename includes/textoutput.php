@@ -145,7 +145,7 @@ else
 	while($rowBlocks = mysql_fetch_array($qResBlocks))
 		{
 		$blockIsInstanceable = false;
-		$blockID = $rowBlocks[blockID];
+		$blockID = $rowBlocks['blockID'];
 		if($rowBlocks[instanceable]==1)
 			{
 			$blockIsInstanceable = true;
@@ -168,10 +168,10 @@ else
 		for($inst=1;$inst<=$noOfInstances;$inst++)
 			{
 			//begin block content
-			if($rowBlocks[text] != "")
+			if($rowBlocks['text'] != "")
 				{
 				//only output a block title if there is one
-				echo "<tr><td colspan=\"3\"><h2>$rowBlocks[text]";
+				echo "<tr><td colspan=\"3\"><h2>$rowBlocks['text']";
 				if ($rowBlocks[instanceable]==1)
 					{
 					echo ": ".$inst;
@@ -185,7 +185,7 @@ else
 			while($rowSections = mysql_fetch_array($qResSections))
 				{			
 				$sectionIsInstanceable = false;
-				$sectionID = $rowSections[sectionID];
+				$sectionID = $rowSections['sectionID'];
 				if($rowSections[instanceable]==1)
 					{
 					$sectionIsInstanceable = true;
@@ -208,10 +208,10 @@ else
 				for($sinst=1;$sinst<=$noOfSectionInstances;$sinst++)
 					{
 					//begin section content
-					if($rowSections[text] != "")
+					if($rowSections['text'] != "")
 						{
 						//only output a section title if there is one
-						echo "<tr><td colspan=\"3\"><h3>$rowSections[text]";
+						echo "<tr><td colspan=\"3\"><h3>$rowSections['text']";
 						if ($rowSections[instanceable]==1)
 							{
 							echo ": ".$sinst;
@@ -226,8 +226,8 @@ else
 					//loop through questions
 					while($rowQuestions = mysql_fetch_array($qResQuestions))
 						{
-						$questionID = $rowQuestions[questionID];
-						if($rowQuestions[comments]=="true" || $rowQuestions[questionTypeID] == 4 || $rowQuestions[questionTypeID] == 5)
+						$questionID = $rowQuestions['questionID'];
+						if($rowQuestions[comments]=="true" || $rowQuestions['questionTypeID'] == 4 || $rowQuestions['questionTypeID'] == 5)
 							{
 							//find out if this question already has comments/text from this user
 							$qCommentAnswered = "	SELECT AnswerComments.text
@@ -256,9 +256,9 @@ else
 											AND AnswerItems.AnswerID = Answers.answerID";
 						$qResItemAnswered = mysql_query($qItemAnswered);
 						
-						echo "<tr><td>$questionNo</td><td>$rowQuestions[text]</td>";
+						echo "<tr><td>$questionNo</td><td>$rowQuestions['text']</td>";
 						
-						switch ($rowQuestions[questionTypeID])
+						switch ($rowQuestions['questionTypeID'])
 							{
 							case 1: //MCHOIC
 								{
@@ -272,7 +272,7 @@ else
 											WHERE itemID = $rowItemAnswered[itemID]";
 									$qResItems = mysql_query($qItems);
 									$rowItems = mysql_fetch_array($qResItems);
-									echo"$rowItems[text]";
+									echo"$rowItems['text']";
 									}
 								echo "</td></tr>";
 								if($rowQuestions[comments]=="true")
@@ -282,7 +282,7 @@ else
 										{
 										//if so, write the text into the textarea
 										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-										echo "$rowCommentAnswered[text]";
+										echo "$rowCommentAnswered['text']";
 										}
 									else
 										{
@@ -313,7 +313,7 @@ else
 											{
 											echo"; ";
 											}
-										echo"$rowItems[text]";
+										echo"$rowItems['text']";
 										}
 									}
 								echo "</td></tr>";
@@ -324,7 +324,7 @@ else
 										{
 										//if so, write the text into the textarea
 										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-										echo "$rowCommentAnswered[text]";
+										echo "$rowCommentAnswered['text']";
 										}
 									else
 										{
@@ -346,7 +346,7 @@ else
 											WHERE itemID = $rowItemAnswered[itemID]";
 									$qResItems = mysql_query($qItems);
 									$rowItems = mysql_fetch_array($qResItems);
-									echo"$rowItems[text]";
+									echo"$rowItems['text']";
 									}
 								echo "</td></tr>";
 								if($rowQuestions[comments]=="true")
@@ -356,7 +356,7 @@ else
 										{
 										//if so, write the text into the textarea
 										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-										echo "$rowCommentAnswered[text]";
+										echo "$rowCommentAnswered['text']";
 										}
 									else
 										{
@@ -374,7 +374,7 @@ else
 									echo"<tr><td></td><td colspan=\"2\">";
 									//if so, write the text into the textarea
 									$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-									echo "$rowCommentAnswered[text]";
+									echo "$rowCommentAnswered['text']";
 									echo"</td></tr>";
 									}
 								break;
@@ -388,7 +388,7 @@ else
 									echo"<tr><td></td><td colspan=\"2\">";
 									//if so, write the text into the textarea
 									$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-									echo "$rowCommentAnswered[text]";
+									echo "$rowCommentAnswered['text']";
 									echo"</td></tr>";
 									}
 								break;
@@ -422,7 +422,7 @@ else
 										{
 										//if so, write the text into the textarea
 										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-										echo "$rowCommentAnswered[text]";
+										echo "$rowCommentAnswered['text']";
 										}
 									else
 										{

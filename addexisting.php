@@ -355,7 +355,7 @@ else
 					
 						$objectID = $rowObjects[$IdName];
 						$objectTitle = $rowObjects[title];
-						$objectText = $rowObjects[text];
+						$objectText = $rowObjects['text'];
 				echo "	<tr class=\"matrixHeader\">
 							<td>
 								<input type=\"checkbox\" id=\"check_$objectID\" name=\"checkObjectIDs[]\" value=\"$objectID\"/>
