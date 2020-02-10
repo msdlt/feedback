@@ -454,7 +454,7 @@ if($questionID!="add")
 	$questionText = $rowQuestion[text];
 	$questionComments = $rowQuestion[comments];
 	$questionType = $rowQuestion[questionTypeID];
-	$questionLastModified = $rowQuestion[lastModified];
+	$questionLastModified = $rowQuestion['lastModified'];
 	}
 elseif ($validationProblem == true)
 	{

@@ -710,7 +710,7 @@ if($surveyID !="add")
 												<input type=\"checkbox\" id=\"check_$blockID\" name=\"checkBlockIDs[]\" value=\"$blockID\"/>
 											</td>
 											<td class=\"question\">Block: ".$rowBlocks[title]."</td>
-											<td>Last modified: ".ODBCDateToTextDateShort($rowBlocks[lastModified])."</td>
+											<td>Last modified: ".ODBCDateToTextDateShort($rowBlocks['lastModified'])."</td>
 											<td><input type=\"button\" id=\"editBlock_$blockID\" name=\"editBlock_$blockID\" value=\"Edit block\" onClick=\"goTo('editblock.php?surveyID=$surveyID&blockID=$blockID')\"".(IsSuperAuthor($heraldID, $blockID)==false ? "disabled" : "" )."/></td>
 										</tr>";
 										//get all sections		
@@ -905,7 +905,7 @@ if($surveyID !="add")
 												<input type=\"checkbox\" id=\"reinstate_$blockID\" name=\"reinstateBlockIDs[]\" value=\"$blockID\"/>
 											</td>
 											<td class=\"question\">Hidden Block: ".$rowBlocks[title]."</td>
-											<td>Last modified: ".ODBCDateToTextDateShort($rowBlocks[lastModified])."</td>
+											<td>Last modified: ".ODBCDateToTextDateShort($rowBlocks['lastModified'])."</td>
 											<td></td>
 										</tr>";
 										//get all sections		

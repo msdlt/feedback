@@ -342,7 +342,7 @@ if($itemID!="add" && $itemID!="upload")
 	$rowItem = mysqli_fetch_array($qResItems);
 	$itemTitle = $rowItem[title];
 	$itemText = $rowItem[text];
-	$itemLastModified = $rowItem[lastModified];
+	$itemLastModified = $rowItem['lastModified'];
 	}
 elseif($validationProblem == true)
 	{

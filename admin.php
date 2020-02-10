@@ -143,7 +143,7 @@ else
 				<input type=\"checkbox\" id=\"check_$surveyID\" name=\"checkSurveyIDs[]\" value=\"$surveyID\"/>
 			</td>
 			<td>$rowSurveys[title]</td>
-			<td>".ODBCDateToTextDateShort($rowSurveys[lastModified])."</td>
+			<td>".ODBCDateToTextDateShort($rowSurveys['lastModified'])."</td>
 			<td><input type=\"button\" id=\"scheduleSurvey_".$surveyID."\" name=\"scheduleSurvey_".$surveyID."\" value=\"Schedules\" onClick=\"goTo('schedulesurvey.php?surveyID=$surveyID')\"></td>
 			<td><input type=\"button\" id=\"editSurvey_".$surveyID."\" name=\"editSurvey_".$surveyID."\" value=\"Edit\" onClick=\"goTo('editsurvey.php?surveyID=$surveyID')\"></td>
 			<td><input type=\"button\" id=\"previewSurvey_".$surveyID."\" name=\"previewSurvey_".$surveyID."\" value=\"Preview\" onClick=\"window.open('previewsurvey.php?surveyID=$surveyID','previewWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no,scrollbars=yes')\"></td>

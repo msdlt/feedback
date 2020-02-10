@@ -417,7 +417,7 @@ if($sectionID!="add")
 	$sectionIntroduction = $rowSection[introduction];
 	$sectionEpilogue = $rowSection[epilogue];
 	$sectionType = $rowSection[sectionTypeID];
-	$sectionLastModified = $rowSection[lastModified];
+	$sectionLastModified = $rowSection['lastModified'];
 	$sectionInstanceable = $rowSection[instanceable];
 	}
 elseif ($validationProblem == true)
@@ -639,7 +639,7 @@ if($sectionID !="add")
 												<input type=\"checkbox\" id=\"check_$questionID\" name=\"checkQuestionIDs[]\" value=\"$questionID\"/>
 											</td>
 											<td class=\"question\">".$questionNo." ".$rowQuestions[text]."</td>
-											<td>Last modified: ".ODBCDateToTextDateShort($rowQuestions[lastModified])."</td>
+											<td>Last modified: ".ODBCDateToTextDateShort($rowQuestions['lastModified'])."</td>
 											<td><input type=\"button\" id=\"editQuestion_$questionID\" name=\"editQuestion_$questionID\" value=\"Edit question\" onClick=\"goTo('editquestion.php?&surveyID=$surveyID&blockID=$blockID&sectionID=$sectionID&questionID=$questionID')\"".(IsSuperAuthor($heraldID, $blockID, $sectionID, $questionID)==false ? "disabled" : "" )." /></td>
 										</tr>";
 										//get all items	
@@ -840,7 +840,7 @@ if($sectionID !="add")
 												<input type=\"checkbox\" id=\"reinstate_$questionID\" name=\"reinstateQuestionIDs[]\" value=\"$questionID\"/>
 											</td>
 											<td class=\"Hidden question\">".$rowQuestions[text]."</td>
-											<td>Last modified: ".ODBCDateToTextDateShort($rowQuestions[lastModified])."</td>
+											<td>Last modified: ".ODBCDateToTextDateShort($rowQuestions['lastModified'])."</td>
 											<td>nbsp;</td>
 										</tr>";
 										//get all items	

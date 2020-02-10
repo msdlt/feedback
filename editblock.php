@@ -404,7 +404,7 @@ if($blockID!="add")
 	$blockIntroduction = $rowBlock[introduction];
 	$blockEpilogue = $rowBlock[epilogue];
 	$blockInstanceable = $rowBlock[instanceable];
-	$blockLastModified = $rowBlock[lastModified];
+	$blockLastModified = $rowBlock['lastModified'];
 	}
 elseif ($validationProblem == true)
 	{
@@ -582,7 +582,7 @@ echo "	<h2>Sections in this block:</h2>
 											<input type=\"checkbox\" id=\"check_$sectionID\" name=\"checkSectionIDs[]\" value=\"$sectionID\"/>
 										</td>
 										<td class=\"question\">Section: ".$rowSections[title]."</td>
-										<td>Last modified: ".ODBCDateToTextDateShort($rowSections[lastModified])."</td>
+										<td>Last modified: ".ODBCDateToTextDateShort($rowSections['lastModified'])."</td>
 										<td><input type=\"button\" id=\"editSection_$sectionID\" name=\"editSection_$sectionID\" value=\"Edit section\" onClick=\"goTo('editsection.php?surveyID=$surveyID&blockID=$blockID&sectionID=$sectionID')\"".(IsSuperAuthor($heraldID, $blockID, $sectionID)==false ? "disabled" : "" )." /></td>
 									</tr>";
 									//get all questions		
@@ -778,7 +778,7 @@ echo "	<h2>Hidden sections in this block:</h2>
 											<input type=\"checkbox\" id=\"reinstate_$sectionID\" name=\"reinstateSectionIDs[]\" value=\"$sectionID\"/>
 										</td>
 										<td class=\"question\">Hidden Section: ".$rowSections[title]."</td>
-										<td>Last modified: ".ODBCDateToTextDateShort($rowSections[lastModified])."</td>
+										<td>Last modified: ".ODBCDateToTextDateShort($rowSections['lastModified'])."</td>
 										<td>&nbsp;</td>
 									</tr>";
 									//get all questions		
