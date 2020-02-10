@@ -67,7 +67,7 @@ echo "
 		$noOfSurveysWithAllowViewByStudent = 0;
 		while($rowSurveys = mysqli_fetch_array($qResSurveys))
 			{
-			$surveyID = $rowSurveys[surveyID];
+			$surveyID = $rowSurveys['surveyID'];
 			//find out whether any of these surveys contain lgtext questions
 			$qLgTextQuestions = "SELECT Questions.questionID
 								FROM Questions, SectionQuestions, BlockSections, SurveyBlocks

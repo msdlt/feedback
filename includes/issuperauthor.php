@@ -45,7 +45,7 @@ function IsSuperAuthor($heraldID, $blockID, $sectionID = false, $questionID = fa
 		{
 		while($rowContainingSurveys = mysql_fetch_array($qResContainingSurveys))
 			{
-			$surveyID = $rowContainingSurveys[surveyID];
+			$surveyID = $rowContainingSurveys['surveyID'];
 			$qSurveyAuthor = "	SELECT Authors.authorID 
 								FROM Authors, SurveyAuthors
 								WHERE SurveyAuthors.surveyID = $surveyID

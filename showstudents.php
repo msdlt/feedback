@@ -151,7 +151,7 @@ else
 //connect to heraldID and name database
 //$dbstudent_connection = mysql_connect ($dbstudent_info[host], $dbstudent_info[username], $dbstudent_info[password]) or die (mysql_error());
 //$db_select = mysql_select_db ($dbstudent_info[dbname], $dbstudent_connection) or die (mysql_error());
-$dbstudent_connection = mysqli_connect ($dbstudent_info[host], $dbstudent_info[username], $dbstudent_info[password], $dbstudent_info[dbname]) or die (mysqli_error());
+$dbstudent_connection = mysqli_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password'], $dbstudent_info['dbname']) or die (mysqli_error());
 $qStudentName = "	SELECT LASTNAME, FORENAMES
 				FROM cards
 				WHERE USERNAME = '$rowStudents[heraldID]'";

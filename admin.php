@@ -129,7 +129,7 @@ else
 	$bRowOdd = true;
 	while($rowSurveys = mysqli_fetch_array($qResSurveys))
 		{
-		$surveyID = $rowSurveys[surveyID];
+		$surveyID = $rowSurveys['surveyID'];
 		if($bRowOdd)
 			{
 			$rowClass = "matrixRowOdd";
@@ -170,7 +170,7 @@ echo "	<script language=\"JavaScript\" type=\"text/javascript\" >
 mysqli_data_seek($qResSurveys, 0);
 while($rowSurveys = mysqli_fetch_array($qResSurveys))
 	{
-	$surveyID = $rowSurveys[surveyID];
+	$surveyID = $rowSurveys['surveyID'];
 	$surveyTitle = $rowSurveys[title];
 echo "			if (document.getElementById(\"check_$surveyID\").checked == true)
 					{

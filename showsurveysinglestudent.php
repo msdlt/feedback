@@ -44,7 +44,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 		else
 			{
 			$rowSurvey = mysqli_fetch_array($qResSurvey);
-			$surveyID = $rowSurvey[surveyID];
+			$surveyID = $rowSurvey['surveyID'];
 			$surveyInstanceTitle = $rowSurvey[title];
 			}
 		}

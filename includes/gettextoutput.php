@@ -19,7 +19,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 		else
 			{
 			$rowSurvey = mysql_fetch_array($qResSurvey);
-			$surveyID = $rowSurvey[surveyID];
+			$surveyID = $rowSurvey['surveyID'];
 			$surveyInstanceTitle = $rowSurvey[title];
 			}
 		}

@@ -244,15 +244,15 @@ else
 	while($rowSurveys = mysqli_fetch_array($qResSurveys))
 		{
 		//remember the option previously selected
-		if(isset($_POST['ddSurvey']) && $_POST['ddSurvey'] == $rowSurveys[surveyID])
+		if(isset($_POST['ddSurvey']) && $_POST['ddSurvey'] == $rowSurveys['surveyID'])
 			{
-			echo "			<option value=\"$rowSurveys[surveyID]\" selected>
+			echo "			<option value=\"$rowSurveys['surveyID']\" selected>
 								$rowSurveys[title]
 							</option>";
 			}
 		else
 			{
-			echo "			<option value=\"$rowSurveys[surveyID]\">
+			echo "			<option value=\"$rowSurveys['surveyID']\">
 								$rowSurveys[title]
 							</option>";
 			}
