@@ -246,10 +246,10 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 									WHERE SectionQuestions.sectionID = ". $sectionID ."
 									AND Questions.questionID = SectionQuestions.questionID
 									AND Questions.questionTypeID = 5";
-				$qResLgTextQuestions = @mysqli_query($db_connection, $db_connection, $qLgTextQuestions);
+				$qResLgTextQuestions = @mysqli_query($db_connection, $qLgTextQuestions);
 				if (($qResLgTextQuestions == false))
 					{
-					echo "problem querying Questions" . mysqli_error($db_connection);
+					echo "problem querying Questions" . mysqli_error($db_connection) . $qLgTextQuestions;
 					}
 				else
 					{
