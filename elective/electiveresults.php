@@ -436,7 +436,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 	if($rowBlocks['text'] != "")
 		{
 		//only output a block title if there is one
-		echo "<h2>$rowBlocks['text']</h2>";
+		echo "<h2>".$rowBlocks['text']."</h2>";
 		}
 	$qSections = "	SELECT Sections.sectionID, Sections.title, Sections.text, Sections.introduction, Sections.epilogue, BlockSections.position, Sections.sectionTypeID, BlockSections.visible 
 					FROM Sections, BlockSections 
@@ -452,7 +452,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 		if($rowSections['text'] != "")
 			{
 			//only output a block title if there is one
-			echo "<h3>$rowSections['text']</h3>";
+			echo "<h3>".$rowSections['text']."</h3>";
 			}
 		//get questions
 		$qQuestions = "SELECT Questions.questionID, Questions.comments, Questions.questionTypeID, Questions.text, SectionQuestions.position 
@@ -655,7 +655,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 						}
 					else
 						{
-						echo "<td>$rowItems['text']</td>";
+						echo "<td>".$rowItems['text']."</td>";
 						}
 					echo "<td>$PercentageOfAnswers ($NoOfItems)</td></tr>";
 					$bRowOdd = !$bRowOdd;
@@ -729,7 +729,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 								echo "<textarea class=\"ckeditorclass\" rows=\"30\" id=\"divCommentsTextArea_".$questionNo.$i."_". $commentCount . "\">" . $commentCount . " (" .ODBCDateToTextDateShort($rowComments[date]).")"." - $comment_text </textarea>";
 								}
 							else{
-								echo "<hr>" . $commentCount . " (" .ODBCDateToTextDateShort($rowComments[date]).")"." - $rowComments['text'] <br/>";
+								echo "<hr>" . $commentCount . " (" .ODBCDateToTextDateShort($rowComments[date]).")"." - ".$rowComments['text']." <br/>";
 								}
 							$commentCount++;
 							}

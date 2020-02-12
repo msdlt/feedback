@@ -50,10 +50,10 @@ if (IsAuthor($heraldID))
 				{
 				$aItems[$iBlock][0]["blockID"] = $rowBlocks['blockID'];
 				$aItems[$iBlock][0]["text"] = $rowBlocks['text'];
-				$aItems[$iBlock][0]["introduction"] = $rowBlocks[introduction];
-				$aItems[$iBlock][0]["epilogue"] = $rowBlocks[epilogue];
-				$aItems[$iBlock][0]["position"] = $rowBlocks[position];
-				$aItems[$iBlock][0]["instanceable"] = $rowBlocks[instanceable];
+				$aItems[$iBlock][0]["introduction"] = $rowBlocks['introduction'];
+				$aItems[$iBlock][0]["epilogue"] = $rowBlocks['epilogue'];
+				$aItems[$iBlock][0]["position"] = $rowBlocks['position'];
+				$aItems[$iBlock][0]["instanceable"] = $rowBlocks['instanceable'];
 				$qSections = "	SELECT Sections.sectionID, Sections.text, Sections.introduction, Sections.epilogue, BlockSections.position, Sections.sectionTypeID, Sections.instanceable 
 								FROM Sections, BlockSections 
 								WHERE BlockSections.blockID = $rowBlocks['blockID']
@@ -66,11 +66,11 @@ if (IsAuthor($heraldID))
 					{
 					$aItems[$iBlock][$iSection][0]["sectionID"] = $rowSections['sectionID'];
 					$aItems[$iBlock][$iSection][0]["text"] = $rowSections['text'];
-					$aItems[$iBlock][$iSection][0]["introduction"] = $rowSections[introduction];
-					$aItems[$iBlock][$iSection][0]["epilogue"] = $rowSections[epilogue];
-					$aItems[$iBlock][$iSection][0]["position"] = $rowSections[position];
-					$aItems[$iBlock][$iSection][0]["sectionTypeID"] = $rowSections[sectionTypeID];
-					$aItems[$iBlock][$iSection][0]["instanceable"] = $rowSections[instanceable];
+					$aItems[$iBlock][$iSection][0]["introduction"] = $rowSections['introduction'];
+					$aItems[$iBlock][$iSection][0]["epilogue"] = $rowSections['epilogue'];
+					$aItems[$iBlock][$iSection][0]["position"] = $rowSections['position'];
+					$aItems[$iBlock][$iSection][0]["sectionTypeID"] = $rowSections['sectionTypeID'];
+					$aItems[$iBlock][$iSection][0]["instanceable"] = $rowSections['instanceable'];
 					$qQuestions = "	SELECT Questions.questionID, Questions.comments, Questions.questionTypeID, Questions.text, SectionQuestions.position 
 									FROM Questions, SectionQuestions
 									WHERE SectionQuestions.sectionID = $rowSections['sectionID']
@@ -82,10 +82,10 @@ if (IsAuthor($heraldID))
 					while($rowQuestions = mysqli_fetch_array($qResQuestions))
 						{
 						$aItems[$iBlock][$iSection][$iQuestion][0]["questionID"] = $rowQuestions['questionID'];
-						$aItems[$iBlock][$iSection][$iQuestion][0]["comments"] = $rowQuestions[comments];
+						$aItems[$iBlock][$iSection][$iQuestion][0]["comments"] = $rowQuestions['comments'];
 						$aItems[$iBlock][$iSection][$iQuestion][0]["questionTypeID"] = $rowQuestions['questionTypeID'];
 						$aItems[$iBlock][$iSection][$iQuestion][0]["text"] = $rowQuestions['text'];
-						$aItems[$iBlock][$iSection][$iQuestion][0]["position"] = $rowQuestions[position];
+						$aItems[$iBlock][$iSection][$iQuestion][0]["position"] = $rowQuestions['position'];
 						$qItems = "	SELECT Items.itemID, Items.text, QuestionItems.position
 									FROM Items, QuestionItems
 									WHERE QuestionItems.questionID = $rowQuestions['questionID']

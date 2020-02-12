@@ -283,7 +283,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 echo "<div class=\"block\">
 		<table width=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">
 		<tr>
-			<td colspan=\"2\"><h2>".($rowBlocks['text']==""?$rowBlocks[title]:$rowBlocks['text']).($blockIsBranchedTo?" (Currently branched to)":"")."</h2></td>
+			<td colspan=\"2\"><h2>".($rowBlocks['text']==""?$rowBlocks['title']:$rowBlocks['text']).($blockIsBranchedTo?" (Currently branched to)":"")."</h2></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -369,7 +369,7 @@ echo "<div class=\"block\">
 			}
 		
 	echo "<tr class=\"matrixHeader\">
-			<td class=\"question\">".($rowSections['text']==""?$rowSections[title]:$rowSections['text']).($sectionIsBranchedTo?" (Currently branched to)":"")."</td>
+			<td class=\"question\">".($rowSections['text']==""?$rowSections['title']:$rowSections['text']).($sectionIsBranchedTo?" (Currently branched to)":"")."</td>
 			<td  width=\"150px\" align=\"left\">";
 				//can't branch to this section
 				if($sectionID!=$branchSectionID)
@@ -454,7 +454,7 @@ echo "<div class=\"block\">
 				$rowClass = "matrixRowEven";
 				}
 		echo "<tr class=\"$rowClass\">
-				<td valign=\"top\">".$questionNo.". ".($rowQuestions['text']==""?$rowQuestions[title]:$rowQuestions['text']).($questionIsBranchedTo?" (Currently branched to)":"")."</td>
+				<td valign=\"top\">".$questionNo.". ".($rowQuestions['text']==""?$rowQuestions['title']:$rowQuestions['text']).($questionIsBranchedTo?" (Currently branched to)":"")."</td>
 				<td  width=\"150px\" align=\"left\">";
 				//can't branch to this question
 				if($questionID!=$branchQuestionID)

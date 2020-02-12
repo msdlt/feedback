@@ -390,7 +390,7 @@ $qSurveys = "SELECT title
 			WHERE surveyID = $surveyID";
 $qResSurvey = mysqli_query($db_connection, $qSurveys);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
-$surveyTitle = $rowSurvey[title];
+$surveyTitle = $rowSurvey['title'];
 //Get info about block
 if($blockID!="add")
 	{
@@ -399,11 +399,11 @@ if($blockID!="add")
 					WHERE blockID = $blockID";
 	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	$rowBlock = mysqli_fetch_array($qResBlocks);
-	$blockTitle = $rowBlock[title];
+	$blockTitle = $rowBlock['title'];
 	$blockText = $rowBlock['text'];
-	$blockIntroduction = $rowBlock[introduction];
-	$blockEpilogue = $rowBlock[epilogue];
-	$blockInstanceable = $rowBlock[instanceable];
+	$blockIntroduction = $rowBlock['introduction'];
+	$blockEpilogue = $rowBlock['epilogue'];
+	$blockInstanceable = $rowBlock['instanceable'];
 	$blockLastModified = $rowBlock['lastModified'];
 	}
 elseif ($validationProblem == true)

@@ -464,7 +464,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 							{
 							//i.e. the first item against which analysed
 							$aRowHTMLByItem[$itemNo] = "<tr class=\"$rowClass\">
-																<td>$rowItems['text']</td>
+																<td>".$rowItems['text']."</td>
 																<td>$PercentageOfAnswers ($NoOfItems)</td>";
 							}
 						else
@@ -494,7 +494,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 				{
 				if(($blockVisible==1 && $sectionVisible==1 && $questionVisible==1) || $showHidden=='on') echo "<table class=\"matrix\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\">"; 
 				$aRowHTMLTopRow = "<tr class=\"matrixHeader\">
-										<th>$questionNo. $rowQuestions['text']</th>";
+										<th>$questionNo. ".$rowQuestions['text']."</th>";
 				$aRowHTMLByItem = "<tr><td></td>";
 				//get number of participants who answered this question
 				$qCountAnswers = "SELECT Answers.answerID
@@ -589,7 +589,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 							{
 							$PercentageOfAnswers = 0;
 							}
-					$aRowHTMLTopRow = $aRowHTMLTopRow . "<td>$rowItems['text']</td>"; 
+					$aRowHTMLTopRow = $aRowHTMLTopRow . "<td>".$rowItems['text']."</td>"; 
 					$aRowHTMLByItem = $aRowHTMLByItem . "<td>$PercentageOfAnswers ($NoOfItems)</td>";
 					}
 				
@@ -620,7 +620,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 								<br/>"; 
 									while($rowComments = mysqli_fetch_array($qResComments))
 										{
-										echo $commentCount . " - $rowComments['text'] <br/>";
+										echo $commentCount . " - ". $rowComments['text']." <br/>";
 										$commentCount++;
 										}
 					echo "		</div>

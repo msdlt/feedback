@@ -73,7 +73,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 			if($rowBlocks['text'] != "")
 				{
 				//only output a block title if there is one
-				$textOutput = $textOutput . "<tr><td colspan=\"3\"><h2>$rowBlocks['text']";
+				$textOutput = $textOutput . "<tr><td colspan=\"3\"><h2>".$rowBlocks['text'];
 				if ($rowBlocks[instanceable]==1)
 					{
 					$textOutput = $textOutput . ": ".$inst;
@@ -113,7 +113,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 					if($rowSections['text'] != "")
 						{
 						//only output a section title if there is one
-						$textOutput = $textOutput . "<tr><td colspan=\"3\"><h3>$rowSections['text']";
+						$textOutput = $textOutput . "<tr><td colspan=\"3\"><h3>".$rowSections['text'];
 						if ($rowSections[instanceable]==1)
 							{
 							$textOutput = $textOutput . ": ".$sinst;
@@ -158,7 +158,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 											AND AnswerItems.AnswerID = Answers.answerID";
 						$qResItemAnswered = mysql_query($qItemAnswered);
 						
-						$textOutput = $textOutput . "<tr><td>$questionNo</td><td>$rowQuestions['text']</td>";
+						$textOutput = $textOutput . "<tr><td>$questionNo</td><td>".$rowQuestions['text']."</td>";
 						
 						switch ($rowQuestions['questionTypeID'])
 							{
@@ -174,7 +174,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 											WHERE itemID = $rowItemAnswered[itemID]";
 									$qResItems = mysql_query($qItems);
 									$rowItems = mysql_fetch_array($qResItems);
-									$textOutput = $textOutput ."$rowItems['text']";
+									$textOutput = $textOutput . $rowItems['text'];
 									}
 								$textOutput = $textOutput . "</td></tr>";
 								if($rowQuestions[comments]=="true")
@@ -184,7 +184,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 										$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
 										//if so, write the text into the textarea
 										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-										$textOutput = $textOutput . "$rowCommentAnswered['text']";
+										$textOutput = $textOutput . $rowCommentAnswered['text'];
 										$textOutput = $textOutput ."</td></tr>";
 										}
 									}
@@ -211,7 +211,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 											{
 											$textOutput = $textOutput ."; ";
 											}
-										$textOutput = $textOutput ."$rowItems['text']";
+										$textOutput = $textOutput .$rowItems['text'];
 										}
 									}
 								$textOutput = $textOutput . "</td></tr>";
@@ -222,7 +222,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 										//if so, write the text into the textarea
 										$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
 										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-										$textOutput = $textOutput . "$rowCommentAnswered['text']";
+										$textOutput = $textOutput . $rowCommentAnswered['text'];
 										$textOutput = $textOutput ."</td></tr>";
 										}
 									}
@@ -240,7 +240,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 											WHERE itemID = $rowItemAnswered[itemID]";
 									$qResItems = mysql_query($qItems);
 									$rowItems = mysql_fetch_array($qResItems);
-									$textOutput = $textOutput ."$rowItems['text']";
+									$textOutput = $textOutput . $rowItems['text'];
 									}
 								$textOutput = $textOutput . "</td></tr>";
 								if($rowQuestions[comments]=="true")
@@ -250,7 +250,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 										//if so, write the text into the textarea
 										$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
 										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-										$textOutput = $textOutput . "$rowCommentAnswered['text']";
+										$textOutput = $textOutput . $rowCommentAnswered['text'];
 										$textOutput = $textOutput ."</td></tr>";
 										}
 									}
@@ -264,7 +264,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 									$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
 									//if so, write the text into the textarea
 									$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-									$textOutput = $textOutput . "$rowCommentAnswered['text']";
+									$textOutput = $textOutput . $rowCommentAnswered['text'];
 									$textOutput = $textOutput ."</td></tr>";
 									}
 								break;
@@ -278,7 +278,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 									$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
 									//if so, write the text into the textarea
 									$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-									$textOutput = $textOutput . "$rowCommentAnswered['text']";
+									$textOutput = $textOutput . $rowCommentAnswered['text'];
 									$textOutput = $textOutput ."</td></tr>";
 									}
 								break;
@@ -312,7 +312,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 										//if so, write the text into the textarea
 										$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
 										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
-										$textOutput = $textOutput . "$rowCommentAnswered['text']";
+										$textOutput = $textOutput . $rowCommentAnswered['text'];
 										$textOutput = $textOutput ."</td></tr>";
 										}
 									}

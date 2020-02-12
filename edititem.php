@@ -310,28 +310,28 @@ $qSurveys = "SELECT title
 			WHERE surveyID = $surveyID";
 $qResSurvey = mysqli_query($db_connection, $qSurveys);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
-$surveyTitle = $rowSurvey[title];
+$surveyTitle = $rowSurvey['title'];
 //Get info about block
 $qBlocks = "SELECT title
 			FROM Blocks
 			WHERE blockID = $blockID";
 $qResBlock = mysqli_query($db_connection, $qBlocks);
 $rowBlock = mysqli_fetch_array($qResBlock);
-$blockTitle = $rowBlock[title];
+$blockTitle = $rowBlock['title'];
 //Get info about section
 $qSections = "	SELECT title
 				FROM Sections
 				WHERE sectionID = $sectionID";
 $qResSections = mysqli_query($db_connection, $qSections);
 $rowSection = mysqli_fetch_array($qResSections);
-$sectionTitle = $rowSection[title];
+$sectionTitle = $rowSection['title'];
 //get info about question
 $qQuestions = "	SELECT title
 				FROM Questions
 				WHERE questionID = $questionID";
 $qResQuestions = mysqli_query($db_connection, $qQuestions);
 $rowQuestion = mysqli_fetch_array($qResQuestions);
-$questionTitle = $rowQuestion[title];
+$questionTitle = $rowQuestion['title'];
 //Get info about item
 if($itemID!="add" && $itemID!="upload")
 	{
@@ -340,7 +340,7 @@ if($itemID!="add" && $itemID!="upload")
 				WHERE itemID = $itemID";
 	$qResItems = mysqli_query($db_connection, $qItems);
 	$rowItem = mysqli_fetch_array($qResItems);
-	$itemTitle = $rowItem[title];
+	$itemTitle = $rowItem['title'];
 	$itemText = $rowItem['text'];
 	$itemLastModified = $rowItem['lastModified'];
 	}

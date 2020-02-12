@@ -1627,7 +1627,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			if($rowBlocks['text'] != "")
 				{
 				//only output a block title if there is one
-				echo "<h2>$rowBlocks['text']";
+				echo "<h2>".$rowBlocks['text'];
 				if ($rowBlocks[instanceable]==1)
 					{
 					echo ": ".$inst;
@@ -1698,7 +1698,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 					if($rowSections['text'] != "")
 						{
 						//only output a section title if there is one
-						echo "<h3> $rowSections['text']";
+						echo "<h3> ".$rowSections['text'];
 						if ($rowSections[instanceable]==1)
 							{
 							echo ": ".$sinst;
@@ -1778,7 +1778,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										$mchoicName = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
 										echo "<table class=\"normal_1\">";
 										echo "	<tr>";
-										echo "<td colspan=\"$recordCount\" class=\"question\">$questionNo $rowQuestions['text']</td>";
+										echo "<td colspan=\"$recordCount\" class=\"question\">$questionNo ".$rowQuestions['text']."</td>";
 										echo " </tr>
 												<tr>";
 										//loop through items
@@ -1925,7 +1925,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												}
 											else
 												{
-												echo "<td><input type=\"radio\" value=\"$mchoicValue\" id=\"$mchoicID\" name=\"$mchoicName\"/>$rowItems['text']</td>";
+												echo "<td><input type=\"radio\" value=\"$mchoicValue\" id=\"$mchoicID\" name=\"$mchoicName\"/>".$rowItems['text']."</td>";
 												}
 											}
 										echo "</tr>";
@@ -1963,7 +1963,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										{
 										echo "<table class=\"normal_2\">";
 										echo "	<tr>";
-										echo "<td class=\"question\">$questionNo $rowQuestions['text']</td>";
+										echo "<td class=\"question\">$questionNo ".$rowQuestions['text']."</td>";
 										echo "  </tr>";
 										//loop through items
 										while($rowItems = mysqli_fetch_array($qResItems))
@@ -2043,7 +2043,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												}
 											else
 												{
-												echo "<input type=\"checkbox\" id=\"$mselecID\" name=\"$mselecName\"/>$rowItems['text']";
+												echo "<input type=\"checkbox\" id=\"$mselecID\" name=\"$mselecName\"/>".$rowItems['text'];
 												}
 											echo "	</td>
 												</tr>";
@@ -2082,7 +2082,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										echo "<table class=\"normal_3\">";
 										echo "	<tr>";
 										$drdownName = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
-										echo "<td colspan=\"$recordCount\" class=\"question\">$questionNo $rowQuestions['text']";
+										echo "<td colspan=\"$recordCount\" class=\"question\">$questionNo ".$rowQuestions['text'];
 										$drdownID = $blockID . "_" . $sectionID . "_" . $questionID. "_i" . $inst . "_si" . $sinst;
 										$drdownCommentName = "comments_" . $blockID . "_" . $sectionID . "_" . $questionID. "_i" . $inst . "_si" . $sinst;
 										$drdownCommentID = "comments_" . $blockID . "_" . $sectionID . "_" . $questionID. "_i" . $inst . "_si" . $sinst;
@@ -2225,7 +2225,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										$textID = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
 										echo "<table class=\"normal_4\">";
 										echo "	<tr>";
-										echo " 		<td class=\"question\">$questionNo $rowQuestions['text']</td>";
+										echo " 		<td class=\"question\">$questionNo ".$rowQuestions['text']."</td>";
 										echo "	</tr>";
 										echo "	<tr>
 													<td colspan=\"$recordCount\">
@@ -2256,7 +2256,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										$textID = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
 										echo "<table class=\"normal_4\">";
 										echo "	<tr>";
-										echo " 		<td class=\"question\">$questionNo $rowQuestions['text']</td>";
+										echo " 		<td class=\"question\">$questionNo ".$rowQuestions['text']."</td>";
 										echo "	</tr>";
 										echo "	<tr>
 													<td colspan=\"$recordCount\">
@@ -2307,7 +2307,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											
 										echo "<table class=\"normal_4\">";
 										echo "	<tr>";
-										echo " 		<td class=\"question\">$questionNo $rowQuestions['text']</td>";
+										echo " 		<td class=\"question\">$questionNo ".$rowQuestions['text']."</td>";
 										echo "	</tr>";
 										echo "	<tr>
 													<td colspan=\"$recordCount\">";
@@ -2422,7 +2422,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												<th></th>";
 										while($rowItems = mysqli_fetch_array($qResItems))
 											{
-											echo "<th align=\"center\">$rowItems['text']</th>";
+											echo "<th align=\"center\">".$rowItems['text']."</th>";
 											}
 										echo "</tr>";
 										$bCreatedTopRow = true;
@@ -2442,7 +2442,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										echo "<tr class=\"matrixRowEven\">";
 										}
 									$mchoicName = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
-									echo "<td class=\"question\" align=\"left\">$questionNo $rowQuestions['text']";
+									echo "<td class=\"question\" align=\"left\">$questionNo ".$rowQuestions['text'];
 									if($allAnswered==false&&$aQuestions[$questionNo][5]==false)
 										{
 										echo "This question was not answered";

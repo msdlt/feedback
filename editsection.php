@@ -396,14 +396,14 @@ $qSurveys = "SELECT title
 			WHERE surveyID = $surveyID";
 $qResSurvey = mysqli_query($db_connection, $qSurveys);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
-$surveyTitle = $rowSurvey[title];
+$surveyTitle = $rowSurvey['title'];
 //Get info about block
 $qBlocks = "SELECT title
 			FROM Blocks
 			WHERE blockID = $blockID";
 $qResBlock = mysqli_query($db_connection, $qBlocks);
 $rowBlock = mysqli_fetch_array($qResBlock);
-$blockTitle = $rowBlock[title];
+$blockTitle = $rowBlock['title'];
 //Get info about section
 if($sectionID!="add")
 	{
@@ -412,13 +412,13 @@ if($sectionID!="add")
 					WHERE sectionID = $sectionID";
 	$qResSections = mysqli_query($db_connection, $qSections);
 	$rowSection = mysqli_fetch_array($qResSections);
-	$sectionTitle = $rowSection[title];
+	$sectionTitle = $rowSection['title'];
 	$sectionText = $rowSection['text'];
-	$sectionIntroduction = $rowSection[introduction];
-	$sectionEpilogue = $rowSection[epilogue];
-	$sectionType = $rowSection[sectionTypeID];
+	$sectionIntroduction = $rowSection['introduction'];
+	$sectionEpilogue = $rowSection['epilogue'];
+	$sectionType = $rowSection['sectionTypeID'];
 	$sectionLastModified = $rowSection['lastModified'];
-	$sectionInstanceable = $rowSection[instanceable];
+	$sectionInstanceable = $rowSection['instanceable'];
 	}
 elseif ($validationProblem == true)
 	{
@@ -671,7 +671,7 @@ if($sectionID !="add")
 												echo "			
 												<tr class=\"$rowClass\">
 													<td></td>
-													<td  colspan=\"3\" valign=\"top\">$rowItems['text']</td>
+													<td  colspan=\"3\" valign=\"top\">".$rowItems['text']."</td>
 												</tr>";
 												$bRowOdd = !$bRowOdd;
 												}
@@ -872,7 +872,7 @@ if($sectionID !="add")
 												echo "			
 												<tr class=\"$rowClass\">
 													<td></td>
-													<td  colspan=\"3\" valign=\"top\">$rowItems['text']</td>
+													<td  colspan=\"3\" valign=\"top\">".$rowItems['text']."</td>
 												</tr>";
 												$bRowOdd = !$bRowOdd;
 												}

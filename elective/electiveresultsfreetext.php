@@ -496,7 +496,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 					}
 				else
 					{
-					echo "<td>$rowItems['text']</td>";
+					echo "<td>".$rowItems['text']."</td>";
 					}
 				echo "<td>$PercentageOfAnswers ($NoOfItems)</td></tr>";
 				//echo"<tr class=\"$rowClass\"><td>$rowItems['text']</td><td>$PercentageOfAnswers ($NoOfItems)</td></tr>";
@@ -574,7 +574,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 						$commentCount = 1;
 						while($rowComments = mysql_fetch_array($qResComments))
 							{
-							echo "<hr>" . $commentCount . " (" .ODBCDateToTextDateShort($rowComments[date]).")"." - $rowComments['text'] <br/>";
+							echo "<hr>" . $commentCount . " (" .ODBCDateToTextDateShort($rowComments[date]).")"." - ".$rowComments['text']." <br/>";
 							$commentCount++;
 							}
 				echo"</div></td></tr>";

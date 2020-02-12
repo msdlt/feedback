@@ -199,7 +199,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 			if($rowBlocks['text'] != "")
 				{
 				//only output a block title if there is one
-				echo "<h2>$rowBlocks['text']";
+				echo "<h2>".$rowBlocks['text'];
 				if ($rowBlocks[instanceable]==1)
 					{
 					echo ": ".$inst;
@@ -276,7 +276,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 					if($rowSections['text'] != "")
 						{
 						//only output a section title if there is one
-						echo "<h3> $rowSections['text']";
+						echo "<h3>". $rowSections['text'];
 						if ($rowSections[instanceable]==1)
 							{
 							echo ": ".$sinst;
@@ -340,7 +340,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 									$textID = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
 									echo "<table class=\"normal_4\">";
 									echo "	<tr>";
-									echo " 		<td class=\"question\">$questionNo $rowQuestions['text']</td>";
+									echo " 		<td class=\"question\">$questionNo ".$rowQuestions['text']."</td>";
 									echo "	</tr>";
 									echo "	<tr>
 												<td>

@@ -354,7 +354,7 @@ else
 						{
 					
 						$objectID = $rowObjects[$IdName];
-						$objectTitle = $rowObjects[title];
+						$objectTitle = $rowObjects['title'];
 						$objectText = $rowObjects['text'];
 				echo "	<tr class=\"matrixHeader\">
 							<td>
