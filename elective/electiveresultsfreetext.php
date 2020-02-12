@@ -219,7 +219,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 				//then go through them one by one and check whether sintance and instance match
 				$qParticipantExists = "	SELECT blockID, sectionID, instance, sinstance
 										FROM $TableForThisUser
-										WHERE heraldID = $rowFirstCriterionParticipants['heraldID']
+										WHERE heraldID = ".$rowFirstCriterionParticipants['heraldID']."
 										AND NOT (blockID = $QuestionToAnalyseByBlockID AND sectionID = $QuestionToAnalyseBySectionID AND questionID = $QuestionToAnalyseByQuestionID)";
 				$qResParticipantExists = mysql_query($qParticipantExists);
 				if(mysql_num_rows($qResParticipantExists)>0) //participant is already in there

@@ -146,7 +146,7 @@ else
 					$db_connection = mysqli_connect ($db_info['host'], $db_info['username'], $db_info['password'], $db_info['dbname']) or die (mysqli_error());
 					echo"</td>
 					<td align=\"right\">
-						<input type=\"submit\" name=\"bViewLgText\" id=\"bViewLgText_$rowStudents['heraldID']\" value=\"View\" onclick=\"return OnbShowReports('".$rowStudents['heraldID']."');\">
+						<input type=\"submit\" name=\"bViewLgText\" id=\"bViewLgText_".$rowStudents['heraldID']."\" value=\"View\" onclick=\"return OnbShowReports('".$rowStudents['heraldID']."');\">
 						<input type=\"hidden\" name=\"hSurveyID\" id=\"hSurveyID\" value=\"$surveyID\">
 						<input type=\"hidden\" name=\"hSurveyInstanceID\" id=\"hSurveyInstanceID\" value=\"$instanceID\">
 					</td>";

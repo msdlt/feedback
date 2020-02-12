@@ -146,7 +146,7 @@ else
 				$rowClass = "matrixRowEven";
 				}
 		echo "	<tr class=\"$rowClass\">
-					<td>$rowStudents['heraldID']</td>
+					<td>".$rowStudents['heraldID']."</td>
 					<td>";
 //connect to heraldID and name database
 //$dbstudent_connection = mysql_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password']) or die (mysql_error());
