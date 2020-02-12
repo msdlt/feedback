@@ -113,7 +113,7 @@ else
 				$rowClass = "matrixRowEven";
 				}
 		echo "	<tr class=\"$rowClass\">
-					<td>$rowStudents['heraldID']</td>
+					<td>".$rowStudents['heraldID']."</td>
 					<td>";
 					//Only reuiqred on learntech.imsu.ox.ac.uk where db exists
 					//connect to heraldID and name database
