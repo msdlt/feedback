@@ -167,7 +167,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 		$bThisBlockContainsLgText = false;
 		$qLgTextQuestions = "SELECT Questions.questionID
 							FROM Questions, SectionQuestions, BlockSections
-							WHERE BlockSections.blockID = $blockID
+							WHERE BlockSections.blockID = ". $blockID ."
 							AND SectionQuestions.sectionID = BlockSections.sectionID
 							AND Questions.questionID = SectionQuestions.questionID
 							AND Questions.questionTypeID = 5";
@@ -186,7 +186,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 		//get sections
 		$qSections = "SELECT Sections.sectionID, Sections.title, Sections.text, Sections.introduction, Sections.epilogue, BlockSections.position, Sections.sectionTypeID, Sections.instanceable 
 					FROM Sections, BlockSections 
-					WHERE BlockSections.blockID = $blockID
+					WHERE BlockSections.blockID = ". $blockID ."
 					AND BlockSections.visible = 1
 					AND Sections.sectionID = BlockSections.sectionID
 					ORDER BY BlockSections.position";
@@ -243,7 +243,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 				$bThisSectionContainsLgText = false;
 				$qLgTextQuestions = "SELECT Questions.questionID
 									FROM Questions, SectionQuestions, BlockSections
-									WHERE SectionQuestions.sectionID = $sectionID
+									WHERE SectionQuestions.sectionID = ". $sectionID ."
 									AND Questions.questionID = SectionQuestions.questionID
 									AND Questions.questionTypeID = 5";
 				$qResLgTextQuestions = @mysqli_query($db_connection, $db_connection, $qLgTextQuestions);
