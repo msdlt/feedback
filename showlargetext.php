@@ -249,7 +249,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 				$qResLgTextQuestions = @mysqli_query($db_connection, $db_connection, $qLgTextQuestions);
 				if (($qResLgTextQuestions == false))
 					{
-					echo "problem querying Questions" . mysqli_error();
+					echo "problem querying Questions" . mysqli_error($db_connection);
 					}
 				else
 					{
