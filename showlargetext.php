@@ -277,7 +277,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 						{
 						//only output a section title if there is one
 						echo "<h3>". $rowSections['text'];
-						if ($rowSections[instanceable]==1)
+						if ($rowSections['instanceable']==1)
 							{
 							echo ": ".$sinst;
 							} 
@@ -289,7 +289,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 						mysqli_data_seek($qResQuestions, 0);
 						}
 					//check section type
-					switch ($rowSections[sectionTypeID]) 
+					switch ($rowSections['sectionTypeID']) 
 						{
 						case 1:
 							{
@@ -315,7 +315,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 									}
 								
 								echo "<div class=\"questionNormal\" id=\"div".$blockID."_".$sectionID."_".$questionID."_i".$inst."_si".$sinst."\"".($ThisObjectIsBranchedTo?"style=\"display:none\"":"").">";
-								if (!$addingInstance && !$deletingInstance)
+								if ((!isset($addingInstance) || !$addingInstance) && (!isset($deletingInstance) || !$deletingInstance))
 									{
 									if($rowQuestions[comments]=="true" || $rowQuestions['questionTypeID'] == 4 || $rowQuestions['questionTypeID'] == 5)
 										{
