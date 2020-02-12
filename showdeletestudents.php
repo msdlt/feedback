@@ -161,7 +161,7 @@ else
 		$bRowOdd = true;
 		while($rowStudents = mysql_fetch_array($qResStudents))
 			{
-			$studentHeraldID = $rowStudents[heraldID];
+			$studentHeraldID = $rowStudents['heraldID'];
 			if($bRowOdd)
 				{
 				$rowClass = "matrixRowOdd";
@@ -174,7 +174,7 @@ else
 					<td>
 						<input type=\"checkbox\" id=\"check_$studentHeraldID\" name=\"checkHeraldIDs[]\" value=\"$studentHeraldID\"/>
 					</td>
-					<td>$rowStudents[heraldID]</td>
+					<td>$rowStudents['heraldID']</td>
 					<td>";
 					//connect to heraldID and name database
 					//$dbstudent_connection = mysql_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password']) or die (mysql_error());
@@ -182,7 +182,7 @@ else
 					$dbstudent_connection = mysqli_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password'], $dbstudent_info['dbname']) or die (mysqli_error());
 					$qStudentName = "	SELECT LASTNAME, FORENAMES
 									FROM cards
-									WHERE USERNAME = '$rowStudents[heraldID]'";
+									WHERE USERNAME = '".$rowStudents['heraldID']."'";
 					$qResStudentName = @mysql_query($qStudentName, $dbstudent_connection);
 					if (($qResStudentName == false))
 						{
@@ -228,13 +228,13 @@ echo "	<script language=\"JavaScript\" type=\"text/javascript\" >
 mysql_data_seek($qResStudents, 0);
 while($rowStudents = mysql_fetch_array($qResStudents))
 	{
-	$studentHeraldID = $rowStudents[heraldID];
+	$studentHeraldID = $rowStudents['heraldID'];
 	//connect to heraldID and name database
 $dbstudent_connection = mysql_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password']) or die (mysql_error());
 $db_select = mysql_select_db ($dbstudent_info['dbname'], $dbstudent_connection) or die (mysql_error());
 	$qStudentName = "	SELECT LASTNAME, FORENAMES
 					FROM cards
-					WHERE USERNAME = '$rowStudents[heraldID]'";
+					WHERE USERNAME = '".$rowStudents['heraldID']."'";
 	$qResStudentName = @mysql_query($qStudentName, $dbstudent_connection);
 	if (($qResStudentName == false))
 		{

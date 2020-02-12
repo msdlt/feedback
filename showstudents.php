@@ -146,7 +146,7 @@ else
 				$rowClass = "matrixRowEven";
 				}
 		echo "	<tr class=\"$rowClass\">
-					<td>$rowStudents[heraldID]</td>
+					<td>$rowStudents['heraldID']</td>
 					<td>";
 //connect to heraldID and name database
 //$dbstudent_connection = mysql_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password']) or die (mysql_error());
@@ -154,7 +154,7 @@ else
 $dbstudent_connection = mysqli_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password'], $dbstudent_info['dbname']) or die (mysqli_error());
 $qStudentName = "	SELECT LASTNAME, FORENAMES
 				FROM cards
-				WHERE USERNAME = '$rowStudents[heraldID]'";
+				WHERE USERNAME = '".$rowStudents['heraldID']."'";
 $qResStudentName = @mysqli_query($dbstudent_connection, $qStudentName);
 if (($qResStudentName == false))
 	{

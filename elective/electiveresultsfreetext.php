@@ -146,7 +146,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 				{
 				$qParticipantExists = "	SELECT participantItemID, blockID, sectionID, instance, sinstance
 										FROM $TableForThisUser
-										WHERE heraldID = '$rowParticipants[heraldID]'";
+										WHERE heraldID = '".$rowParticipants['heraldID']."'";
 				$qResParticipantExists = mysql_query($qParticipantExists);
 				if(mysql_num_rows($qResParticipantExists)>0) //participant is already in there
 					{
@@ -176,7 +176,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 					if ($instanceMatch == true)
 						{
 						$iParticipantItems = "	INSERT INTO $TableForThisUser
-										VALUES(0,'$rowParticipants[heraldID]',$QuestionToAnalyseByBlockID,$QuestionToAnalyseBySectionID,$QuestionToAnalyseByQuestionID,0,$rowParticipants[instance],$rowParticipants[sinstance])";
+										VALUES(0,$rowParticipants['heraldID'],$QuestionToAnalyseByBlockID,$QuestionToAnalyseBySectionID,$QuestionToAnalyseByQuestionID,0,$rowParticipants[instance],$rowParticipants[sinstance])";
 						$result_query = @mysql_query($iParticipantItems,$db_connection);
 						if (($result_query == false) || mysql_affected_rows($db_connection) == 0)
 							{
@@ -189,7 +189,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 			else
 				{
 				$iParticipantItems = "	INSERT INTO $TableForThisUser
-									VALUES(0,'$rowParticipants[heraldID]',$QuestionToAnalyseByBlockID,$QuestionToAnalyseBySectionID,$QuestionToAnalyseByQuestionID,0,$rowParticipants[instance],$rowParticipants[sinstance])";
+									VALUES(0,$rowParticipants['heraldID'],$QuestionToAnalyseByBlockID,$QuestionToAnalyseBySectionID,$QuestionToAnalyseByQuestionID,0,$rowParticipants[instance],$rowParticipants[sinstance])";
 					$result_query = @mysql_query($iParticipantItems,$db_connection);
 					if (($result_query == false) || mysql_affected_rows($db_connection) == 0)
 						{
@@ -219,7 +219,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 				//then go through them one by one and check whether sintance and instance match
 				$qParticipantExists = "	SELECT blockID, sectionID, instance, sinstance
 										FROM $TableForThisUser
-										WHERE heraldID = '$rowFirstCriterionParticipants[heraldID]'
+										WHERE heraldID = $rowFirstCriterionParticipants['heraldID']
 										AND NOT (blockID = $QuestionToAnalyseByBlockID AND sectionID = $QuestionToAnalyseBySectionID AND questionID = $QuestionToAnalyseByQuestionID)";
 				$qResParticipantExists = mysql_query($qParticipantExists);
 				if(mysql_num_rows($qResParticipantExists)>0) //participant is already in there

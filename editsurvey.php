@@ -606,7 +606,7 @@ if($surveyID!="add")
 		{
 		while($rowAuthors = mysqli_fetch_array($qResAuthors))
 			{
-	echo "			<option value=\"".$rowAuthors[authorID]."\">" .$rowAuthors[heraldID]. "	</option>";
+	echo "			<option value=\"".$rowAuthors[authorID]."\">" .$rowAuthors['heraldID']. "	</option>";
 			}
 		}
 	}
