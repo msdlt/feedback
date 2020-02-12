@@ -58,14 +58,14 @@
 				WHERE surveyID = $surveyID";
 	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
-	$surveyTitle = $rowSurvey[title];
+	$surveyTitle = $rowSurvey['title'];
 	
 	$qSurveyInstances = "SELECT title, startDate, finishDate
 						FROM SurveyInstances
 						WHERE surveyInstanceID = $surveyInstanceID";
 	$qResSurveyInstance = mysqli_query($db_connection, $qSurveyInstances);
 	$rowSurveyInstance = mysqli_fetch_array($qResSurveyInstance);
-	$surveyInstanceTitle = $rowSurveyInstance[title];
+	$surveyInstanceTitle = $rowSurveyInstance['title'];
 	
 	echo "<title>$surveyInstanceTitle - $studentName - Reports</title>";
 ?>	
@@ -138,7 +138,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 		{
 		$blockIsInstanceable = false;
 		$blockID = $rowBlocks['blockID'];
-		if($rowBlocks[instanceable]==1)
+		if($rowBlocks['instanceable']==1)
 			{
 			$blockIsInstanceable = true;
 			$noOfInstances = getInstancesForBlock($blockID);
@@ -200,7 +200,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 				{
 				//only output a block title if there is one
 				echo "<h2>".$rowBlocks['text'];
-				if ($rowBlocks[instanceable]==1)
+				if ($rowBlocks['instanceable']==1)
 					{
 					echo ": ".$inst;
 					} 
@@ -215,7 +215,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 				{			
 				$sectionIsInstanceable = false;
 				$sectionID = $rowSections['sectionID'];
-				if($rowSections[instanceable]==1)
+				if($rowSections['instanceable']==1)
 					{
 					$sectionIsInstanceable = true;
 					$noOfSectionInstances = getInstancesForSection($blockID,$sectionID,$inst);
