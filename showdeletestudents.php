@@ -23,39 +23,39 @@
 							WHERE surveyInstanceID = $instanceID
 							AND heraldID = '$aStudents[$i]'";
 			
-			$qResAnswers = mysql_query($qAnswers);
+			$qResAnswers = mysqli_query($db_connection, $qAnswers);
 			if (($qResAnswers == false))
 				{
-				echo "problem querying Answers" . mysql_error();
+				echo "problem querying Answers" . mysqli_error();
 				}
 			else
 				{
-				while($rowAnswers = mysql_fetch_array($qResAnswers))
+				while($rowAnswers = mysqli_fetch_array($qResAnswers))
 					{
 					//delete comments, items and dates where answerID is associated with herald and surveyinstance in answers table
 					//delete comments
 					$delComments = "	DELETE FROM AnswerComments
 										WHERE answerID = $rowAnswers[answerID]";
-					$delResComments = @mysql_query($delComments,$db_connection);
-					if (($delResComments == false) && mysql_affected_rows($db_connection) == 0)
+					$delResComments = @mysqli_query($delComments,$db_connection);
+					if (($delResComments == false) && mysqli_affected_rows($db_connection) == 0)
 						{
-						echo "problem deleting from AnswerComments " . mysql_error();
+						echo "problem deleting from AnswerComments " . mysqli_error($db_connection);
 						}
 					//delete items
 					$delItems = "		DELETE FROM AnswerItems
 										WHERE answerID = $rowAnswers[answerID]";
-					$delResItems = @mysql_query($delItems,$db_connection);
-					if (($delResItems == false) && mysql_affected_rows($db_connection) == 0)
+					$delResItems = @mysqli_query($delItems,$db_connection);
+					if (($delResItems == false) && mysqli_affected_rows($db_connection) == 0)
 						{
-						echo "problem deleting from AnswerItems " . mysql_error();
+						echo "problem deleting from AnswerItems " . mysqli_error($db_connection);
 						}
 					//delete dates
 					$delDates = "		DELETE FROM AnswerDates
 										WHERE answerID = $rowAnswers[answerID]";
-					$delResDates = @mysql_query($delDates,$db_connection);
-					if (($delResDates == false) && mysql_affected_rows($db_connection) == 0)
+					$delResDates = @mysqli_query($delDates,$db_connection);
+					if (($delResDates == false) && mysqli_affected_rows($db_connection) == 0)
 						{
-						echo "problem deleting from AnswerDates " . mysql_error();
+						echo "problem deleting from AnswerDates " . mysqli_error($db_connection);
 						}
 					}
 				}
@@ -63,20 +63,20 @@
 			$delAnswers = "	DELETE FROM Answers
 							WHERE surveyInstanceID = $instanceID
 							AND heraldID = '$aStudents[$i]'";
-			$delResAnswers = @mysql_query($delAnswers,$db_connection);
-			if (($delResAnswers == false) && mysql_affected_rows($db_connection) == 0)
+			$delResAnswers = @mysqli_query($delAnswers,$db_connection);
+			if (($delResAnswers == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem deleting from Answers " . mysql_error();
+				echo "problem deleting from Answers " . mysqli_error($db_connection);
 				}
 			//then finally delete from SurveyInstanceParticipants
 			//then delete from Answers
 			$delSIP = "	DELETE FROM SurveyInstanceParticipants
 							WHERE surveyInstanceID = $instanceID
 							AND heraldID = '$aStudents[$i]'";
-			$delResSIP = @mysql_query($delSIP,$db_connection);
-			if (($delResSIP == false) && mysql_affected_rows($db_connection) == 0)
+			$delResSIP = @mysqli_query($delSIP,$db_connection);
+			if (($delResSIP == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem deleting from SurveyInstanceParticipants " . mysql_error();
+				echo "problem deleting from SurveyInstanceParticipants " . mysqli_error($db_connection);
 				}
 			}
 		}
@@ -98,14 +98,14 @@
 	$qSurveys = "SELECT title
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-	$qResSurvey = mysql_query($qSurveys);
-	$rowSurvey = mysql_fetch_array($qResSurvey);
+	$qResSurvey = mysqli_query($db_connection, $qSurveys);
+	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey[title];
 	$qSurveyInstances = "SELECT title, startDate, finishDate
 						FROM SurveyInstances
 						WHERE surveyInstanceID = $instanceID";
-	$qResSurveyInstance = mysql_query($qSurveyInstances);
-	$rowSurveyInstance = mysql_fetch_array($qResSurveyInstance);
+	$qResSurveyInstance = mysqli_query($db_connection, $qSurveyInstances);
+	$rowSurveyInstance = mysqli_fetch_array($qResSurveyInstance);
 	$surveyInstanceTitle = $rowSurveyInstance[title];
 	$surveyInstanceStartDate = $rowSurveyInstance[startDate];
 	$surveyInstanceFinishDate = $rowSurveyInstance[finishDate];
@@ -140,15 +140,15 @@ $qStudents = "	SELECT DISTINCT SurveyInstanceParticipants.heraldID
 				WHERE SurveyInstances.surveyID = $surveyID
 				AND SurveyInstanceParticipants.surveyInstanceID = SurveyInstances.surveyInstanceID ".
 				($instanceID!=0?" AND SurveyInstances.surveyInstanceID = $instanceID" : "");
-$qResStudents = @mysql_query($qStudents, $db_connection);
+$qResStudents = @mysqli_query($qStudents, $db_connection);
 if (($qResStudents == false))
 	{
-	echo "problem querying SurveyInstanceParticipants" . mysql_error();
+	echo "problem querying SurveyInstanceParticipants" . mysqli_error($db_connection);
 	}
 else
 	{
-	echo "<h2>Total number of students = ".mysql_num_rows($qResStudents)."</h2>";
-	if(mysql_num_rows($qResStudents)>0)
+	echo "<h2>Total number of students = ".mysqli_num_rows($qResStudents)."</h2>";
+	if(mysqli_num_rows($qResStudents)>0)
 		{
 		//Prevents one student's answers being associated with them
 		echo "<form id=\"frmDelete\" name=\"frmDelete\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
@@ -159,7 +159,7 @@ else
 					<td class=\"question\">Name</td>
 				</tr>";
 		$bRowOdd = true;
-		while($rowStudents = mysql_fetch_array($qResStudents))
+		while($rowStudents = mysqli_fetch_array($qResStudents))
 			{
 			$studentHeraldID = $rowStudents['heraldID'];
 			if($bRowOdd)
@@ -183,16 +183,16 @@ else
 					$qStudentName = "	SELECT LASTNAME, FORENAMES
 									FROM cards
 									WHERE USERNAME = '".$rowStudents['heraldID']."'";
-					$qResStudentName = @mysql_query($qStudentName, $dbstudent_connection);
+					$qResStudentName = @mysqli_query($qStudentName, $dbstudent_connection);
 					if (($qResStudentName == false))
 						{
-						echo "problem querying cards" . mysql_error();
+						echo "problem querying cards" . mysqli_error($dbstudent_connection);
 						}
 					else
 						{
-						if (mysql_num_rows($qResStudentName)==1)
+						if (mysqli_num_rows($qResStudentName)==1)
 							{
-							$rowStudentName = mysql_fetch_array($qResStudentName);
+							$rowStudentName = mysqli_fetch_array($qResStudentName);
 							echo $rowStudentName['LASTNAME'] . ", " . $rowStudentName['FORENAMES'];
 							}
 						else
@@ -200,9 +200,9 @@ else
 							echo "Name not found";
 							}
 						}	
-					mysql_close($dbstudent_connection);
-$db_connection = mysql_connect ($db_info['host'], $db_info['username'], $db_info['password']) or die (mysql_error());
-$db_select = mysql_select_db ($db_info['dbname'], $db_connection) or die (mysql_error());
+					mysqli_close($dbstudent_connection);
+$db_connection = mysqli_connect ($db_info['host'], $db_info['username'], $db_info['password']) or die (mysqli_error());
+$db_select = mysqli_select_db ($db_info['dbname'], $db_connection) or die (mysqli_error($db_connection));
 					echo"</td>
 				</tr>";
 			$bRowOdd = !$bRowOdd;
@@ -225,26 +225,26 @@ echo "	<script language=\"JavaScript\" type=\"text/javascript\" >
 				var iNoOfStudents = 0;
 				var aStudents = new Array();";				
 //resets the mysql_fetch_array to start at the beginning again
-mysql_data_seek($qResStudents, 0);
-while($rowStudents = mysql_fetch_array($qResStudents))
+idata_seek($qResStudents, 0);
+while($rowStudents = mysqli_fetch_array($qResStudents))
 	{
 	$studentHeraldID = $rowStudents['heraldID'];
 	//connect to heraldID and name database
-$dbstudent_connection = mysql_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password']) or die (mysql_error());
-$db_select = mysql_select_db ($dbstudent_info['dbname'], $dbstudent_connection) or die (mysql_error());
+$dbstudent_connection = mysqli_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password']) or die (mysqli_error());
+$db_select = mysqli_select_db ($dbstudent_info['dbname'], $dbstudent_connection) or die (mysqlii_error($dbstudent_connection));
 	$qStudentName = "	SELECT LASTNAME, FORENAMES
 					FROM cards
 					WHERE USERNAME = '".$rowStudents['heraldID']."'";
-	$qResStudentName = @mysql_query($qStudentName, $dbstudent_connection);
+	$qResStudentName = @mysqli_query($qStudentName, $dbstudent_connection);
 	if (($qResStudentName == false))
 		{
-		echo "problem querying cards" . mysql_error();
+		echo "problem querying cards" . mysqli_error($dbstudent_connection);
 		}
 	else
 		{
-		if (mysql_num_rows($qResStudentName)==1)
+		if (mysqli_num_rows($qResStudentName)==1)
 			{
-			$rowStudentName = mysql_fetch_array($qResStudentName);
+			$rowStudentName = mysqli_fetch_array($qResStudentName);
 			$studentName = $rowStudentName['LASTNAME'] . ", " . $rowStudentName['FORENAMES'];
 			}
 		else
@@ -252,9 +252,9 @@ $db_select = mysql_select_db ($dbstudent_info['dbname'], $dbstudent_connection) 
 			$studentName =  "Name not found";
 			}
 		}	
-mysql_close($dbstudent_connection);
-$db_connection = mysql_connect ($db_info['host'], $db_info['username'], $db_info['password']) or die (mysql_error());
-$db_select = mysql_select_db ($db_info['dbname'], $db_connection) or die (mysql_error());
+mysqli_close($dbstudent_connection);
+$db_connection = mysqli_connect ($db_info['host'], $db_info['username'], $db_info['password']) or die (mysqli_error());
+$db_select = mysqli_select_db ($db_info['dbname'], $db_connection) or die (mysqli_error($db_connection));
 	
 echo "			if (document.getElementById(\"check_$studentHeraldID\").checked == true)
 					{

@@ -11,7 +11,7 @@ function quote_smart($value)
 
    // Quote it if it's not an integer
    if (!is_numeric($value)) {
-       $value = "'" . mysql_real_escape_string($value) . "'";
+       $value = "'" . mysqli_real_escape_string($value) . "'";
    }
 
    return $value;

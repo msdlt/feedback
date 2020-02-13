@@ -68,10 +68,10 @@ echo "	<div class=\"section\">
 									AND SurveyInstanceParticipants.heraldID = Answers.heraldID
 									AND SurveyInstanceParticipants.status = 2
 									ORDER BY Items.text";
-						$qResItems = mysql_query($qItems);
+						$qResItems = mysqli_query($db_connection, $qItems);
 				echo "	<select id=\"sItems\" name=\"sItems\" size=\"1\">
 							<option value=\"0\" selected>Choose a host country..</option>";
-						while($rowItems = mysql_fetch_array($qResItems))
+						while($rowItems = mysqli_fetch_array($qResItems))
 							{
 						echo"<option value=\"15_44_115_"."$rowItems[itemID]"."\">".$rowItems['text']."</option>";
 							}

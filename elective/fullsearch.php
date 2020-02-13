@@ -156,13 +156,13 @@ echo "<h1>Full search</h1>";
 				WHERE SurveyBlocks.surveyID = $surveyID
 				AND Blocks.blockID = SurveyBlocks.blockID
 				ORDER BY SurveyBlocks.position";
-	$qResBlocks = mysql_query($qBlocks);
+	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	$questionNo = 1;
 	$aQuestions = array();
 	$aAllowAnalyseByThisQuestion = array(); //are these qestions allowed as ones to be analysed by
 	$aTextandID = array();
 	$aItems = array();
-	while($rowBlocks = mysql_fetch_array($qResBlocks))
+	while($rowBlocks = mysqli_fetch_array($qResBlocks))
 		{
 		$blockID = $rowBlocks['blockID'];
 		$blockVisible = $rowBlocks['visible'];
@@ -174,9 +174,9 @@ echo "<h1>Full search</h1>";
 					AND Sections.sectionID = BlockSections.sectionID
 					ORDER BY BlockSections.position";
 		
-		$qResSections = mysql_query($qSections);
+		$qResSections = mysqli_query($db_connection, $qSections);
 		//counter for questions 
-		while($rowSections = mysql_fetch_array($qResSections))
+		while($rowSections = mysqli_fetch_array($qResSections))
 			{
 			$sectionID = $rowSections['sectionID'];
 			$sectionVisible = $rowSections['visible'];
@@ -187,9 +187,9 @@ echo "<h1>Full search</h1>";
 						AND Questions.questionID = SectionQuestions.questionID
 						ORDER BY SectionQuestions.position";
 			
-			$qResQuestions = mysql_query($qQuestions);
+			$qResQuestions = mysqli_query($db_connection, $qQuestions);
 			
-			while($rowQuestions = mysql_fetch_array($qResQuestions))
+			while($rowQuestions = mysqli_fetch_array($qResQuestions))
 				{
 				$questionID = $rowQuestions['questionID'];
 				$questionVisible = $rowQuestions['visible'];
@@ -215,11 +215,11 @@ echo "<h1>Full search</h1>";
 						WHERE QuestionItems.questionID = $questionID
 						AND Items.itemID = QuestionItems.itemID
 						ORDER BY QuestionItems.position";
-				$qResItems = mysql_query($qItems);
+				$qResItems = mysqli_query($db_connection, $qItems);
 				unset($aItems);
 				$aItems = array();
 				$itemNo = 1;
-				while($rowItems = mysql_fetch_array($qResItems))
+				while($rowItems = mysqli_fetch_array($qResItems))
 					{
 					$itemID = $rowItems['itemID'];
 					unset($aTextandID);

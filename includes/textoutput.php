@@ -12,16 +12,16 @@ if ((isset($_POST['surveyInstanceID']) && $_POST['surveyInstanceID']!="")||(isse
 	$qSurvey = "	SELECT surveyID, title 
 					FROM SurveyInstances
 					WHERE surveyInstanceID = $surveyInstanceID";
-	$qResSurvey = mysql_query($qSurvey);
+	$qResSurvey = mysqli_query($db_connection, $qSurvey);
 	if (($qResSurvey == false))
 		{
-		echo "problem querying SurveyInstances" . mysql_error();
+		echo "problem querying SurveyInstances" . mysqli_error($db_connection);
 		}
 	else
 		{
-		$rowSurvey = mysql_fetch_array($qResSurvey);
+		$rowSurvey = mysqli_fetch_array($qResSurvey);
 		$surveyID = $rowSurvey['surveyID'];
-		$surveyInstanceTitle = $rowSurvey[title];
+		$surveyInstanceTitle = $rowSurvey['title'];
 		}
 	}
 else
@@ -37,12 +37,12 @@ else
 	$qSurveys = "SELECT title, introduction, epilogue, allowSave
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-	$qResSurvey = mysql_query($qSurveys);
-	$rowSurvey = mysql_fetch_array($qResSurvey);
-	$surveyTitle = $rowSurvey[title];
-	$surveyIntroduction = $rowSurvey[introduction];
-	$surveyEpilogue = $rowSurvey[epilogue];
-	$surveyAllowSave = $rowSurvey[allowSave];
+	$qResSurvey = mysqli_query($db_connection, $qSurveys);
+	$rowSurvey = mysqli_fetch_array($qResSurvey);
+	$surveyTitle = $rowSurvey['title'];
+	$surveyIntroduction = $rowSurvey['introduction'];
+	$surveyEpilogue = $rowSurvey['epilogue'];
+	$surveyAllowSave = $rowSurvey['allowSave'];
 	echo "<title>$surveyInstanceTitle</title>";
 ?>	
 	<link rel="stylesheet" type="text/css" href="css/SurveyStyles.css"></link>
@@ -74,8 +74,8 @@ else
 									WHERE surveyInstanceID = $surveyInstanceID
 									AND blockID = $blockID
 									AND heraldID = '$heraldID'";
-			$qResAnswerInstances = mysql_query($qAnswerInstances);
-			$rowAnswerInstances = mysql_fetch_array($qResAnswerInstances);
+			$qResAnswerInstances = mysqli_query($db_connection, $qAnswerInstances);
+			$rowAnswerInstances = mysqli_fetch_array($qResAnswerInstances);
 			if ($rowAnswerInstances[countInstance] > 0 && $rowAnswerInstances[maxInstance] > 0)
 				{			
 				//User has already submitted entire survey - how many instances did they create? 
@@ -109,8 +109,8 @@ else
 									AND sectionID = $sectionID
 									AND instance = $inst
 									AND heraldID = '$heraldID'";
-			$qResAnswerInstances = mysql_query($qAnswerInstances);
-			$rowAnswerInstances = mysql_fetch_array($qResAnswerInstances);
+			$qResAnswerInstances = mysqli_query($db_connection, $qAnswerInstances);
+			$rowAnswerInstances = mysqli_fetch_array($qResAnswerInstances);
 			if ($rowAnswerInstances[countInstance] > 0 && $rowAnswerInstances[maxInstance] > 0)
 				{			
 				//User has already submitted entire survey - how many instances did they create? 
@@ -135,18 +135,18 @@ else
 				AND Blocks.blockID = SurveyBlocks.blockID
 				ORDER BY SurveyBlocks.position";
 	
-	$qResBlocks = mysql_query($qBlocks);
+	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	//counter for questions 
 	
 	
 	$questionNo = 1;
 	//loop through sections
 	echo "<table>";
-	while($rowBlocks = mysql_fetch_array($qResBlocks))
+	while($rowBlocks = mysqli_fetch_array($qResBlocks))
 		{
 		$blockIsInstanceable = false;
 		$blockID = $rowBlocks['blockID'];
-		if($rowBlocks[instanceable]==1)
+		if($rowBlocks['instanceable']==1)
 			{
 			$blockIsInstanceable = true;
 			$noOfInstances = getInstancesForBlock($blockID);
@@ -164,7 +164,7 @@ else
 					AND Sections.sectionID = BlockSections.sectionID
 					ORDER BY BlockSections.position";
 		
-		$qResSections = mysql_query($qSections);
+		$qResSections = mysqli_query($db_connection, $qSections);
 		for($inst=1;$inst<=$noOfInstances;$inst++)
 			{
 			//begin block content
@@ -172,21 +172,21 @@ else
 				{
 				//only output a block title if there is one
 				echo "<tr><td colspan=\"3\"><h2>".$rowBlocks['text'];
-				if ($rowBlocks[instanceable]==1)
+				if ($rowBlocks['instanceable']==1)
 					{
 					echo ": ".$inst;
 					} 
 				echo "</h2></td></tr>";
 				}
-			if(mysql_num_rows($qResSections)>0)
+			if(mysqli_num_rows($qResSections)>0)
 				{
-				mysql_data_seek($qResSections, 0);
+				mysqli_data_seek($qResSections, 0);
 				}
-			while($rowSections = mysql_fetch_array($qResSections))
+			while($rowSections = mysqli_fetch_array($qResSections))
 				{			
 				$sectionIsInstanceable = false;
 				$sectionID = $rowSections['sectionID'];
-				if($rowSections[instanceable]==1)
+				if($rowSections['instanceable']==1)
 					{
 					$sectionIsInstanceable = true;
 					$noOfSectionInstances = getInstancesForSection($blockID,$sectionID,$inst);
@@ -204,7 +204,7 @@ else
 							AND Questions.questionID = SectionQuestions.questionID
 							ORDER BY SectionQuestions.position";
 				
-				$qResQuestions = mysql_query($qQuestions);
+				$qResQuestions = mysqli_query($db_connection, $qQuestions);
 				for($sinst=1;$sinst<=$noOfSectionInstances;$sinst++)
 					{
 					//begin section content
@@ -218,13 +218,13 @@ else
 							} 
 						echo "</h3></td></tr>";
 						}
-					if(mysql_num_rows($qResQuestions)>0)
+					if(mysqli_num_rows($qResQuestions)>0)
 						{
-						mysql_data_seek($qResQuestions, 0);
+						mysqli_data_seek($qResQuestions, 0);
 						}
 					//if the section's 'normal'
 					//loop through questions
-					while($rowQuestions = mysql_fetch_array($qResQuestions))
+					while($rowQuestions = mysqli_fetch_array($qResQuestions))
 						{
 						$questionID = $rowQuestions['questionID'];
 						if($rowQuestions[comments]=="true" || $rowQuestions['questionTypeID'] == 4 || $rowQuestions['questionTypeID'] == 5)
@@ -240,7 +240,7 @@ else
 												AND Answers.instance = $inst
 												AND Answers.sinstance = $sinst
 												AND AnswerComments.answerID = Answers.answerID";
-							$qResCommentAnswered = mysql_query($qCommentAnswered);
+							$qResCommentAnswered = mysqli_query($db_connection, $qCommentAnswered);
 							}
 						
 						//find out if this question has already been answered by this user
@@ -254,7 +254,7 @@ else
 											AND Answers.instance = $inst
 											AND Answers.sinstance = $sinst
 											AND AnswerItems.AnswerID = Answers.answerID";
-						$qResItemAnswered = mysql_query($qItemAnswered);
+						$qResItemAnswered = mysqli_query($db_connection, $qItemAnswered);
 						
 						echo "<tr><td>$questionNo</td><td>".$rowQuestions['text']."</td>";
 						
@@ -263,25 +263,25 @@ else
 							case 1: //MCHOIC
 								{
 								echo "<td>";
-								if(mysql_num_rows($qResItemAnswered)==1)
+								if(mysqli_num_rows($qResItemAnswered)==1)
 									{
-									$rowItemAnswered = mysql_fetch_array($qResItemAnswered);
+									$rowItemAnswered = mysqli_fetch_array($qResItemAnswered);
 									//get item text for chosen item
 									$qItems = "SELECT text
 											FROM Items
 											WHERE itemID = $rowItemAnswered[itemID]";
-									$qResItems = mysql_query($qItems);
-									$rowItems = mysql_fetch_array($qResItems);
+									$qResItems = mysqli_query($db_connection, $qItems);
+									$rowItems = mysqli_fetch_array($qResItems);
 									echo $rowItems['text'];
 									}
 								echo "</td></tr>";
 								if($rowQuestions[comments]=="true")
 									{
 									echo"<tr><td></td><td colspan=\"2\">";
-									if(mysql_num_rows($qResCommentAnswered)==1)
+									if(mysqli_num_rows($qResCommentAnswered)==1)
 										{
 										//if so, write the text into the textarea
-										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+										$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 										echo $rowCommentAnswered['text'];
 										}
 									else
@@ -295,16 +295,16 @@ else
 							case 2: //MSELEC
 								{
 								echo "<td>";
-								if(mysql_num_rows($qResItemAnswered)>0)
+								if(mysqli_num_rows($qResItemAnswered)>0)
 									{
 									$firstItem = true;
-									while($rowItemAnswered = mysql_fetch_array($qResItemAnswered))
+									while($rowItemAnswered = mysqli_fetch_array($qResItemAnswered))
 										{
 										$qItems = "SELECT text
 											FROM Items
 											WHERE itemID = $rowItemAnswered[itemID]";
-										$qResItems = mysql_query($qItems);
-										$rowItems = mysql_fetch_array($qResItems);
+										$qResItems = mysqli_query($db_connection, $qItems);
+										$rowItems = mysqli_fetch_array($qResItems);
 										if($firstItem == true)
 											{
 											$firstItem = false;
@@ -320,10 +320,10 @@ else
 								if($rowQuestions[comments]=="true")
 									{
 									echo"<tr><td></td><td colspan=\"2\">";
-									if(mysql_num_rows($qResCommentAnswered)==1)
+									if(mysqli_num_rows($qResCommentAnswered)==1)
 										{
 										//if so, write the text into the textarea
-										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+										$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 										echo $rowCommentAnswered['text'];
 										}
 									else
@@ -337,25 +337,25 @@ else
 							case 3: //DRDOWN
 								{
 								echo "<td>";
-								if(mysql_num_rows($qResItemAnswered)==1)
+								if(mysqli_num_rows($qResItemAnswered)==1)
 									{
-									$rowItemAnswered = mysql_fetch_array($qResItemAnswered);
+									$rowItemAnswered = mysqli_fetch_array($qResItemAnswered);
 									//get item text for chosen item
 									$qItems = "SELECT text
 											FROM Items
 											WHERE itemID = $rowItemAnswered[itemID]";
-									$qResItems = mysql_query($qItems);
-									$rowItems = mysql_fetch_array($qResItems);
+									$qResItems = mysqli_query($db_connection, $qItems);
+									$rowItems = mysqli_fetch_array($qResItems);
 									echo $rowItems['text'];
 									}
 								echo "</td></tr>";
 								if($rowQuestions[comments]=="true")
 									{
 									echo"<tr><td></td><td colspan=\"2\">";
-									if(mysql_num_rows($qResCommentAnswered)==1)
+									if(mysqli_num_rows($qResCommentAnswered)==1)
 										{
 										//if so, write the text into the textarea
-										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+										$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 										echo $rowCommentAnswered['text'];
 										}
 									else
@@ -369,11 +369,11 @@ else
 							case 4: //TEXT
 								{
 								echo "<td></td></tr>";
-								if(mysql_num_rows($qResCommentAnswered)==1)
+								if(mysqli_num_rows($qResCommentAnswered)==1)
 									{
 									echo"<tr><td></td><td colspan=\"2\">";
 									//if so, write the text into the textarea
-									$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+									$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 									echo $rowCommentAnswered['text'];
 									echo"</td></tr>";
 									}
@@ -383,11 +383,11 @@ else
 								{
 								echo "<td></td></tr>";
 								//NOTE: No branching possible on a text question
-								if(mysql_num_rows($qResCommentAnswered)==1)
+								if(mysqli_num_rows($qResCommentAnswered)==1)
 									{
 									echo"<tr><td></td><td colspan=\"2\">";
 									//if so, write the text into the textarea
-									$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+									$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 									echo $rowCommentAnswered['text'];
 									echo"</td></tr>";
 									}
@@ -407,21 +407,21 @@ else
 													AND Answers.instance = $inst
 													AND Answers.sinstance = $sinst
 													AND AnswerDates.answerID = Answers.answerID";
-								$qResDateAnswered = mysql_query($qDateAnswered);
-								if(mysql_num_rows($qResDateAnswered)==1)
+								$qResDateAnswered = mysqli_query($db_connection, $qDateAnswered);
+								if(mysqli_num_rows($qResDateAnswered)==1)
 									{
 									//if so, write the text into the textarea
-									$rowDateAnswered = mysql_fetch_array($qResDateAnswered);
+									$rowDateAnswered = mysqli_fetch_array($qResDateAnswered);
 									echo $rowDateAnswered['date'];
 									}
 								echo "</td></tr>";
 								if($rowQuestions[comments]=="true")
 									{
 									echo"<tr><td></td><td colspan=\"2\">";
-									if(mysql_num_rows($qResCommentAnswered)==1)
+									if(mysqli_num_rows($qResCommentAnswered)==1)
 										{
 										//if so, write the text into the textarea
-										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+										$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 										echo $rowCommentAnswered['text'];
 										}
 									else

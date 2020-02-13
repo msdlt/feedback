@@ -35,7 +35,7 @@ function IsSuperAuthor($heraldID, $blockID, $sectionID = false, $questionID = fa
 								WHERE SurveyBlocks.blockID = $blockID";
 		}
 		
-	$qResContainingSurveys = mysql_query($qContainingSurveys, $db_connection);
+	$qResContainingSurveys = mysqli_query($qContainingSurveys, $db_connection);
 	if($qResContainingSurveys == false)
 		{
 		echo "Problem querying qContainingSurveys in IsSuperAuthor";
@@ -43,7 +43,7 @@ function IsSuperAuthor($heraldID, $blockID, $sectionID = false, $questionID = fa
 		}
 	else
 		{
-		while($rowContainingSurveys = mysql_fetch_array($qResContainingSurveys))
+		while($rowContainingSurveys = mysqli_fetch_array($qResContainingSurveys))
 			{
 			$surveyID = $rowContainingSurveys['surveyID'];
 			$qSurveyAuthor = "	SELECT Authors.authorID 
@@ -51,8 +51,8 @@ function IsSuperAuthor($heraldID, $blockID, $sectionID = false, $questionID = fa
 								WHERE SurveyAuthors.surveyID = $surveyID
 								AND Authors.authorID = SurveyAuthors.authorID
 								AND Authors.heraldID = '$heraldID'";
-			$qResSurveyAuthor = @mysql_query($qSurveyAuthor, $db_connection);
-			if (mysql_num_rows($qResSurveyAuthor)==0)
+			$qResSurveyAuthor = @mysqli_query($qSurveyAuthor, $db_connection);
+			if (mysqli_num_rows($qResSurveyAuthor)==0)
 				{
 				return(false);
 				}

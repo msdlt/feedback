@@ -16,14 +16,14 @@ function AreThereAnyResultsForThisObject($surveyID, $blockID, $sectionID = false
 					.($questionID != false ? " AND Answers.questionID = $questionID"
 					.($itemID != false ? " AND AnswerItems.itemID = $itemID
 					AND AnswerItems.answerID = Answers.answerID" : ""): ""): "");
-	$qResAnyAnswers = @mysql_query($qAnyAnswers, $db_connection);
+	$qResAnyAnswers = @mysqli_query($qAnyAnswers, $db_connection);
 	if($qResAnyAnswers == false)
 		{
 		echo "Problem querying Answers table in AreThereAnyResultsForThisObject";
 		}
 	else
 		{
-		if (mysql_num_rows($qResAnyAnswers)>0)
+		if (mysqli_num_rows($qResAnyAnswers)>0)
 			{
 			return(true);
 			}

@@ -11,14 +11,14 @@ function getTextOutput($surveyInstanceID, $heraldID)
 		$qSurvey = "	SELECT surveyID, title 
 						FROM SurveyInstances
 						WHERE surveyInstanceID = $surveyInstanceID";
-		$qResSurvey = mysql_query($qSurvey);
+		$qResSurvey = mysqli_query($db_connection, $qSurvey);
 		if (($qResSurvey == false))
 			{
-			return("problem querying SurveyInstances" . mysql_error());
+			return("problem querying SurveyInstances" . mysqli_error($db_connection));
 			}
 		else
 			{
-			$rowSurvey = mysql_fetch_array($qResSurvey);
+			$rowSurvey = mysqli_fetch_array($qResSurvey);
 			$surveyID = $rowSurvey['surveyID'];
 			$surveyInstanceTitle = $rowSurvey[title];
 			}
@@ -37,18 +37,18 @@ function getTextOutput($surveyInstanceID, $heraldID)
 				AND Blocks.blockID = SurveyBlocks.blockID
 				ORDER BY SurveyBlocks.position";
 	
-	$qResBlocks = mysql_query($qBlocks);
+	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	//counter for questions 
 	
 	
 	$questionNo = 1;
 	//loop through sections
 	$textOutput = $textOutput . "<table>";
-	while($rowBlocks = mysql_fetch_array($qResBlocks))
+	while($rowBlocks = mysqli_fetch_array($qResBlocks))
 		{
 		$blockIsInstanceable = false;
 		$blockID = $rowBlocks['blockID'];
-		if($rowBlocks[instanceable]==1)
+		if($rowBlocks['instanceable']==1)
 			{
 			$blockIsInstanceable = true;
 			$noOfInstances = getInstancesForBlock($blockID);
@@ -66,7 +66,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 					AND Sections.sectionID = BlockSections.sectionID
 					ORDER BY BlockSections.position";
 		
-		$qResSections = mysql_query($qSections);
+		$qResSections = mysqli_query($db_connection, $qSections);
 		for($inst=1;$inst<=$noOfInstances;$inst++)
 			{
 			//begin block content
@@ -74,21 +74,21 @@ function getTextOutput($surveyInstanceID, $heraldID)
 				{
 				//only output a block title if there is one
 				$textOutput = $textOutput . "<tr><td colspan=\"3\"><h2>".$rowBlocks['text'];
-				if ($rowBlocks[instanceable]==1)
+				if ($rowBlocks['instanceable']==1)
 					{
 					$textOutput = $textOutput . ": ".$inst;
 					} 
 				$textOutput = $textOutput . "</h2></td></tr>";
 				}
-			if(mysql_num_rows($qResSections)>0)
+			if(mysqli_num_rows($qResSections)>0)
 				{
-				mysql_data_seek($qResSections, 0);
+				mysqli_data_seek($qResSections, 0);
 				}
-			while($rowSections = mysql_fetch_array($qResSections))
+			while($rowSections = mysqli_fetch_array($qResSections))
 				{			
 				$sectionIsInstanceable = false;
 				$sectionID = $rowSections['sectionID'];
-				if($rowSections[instanceable]==1)
+				if($rowSections['instanceable']==1)
 					{
 					$sectionIsInstanceable = true;
 					$noOfSectionInstances = getInstancesForSection($blockID,$sectionID,$inst);
@@ -106,7 +106,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 							AND Questions.questionID = SectionQuestions.questionID
 							ORDER BY SectionQuestions.position";
 				
-				$qResQuestions = mysql_query($qQuestions);
+				$qResQuestions = mysqli_query($db_connection, $qQuestions);
 				for($sinst=1;$sinst<=$noOfSectionInstances;$sinst++)
 					{
 					//begin section content
@@ -114,22 +114,22 @@ function getTextOutput($surveyInstanceID, $heraldID)
 						{
 						//only output a section title if there is one
 						$textOutput = $textOutput . "<tr><td colspan=\"3\"><h3>".$rowSections['text'];
-						if ($rowSections[instanceable]==1)
+						if ($rowSections['instanceable']==1)
 							{
 							$textOutput = $textOutput . ": ".$sinst;
 							} 
 						$textOutput = $textOutput . "</h3></td></tr>";
 						}
-					if(mysql_num_rows($qResQuestions)>0)
+					if(mysqli_num_rows($qResQuestions)>0)
 						{
-						mysql_data_seek($qResQuestions, 0);
+						mysqli_data_seek($qResQuestions, 0);
 						}
 					//if the section's 'normal'
 					//loop through questions
-					while($rowQuestions = mysql_fetch_array($qResQuestions))
+					while($rowQuestions = mysqli_fetch_array($qResQuestions))
 						{
 						$questionID = $rowQuestions['questionID'];
-						if($rowQuestions[comments]=="true" || $rowQuestions['questionTypeID'] == 4 || $rowQuestions['questionTypeID'] == 5)
+						if($rowQuestions['comments']=="true" || $rowQuestions['questionTypeID'] == 4 || $rowQuestions['questionTypeID'] == 5)
 							{
 							//find out if this question already has comments/text from this user
 							$qCommentAnswered = "	SELECT AnswerComments.text
@@ -142,7 +142,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 												AND Answers.instance = $inst
 												AND Answers.sinstance = $sinst
 												AND AnswerComments.answerID = Answers.answerID";
-							$qResCommentAnswered = mysql_query($qCommentAnswered);
+							$qResCommentAnswered = mysqli_query($db_connection, $qCommentAnswered);
 							}
 						
 						//find out if this question has already been answered by this user
@@ -156,7 +156,7 @@ function getTextOutput($surveyInstanceID, $heraldID)
 											AND Answers.instance = $inst
 											AND Answers.sinstance = $sinst
 											AND AnswerItems.AnswerID = Answers.answerID";
-						$qResItemAnswered = mysql_query($qItemAnswered);
+						$qResItemAnswered = mysqli_query($db_connection, $qItemAnswered);
 						
 						$textOutput = $textOutput . "<tr><td>$questionNo</td><td>".$rowQuestions['text']."</td>";
 						
@@ -165,25 +165,25 @@ function getTextOutput($surveyInstanceID, $heraldID)
 							case 1: //MCHOIC
 								{
 								$textOutput = $textOutput . "<td>";
-								if(mysql_num_rows($qResItemAnswered)==1)
+								if(mysqli_num_rows($qResItemAnswered)==1)
 									{
-									$rowItemAnswered = mysql_fetch_array($qResItemAnswered);
+									$rowItemAnswered = mysqli_fetch_array($qResItemAnswered);
 									//get item text for chosen item
 									$qItems = "SELECT text
 											FROM Items
 											WHERE itemID = $rowItemAnswered[itemID]";
-									$qResItems = mysql_query($qItems);
-									$rowItems = mysql_fetch_array($qResItems);
+									$qResItems = mysqli_query($db_connection, $qItems);
+									$rowItems = mysqli_fetch_array($qResItems);
 									$textOutput = $textOutput . $rowItems['text'];
 									}
 								$textOutput = $textOutput . "</td></tr>";
 								if($rowQuestions[comments]=="true")
 									{
-									if(mysql_num_rows($qResCommentAnswered)==1)
+									if(mysqli_num_rows($qResCommentAnswered)==1)
 										{
 										$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
 										//if so, write the text into the textarea
-										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+										$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 										$textOutput = $textOutput . $rowCommentAnswered['text'];
 										$textOutput = $textOutput ."</td></tr>";
 										}
@@ -193,16 +193,16 @@ function getTextOutput($surveyInstanceID, $heraldID)
 							case 2: //MSELEC
 								{
 								$textOutput = $textOutput . "<td>";
-								if(mysql_num_rows($qResItemAnswered)>0)
+								if(mysqli_num_rows($qResItemAnswered)>0)
 									{
 									$firstItem = true;
-									while($rowItemAnswered = mysql_fetch_array($qResItemAnswered))
+									while($rowItemAnswered = mysqli_fetch_array($qResItemAnswered))
 										{
 										$qItems = "SELECT text
 											FROM Items
 											WHERE itemID = $rowItemAnswered[itemID]";
-										$qResItems = mysql_query($qItems);
-										$rowItems = mysql_fetch_array($qResItems);
+										$qResItems = mysqli_query($db_connection, $qItems);
+										$rowItems = mysqli_fetch_array($qResItems);
 										if($firstItem == true)
 											{
 											$firstItem = false;
@@ -215,13 +215,13 @@ function getTextOutput($surveyInstanceID, $heraldID)
 										}
 									}
 								$textOutput = $textOutput . "</td></tr>";
-								if($rowQuestions[comments]=="true")
+								if($rowQuestions['comments']=="true")
 									{
-									if(mysql_num_rows($qResCommentAnswered)==1)
+									if(mysqli_num_rows($qResCommentAnswered)==1)
 										{
 										//if so, write the text into the textarea
 										$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
-										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+										$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 										$textOutput = $textOutput . $rowCommentAnswered['text'];
 										$textOutput = $textOutput ."</td></tr>";
 										}
@@ -231,25 +231,25 @@ function getTextOutput($surveyInstanceID, $heraldID)
 							case 3: //DRDOWN
 								{
 								$textOutput = $textOutput . "<td>";
-								if(mysql_num_rows($qResItemAnswered)==1)
+								if(mysqli_num_rows($qResItemAnswered)==1)
 									{
-									$rowItemAnswered = mysql_fetch_array($qResItemAnswered);
+									$rowItemAnswered = mysqli_fetch_array($qResItemAnswered);
 									//get item text for chosen item
 									$qItems = "SELECT text
 											FROM Items
 											WHERE itemID = $rowItemAnswered[itemID]";
-									$qResItems = mysql_query($qItems);
-									$rowItems = mysql_fetch_array($qResItems);
+									$qResItems = mysqli_query($db_connection, $qItems);
+									$rowItems = mysqli_fetch_array($qResItems);
 									$textOutput = $textOutput . $rowItems['text'];
 									}
 								$textOutput = $textOutput . "</td></tr>";
-								if($rowQuestions[comments]=="true")
+								if($rowQuestions['comments']=="true")
 									{
-									if(mysql_num_rows($qResCommentAnswered)==1)
+									if(mysqli_num_rows($qResCommentAnswered)==1)
 										{
 										//if so, write the text into the textarea
 										$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
-										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+										$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 										$textOutput = $textOutput . $rowCommentAnswered['text'];
 										$textOutput = $textOutput ."</td></tr>";
 										}
@@ -259,11 +259,11 @@ function getTextOutput($surveyInstanceID, $heraldID)
 							case 4: //TEXT
 								{
 								$textOutput = $textOutput . "<td></td></tr>";
-								if(mysql_num_rows($qResCommentAnswered)==1)
+								if(mysqli_num_rows($qResCommentAnswered)==1)
 									{
 									$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
 									//if so, write the text into the textarea
-									$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+									$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 									$textOutput = $textOutput . $rowCommentAnswered['text'];
 									$textOutput = $textOutput ."</td></tr>";
 									}
@@ -273,11 +273,11 @@ function getTextOutput($surveyInstanceID, $heraldID)
 								{
 								$textOutput = $textOutput . "<td></td></tr>";
 								//NOTE: No branching possible on a text question
-								if(mysql_num_rows($qResCommentAnswered)==1)
+								if(mysqli_num_rows($qResCommentAnswered)==1)
 									{
 									$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
 									//if so, write the text into the textarea
-									$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+									$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 									$textOutput = $textOutput . $rowCommentAnswered['text'];
 									$textOutput = $textOutput ."</td></tr>";
 									}
@@ -297,21 +297,21 @@ function getTextOutput($surveyInstanceID, $heraldID)
 													AND Answers.instance = $inst
 													AND Answers.sinstance = $sinst
 													AND AnswerDates.answerID = Answers.answerID";
-								$qResDateAnswered = mysql_query($qDateAnswered);
-								if(mysql_num_rows($qResDateAnswered)==1)
+								$qResDateAnswered = mysqli_query($db_connection, $qDateAnswered);
+								if(mysqli_num_rows($qResDateAnswered)==1)
 									{
 									//if so, write the text into the textarea
-									$rowDateAnswered = mysql_fetch_array($qResDateAnswered);
+									$rowDateAnswered = mysqli_fetch_array($qResDateAnswered);
 									$textOutput = $textOutput . $rowDateAnswered['date'];
 									}
 								$textOutput = $textOutput . "</td></tr>";
-								if($rowQuestions[comments]=="true")
+								if($rowQuestions['comments']=="true")
 									{
-									if(mysql_num_rows($qResCommentAnswered)==1)
+									if(mysqli_num_rows($qResCommentAnswered)==1)
 										{
 										//if so, write the text into the textarea
 										$textOutput = $textOutput ."<tr><td></td><td colspan=\"2\">";
-										$rowCommentAnswered = mysql_fetch_array($qResCommentAnswered);
+										$rowCommentAnswered = mysqli_fetch_array($qResCommentAnswered);
 										$textOutput = $textOutput . $rowCommentAnswered['text'];
 										$textOutput = $textOutput ."</td></tr>";
 										}

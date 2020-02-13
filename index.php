@@ -79,7 +79,7 @@ if(IsAuthor($heraldID))
 						
 	if (($qResSurveyInstances == false))
 		{
-		echo "problem querying SurveyInstances" . mysql_error();
+		echo "problem querying SurveyInstances" . mysqli_error($db_connection);
 		}
 	else
 		{
@@ -140,7 +140,7 @@ $qResPastSurveyInstances = @mysqli_query($db_connection, $qPastSurveyInstances);
 
 if (($qResPastSurveyInstances == false))
 	{
-	echo "problem querying SurveyInstances" . mysql_error();
+	echo "problem querying SurveyInstances" . mysqli_error($db_connection);
 	}
 elseif(mysqli_num_rows($qResPastSurveyInstances)>0)
 	{

@@ -65,7 +65,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 	$TableForThisUser = "ParticipantItemsTemp".$heraldID;
 	//first drop ParticipantItems for this user if it exists
 	$qDropTable = "DROP TABLE IF EXISTS $TableForThisUser";
-	$qResDropTable = mysql_query($qDropTable);
+	$qResDropTable = mysqli_query($db_connection, $qDropTable);
 	//Then create it
 	$qCreateTable = "	CREATE TABLE `$TableForThisUser` (
   						`participantItemID` int(10) unsigned NOT NULL auto_increment,
@@ -78,7 +78,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 					  `sinstance` tinyint(4) NOT NULL default '0',
 					  PRIMARY KEY  (`participantItemID`)
 					) TYPE=MyISAM COMMENT='Used temporarily to store participants who have chosen a par'";
-	$qResCreateTable = mysql_query($qCreateTable);
+	$qResCreateTable = mysqli_query($db_connection, $qCreateTable);
 	//This is an array to hold the items in each question by which other questions are being analysed 
 	//$aQuestionToAnalyseByItems[x][y][z]
 	// x = criterion number
@@ -114,8 +114,8 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 		$qQuestion = "	SELECT text, questionTypeID
 						FROM Questions
 						WHERE questionID = $QuestionToAnalyseByQuestionID";
-		$qResQuestion = mysql_query($qQuestion);
-		$rowQuestion = mysql_fetch_array($qResQuestion);
+		$qResQuestion = mysqli_query($db_connection, $qQuestion);
+		$rowQuestion = mysqli_fetch_array($qResQuestion);
 		$rubricText = $rubricText . $rowQuestion['text'] . "\" contained ";
 		$participantQueryString = "";
 		$aItem = array();
@@ -136,10 +136,10 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 						AND Answers.questionID = $QuestionToAnalyseByQuestionID
 						AND AnswerComments.answerID = Answers.answerID
 						AND SurveyInstanceParticipants.surveyInstanceID = SurveyInstances.surveyInstanceID";
-		$qResParticipants = mysql_query($qParticipants);
-		$NoOfParticipants = mysql_num_rows($qResParticipants);
+		$qResParticipants = mysqli_query($db_connection, $qParticipants);
+		$NoOfParticipants = mysqli_num_rows($qResParticipants);
 		//now write those participants to a table to store them temporarily next to the item they chose
-		while($rowParticipants = mysql_fetch_array($qResParticipants))
+		while($rowParticipants = mysqli_fetch_array($qResParticipants))
 			{
 			//if this is not the first criterion, check if heraldId is already in there
 			if($i>1)
@@ -147,12 +147,12 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 				$qParticipantExists = "	SELECT participantItemID, blockID, sectionID, instance, sinstance
 										FROM $TableForThisUser
 										WHERE heraldID = '".$rowParticipants['heraldID']."'";
-				$qResParticipantExists = mysql_query($qParticipantExists);
-				if(mysql_num_rows($qResParticipantExists)>0) //participant is already in there
+				$qResParticipantExists = mysqli_query($db_connection, $qParticipantExists);
+				if(mysqli_num_rows($qResParticipantExists)>0) //participant is already in there
 					{
 					$instanceMatch = false;
 					//now check whether instances match
-					while($rowParticipantExists = mysql_fetch_array($qResParticipantExists))
+					while($rowParticipantExists = mysqli_fetch_array($qResParticipantExists))
 						{
 						if($QuestionToAnalyseByBlockID == $rowParticipantExists['blockID'])
 							{
@@ -177,10 +177,10 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 						{
 						$iParticipantItems = "	INSERT INTO $TableForThisUser
 										VALUES(0,$rowParticipants['heraldID'],$QuestionToAnalyseByBlockID,$QuestionToAnalyseBySectionID,$QuestionToAnalyseByQuestionID,0,$rowParticipants[instance],$rowParticipants[sinstance])";
-						$result_query = @mysql_query($iParticipantItems,$db_connection);
-						if (($result_query == false) || mysql_affected_rows($db_connection) == 0)
+						$result_query = @mysqli_query($iParticipantItems,$db_connection);
+						if (($result_query == false) || mysqli_affected_rows($db_connection) == 0)
 							{
-							echo "problem inserting into ParticipantItems" . mysql_error();
+							echo "problem inserting into ParticipantItems" . mysqli_error($db_connection);
 							$bSuccess = false;
 							}
 						}
@@ -190,10 +190,10 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 				{
 				$iParticipantItems = "	INSERT INTO $TableForThisUser
 									VALUES(0,$rowParticipants['heraldID'],$QuestionToAnalyseByBlockID,$QuestionToAnalyseBySectionID,$QuestionToAnalyseByQuestionID,0,$rowParticipants[instance],$rowParticipants[sinstance])";
-					$result_query = @mysql_query($iParticipantItems,$db_connection);
-					if (($result_query == false) || mysql_affected_rows($db_connection) == 0)
+					$result_query = @mysqli_query($iParticipantItems,$db_connection);
+					if (($result_query == false) || mysqli_affected_rows($db_connection) == 0)
 						{
-						echo "problem inserting into ParticipantItems" . mysql_error();
+						echo "problem inserting into ParticipantItems" . mysqli_error($db_connection);
 						$bSuccess = false;
 						}
 				}
@@ -212,8 +212,8 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 											WHERE blockID = $QuestionToAnalyseByBlockID
 											AND sectionID = $QuestionToAnalyseBySectionID
 											AND questionID = $QuestionToAnalyseByQuestionID";
-			$qResFirstCriterionParticipants = mysql_query($qFirstCriterionParticipants);
-			while($rowFirstCriterionParticipants = mysql_fetch_array($qResFirstCriterionParticipants))
+			$qResFirstCriterionParticipants = mysqli_query($db_connection, $qFirstCriterionParticipants);
+			while($rowFirstCriterionParticipants = mysqli_fetch_array($db_connection, $qResFirstCriterionParticipants))
 				{
 				$deleteItem = false;
 				//then go through them one by one and check whether sintance and instance match
@@ -221,12 +221,12 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 										FROM $TableForThisUser
 										WHERE heraldID = ".$rowFirstCriterionParticipants['heraldID']."
 										AND NOT (blockID = $QuestionToAnalyseByBlockID AND sectionID = $QuestionToAnalyseBySectionID AND questionID = $QuestionToAnalyseByQuestionID)";
-				$qResParticipantExists = mysql_query($qParticipantExists);
-				if(mysql_num_rows($qResParticipantExists)>0) //participant is already in there
+				$qResParticipantExists = mysqli_query($db_connection, $qParticipantExists);
+				if(mysqli_num_rows($qResParticipantExists)>0) //participant is already in there
 					{
 					$instanceMatch = false;
 					//now check whether instances match
-					while($rowParticipantExists = mysql_fetch_array($qResParticipantExists))
+					while($rowParticipantExists = mysqli_fetch_array($qResParticipantExists))
 						{
 						if($QuestionToAnalyseByBlockID == $rowParticipantExists['blockID'])
 							{
@@ -261,10 +261,10 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 					{
 					$dParticipants = "	DELETE FROM $TableForThisUser
 										WHERE participantItemID = $rowFirstCriterionParticipants[participantItemID]";
-					$result_query = @mysql_query($dParticipants,$db_connection);
-					if (($result_query == false) && mysql_affected_rows($db_connection) == 0)
+					$result_query = @mysqli_query($dParticipants,$db_connection);
+					if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 						{
-						echo "problem deleting from ParticipantItems" . mysql_error();
+						echo "problem deleting from ParticipantItems" . mysqli_error($db_connection);
 						$bSuccess = false;
 						}
 					}
@@ -273,15 +273,15 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 		//now need to count how many students have fulfilled the search criteria
 		$qNoOfParticipants = "	SELECT DISTINCT heraldID
 								FROM $TableForThisUser";
-		$qResNoOfParticipants = mysql_query($qNoOfParticipants);
+		$qResNoOfParticipants = mysqli_query($db_connection, $qNoOfParticipants);
 		
 	//exit();
 	//Get survey information
 	$qSurveys = "SELECT title
 				FROM Surveys
 				WHERE surveyID = $surveyID";
-	$qResSurvey = mysql_query($qSurveys);
-	$rowSurvey = mysql_fetch_array($qResSurvey);
+	$qResSurvey = mysqli_query($db_connection, $qSurveys);
+	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey[title];
 	
 	echo "<title>$surveyTitle - Results</title>";
@@ -301,7 +301,7 @@ echo "<a href=\"index.php\">Search electives</a> &gt; <a href=\"quicksearch.php\
 require_once("../includes/html/BreadCrumbsFooter.html"); 
 echo "<h1>Search results</h1>";
 echo "<a name=\"maintext\" id=\"maintext\"></a>"; 
-echo "<h2>Total number of respondents = ".mysql_num_rows($qResNoOfParticipants)."</h2>";
+echo "<h2>Total number of respondents = ".mysqli_num_rows($qResNoOfParticipants)."</h2>";
 echo "<p>Results from respondents whose answer to ";
 echo $rubricText;
 echo "</p>";
@@ -312,11 +312,11 @@ $qBlocks = "SELECT Blocks.blockID, Blocks.title, Blocks.introduction, Blocks.epi
 			WHERE SurveyBlocks.surveyID = $surveyID
 			AND Blocks.blockID = SurveyBlocks.blockID
 			ORDER BY SurveyBlocks.position";
-$qResBlocks = mysql_query($qBlocks);
+$qResBlocks = mysqli_query($db_connection, $qBlocks);
 //counter for questions 
 $questionNo = 1;	
 $bRowOdd = true;
-while($rowBlocks = mysql_fetch_array($qResBlocks))
+while($rowBlocks = mysqli_fetch_array($qResBlocks))
 	{
 	$blockID = $rowBlocks['blockID'];
 	$qSections = "	SELECT Sections.sectionID, Sections.title, Sections.introduction, Sections.epilogue, BlockSections.position, Sections.sectionTypeID, BlockSections.visible 
@@ -325,9 +325,9 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 					AND Sections.sectionID = BlockSections.sectionID
 					ORDER BY BlockSections.position";
 	
-	$qResSections = mysql_query($qSections);
+	$qResSections = mysqli_query($db_connection, $qSections);
 
-	while($rowSections = mysql_fetch_array($qResSections))
+	while($rowSections = mysqlifetch_array($qResSections))
 		{
 		$sectionID = $rowSections['sectionID'];
 		//get questions
@@ -337,9 +337,9 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 					AND Questions.questionID = SectionQuestions.questionID
 					ORDER BY SectionQuestions.position";
 		
-		$qResQuestions = mysql_query($qQuestions);
+		$qResQuestions = mysqli_query($db_connection, $qQuestions);
 		
-		while($rowQuestions = mysql_fetch_array($qResQuestions))
+		while($rowQuestions = mysqli_fetch_array($qResQuestions))
 			{
 			$questionID = $rowQuestions['questionID'];
 			if ($questionID==155) //startdate
@@ -383,9 +383,9 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 								AND IF($TableForThisUser.blockID = $blockID,Answers.instance = $TableForThisUser.instance AND IF($TableForThisUser.sectionID = $sectionID, Answers.sinstance = $TableForThisUser.sinstance, Answers.sinstance = Answers.sinstance), Answers.instance = Answers.instance)
 								AND Answers.sectionID = $sectionID";
 			
-			$qResCountAnswers = mysql_query($qCountAnswers);
+			$qResCountAnswers = mysqli_query($db_connection, $qCountAnswers);
 			
-			$NoOfAnswers = mysql_num_rows($qResCountAnswers);
+			$NoOfAnswers = mysqli_num_rows($qResCountAnswers);
 			//get participants comments for this item
 			$qComments = "	SELECT DISTINCT AnswerComments.answerCommentID, AnswerComments.text, SurveyInstanceParticipants.date
 							FROM Answers, AnswerComments, $TableForThisUser, SurveyInstances, SurveyInstanceParticipants
@@ -402,7 +402,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 							AND Answers.questionID = $questionID
 							AND IF($TableForThisUser.blockID = $blockID,Answers.instance = $TableForThisUser.instance AND IF($TableForThisUser.sectionID = $sectionID, Answers.sinstance = $TableForThisUser.sinstance, Answers.sinstance = Answers.sinstance), Answers.instance = Answers.instance)
 							AND Answers.answerID = AnswerComments.answerID";
-			$qResComments = mysql_query($qComments);
+			$qResComments = mysqli_query($db_connection, $qComments);
 			$qDates = "	SELECT DISTINCT AnswerDates.answerDateID, AnswerDates.date
 						FROM Answers, AnswerDates, $TableForThisUser, SurveyInstances, SurveyInstanceParticipants
 						WHERE Answers.answerID = AnswerDates.answerID
@@ -417,7 +417,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 						AND Answers.sectionID = $sectionID
 						AND Answers.questionID = $questionID
 						AND IF($TableForThisUser.blockID = $blockID,Answers.instance = $TableForThisUser.instance AND IF($TableForThisUser.sectionID = $sectionID, Answers.sinstance = $TableForThisUser.sinstance, Answers.sinstance = Answers.sinstance), Answers.instance = Answers.instance)";
-			$qResDates = mysql_query($qDates);
+			$qResDates = mysqli_query($db_connection, $qDates);
 			
 			//get items
 			$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
@@ -426,12 +426,12 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 					AND Items.itemID = QuestionItems.itemID
 					ORDER BY QuestionItems.position";
 								
-			$qResItems = mysql_query($qItems);
+			$qResItems = mysqli_query($db_connection, $qItems);
 			//check whether any of the items for this question have been checked ('on')
 			$itemNo = 0;
 			$bRowOdd = false;
 			$rowClass = "matrixRowEven";
-			while($rowItems = mysql_fetch_array($qResItems))
+			while($rowItems = mysqli_fetch_array($qResItems))
 				{
 				if($bRowOdd)
 					{
@@ -457,9 +457,9 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 								AND Answers.questionID = $questionID
 								AND Answers.answerID = AnswerItems.answerID
 								AND IF($TableForThisUser.blockID = $blockID,Answers.instance = $TableForThisUser.instance AND IF($TableForThisUser.sectionID = $sectionID, Answers.sinstance = $TableForThisUser.sinstance, Answers.sinstance = Answers.sinstance), Answers.instance = Answers.instance)";
-				$qResCountItems = mysql_query($qCountItems);
+				$qResCountItems = mysqli_query($db_connection, $qCountItems);
 				
-				$NoOfItems = mysql_num_rows($qResCountItems);
+				$NoOfItems = mysqli_num_rows($qResCountItems);
 				if($questionID==115 && $NoOfItems==0)
 					{
 					continue;
@@ -475,12 +475,12 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 				echo"<tr class=\"$rowClass\">";
 				if($questionID==115)
 					{
-					$trimmedCountry = mysql_real_escape_string(trim($rowItems['text']));
+					$trimmedCountry = mysqli_real_escape_string(trim($rowItems['text']));
 					$qInfoURLs = "	SELECT lonelyPlanetURL, wikipediaURL
 									FROM ElectiveLinks
 									WHERE TRIM(country) = '$trimmedCountry'";
-					$qResInfoURLs = mysql_query($qInfoURLs);
-					$rowInfoURLs = mysql_fetch_array($qResInfoURLs);
+					$qResInfoURLs = mysqli_query($db_connection, $qInfoURLs);
+					$rowInfoURLs = mysqli_fetch_array($qResInfoURLs);
 					if($rowInfoURLs[lonelyPlanetURL]!="")
 						{
 						echo "<td><a href=\"" . $lonelyPlanetURL . $rowInfoURLs[lonelyPlanetURL] . "\" target=\"countrylink\">" . $trimmedCountry . "</a> (Follow link to further information on this country from Lonely Planet)</td>";
@@ -523,7 +523,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 				{
 				$storedStartDates = array();
 				$dateNo=0;
-				while($rowDates = mysql_fetch_array($qResDates))
+				while($rowDates = mysqli_fetch_array($qResDates))
 					{
 					$storedStartDates[$dateNo] = $rowDates['date'];
 					$dateNo++;
@@ -532,7 +532,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 			elseif ($questionID==156) //finishdate
 				{
 				$dateNo=0;
-				while($rowDates = mysql_fetch_array($qResDates))
+				while($rowDates = mysqli_fetch_array($qResDates))
 					{
 					$dateDiffArray = datediff($storedStartDates[$dateNo],$rowDates['date'],2);
 					echo "<tr class=\"$rowClass\">
@@ -545,7 +545,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 				}
 			else
 				{
-				while($rowDates = mysql_fetch_array($qResDates))
+				while($rowDates = mysqli_fetch_array($qResDates))
 					{
 					echo "<tr class=\"$rowClass\">
 							<td colspan=\"$colSpan\">"
@@ -565,14 +565,14 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 				{
 				$rowClass = "matrixRowEven";
 				}
-			if(mysql_num_rows($qResComments)>0)
+			if(mysqli_num_rows($qResComments)>0)
 				{
 				echo"<tr class=\"$rowClass\"><td colspan=\"2\">
 					<div class=\"comments\" id=\"divComments_".$questionNo.$i."\" name=\"divComments_".$questionNo.$i."\">
 						<strong>Comments:</strong>
 						<br/>";
 						$commentCount = 1;
-						while($rowComments = mysql_fetch_array($qResComments))
+						while($rowComments = mysqli_fetch_array($qResComments))
 							{
 							echo "<hr>" . $commentCount . " (" .ODBCDateToTextDateShort($rowComments[date]).")"." - ".$rowComments['text']." <br/>";
 							$commentCount++;
@@ -589,7 +589,7 @@ while($rowBlocks = mysql_fetch_array($qResBlocks))
 	}
 //finally drop ParticipantItems for this user
 $qDropTable = "DROP TABLE IF EXISTS $TableForThisUser";
-$qResDropTable = mysql_query($qDropTable);
+$qResDropTable = mysqli_query($db_connection, $qDropTable);
 ?>
 <?php
 	//Breadcrumb
