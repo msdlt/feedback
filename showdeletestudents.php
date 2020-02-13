@@ -201,8 +201,9 @@ else
 							}
 						}	
 					mysqli_close($dbstudent_connection);
-$db_connection = mysqli_connect ($db_info['host'], $db_info['username'], $db_info['password']) or die (mysqli_error());
-$db_select = mysqli_select_db ($db_info['dbname'], $db_connection) or die (mysqli_error($db_connection));
+					//$db_connection = mysqli_connect ($db_info['host'], $db_info['username'], $db_info['password']) or die (mysqli_error());
+					//$db_select = mysqli_select_db ($db_info['dbname'], $db_connection) or die (mysqli_error($db_connection));
+					$db_connection = mysqli_connect ($db_info['host'], $db_info['username'], $db_info['password'], $db_info['dbname']) or die (mysqli_error());
 					echo"</td>
 				</tr>";
 			$bRowOdd = !$bRowOdd;
@@ -230,8 +231,9 @@ while($rowStudents = mysqli_fetch_array($qResStudents))
 	{
 	$studentHeraldID = $rowStudents['heraldID'];
 	//connect to heraldID and name database
-$dbstudent_connection = mysqli_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password']) or die (mysqli_error());
-$db_select = mysqli_select_db ($dbstudent_info['dbname'], $dbstudent_connection) or die (mysqlii_error($dbstudent_connection));
+	//$dbstudent_connection = mysqli_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password']) or die (mysqli_error());
+	//$db_select = mysqli_select_db ($dbstudent_info['dbname'], $dbstudent_connection) or die (mysqlii_error($dbstudent_connection));
+	$dbstudent_connection= mysqli_connect ($dbstudent_info['host'], $dbstudent_info['username'], $dbstudent_info['password'], $dbstudent_info['dbname']) or die (mysqli_error());
 	$qStudentName = "	SELECT LASTNAME, FORENAMES
 					FROM cards
 					WHERE USERNAME = '".$rowStudents['heraldID']."'";
@@ -253,9 +255,9 @@ $db_select = mysqli_select_db ($dbstudent_info['dbname'], $dbstudent_connection)
 			}
 		}	
 mysqli_close($dbstudent_connection);
-$db_connection = mysqli_connect ($db_info['host'], $db_info['username'], $db_info['password']) or die (mysqli_error());
-$db_select = mysqli_select_db ($db_info['dbname'], $db_connection) or die (mysqli_error($db_connection));
-	
+//$db_connection = mysqli_connect ($db_info['host'], $db_info['username'], $db_info['password']) or die (mysqli_error());
+//$db_select = mysqli_select_db ($db_info['dbname'], $db_connection) or die (mysqli_error($db_connection));
+$db_connection = mysqli_connect ($db_info['host'], $db_info['username'], $db_info['password'], $db_info['dbname']) or die (mysqli_error());	
 echo "			if (document.getElementById(\"check_$studentHeraldID\").checked == true)
 					{
 					iNoOfStudents=iNoOfStudents+1;
