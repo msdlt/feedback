@@ -12,7 +12,7 @@ if($surveyAllowSave == "true")
 	if($rowSurveyInstances[finishDate]!=NULL)
 		{
 		
-		echo " (".ODBCDateToTextDate($rowSurveyInstances[finishDate]).")";
+		echo " (".ODBCDateToTextDate($rowSurveyInstances['finishDate']).")";
 		}
 	echo".</p>";
 	}
@@ -23,7 +23,7 @@ else
 		echo "<p>You may revisit your answers at any time. However, you will not be able to make changes after the closing date";
 	if($rowSurveyInstances[finishDate]!=NULL)
 		{
-		echo " (".ODBCDateToTextDate($rowSurveyInstances[finishDate]).")";
+		echo " (".ODBCDateToTextDate($rowSurveyInstances['finishDate']).")";
 		}
 	echo".</p>";
 		echo "</div>
