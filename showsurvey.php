@@ -96,7 +96,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 				$aItems[$iBlock][0]["instanceable"] = $rowBlocks['instanceable'];
 				$qSections = "	SELECT Sections.sectionID, Sections.text, Sections.introduction, Sections.epilogue, BlockSections.position, Sections.sectionTypeID, Sections.instanceable 
 								FROM Sections, BlockSections 
-								WHERE BlockSections.blockID = $rowBlocks['blockID']
+								WHERE BlockSections.blockID = ".$rowBlocks['blockID']."
 								AND BlockSections.visible = 1
 								AND Sections.sectionID = BlockSections.sectionID
 								ORDER BY BlockSections.position";
@@ -113,7 +113,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 					$aItems[$iBlock][$iSection][0]["instanceable"] = $rowSections['instanceable'];
 					$qQuestions = "	SELECT Questions.questionID, Questions.comments, Questions.questionTypeID, Questions.text, SectionQuestions.position 
 									FROM Questions, SectionQuestions
-									WHERE SectionQuestions.sectionID = $rowSections['sectionID']
+									WHERE SectionQuestions.sectionID = ".$rowSections['sectionID']."
 									AND SectionQuestions.visible = 1
 									AND Questions.questionID = SectionQuestions.questionID
 									ORDER BY SectionQuestions.position";
@@ -128,7 +128,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 						$aItems[$iBlock][$iSection][$iQuestion][0]["position"] = $rowQuestions['position'];
 						$qItems = "	SELECT Items.itemID, Items.text, QuestionItems.position
 									FROM Items, QuestionItems
-									WHERE QuestionItems.questionID = $rowQuestions['questionID']
+									WHERE QuestionItems.questionID = ".$rowQuestions['questionID']."
 									AND QuestionItems.visible = 1
 									AND Items.itemID = QuestionItems.itemID
 									ORDER BY QuestionItems.position";
