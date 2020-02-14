@@ -297,7 +297,7 @@ echo "<div class=\"block\">
 													WHERE Branches.surveyID = $surveyID
 													AND Branches.blockID = $blockID
 													AND BranchDestinations.branchID = Branches.branchID";
-					$qResQuestionBranchesToThisOne = mysqli_query($qQuestionBranchesToThisOne);
+					$qResQuestionBranchesToThisOne = mysqli_query($db_connection, $qQuestionBranchesToThisOne);
 					$QuestionBranchesToThisBlockSectionOrQuestion = false;
 					while($rowQuestionBranchesToThisOne = mysqli_fetch_array($qResQuestionBranchesToThisOne))
 						{
@@ -346,7 +346,7 @@ echo "<div class=\"block\">
 				AND Sections.sectionID = BlockSections.sectionID
 				ORDER BY BlockSections.position";
 	
-	$qResSections = mysqli_query($qSections);
+	$qResSections = mysqli_query($db_connection, $qSections);
 	//create separate div and atble for each section
 	
 
@@ -381,7 +381,7 @@ echo "<div class=\"block\">
 													AND Branches.blockID = $blockID
 													AND Branches.sectionID = $sectionID
 													AND BranchDestinations.branchID = Branches.branchID";
-					$qResQuestionBranchesToThisOne = mysqli_query($qQuestionBranchesToThisOne);
+					$qResQuestionBranchesToThisOne = mysqli_query($db_connection, $qQuestionBranchesToThisOne);
 					$QuestionBranchesToThisBlockSectionOrQuestion = false;
 					while($rowQuestionBranchesToThisOne = mysqli_fetch_array($qResQuestionBranchesToThisOne))
 						{
@@ -428,7 +428,7 @@ echo "<div class=\"block\">
 					AND SectionQuestions.visible = 1
 					AND Questions.questionID = SectionQuestions.questionID
 					ORDER BY SectionQuestions.position";
-		$qResQuestions = mysqli_query($qQuestions);
+		$qResQuestions = mysqli_query($db_connection, $qQuestions);
 		$bRowOdd = true;
 		while($rowQuestions = mysqli_fetch_array($qResQuestions))
 			{
@@ -467,7 +467,7 @@ echo "<div class=\"block\">
 													AND Branches.sectionID = $sectionID
 													AND Branches.questionID = $questionID
 													AND BranchDestinations.branchID = Branches.branchID";
-					$qResQuestionBranchesToThisOne = mysqli_query($qQuestionBranchesToThisOne);
+					$qResQuestionBranchesToThisOne = mysqli_query($db_connection, $qQuestionBranchesToThisOne);
 					$QuestionBranchesToThisBlockSectionOrQuestion = false;
 					while($rowQuestionBranchesToThisOne = mysqli_fetch_array($qResQuestionBranchesToThisOne))
 						{
