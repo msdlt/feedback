@@ -9,7 +9,7 @@ if($surveyAllowSave == "true")
 			echo "<p>If you do not wish to complete the whole form in one go, click the <strong>Save for now</strong> button to save your answers 
 					so far. However, in order for your feedback to be counted, you will need to complete all the questions and submit it finally by clicking the
 					<strong>Final submission</strong> button by the closing date";
-	if($rowSurveyInstances[finishDate]!=NULL)
+	if($rowSurveyInstances['finishDate']!=NULL)
 		{
 		
 		echo " (".ODBCDateToTextDate($rowSurveyInstances['finishDate']).")";
