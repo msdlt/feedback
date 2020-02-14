@@ -1285,7 +1285,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												$bSuccess = false;
 												}
 											//remember this so we can refer to it after other things have been inserted into other files.
-											$iInsertedAnswerID = mysqli_insert_id();
+											$iInsertedAnswerID = mysqli_insert_id($db_connection);
 											//echo "iInsertedAnswerID = " . $iInsertedAnswerID;
 											writeItem($iInsertedAnswerID, $expItemID, $bSuccess, $textOutput);
 											if(isset($_POST[$mchoicCommentName]))
@@ -1366,7 +1366,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												$bSuccess = false;
 												}
 											//rememnber this so we can refer to it after other things have been inserted into other files.
-											$iInsertedAnswerID = mysqli_insert_id();
+											$iInsertedAnswerID = mysqli_insert_id($db_connection);
 											writeCheckBoxItem($iInsertedAnswerID,$aItems,$questionID,$sectionID,$blockID,$inst,$sinst,$bSuccess, $textOutput);
 											if(isset($_POST[$mselecCommentName]))
 												{
@@ -1436,7 +1436,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 													$bSuccess = false;
 													}
 												//rememnber this so we can refer to it after other things have been inserted into other files.
-												$iInsertedAnswerID = mysqli_insert_id();
+												$iInsertedAnswerID = mysqli_insert_id($db_connection);
 												//echo "iInsertedAnswerID = " . $iInsertedAnswerID;
 												writeItem($iInsertedAnswerID, $expItemID, $bSuccess, $textOutput);
 												if(isset($_POST[$drdownCommentName]))
@@ -1494,7 +1494,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												$bSuccess = false;
 												}
 											//rememnber this so we can refer to it after other things have been inserted into other files.
-											$iInsertedAnswerID = mysqli_insert_id();
+											$iInsertedAnswerID = mysqli_insert_id($db_connection);
 											writeDate($iInsertedAnswerID, $date, $bSuccess, $textOutput);
 											}
 										else
@@ -1546,7 +1546,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 													$bSuccess = false;
 													}
 												//rememnber this so we can refer to it after other things have been inserted into other files.
-												$iInsertedAnswerID = mysqli_insert_id();
+												$iInsertedAnswerID = mysqli_insert_id($db_connection);
 												writeComment($iInsertedAnswerID, $_POST[$textName], $bSuccess, $textOutput);
 												}
 											else

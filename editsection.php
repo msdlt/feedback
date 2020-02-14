@@ -68,7 +68,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$iSections = "	INSERT INTO Sections
 								VALUES(0,$updateTitle,$updateText,$updateIntroduction,$updateEpilogue,$updateType, $updateLastModified,$updateInstanceable)";
 				$result_query = @mysqli_query($db_connection, $iSections);
-				$sectionID = mysqli_insert_id();
+				$sectionID = mysqli_insert_id($db_connection);
 				if (($result_query == false))
 					{
 					echo "problem inserting into Sections" . mysqli_error($db_connection);

@@ -61,7 +61,7 @@ if (isset($_POST['addBranch'])||isset($_POST['deleteBranch']))
 				echo "problem inserting into Branches" . mysqli_error($db_connection);
 				}	
 			//remember this so we can refer to.
-			$iBranchID = mysqli_insert_id();
+			$iBranchID = mysqli_insert_id($db_connection);
 			}
 		//don't need to check destinations, there can be many destinations for one branchID
 		$iBranchDestinations = "INSERT INTO BranchDestinations

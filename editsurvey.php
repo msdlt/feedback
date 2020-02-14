@@ -62,7 +62,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$iSurveys = "INSERT INTO Surveys
 						VALUES(0,$updateTitle,$updateIntroduction,$updateEpilogue,$updateLastModified,$updateAllowSave,$updateAllowViewByStudent)";
 				$result_query = @mysqli_query($db_connection, $iSurveys);
-				$surveyID = mysqli_insert_id();
+				$surveyID = mysqli_insert_id($db_connection);
 				if (($result_query == false))
 					{
 					echo "problem insering into Surveys" . mysqli_error($db_connection);
@@ -133,7 +133,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 					else
 						{
 						//get authorID from INSERT
-						$iAuthorID = mysqli_insert_id();
+						$iAuthorID = mysqli_insert_id($db_connection);
 						}
 					}
 				else

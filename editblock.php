@@ -66,7 +66,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$iBlocks = "INSERT INTO Blocks
 						VALUES(0,$updateIntroduction,$updateEpilogue,$updateLastModified,$updateTitle,$updateText,$updateInstanceable)";
 				$result_query = @mysqli_query($db_connection, $iBlocks);
-				$blockID = mysqli_insert_id();
+				$blockID = mysqli_insert_id($db_connection);
 				if (($result_query == false))
 					{
 					echo "problem insering into Blocks" . mysqli_error($db_connection);

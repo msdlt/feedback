@@ -88,7 +88,7 @@ if (isset($_POST['bUpdate'])||isset($_POST['bCreate']))
 				$iSurveyInstances = "INSERT INTO SurveyInstances
 									VALUES(0,$surveyID,$updateTitle,$updateStartDate,$updateFinishDate)";
 				$result_query = @mysqli_query($db_connection, $iSurveyInstances);
-				$surveyInstanceID = mysqli_insert_id();
+				$surveyInstanceID = mysqli_insert_id($db_connection);
 				if ($result_query == false)
 					{
 					echo "problem inserting into SurveyInstances" . mysqli_error($db_connection);

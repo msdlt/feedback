@@ -60,7 +60,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$iQuestions = "	INSERT INTO Questions
 								VALUES(0,$updateTitle,$updateComments,$updateType,$updateText,$updateLastModified)";
 				$result_query = @mysqli_query($db_connection, $iQuestions);
-				$questionID = mysqli_insert_id();
+				$questionID = mysqli_insert_id($db_connection);
 				if (($result_query == false))
 					{
 					echo "problem inserting into Questions" . mysqli_error($db_connection);

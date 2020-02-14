@@ -15,7 +15,7 @@ function addItem($text, $title, $lastModified, $questionID)
 	$iItems = "	INSERT INTO Items
 					VALUES(0,$text,$title,$lastModified)";
 	$result_query = @mysqli_query($db_connection, $iItems);
-	$itemID = mysqli_insert_id();
+	$itemID = mysqli_insert_id($db_connection);
 	if (($result_query == false))
 		{
 		echo "problem inserting into Items" . mysqli_error($db_connection);
