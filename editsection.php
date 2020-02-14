@@ -851,7 +851,7 @@ if($sectionID !="add")
 													AND Items.itemID = QuestionItems.itemID
 													ORDER BY QuestionItems.position";
 											
-										$qResItems = $db_connection, $qItems);
+										$qResItems = ($db_connection, $qItems);
 										if (($qResItems == false))
 											{
 											echo "problem querying Items" . mysqli_error();

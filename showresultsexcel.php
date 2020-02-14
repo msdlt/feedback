@@ -247,7 +247,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					AND Questions.questionID = SectionQuestions.questionID
 					ORDER BY SectionQuestions.position";
 		
-		$qResQuestions = $db_connection, $qQuestions);
+		$qResQuestions = ($db_connection, $qQuestions);
 		
 		while($rowQuestions = mysqli_fetch_array($qResQuestions))
 			{
