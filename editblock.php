@@ -83,7 +83,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 					echo "problem querying qMaxPosition" . mysqli_error();
 					}
 				$rowMaxPosition = mysqli_fetch_array($result_query);
-				$maxPosition = $rowMaxPosition[maxPosition];
+				$maxPosition = $rowMaxPosition['maxPosition'];
 				if ($maxPosition == "")
 					{
 					//there are no existing blocks in this survey
@@ -450,7 +450,7 @@ echo "<a name=\"maintext\" id=\"maintext\"></a>
 <form id=\"frmEdit\" name=\"frmEdit\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\" onSubmit=\"return ValidateForm(this)\">
 <h2>Block properties:</h2>
 <div class=\"questionNormal\">";
-if($validationProblem==true)
+if(isset($validationProblem) && $validationProblem==true)
 	{
 	echo "<span class=\"errorMessage\"><strong>Please fix the following errors:</strong><br/>";
 	if($title_check > 0)
@@ -547,7 +547,7 @@ if($blockID !="add")
 		
 		$qResBlockPosition = mysqli_query($db_connection, $qBlockPosition);
 		$rowBlockPosition = mysqli_fetch_array($qResBlockPosition);
-		$blockPosition = $rowBlockPosition[position];
+		$blockPosition = $rowBlockPosition['position'];
 		//then find out sections which occur before this one:
 		$qPreviousQuestions = "	SELECT SectionQuestions.questionID
 						FROM SurveyBlocks, Blocks, BlockSections, Sections, SectionQuestions
@@ -581,7 +581,7 @@ echo "	<h2>Sections in this block:</h2>
 										<td>
 											<input type=\"checkbox\" id=\"check_$sectionID\" name=\"checkSectionIDs[]\" value=\"$sectionID\"/>
 										</td>
-										<td class=\"question\">Section: ".$rowSections[title]."</td>
+										<td class=\"question\">Section: ".$rowSections['title']."</td>
 										<td>Last modified: ".ODBCDateToTextDateShort($rowSections['lastModified'])."</td>
 										<td><input type=\"button\" id=\"editSection_$sectionID\" name=\"editSection_$sectionID\" value=\"Edit section\" onClick=\"goTo('editsection.php?surveyID=$surveyID&blockID=$blockID&sectionID=$sectionID')\"".(IsSuperAuthor($heraldID, $blockID, $sectionID)==false ? "disabled" : "" )." /></td>
 									</tr>";
@@ -652,7 +652,7 @@ echo "	<h2>Sections in this block:</h2>
 										while($rowSections = mysqli_fetch_array($qResSections))
 											{
 											$sectionID = $rowSections['sectionID'];
-											$sectionTitle = $rowSections[title];
+											$sectionTitle = $rowSections['title'];
 											echo "<option value=\"$sectionID\">".($sectionTitle==""?"Section":limitString($sectionTitle,30))."";
 											}
 										echo "
