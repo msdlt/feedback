@@ -349,11 +349,11 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 	echo "<input type=\"hidden\" name=\"hSaved\" id=\"hSaved\" value=\"false\">";
 	$addingInstance = false;
 	$deletingInstance = false;
-	if ((isset($_POST[hAdded]) && $_POST[hAdded] == "true") || $allAnswered==false)
+	if ((isset($_POST['hAdded']) && $_POST['hAdded'] == "true") || (!isset($allAnswered) || $allAnswered==false))
 		{
 		$addingInstance = true;
 		}
-	if ((isset($_POST[hDeleted]) && $_POST[hDeleted] == "true"))
+	if ((isset($_POST['hDeleted']) && $_POST['hDeleted'] == "true"))
 		{
 		$deletingInstance = true;
 		}
