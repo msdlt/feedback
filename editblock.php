@@ -691,7 +691,7 @@ echo "	<h2>Sections in this block:</h2>
 		while($rowSections = mysqli_fetch_array($qResSections))
 			{
 			$sectionID = $rowSections['sectionID'];
-			$sectionTitle = $rowSections[title];
+			$sectionTitle = $rowSections['title'];
 		echo "	if (document.getElementById(\"check_$sectionID\").checked == true)
 					{
 					iNoOfSections=iNoOfSections+1;
@@ -777,7 +777,7 @@ echo "	<h2>Hidden sections in this block:</h2>
 										<td>
 											<input type=\"checkbox\" id=\"reinstate_$sectionID\" name=\"reinstateSectionIDs[]\" value=\"$sectionID\"/>
 										</td>
-										<td class=\"question\">Hidden Section: ".$rowSections[title]."</td>
+										<td class=\"question\">Hidden Section: ".$rowSections['title']."</td>
 										<td>Last modified: ".ODBCDateToTextDateShort($rowSections['lastModified'])."</td>
 										<td>&nbsp;</td>
 									</tr>";
@@ -845,7 +845,7 @@ echo "	<h2>Hidden sections in this block:</h2>
 		while($rowSections = mysqli_fetch_array($qResSections))
 			{
 			$sectionID = $rowSections['sectionID'];
-			$sectionTitle = $rowSections[title];
+			$sectionTitle = $rowSections['title'];
 		echo "	if (document.getElementById(\"reinstate_$sectionID\").checked == true)
 					{
 					iNoOfSections=iNoOfSections+1;

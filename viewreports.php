@@ -110,13 +110,13 @@ else
 		if(isset($_POST['ddSurvey']) && $_POST['ddSurvey'] == $rowSurveys['surveyID'])
 			{
 			echo "			<option value=\"".$rowSurveys['surveyID']."\" selected>
-								$rowSurveys[title]
+								".$rowSurveys['title']."
 							</option>";
 			}
 		else
 			{
 			echo "			<option value=\"".$rowSurveys['surveyID']."\">
-								$rowSurveys[title]
+								".$rowSurveys['title']."
 							</option>";
 			}
 		}
@@ -164,7 +164,7 @@ if(isset($_POST['bChooseSurveys']))
 							echo "	<option value=\"0\">Choose a schedule</option>";
 							while($rowSurveyInstances = mysqli_fetch_array($qResSurveyInstances))
 								{
-								$instanceStartDate = $rowSurveyInstances[startDate];
+								$instanceStartDate = $rowSurveyInstances['startDate'];
 								if($instanceStartDate==NULL)
 									{
 									$instanceStartDate = "Unlimited";
@@ -173,7 +173,7 @@ if(isset($_POST['bChooseSurveys']))
 									{
 									$instanceStartDate = ODBCDateToTextDateShort($instanceStartDate);
 									}
-								$instanceFinishDate = $rowSurveyInstances[finishDate];
+								$instanceFinishDate = $rowSurveyInstances['finishDate'];
 								if($instanceFinishDate==NULL)
 									{
 									$instanceFinishDate = "Unlimited";
@@ -182,7 +182,7 @@ if(isset($_POST['bChooseSurveys']))
 									{
 									$instanceFinishDate = ODBCDateToTextDateShort($instanceFinishDate);
 									}
-								echo "<option value=\"".$rowSurveyInstances[surveyInstanceID]."\">" . $rowSurveyInstances[title] . " - " . $instanceStartDate . " to "  . $instanceFinishDate . "</option>";
+								echo "<option value=\"".$rowSurveyInstances['surveyInstanceID']."\">" . $rowSurveyInstances['title'] . " - " . $instanceStartDate . " to "  . $instanceFinishDate . "</option>";
 								}
 							echo "</select>";
 							}

@@ -142,7 +142,7 @@
 				WHERE surveyID = $surveyID";
 	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
-	$surveyTitle = $rowSurvey[title];
+	$surveyTitle = $rowSurvey['title'];
 	$surveyTitleNoSpaces = str_replace(' ', '', $surveyTitle);
 	$surveyTitleNoSpaces = quote_smart($surveyTitleNoSpaces);
 	//echo"surveyTitle = " . $surveyTitle;
@@ -201,9 +201,9 @@ echo "<h2>Total number of students = ".mysqli_num_rows($qResStudents)."</h2>";
 							WHERE surveyInstanceID = $instanceID";
 		$qResSurveyInstance = mysqli_query($qSurveyInstances);
 		$rowSurveyInstance = mysqli_fetch_array($qResSurveyInstance);
-		$surveyInstanceTitle = $rowSurveyInstance[title];
-		$surveyInstanceStartDate = $rowSurveyInstance[startDate];
-		$surveyInstanceFinishDate = $rowSurveyInstance[finishDate];
+		$surveyInstanceTitle = $rowSurveyInstance['title'];
+		$surveyInstanceStartDate = $rowSurveyInstance['startDate'];
+		$surveyInstanceFinishDate = $rowSurveyInstance['finishDate'];
 		echo"<li>For schedule \"$surveyInstanceTitle\"</li>";
 		}
 	if($startDate!="NULL")

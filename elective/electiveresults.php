@@ -383,7 +383,7 @@ function bodyOnLoad(){
 				WHERE surveyID = $surveyID";
 	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
-	$surveyTitle = $rowSurvey[title];
+	$surveyTitle = $rowSurvey['title'];
 	
 	echo "<title>$surveyTitle - Results</title>";
 ?>	

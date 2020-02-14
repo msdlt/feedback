@@ -184,28 +184,28 @@ $qSurvey = "SELECT title, introduction, epilogue, lastModified
 			WHERE surveyID = $surveyID";
 $qResSurvey = mysqli_query($qSurvey);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
-$surveyTitle = $rowSurvey[title];
+$surveyTitle = $rowSurvey['title'];
 //Get info about block
 $qBlock = "SELECT title
 			FROM Blocks 
 			WHERE blockID = $branchBlockID";
 $qResBlock = mysqli_query($qBlock);
 $rowBlock = mysqli_fetch_array($qResBlock);
-$branchBlockTitle = $rowBlock[title];
+$branchBlockTitle = $rowBlock['title'];
 //Get info about section
 $qSection = "SELECT title
 			FROM Sections 
 			WHERE sectionID = $branchSectionID";
 $qResSection = mysqli_query($qSection);
 $rowSection = mysqli_fetch_array($qResSection);
-$branchSectionTitle = $rowSection[title];
+$branchSectionTitle = $rowSection['title'];
 //Get info about question
 $qQuestion = "SELECT title
 			FROM Questions 
 			WHERE questionID = $branchQuestionID";
 $qResQuestion = mysqli_query($qQuestion);
 $rowQuestion = mysqli_fetch_array($qResQuestion);
-$branchQuestionTitle = $rowQuestion[title];
+$branchQuestionTitle = $rowQuestion['title'];
 
 if(IsAuthor($heraldID))
 	{

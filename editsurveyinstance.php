@@ -364,7 +364,7 @@ $qSurveys = "	SELECT title, introduction, epilogue, lastModified
 				WHERE surveyID = $surveyID";
 $qResSurvey = mysqli_query($db_connection, $qSurveys);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
-$surveyTitle = $rowSurvey[title];
+$surveyTitle = $rowSurvey['title'];
 if($surveyInstanceID!="add")
 	{
 	$qSurveyInstances = "	SELECT title, startDate, finishDate
@@ -372,9 +372,9 @@ if($surveyInstanceID!="add")
 							WHERE surveyInstanceID = $surveyInstanceID";
 	$qResSurveyInstance = mysqli_query($db_connection, $qSurveyInstances);
 	$rowSurveyInstance = mysqli_fetch_array($qResSurveyInstance);
-	$surveyInstanceTitle = $rowSurveyInstance[title];
-	$surveyInstanceStartDate = $rowSurveyInstance[startDate];
-	$surveyInstanceFinishDate = $rowSurveyInstance[finishDate];
+	$surveyInstanceTitle = $rowSurveyInstance['title'];
+	$surveyInstanceStartDate = $rowSurveyInstance['startDate'];
+	$surveyInstanceFinishDate = $rowSurveyInstance['finishDate'];
 	}
 elseif ($validationProblem == true)
 	{

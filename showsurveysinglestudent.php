@@ -45,7 +45,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 			{
 			$rowSurvey = mysqli_fetch_array($qResSurvey);
 			$surveyID = $rowSurvey['surveyID'];
-			$surveyInstanceTitle = $rowSurvey[title];
+			$surveyInstanceTitle = $rowSurvey['title'];
 			}
 		}
 	else
@@ -467,10 +467,10 @@ function goTo(URL)
 				WHERE surveyID = $surveyID";
 	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
-	$surveyTitle = $rowSurvey[title];
-	$surveyIntroduction = $rowSurvey[introduction];
-	$surveyEpilogue = $rowSurvey[epilogue];
-	$surveyAllowSave = $rowSurvey[allowSave];
+	$surveyTitle = $rowSurvey['title'];
+	$surveyIntroduction = $rowSurvey['introduction'];
+	$surveyEpilogue = $rowSurvey['epilogue'];
+	$surveyAllowSave = $rowSurvey['allowSave'];
 	
 	echo "<title>$surveyInstanceTitle</title>";
 ?>	

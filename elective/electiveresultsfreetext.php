@@ -261,7 +261,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 					{
 					$dParticipants = "	DELETE FROM $TableForThisUser
 										WHERE participantItemID = $rowFirstCriterionParticipants[participantItemID]";
-					$result_query = @mysqli_query($dParticipants,$db_connection);
+					$result_query = @mysqli_query($db_connection,$dParticipants);
 					if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 						{
 						echo "problem deleting from ParticipantItems" . mysqli_error($db_connection);
@@ -282,7 +282,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 				WHERE surveyID = $surveyID";
 	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
-	$surveyTitle = $rowSurvey[title];
+	$surveyTitle = $rowSurvey['title'];
 	
 	echo "<title>$surveyTitle - Results</title>";
 ?>	

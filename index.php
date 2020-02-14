@@ -96,7 +96,7 @@ if(IsAuthor($heraldID))
 				echo "<tr class=\"matrixRowEven\">";
 				}
 			echo "	<td>";
-			echo "		<a href=\"showsurvey.php?surveyInstanceID=$rowSurveyInstances[surveyInstanceID]\">$rowSurveyInstances[title]</a>";
+			echo "		<a href=\"showsurvey.php?surveyInstanceID=$rowSurveyInstances[surveyInstanceID]\">".$rowSurveyInstances['title']."</a>";
 			echo "	</td>";
 			echo "	<td>";
 			if($rowSurveyInstances['startDate']==NULL)
@@ -168,13 +168,13 @@ elseif(mysqli_num_rows($qResPastSurveyInstances)>0)
 			echo "<tr class=\"matrixRowEven\">";
 			}
 		echo "	<td>";
-		echo "		<a href=\"showsurvey.php?surveyInstanceID=$rowPastSurveyInstances[surveyInstanceID]\">$rowPastSurveyInstances[title]</a>";
+		echo "		<a href=\"showsurvey.php?surveyInstanceID=$rowPastSurveyInstances[surveyInstanceID]\">".$rowPastSurveyInstances['title']."</a>";
 		echo "	</td>";
 		echo "	<td>";
 		echo "		";
 		echo "	</td>";
 		echo "	<td>";
-		echo "		$rowPastSurveyInstances[finishDate]";
+		echo 		$rowPastSurveyInstances['finishDate'];
 		echo "	</td>";
 		echo "	<td>";
 		echo "		<input type=\"button\" name=\"printSurvey\" id=\"printSurvey\" value=\"Print submitted survey\" onClick=\"window.open('printsurvey.php?surveyInstanceID=$rowPastSurveyInstances[surveyInstanceID]','printWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no,scrollbars=yes')\">";

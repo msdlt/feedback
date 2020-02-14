@@ -68,7 +68,7 @@
 				WHERE surveyID = $surveyID";
 	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
-	$surveyTitle = $rowSurvey[title];
+	$surveyTitle = $rowSurvey['title'];
 	$surveyTitleNoSpaces = str_replace(' ', '', $surveyTitle);
 	$surveyTitleNoSpaces = quote_smart($surveyTitleNoSpaces);
 	$filename=$surveyTitleNoSpaces."_Results.xls";

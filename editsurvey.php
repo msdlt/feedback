@@ -817,7 +817,7 @@ if($surveyID !="add")
 		while($rowBlocks = mysqli_fetch_array($qResBlocks))
 			{
 			$blockID = $rowBlocks['blockID'];
-			$blockTitle = $rowBlocks[title];
+			$blockTitle = $rowBlocks['title'];
 		echo "	if (document.getElementById(\"check_$blockID\").checked == true)
 					{
 					iNoOfBlocks=iNoOfBlocks+1;
@@ -904,7 +904,7 @@ if($surveyID !="add")
 											<td>
 												<input type=\"checkbox\" id=\"reinstate_$blockID\" name=\"reinstateBlockIDs[]\" value=\"$blockID\"/>
 											</td>
-											<td class=\"question\">Hidden Block: ".$rowBlocks[title]."</td>
+											<td class=\"question\">Hidden Block: ".$rowBlocks['title']."</td>
 											<td>Last modified: ".ODBCDateToTextDateShort($rowBlocks['lastModified'])."</td>
 											<td></td>
 										</tr>";
@@ -938,7 +938,7 @@ if($surveyID !="add")
 												//show section titles
 								echo "			<tr class=\"$rowClass\">
 													<td></td>
-													<td  colspan=\"3\" valign=\"top\">Section: ".$rowSections[title]."</td>
+													<td  colspan=\"3\" valign=\"top\">Section: ".$rowSections['title']."</td>
 												</tr>";
 												$bRowOdd = !$bRowOdd;
 												}
@@ -971,7 +971,7 @@ if($surveyID !="add")
 		while($rowBlocks = mysqli_fetch_array($qResBlocks))
 			{
 			$blockID = $rowBlocks['blockID'];
-			$blockTitle = $rowBlocks[title];
+			$blockTitle = $rowBlocks['title'];
 		echo "	if (document.getElementById(\"reinstate_$blockID\").checked == true)
 					{
 					iNoOfBlocks=iNoOfBlocks+1;

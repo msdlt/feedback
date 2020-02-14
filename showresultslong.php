@@ -184,7 +184,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 				WHERE surveyID = $surveyID";
 	$qResSurvey = mysqli_query($db_connection, $qSurveys);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
-	$surveyTitle = $rowSurvey[title];
+	$surveyTitle = $rowSurvey['title'];
 	
 	echo "<title>$surveyTitle - Results</title>";
 ?>	
@@ -235,9 +235,9 @@ echo "<h2>Total number of students = ".mysqli_num_rows($qResStudents)."</h2>";
 							WHERE surveyInstanceID = $instanceID";
 		$qResSurveyInstance = mysqli_query($db_connection, $qSurveyInstances);
 		$rowSurveyInstance = mysqli_fetch_array($qResSurveyInstance);
-		$surveyInstanceTitle = $rowSurveyInstance[title];
-		$surveyInstanceStartDate = $rowSurveyInstance[startDate];
-		$surveyInstanceFinishDate = $rowSurveyInstance[finishDate];
+		$surveyInstanceTitle = $rowSurveyInstance['title'];
+		$surveyInstanceStartDate = $rowSurveyInstance['startDate'];
+		$surveyInstanceFinishDate = $rowSurveyInstance['finishDate'];
 		echo"<li>For schedule \"$surveyInstanceTitle\"</li>";
 		}
 	if($startDate!="NULL")

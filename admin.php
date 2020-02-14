@@ -142,7 +142,7 @@ else
 			<td>
 				<input type=\"checkbox\" id=\"check_$surveyID\" name=\"checkSurveyIDs[]\" value=\"$surveyID\"/>
 			</td>
-			<td>$rowSurveys[title]</td>
+			<td>".$rowSurveys['title']."</td>
 			<td>".ODBCDateToTextDateShort($rowSurveys['lastModified'])."</td>
 			<td><input type=\"button\" id=\"scheduleSurvey_".$surveyID."\" name=\"scheduleSurvey_".$surveyID."\" value=\"Schedules\" onClick=\"goTo('schedulesurvey.php?surveyID=$surveyID')\"></td>
 			<td><input type=\"button\" id=\"editSurvey_".$surveyID."\" name=\"editSurvey_".$surveyID."\" value=\"Edit\" onClick=\"goTo('editsurvey.php?surveyID=$surveyID')\"></td>
@@ -171,7 +171,7 @@ mysqli_data_seek($qResSurveys, 0);
 while($rowSurveys = mysqli_fetch_array($qResSurveys))
 	{
 	$surveyID = $rowSurveys['surveyID'];
-	$surveyTitle = $rowSurveys[title];
+	$surveyTitle = $rowSurveys['title'];
 echo "			if (document.getElementById(\"check_$surveyID\").checked == true)
 					{
 					iNoOfSurveys=iNoOfSurveys+1;

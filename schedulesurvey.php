@@ -61,7 +61,7 @@ $qSurveys = "SELECT title
 			WHERE surveyID = $surveyID";
 $qResSurvey = mysqli_query($db_connection, $qSurveys);
 $rowSurvey = mysqli_fetch_array($db_connection, $qResSurvey);
-$surveyTitle = $rowSurvey[title];
+$surveyTitle = $rowSurvey['title'];
 if(IsAuthor($heraldID))
 	{
 	require_once("includes/html/adminheadernew.html");
@@ -118,15 +118,15 @@ echo "	<div class=\"questionNormal\">
 	$bRowOdd = true;
 	while($rowSurveyInstances = mysqli_fetch_array($qResSurveyInstances))
 		{
-		$surveyInstanceTitle = $rowSurveyInstances[title];
-		$surveyInstanceID = $rowSurveyInstances[surveyInstanceID];
-		if($rowSurveyInstances[startDate]==NULL)
+		$surveyInstanceTitle = $rowSurveyInstances['title'];
+		$surveyInstanceID = $rowSurveyInstances['surveyInstanceID'];
+		if($rowSurveyInstances['startDate']==NULL)
 			{
 			$surveyInstanceStartDate = "Unlimited";
 			}
 		else
 			{
-			$surveyInstanceStartDate = ODBCDateToTextDateShort($rowSurveyInstances[startDate]);
+			$surveyInstanceStartDate = ODBCDateToTextDateShort($rowSurveyInstances['startDate']);
 			}
 		if($rowSurveyInstances[finishDate]==NULL)
 			{
@@ -134,7 +134,7 @@ echo "	<div class=\"questionNormal\">
 			}
 		else
 			{
-			$surveyInstanceFinishDate = ODBCDateToTextDateShort($rowSurveyInstances[finishDate]);
+			$surveyInstanceFinishDate = ODBCDateToTextDateShort($rowSurveyInstances['finishDate']);
 			}
 		if($bRowOdd)
 			{
@@ -170,8 +170,8 @@ echo "	<script language=\"JavaScript\" type=\"text/javascript\" >
 mysqli_data_seek($qResSurveyInstances, 0);
 while($rowSurveyInstances = mysqli_fetch_array($qResSurveyInstances))
 	{
-	$surveyInstanceID = $rowSurveyInstances[surveyInstanceID];
-	$surveyInstanceTitle = $rowSurveyInstances[title];
+	$surveyInstanceID = $rowSurveyInstances['surveyInstanceID'];
+	$surveyInstanceTitle = $rowSurveyInstances['title'];
 echo "			if (document.getElementById(\"check_$surveyInstanceID\").checked == true)
 					{
 					iNoOfInstances=iNoOfInstances+1;

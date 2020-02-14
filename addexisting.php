@@ -149,7 +149,7 @@ if(isset($_GET['surveyID']))
 				WHERE surveyID = $surveyID";
 	$qResSurvey = mysqli_query($db_connection, $qSurvey);
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
-	$surveyTitle = $rowSurvey[title];
+	$surveyTitle = $rowSurvey['title'];
 	$IdName = "blockID";
 	if(isset($_GET['blockID']))
 		{
@@ -162,7 +162,7 @@ if(isset($_GET['surveyID']))
 					WHERE blockID = $blockID";
 		$qResBlock = mysqli_query($db_connection, $qBlock);
 		$rowBlock = mysqli_fetch_array($qResBlock);
-		$blockTitle = $rowBlock[title];
+		$blockTitle = $rowBlock['title'];
 		$IdName = "sectionID";
 		if(isset($_GET['sectionID']))
 			{
@@ -175,7 +175,7 @@ if(isset($_GET['surveyID']))
 						WHERE sectionID = $sectionID";
 			$qResSection = mysqli_query($db_connection, $qSection);
 			$rowSection = mysqli_fetch_array($qResSection);
-			$sectionTitle = $rowSection[title];
+			$sectionTitle = $rowSection'[title'];
 			$IdName = "questionID";
 			if(isset($_GET['questionID']))
 				{
@@ -188,7 +188,7 @@ if(isset($_GET['surveyID']))
 							WHERE questionID = $questionID";
 				$qResQuestion = mysqli_query($db_connection, $qQuestion);
 				$rowQuestion = mysqli_fetch_array($qResQuestion);
-				$questionTitle = $rowQuestion[title];
+				$questionTitle = $rowQuestion['title'];
 				$IdName = "itemID";
 				}
 			}
@@ -415,7 +415,7 @@ else
 									//show section titles
 					echo "			<tr class=\"$rowClass\">
 										<td></td>
-										<td colspan=\"2\" valign=\"top\">".$rowChildrenOfObject[title]."</td>
+										<td colspan=\"2\" valign=\"top\">".$rowChildrenOfObject['title']."</td>
 									</tr>";
 									$bRowOdd = !$bRowOdd;
 									}
@@ -448,7 +448,7 @@ mysqli_data_seek($qResObjects, 0);
 while($rowObjects = mysqli_fetch_array($qResObjects))
 {
 $objectID = $rowObjects[$IdName];
-$objectTitle = $rowObjects[title];
+$objectTitle = $rowObjects['title'];
 echo "		if (document.getElementById(\"check_$objectID\").checked == true)
 				{
 				iNoOfObjects=iNoOfObjects+1;

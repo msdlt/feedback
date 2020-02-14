@@ -366,13 +366,13 @@ else
 		if((isset($_POST['ddSurvey']) && $_POST['ddSurvey'] == $rowSurveys['surveyID'])||(isset($_POST['surveyID']) && $_POST['surveyID'] == $rowSurveys['surveyID']))
 			{
 			echo "			<option value=\"".$rowSurveys['surveyID']."\" selected>
-								$rowSurveys[title]
+								".$rowSurveys['title']."
 							</option>";
 			}
 		else
 			{
 			echo "			<option value=\"".$rowSurveys['surveyID']."\">
-								$rowSurveys[title]
+								".$rowSurveys['title']."
 							</option>";
 			}
 		}
@@ -495,7 +495,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 									{
 									$instanceFinishDate = ODBCDateToTextDateShort($instanceFinishDate);
 									}
-								echo "<option value=\"".$rowSurveyInstances[surveyInstanceID]."\"". ($instanceID == $rowSurveyInstances[surveyInstanceID]?"selected":"").">" . $rowSurveyInstances[title] . " - " . $instanceStartDate . " to "  . $instanceFinishDate . "</option>";
+								echo "<option value=\"".$rowSurveyInstances['surveyInstanceID']."\"". ($instanceID == $rowSurveyInstances['surveyInstanceID']?"selected":"").">" . $rowSurveyInstances['title'] . " - " . $instanceStartDate . " to "  . $instanceFinishDate . "</option>";
 								}
 							echo "</select>";
 							}
