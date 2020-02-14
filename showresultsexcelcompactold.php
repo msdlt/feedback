@@ -95,9 +95,9 @@
 		while($rowQuestionItems = mysqli_fetch_array($qResQuestionItems))
 			{
 			$aQuestionItem = array();
-			$aQuestionItem[0] = $rowQuestionItems[itemID];
-			$aQuestionItem[1] = $rowQuestionItems[questionText];
-			$aQuestionItem[2] = $rowQuestionItems[itemText];
+			$aQuestionItem[0] = $rowQuestionItems['itemID'];
+			$aQuestionItem[1] = $rowQuestionItems['questionText'];
+			$aQuestionItem[2] = $rowQuestionItems['itemText'];
 			$aQuestionToAnalyseByItems[$i][$itemCounter] = $aQuestionItem;
 			//get the IDs of participants who answered this item in:
 			// - the specified instances survey
@@ -410,7 +410,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 										AND Answers.sectionID = $sectionID
 										AND Answers.questionID = $questionID
 										AND Answers.answerID = AnswerItems.answerID
-										AND AnswerItems.itemID = $rowItems[itemID]";
+										AND AnswerItems.itemID = ".$rowItems['itemID'];
 						$qResCountItems = mysqli_query($db_connection, $qCountItems);
 						
 						$NoOfItems = mysqli_num_rows($qResCountItems);
@@ -542,7 +542,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					//get number of participants who chose this item
 					$qCountItems = "SELECT Answers.answerID
 									FROM Answers, AnswerItems, SurveyInstances, SurveyInstanceParticipants  
-									WHERE AnswerItems.itemID = $rowItems[itemID] ".
+									WHERE AnswerItems.itemID = ".$rowItems['itemID'] .
 									($strStatusQuery!=""?$strStatusQuery:"").
 									($instanceID!=0?" AND SurveyInstances.surveyInstanceID = $instanceID" : " AND SurveyInstances.surveyID = $surveyID").
 									($startDate!="NULL"?" AND SurveyInstanceParticipants.date >= '$startDate'":"").

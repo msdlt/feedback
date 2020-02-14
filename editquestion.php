@@ -602,7 +602,7 @@ if($questionID !="add")
 									{
 									while($rowItems = mysqli_fetch_array($qResItems))
 										{
-										$itemID = $rowItems[itemID];
+										$itemID = $rowItems['itemID'];
 										$itemTitle = $rowItems['text'];
 										$qBranchesFromItem = "	SELECT BranchDestinations.blockID,BranchDestinations.sectionID,BranchDestinations.questionID
 																FROM Branches, BranchDestinations
@@ -631,7 +631,7 @@ if($questionID !="add")
 												<input type=\"checkbox\" id=\"check_$itemID\" name=\"checkItemIDs[]\" value=\"$itemID\"/>
 											</td>
 											<td>".$rowItems['text']."</td>";
-										if($itemIsInvolvedInBranching)
+										if(isset($itemIsInvolvedInBranching) && $itemIsInvolvedInBranching)
 											{
 											echo"<td width = \"5px\"><input type=\"button\" id=\"editBranch_$itemID\" name=\"editBranch_$itemID\" value=\"Edit branch(es)\" onClick=\"goTo('editbranch.php?&surveyID=$surveyID&blockID=$blockID&sectionID=$sectionID&questionID=$questionID&itemID=$itemID&method=edit')\" /></td>";
 											}

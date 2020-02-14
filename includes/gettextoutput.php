@@ -171,13 +171,13 @@ function getTextOutput($surveyInstanceID, $heraldID, $db_connection)
 									//get item text for chosen item
 									$qItems = "SELECT text
 											FROM Items
-											WHERE itemID = $rowItemAnswered[itemID]";
+											WHERE itemID = ".$rowItemAnswered['itemID'];
 									$qResItems = mysqli_query($db_connection, $qItems);
 									$rowItems = mysqli_fetch_array($qResItems);
 									$textOutput = $textOutput . $rowItems['text'];
 									}
 								$textOutput = $textOutput . "</td></tr>";
-								if($rowQuestions[comments]=="true")
+								if($rowQuestions['comments']=="true")
 									{
 									if(mysqli_num_rows($qResCommentAnswered)==1)
 										{
@@ -200,7 +200,7 @@ function getTextOutput($surveyInstanceID, $heraldID, $db_connection)
 										{
 										$qItems = "SELECT text
 											FROM Items
-											WHERE itemID = $rowItemAnswered[itemID]";
+											WHERE itemID = ".$rowItemAnswered['itemID'];
 										$qResItems = mysqli_query($db_connection, $qItems);
 										$rowItems = mysqli_fetch_array($qResItems);
 										if($firstItem == true)
@@ -237,7 +237,7 @@ function getTextOutput($surveyInstanceID, $heraldID, $db_connection)
 									//get item text for chosen item
 									$qItems = "SELECT text
 											FROM Items
-											WHERE itemID = $rowItemAnswered[itemID]";
+											WHERE itemID = ".$rowItemAnswered['itemID'];
 									$qResItems = mysqli_query($db_connection, $qItems);
 									$rowItems = mysqli_fetch_array($qResItems);
 									$textOutput = $textOutput . $rowItems['text'];

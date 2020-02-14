@@ -227,7 +227,7 @@ else
 					while($rowQuestions = mysqli_fetch_array($qResQuestions))
 						{
 						$questionID = $rowQuestions['questionID'];
-						if($rowQuestions[comments]=="true" || $rowQuestions['questionTypeID'] == 4 || $rowQuestions['questionTypeID'] == 5)
+						if($rowQuestions['comments']=="true" || $rowQuestions['questionTypeID'] == 4 || $rowQuestions['questionTypeID'] == 5)
 							{
 							//find out if this question already has comments/text from this user
 							$qCommentAnswered = "	SELECT AnswerComments.text
@@ -269,13 +269,13 @@ else
 									//get item text for chosen item
 									$qItems = "SELECT text
 											FROM Items
-											WHERE itemID = $rowItemAnswered[itemID]";
+											WHERE itemID = ".$rowItemAnswered['itemID'];
 									$qResItems = mysqli_query($db_connection, $qItems);
 									$rowItems = mysqli_fetch_array($qResItems);
 									echo $rowItems['text'];
 									}
 								echo "</td></tr>";
-								if($rowQuestions[comments]=="true")
+								if($rowQuestions['comments']=="true")
 									{
 									echo"<tr><td></td><td colspan=\"2\">";
 									if(mysqli_num_rows($qResCommentAnswered)==1)
@@ -302,7 +302,7 @@ else
 										{
 										$qItems = "SELECT text
 											FROM Items
-											WHERE itemID = $rowItemAnswered[itemID]";
+											WHERE itemID = ".$rowItemAnswered['itemID'];
 										$qResItems = mysqli_query($db_connection, $qItems);
 										$rowItems = mysqli_fetch_array($qResItems);
 										if($firstItem == true)
@@ -317,7 +317,7 @@ else
 										}
 									}
 								echo "</td></tr>";
-								if($rowQuestions[comments]=="true")
+								if($rowQuestions['comments']=="true")
 									{
 									echo"<tr><td></td><td colspan=\"2\">";
 									if(mysqli_num_rows($qResCommentAnswered)==1)
@@ -343,13 +343,13 @@ else
 									//get item text for chosen item
 									$qItems = "SELECT text
 											FROM Items
-											WHERE itemID = $rowItemAnswered[itemID]";
+											WHERE itemID = ".$rowItemAnswered['itemID'];
 									$qResItems = mysqli_query($db_connection, $qItems);
 									$rowItems = mysqli_fetch_array($qResItems);
 									echo $rowItems['text'];
 									}
 								echo "</td></tr>";
-								if($rowQuestions[comments]=="true")
+								if($rowQuestions['comments']=="true")
 									{
 									echo"<tr><td></td><td colspan=\"2\">";
 									if(mysqli_num_rows($qResCommentAnswered)==1)
@@ -415,7 +415,7 @@ else
 									echo $rowDateAnswered['date'];
 									}
 								echo "</td></tr>";
-								if($rowQuestions[comments]=="true")
+								if($rowQuestions['comments']=="true")
 									{
 									echo"<tr><td></td><td colspan=\"2\">";
 									if(mysqli_num_rows($qResCommentAnswered)==1)

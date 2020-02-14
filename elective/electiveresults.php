@@ -595,7 +595,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					//get number of participants who chose this item
 					$qCountItems = "SELECT DISTINCT Answers.answerID
 									FROM Answers, AnswerItems, $TableForThisUser, SurveyInstances, SurveyInstanceParticipants
-									WHERE AnswerItems.itemID = $rowItems[itemID] 
+									WHERE AnswerItems.itemID = ". $rowItems['itemID'] ."
 									AND SurveyInstances.surveyID = $surveyID
 									AND SurveyInstanceParticipants.status = 2 ".
 									($startDate!="NULL"?" AND SurveyInstanceParticipants.date >= '$startDate'":"").

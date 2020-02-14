@@ -1004,12 +1004,12 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 									if($rowBranchDestinations['sectionID'] == $sectionID)
 										{
 										//if it's in the same section as this question, then the branching item must have the same section instance number
-										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations[itemID] . "_i" . $inst. "_si" . $sinst;
+										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations['itemID'] . "_i" . $inst. "_si" . $sinst;
 										}
 									else
 										{
 										//otherwise it must have an section instance of 1 - sections which are instanceable can only branch to questions within their own section
-										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations[itemID] . "_i" . $inst. "_si1";
+										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations['itemID'] . "_i" . $inst. "_si1";
 										}
 									}
 								else
@@ -1018,12 +1018,12 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 									if($rowBranchDestinations['sectionID'] == $sectionID)
 										{
 										//if it's in the same section as this question, then the branching item must have the same section instance number
-										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations[itemID] . "_i1". "_si" . $sinst;
+										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations['itemID'] . "_i1". "_si" . $sinst;
 										}
 									else
 										{
 										//otherwise it must have an section instance of 1 - sections which are instanceable can only branch to questions within their own section
-										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations[itemID] . "_i1". "_si1";
+										$aQuestions[$questionNo][6] = $rowBranchDestinations['blockID'] . "_" . $rowBranchDestinations['sectionID'] . "_" . $rowBranchDestinations['questionID'] . "_" . $rowBranchDestinations['itemID'] . "_i1". "_si1";
 										}
 									}
 								$aQuestions[$questionNo][7] = $rowBranchDestinations['questionTypeID'];
@@ -3104,7 +3104,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 								else if(mysqli_num_rows($qResItemAnswered)==1)
 									{
 									$rowItemAnswered = mysqli_fetch_array($qResItemAnswered);
-									$mchoicID = $blockID . "_" . $sectionID . "_" . $questionID . "_" . $rowItemAnswered[itemID] . "_i" . $inst . "_si" . $sinst;
+									$mchoicID = $blockID . "_" . $sectionID . "_" . $questionID . "_" . $rowItemAnswered['itemID'] . "_i" . $inst . "_si" . $sinst;
 									echo "	<script language=\"javascript\" type=\"text/javascript\">";
 										echo "document.getElementById(\"$mchoicID\").click();";
 									echo "	</script>";
