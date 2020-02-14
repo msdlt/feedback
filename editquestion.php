@@ -136,7 +136,7 @@ else if (isset($_POST['bDelete'])&&$_POST['bDelete']!="")
 	for ($i=0;$i<count($aItems);$i++)
 		{
 		//find out if there are any results for this question
-		if(AreThereAnyResultsForThisObject($surveyID, $blockID, $sectionID, $questionID, $aItems[$i])==true)
+		if(AreThereAnyResultsForThisObject($db_connection, $surveyID, $blockID, $sectionID, $questionID, $aItems[$i])==true)
 			{
 			//hide the question
 			$uQuestionItems = "	UPDATE QuestionItems

@@ -36,7 +36,7 @@
 					//delete comments
 					$delComments = "	DELETE FROM AnswerComments
 										WHERE answerID = $rowAnswers[answerID]";
-					$delResComments = @mysqli_query($delComments,$db_connection);
+					$delResComments = @mysqli_query($db_connection,$delComments);
 					if (($delResComments == false) && mysqli_affected_rows($db_connection) == 0)
 						{
 						echo "problem deleting from AnswerComments " . mysqli_error($db_connection);
@@ -44,7 +44,7 @@
 					//delete items
 					$delItems = "		DELETE FROM AnswerItems
 										WHERE answerID = $rowAnswers[answerID]";
-					$delResItems = @mysqli_query($delItems,$db_connection);
+					$delResItems = @mysqli_query($db_connection,$delItems);
 					if (($delResItems == false) && mysqli_affected_rows($db_connection) == 0)
 						{
 						echo "problem deleting from AnswerItems " . mysqli_error($db_connection);
@@ -52,7 +52,7 @@
 					//delete dates
 					$delDates = "		DELETE FROM AnswerDates
 										WHERE answerID = $rowAnswers[answerID]";
-					$delResDates = @mysqli_query($delDates,$db_connection);
+					$delResDates = @mysqli_query($db_connection,$delDates);
 					if (($delResDates == false) && mysqli_affected_rows($db_connection) == 0)
 						{
 						echo "problem deleting from AnswerDates " . mysqli_error($db_connection);
@@ -63,7 +63,7 @@
 			$delAnswers = "	DELETE FROM Answers
 							WHERE surveyInstanceID = $instanceID
 							AND heraldID = '$aStudents[$i]'";
-			$delResAnswers = @mysqli_query($delAnswers,$db_connection);
+			$delResAnswers = @mysqli_query($db_connection,$delAnswers);
 			if (($delResAnswers == false) && mysqli_affected_rows($db_connection) == 0)
 				{
 				echo "problem deleting from Answers " . mysqli_error($db_connection);
@@ -73,7 +73,7 @@
 			$delSIP = "	DELETE FROM SurveyInstanceParticipants
 							WHERE surveyInstanceID = $instanceID
 							AND heraldID = '$aStudents[$i]'";
-			$delResSIP = @mysqli_query($delSIP,$db_connection);
+			$delResSIP = @mysqli_query($db_connection, $delSIP);
 			if (($delResSIP == false) && mysqli_affected_rows($db_connection) == 0)
 				{
 				echo "problem deleting from SurveyInstanceParticipants " . mysqli_error($db_connection);
@@ -140,7 +140,7 @@ $qStudents = "	SELECT DISTINCT SurveyInstanceParticipants.heraldID
 				WHERE SurveyInstances.surveyID = $surveyID
 				AND SurveyInstanceParticipants.surveyInstanceID = SurveyInstances.surveyInstanceID ".
 				($instanceID!=0?" AND SurveyInstances.surveyInstanceID = $instanceID" : "");
-$qResStudents = @mysqli_query($qStudents, $db_connection);
+$qResStudents = @mysqli_query($db_connection, $qStudents);
 if (($qResStudents == false))
 	{
 	echo "problem querying SurveyInstanceParticipants" . mysqli_error($db_connection);

@@ -278,7 +278,7 @@ function bodyOnLoad(){
 						{
 						$iParticipantItems = "	INSERT INTO $TableForThisUser
 										VALUES(0,$rowParticipants['heraldID'],$QuestionToAnalyseByBlockID,$QuestionToAnalyseBySectionID,$QuestionToAnalyseByQuestionID,0,$rowParticipants[instance],$rowParticipants[sinstance])";
-						$result_query = @mysqli_query($iParticipantItems,$db_connection);
+						$result_query = @mysqli_query($db_connection,$iParticipantItems);
 						if (($result_query == false) || mysqli_affected_rows($db_connection) == 0)
 							{
 							echo "problem inserting into ParticipantItems" . mysqli_error();
@@ -291,7 +291,7 @@ function bodyOnLoad(){
 				{
 				$iParticipantItems = "	INSERT INTO $TableForThisUser
 									VALUES(0,$rowParticipants['heraldID'],$QuestionToAnalyseByBlockID,$QuestionToAnalyseBySectionID,$QuestionToAnalyseByQuestionID,0,$rowParticipants[instance],$rowParticipants[sinstance])";
-					$result_query = @mysqli_query($iParticipantItems,$db_connection);
+					$result_query = @mysqli_query($db_connection,$iParticipantItems);
 					if (($result_query == false) || mysqli_affected_rows($db_connection) == 0)
 						{
 						echo "problem inserting into ParticipantItems" . mysqli_error();
@@ -339,7 +339,7 @@ function bodyOnLoad(){
 								if($QuestionToAnalyseBySectionID == $rowParticipantExists['sectionID'])
 									{
 									//in same section and block so sinstance must match
-									if($rowParticipantExists['sinstance'] == $rowFirstCriterionParticipants[sinstance])
+									if($rowParticipantExists['sinstance'] == $rowFirstCriterionParticipants['sinstance'])
 										{
 										//sintance matches
 										$instanceMatch = true;
@@ -361,8 +361,8 @@ function bodyOnLoad(){
 				if($deleteItem == true)
 					{
 					$dParticipants = "	DELETE FROM $TableForThisUser
-										WHERE participantItemID = $rowFirstCriterionParticipants[participantItemID]";
-					$result_query = @mysqli_query($dParticipants,$db_connection);
+										WHERE participantItemID = ".$rowFirstCriterionParticipants['participantItemID'];
+					$result_query = @mysqli_query($db_connection,$dParticipants);
 					if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 						{
 						echo "problem deleting from ParticipantItems" . mysqli_error();

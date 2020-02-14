@@ -4,7 +4,7 @@
 	require_once("includes/isauthor.php");
 	require_once("includes/issuperauthor.php");
 	require_once("includes/limitstring.php");
-	require_once("includes/arethereanyresultsforthisobject.php");
+	//require_once("includes/arethereanyresultsforthisobject.php");
 	require_once("includes/quote_smart.php");
 ?>
 <?php
@@ -86,7 +86,7 @@ if (isset($_POST['addBranch'])||isset($_POST['deleteBranch']))
 			//if not, delete the branch
 			$delBranch = "	DELETE FROM Branches
 							WHERE branchID = $iBranchID";
-			$result_query = @mysqli_query($delBranch,$db_connection);
+			$result_query = @mysqli_query($db_connection, $delBranch);
 			if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 				{
 				echo "problem deleting from Branches" . mysqli_error();

@@ -141,7 +141,7 @@ else if (isset($_POST['bDelete'])&&$_POST['bDelete']!="")
 	for ($i=0;$i<count($aSections);$i++)
 		{
 		//find out if there are any results for this section
-		if(AreThereAnyResultsForThisObject($surveyID, $blockID, $aSections[$i])==true)
+		if(AreThereAnyResultsForThisObject($db_connection, $surveyID, $blockID, $aSections[$i])==true)
 			{
 			//hide the section
 			$uBlockSections = "	UPDATE BlockSections

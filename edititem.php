@@ -14,7 +14,7 @@ function addItem($text, $title, $lastModified, $questionID)
 	//Create new question with values from this form
 	$iItems = "	INSERT INTO Items
 					VALUES(0,$text,$title,$lastModified)";
-	$result_query = @mysqli_query($iItems,$db_connection);
+	$result_query = @mysqli_query($db_connection, $iItems);
 	$itemID = mysqli_insert_id();
 	if (($result_query == false))
 		{
@@ -26,7 +26,7 @@ function addItem($text, $title, $lastModified, $questionID)
 	$qMaxPosition = "	SELECT MAX(position) as maxPosition
 						FROM QuestionItems
 						WHERE questionID = $questionID";
-	$result_query = @mysqli_query($qMaxPosition,$db_connection);
+	$result_query = @mysqli_query($db_connection, $qMaxPosition);
 	if (($result_query == false))
 		{
 		echo "problem querying qMaxPosition" . mysqli_error();
@@ -142,7 +142,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 								title = $updateTitle,
 								lastModified = $updateLastModified
 								WHERE itemID = $itemID";
-					$result_query = @mysqli_query($uItems,$db_connection);
+					$result_query = @mysqli_query($db_connection, $uItems);
 					if (($result_query == false))
 						{
 						echo "problem updating Items" . mysqli_error();

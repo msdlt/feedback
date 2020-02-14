@@ -209,7 +209,7 @@ else if (isset($_POST['bDelete'])&& $_POST['bDelete']!= "")
 	for ($i=0;$i<count($aBlocks);$i++)
 		{
 		//find out if there are any results for this block
-		if(AreThereAnyResultsForThisObject($surveyID, $aBlocks[$i])==true)
+		if(AreThereAnyResultsForThisObject($db_connection, $surveyID, $aBlocks[$i])==true)
 			{
 			//hide the block
 			$uSurveyBlocks = "	UPDATE SurveyBlocks

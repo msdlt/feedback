@@ -700,7 +700,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 							SET answerID = $answerID,
 							text = $text
 							WHERE answerCommentID = $rowAnswerComments[answerCommentID]";
-			$result_query = @mysqli_query($uAnswerComments,$db_connection);
+			$result_query = @mysqli_query($db_connection,$uAnswerComments);
 			//note: don't check if mysqli_affected_rows($db_connection) == 0 for
 			//updates as my_sql returns 0 if the updated values are the same as 
 			//those already there.

@@ -1,6 +1,6 @@
 <?php
 
-function AreThereAnyResultsForThisObject($surveyID, $blockID, $sectionID = false, $questionID = false, $itemID = false)
+function AreThereAnyResultsForThisObject($db_connection, $surveyID, $blockID, $sectionID = false, $questionID = false, $itemID = false)
 	{
 	//This routine needs to find out whether there are any results for this object within this survey
 	//This is used to decide whether the object is simpy hidden when deleted or actually deleted
@@ -16,7 +16,7 @@ function AreThereAnyResultsForThisObject($surveyID, $blockID, $sectionID = false
 					.($questionID != false ? " AND Answers.questionID = $questionID"
 					.($itemID != false ? " AND AnswerItems.itemID = $itemID
 					AND AnswerItems.answerID = Answers.answerID" : ""): ""): "");
-	$qResAnyAnswers = @mysqli_query($qAnyAnswers, $db_connection);
+	$qResAnyAnswers = @mysqli_query($db_connection, $qAnyAnswers);
 	if($qResAnyAnswers == false)
 		{
 		echo "Problem querying Answers table in AreThereAnyResultsForThisObject";
