@@ -20,7 +20,7 @@ function getTextOutput($surveyInstanceID, $heraldID, $db_connection)
 			{
 			$rowSurvey = mysqli_fetch_array($qResSurvey);
 			$surveyID = $rowSurvey['surveyID'];
-			$surveyInstanceTitle = $rowSurvey[title];
+			$surveyInstanceTitle = $rowSurvey['title'];
 			}
 		}
 	else
