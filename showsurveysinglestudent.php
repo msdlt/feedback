@@ -359,7 +359,7 @@ function goTo(URL)
 										echo "aQuestions[".$questionNo."][5]='div".$blockID."_i".$inst."';\n";
 										echo "aQuestions[".$questionNo."][6]='div".$blockID."_".$sectionID."_i".$inst."_si".$sinst."';\n";
 										//don't asign a question div for matrix questoins, these canot be branched to individually
-										if ($rowSections[sectionTypeID] == 1)									
+										if ($rowSections['sectionTypeID'] == 1)									
 											{
 											echo "aQuestions[".$questionNo."][7]='div".$blockID."_".$sectionID."_".$questionID."_i".$inst."_si".$sinst."';\n";
 											}
@@ -1711,7 +1711,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 						mysqli_data_seek($qResQuestions, 0);
 						}
 					//check section type
-					switch ($rowSections[sectionTypeID]) 
+					switch ($rowSections['sectionTypeID']) 
 						{
 						case 1:
 							{

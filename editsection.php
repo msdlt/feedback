@@ -499,7 +499,7 @@ echo"
 	</tr>
 	<tr>
 		<td>Last modified:</td>
-		<td>".ODBCDateToTextDateShort($sectionLastModified)."</td>
+		<td>".(isset($sectionLastModified)?ODBCDateToTextDateShort($sectionLastModified):'Not set')."</td>
 	</tr>
 	<tr>
 		<td valign=\"top\">Introduction:</td>
@@ -520,11 +520,11 @@ echo"
 			while($rowSectionTypes = mysqli_fetch_array($qResSectionTypes))
 				{
 echo "			<option ";
-				if($rowSectionTypes[sectionTypeID]==$sectionType)
+				if($rowSectionTypes['sectionTypeID']==$sectionType)
 					{
 					echo " selected ";
 					}
-					echo "value=\"$rowSectionTypes[sectionTypeID]\">$rowSectionTypes[type]</option>";
+					echo "value=\"".$rowSectionTypes['sectionTypeID']."\">".$rowSectionTypes['type']."</option>";
 				}
 echo "		</select> 
 		</td>
@@ -586,7 +586,7 @@ if($sectionID !="add")
 							AND surveyID = $surveyID";
 		$qResBlockPosition = mysqli_query($db_connection, $qBlockPosition);
 		$rowBlockPosition = mysqli_fetch_array($qResBlockPosition);
-		$blockPosition = $rowBlockPosition[position];
+		$blockPosition = $rowBlockPosition['position'];
 		//then find out no of questions which occur in previous blocks:
 		$qQuestionsInPreviousBlocks = "	SELECT SectionQuestions.questionID
 										FROM SurveyBlocks, BlockSections, SectionQuestions
@@ -605,7 +605,7 @@ if($sectionID !="add")
 								AND blockID = $blockID";
 		$qResSectionPosition = mysqli_query($db_connection, $qSectionPosition);
 		$rowSectionPosition = mysqli_fetch_array($qResSectionPosition);
-		$sectionPosition = $rowSectionPosition[position];
+		$sectionPosition = $rowSectionPosition['position'];
 		//then find out questions which occur before this one:
 		$qPreviousQuestions = "	SELECT SectionQuestions.questionID
 						FROM BlockSections, SectionQuestions

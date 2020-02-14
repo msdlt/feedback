@@ -544,7 +544,7 @@ echo "			<option ";
 					{
 					echo " selected ";
 					}
-					echo "value=\"$rowQuestionTypes['questionTypeID']\">$rowQuestionTypes[type]</option>";
+					echo "value=\"".$rowQuestionTypes['questionTypeID']."\">".$rowQuestionTypes['type']."</option>";
 				}
 echo "		</select> 
 		</td>
