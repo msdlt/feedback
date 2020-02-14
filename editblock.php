@@ -406,7 +406,7 @@ if($blockID!="add")
 	$blockInstanceable = $rowBlock['instanceable'];
 	$blockLastModified = $rowBlock['lastModified'];
 	}
-elseif ($validationProblem == true)
+elseif (isset($validationProblem) && $validationProblem == true)
 	{
 	$blockTitle = $_POST['tTitle'];
 	$blockText = $_POST['tText'];

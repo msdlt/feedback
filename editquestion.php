@@ -456,7 +456,7 @@ if($questionID!="add")
 	$questionType = $rowQuestion['questionTypeID'];
 	$questionLastModified = $rowQuestion['lastModified'];
 	}
-elseif ($validationProblem == true)
+elseif (isset($validationProblem) && $validationProblem == true)
 	{
 	$questionTitle = $_POST['tTitle'];
 	$questionComments = $_POST['rComments'];

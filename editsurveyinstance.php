@@ -376,7 +376,7 @@ if($surveyInstanceID!="add")
 	$surveyInstanceStartDate = $rowSurveyInstance['startDate'];
 	$surveyInstanceFinishDate = $rowSurveyInstance['finishDate'];
 	}
-elseif ($validationProblem == true)
+elseif (isset($validationProblem) && $validationProblem == true)
 	{
 	$surveyInstanceTitle = $_POST['tTitle'];
 	$surveyInstanceStartDate = date("Y-m-d", mktime(0, 0, 0, $_POST['startMonth'], $_POST['startDay'], $_POST['startYear'])); 
@@ -410,7 +410,7 @@ echo "<h1>Schedule: $surveyInstanceTitle</h1>";
 echo "<form id=\"frmEdit\" name=\"frmEdit\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\" onSubmit=\"return ValidateForm(this)\">
 <div class=\"block\">
 <h2>Survey schedule properties:</h2>";
-if($validationProblem==true)
+if(isset($validationProblem) && $validationProblem==true)
 	{
 	echo "<strong>Please fix the following errors:</strong><br/>";
 	if($title_check > 0)

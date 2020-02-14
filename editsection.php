@@ -420,7 +420,7 @@ if($sectionID!="add")
 	$sectionLastModified = $rowSection['lastModified'];
 	$sectionInstanceable = $rowSection['instanceable'];
 	}
-elseif ($validationProblem == true)
+elseif (isset($validationProblem) && $validationProblem == true)
 	{
 	$sectionTitle = $_POST['tTitle'];
 	$sectionText = $_POST['tText'];
@@ -470,7 +470,7 @@ echo "<a name=\"maintext\" id=\"maintext\"></a>
 <form id=\"frmEdit\" name=\"frmEdit\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\" onSubmit=\"return ValidateForm(this)\">
 <h2>Section properties:</h2>
 <div class=\"questionNormal\">";
-if($validationProblem==true)
+if(isset($validationProblem) && $validationProblem==true)
 	{
 	echo "<span class=\"errorMessage\"><strong>Please fix the following errors:</strong><br/>";
 	if($title_check > 0)

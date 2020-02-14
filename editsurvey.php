@@ -519,7 +519,7 @@ if($surveyID!="add")
 				AND Authors.authorID = SurveyAuthors.authorID";
 	$qResAuthors = mysqli_query($db_connection, $qAuthors);
 	}
-elseif ($validationProblem == true)
+elseif (isset($validationProblem) && $validationProblem == true)
 	{
 	$surveyTitle = $_POST['tTitle'];
 	$surveyIntroduction = $_POST['tIntroduction']; 

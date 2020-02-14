@@ -83,7 +83,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 			}
 		$validationProblem = false;
 		$i=0;
-		while($i<count($aItemRows) && $validationProblem==false)
+		while($i<count($aItemRows) && (!isset($validationProblem) || $validationProblem==false))
 			{	
 			//on this first run through the data, we are simply validating it
 			//it's worth doing this to prevent half the data being written before finding an error
@@ -108,10 +108,10 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 			//**********************************************************
 			$i++;
 			}
-		if($validationProblem != true)
+		if(!isset($validationProblem) || $validationProblem != true)
 			{
 			$i=0;
-			while($i<count($aItemRows) && $validationProblem==false)
+			while($i<count($aItemRows) && (!isset($validationProblem) || $validationProblem==false))
 				{	
 				//on this second run through, now that initial validation is complete, we will actually write it to the database
 				$aItemComponents = explode($strSeparator,$aItemRows[$i]);
@@ -344,7 +344,7 @@ if($itemID!="add" && $itemID!="upload")
 	$itemText = $rowItem['text'];
 	$itemLastModified = $rowItem['lastModified'];
 	}
-elseif($validationProblem == true)
+elseif(isset($validationProblem) && $validationProblem == true)
 	{
 	$itemTitle = $_POST['tTitle'];
 	$itemText = $_POST['tText'];
@@ -380,7 +380,7 @@ echo "<a name=\"maintext\" id=\"maintext\"></a>
 <form id=\"frmEdit\" name=\"frmEdit\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\" onSubmit=\"return ValidateForm(this)\">
 <h2>Item properties:</h2>
 <div class=\"questionNormal\">";
-if($validationProblem==true)
+if(isset($validationProblem) && $validationProblem==true)
 	{
 	echo "<span class=\"errorMessage\"><strong>Please fix the following errors:</strong><br/>";
 	if($title_check > 0)
