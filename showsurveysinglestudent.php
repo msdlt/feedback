@@ -39,7 +39,7 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 		$qResSurvey = mysqli_query($db_connection, $qSurvey);
 		if (($qResSurvey == false))
 			{
-			echo "problem querying SurveyInstances" . mysqli_error();
+			echo "problem querying SurveyInstances" . mysqli_error($db_connection);
 			}
 		else
 			{
@@ -529,7 +529,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			//those already there.
 			if (($result_query == false))
 				{
-				echo "problem updating AnswerComments" . mysqli_error();
+				echo "problem updating AnswerComments" . mysqli_error($db_connection);
 				$bSuccess = false;
 				}
 			}
@@ -540,7 +540,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			$result_query = @mysqli_query($db_connection, $iAnswerComments);
 			if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem inserting into AnswerComments" . mysqli_error();
+				echo "problem inserting into AnswerComments" . mysqli_error($db_connection);
 				$bSuccess = false;
 				}
 			}
@@ -579,7 +579,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			//those already there.
 			if (($result_query == false))
 				{
-				echo "problem updating AnswerDates" . mysqli_error();
+				echo "problem updating AnswerDates" . mysqli_error($db_connection);
 				$bSuccess = false;
 				}
 			}
@@ -590,7 +590,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			$result_query = @mysqli_query($db_connection, $iAnswerDates);
 			if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem inserting into AnswerDates" . mysqli_error();
+				echo "problem inserting into AnswerDates" . mysqli_error($db_connection);
 				$bSuccess = false;
 				}
 			}
@@ -626,7 +626,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			$result_query = @mysqli_query($db_connection, $uAnswerItems);
 			if (($result_query == false))
 				{
-				echo "problem updating AnswerItems: " . mysqli_error();
+				echo "problem updating AnswerItems: " . mysqli_error($db_connection);
 				$bSuccess = false;
 				}
 			}
@@ -637,7 +637,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			$result_query = @mysqli_query($db_connection, $iAnswerItems);
 			if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem inserting into AnswerItems: " . mysqli_error();
+				echo "problem inserting into AnswerItems: " . mysqli_error($db_connection);
 				$bSuccess = false;
 				}
 			}
@@ -667,7 +667,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				$result_query = @mysqli_query($db_connection, $delAnswerItems);
 				if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 					{
-					echo "problem deleting from Answers" . mysqli_error();
+					echo "problem deleting from Answers" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}
@@ -689,7 +689,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				$result_query = @mysqli_query($db_connection, $iAnswerItems);
 				if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 					{
-					echo "problem inserting into AnswerItems: " . mysqli_error();
+					echo "problem inserting into AnswerItems: " . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}
@@ -1084,7 +1084,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											$result_query = @mysqli_query($db_connection, $uAnswers);
 											if (($result_query == false))
 												{
-												echo "problem updating Answers" . mysqli_error();
+												echo "problem updating Answers" . mysqli_error($db_connection);
 												$bSuccess = false;
 												}
 											//echo "rowAnswers[answerID] = " . $rowAnswers[answerID];
@@ -1101,7 +1101,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											$result_query = @mysqli_query($db_connection, $iAnswers);
 											if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 												{
-												echo "problem inserting into Answers" . mysqli_error();
+												echo "problem inserting into Answers" . mysqli_error($db_connection);
 												$bSuccess = false;
 												}
 											//remember this so we can refer to it after other things have been inserted into other files.
@@ -1164,7 +1164,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											$result_query = @mysqli_query($db_connection, $uAnswers);
 											if (($result_query == false))
 												{
-												echo "problem updating Answers" . mysqli_error();
+												echo "problem updating Answers" . mysqli_error($db_connection);
 												$bSuccess = false;
 												}
 											writeCheckBoxItem($rowAnswers[answerID],$qResItems,$questionID,$sectionID,$blockID,$inst,$sinst,&$bSuccess);
@@ -1180,7 +1180,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											$result_query = @mysqli_query($db_connection, $iAnswers);
 											if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 												{
-												echo "problem inserting into Answers" . mysqli_error();
+												echo "problem inserting into Answers" . mysqli_error($db_connection);
 												$bSuccess = false;
 												}
 											//rememnber this so we can refer to it after other things have been inserted into other files.
@@ -1233,7 +1233,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												$result_query = @mysqli_query($db_connection, $uAnswers);
 												if (($result_query == false))
 													{
-													echo "problem updating Answers" . mysqli_error();
+													echo "problem updating Answers" . mysqli_error($db_connection);
 													$bSuccess = false;
 													}
 												//echo "rowAnswers[answerID] = " . $rowAnswers[answerID];
@@ -1250,7 +1250,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												$result_query = @mysqli_query($db_connection, $iAnswers);
 												if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 													{
-													echo "problem inserting into Answers" . mysqli_error();
+													echo "problem inserting into Answers" . mysqli_error($db_connection);
 													$bSuccess = false;
 													}
 												//rememnber this so we can refer to it after other things have been inserted into other files.
@@ -1296,7 +1296,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											$result_query = @mysqli_query($db_connection, $uAnswers);
 											if (($result_query == false))
 												{
-												echo "problem updating Answers" . mysqli_error();
+												echo "problem updating Answers" . mysqli_error($db_connection);
 												$bSuccess = false;
 												}
 											writeDate($rowAnswers[answerID], $date, &$bSuccess);
@@ -1308,7 +1308,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											$result_query = @mysqli_query($db_connection, $iAnswers);
 											if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 												{
-												echo "problem inserting into Answers" . mysqli_error();
+												echo "problem inserting into Answers" . mysqli_error($db_connection);
 												$bSuccess = false;
 												}
 											//rememnber this so we can refer to it after other things have been inserted into other files.
@@ -1347,7 +1347,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												$result_query = @mysqli_query($db_connection, $uAnswers);
 												if (($result_query == false))
 													{
-													echo "problem updating Answers" . mysqli_error();
+													echo "problem updating Answers" . mysqli_error($db_connection);
 													$bSuccess = false;
 													}
 												writeComment($rowAnswers[answerID], $_POST[$textName], &$bSuccess);
@@ -1359,7 +1359,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												$result_query = @mysqli_query($db_connection, $iAnswers);
 												if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 													{
-													echo "problem inserting into Answers" . mysqli_error();
+													echo "problem inserting into Answers" . mysqli_error($db_connection);
 													$bSuccess = false;
 													}
 												//rememnber this so we can refer to it after other things have been inserted into other files.
@@ -1421,7 +1421,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		$qResSurveyInstanceParticipants = mysqli_query($db_connection, $qSurveyInstanceParticipants);
 		if (($qResSurveyInstanceParticipants == false))
 			{
-			echo "problem querying SurveyInstanceParticipants" . mysqli_error();
+			echo "problem querying SurveyInstanceParticipants" . mysqli_error($db_connection);
 			}
 		else
 			{
@@ -1433,7 +1433,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				$result_query = @mysqli_query($db_connection, $iSurveyInstanceParticipants);
 				if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 					{
-					echo "problem inserting into SurveyInstanceParticipants" . mysqli_error();
+					echo "problem inserting into SurveyInstanceParticipants" . mysqli_error($db_connection);
 					}
 				}
 			else if (mysqli_num_rows($qResSurveyInstanceParticipants)==1)
@@ -1449,7 +1449,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				$result_query = @mysqli_query($db_connection, $uSurveyInstanceParticipants);
 				if (($result_query == false))
 					{
-					echo "problem updating SurveyInstanceParticipants" . mysqli_error();
+					echo "problem updating SurveyInstanceParticipants" . mysqli_error($db_connection);
 					}
 				}
 			else
@@ -1469,7 +1469,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 	$result_query = @mysqli_query($db_connection, $iSubmissionLog);
 	if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 		{
-		echo "problem inserting into SubmissionLog" . mysqli_error();
+		echo "problem inserting into SubmissionLog" . mysqli_error($db_connection);
 		}
 	}
 
@@ -3029,7 +3029,7 @@ $qResSurveyInstances = @mysqli_query($db_connection, $qSurveyInstances);
 					
 if (($qResSurveyInstances == false))
 	{
-	echo "problem querying SurveyInstances" . mysqli_error();
+	echo "problem querying SurveyInstances" . mysqli_error($db_connection);
 	}
 else if (mysqli_num_rows($qResSurveyInstances)==1)
 	{

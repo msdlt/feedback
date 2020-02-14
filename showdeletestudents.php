@@ -26,7 +26,7 @@
 			$qResAnswers = mysqli_query($db_connection, $qAnswers);
 			if (($qResAnswers == false))
 				{
-				echo "problem querying Answers" . mysqli_error();
+				echo "problem querying Answers" . mysqli_error($db_connection);
 				}
 			else
 				{

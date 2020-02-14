@@ -91,7 +91,7 @@ if (isset($_POST['bUpdate'])||isset($_POST['bCreate']))
 				$surveyInstanceID = mysqli_insert_id();
 				if ($result_query == false)
 					{
-					echo "problem inserting into SurveyInstances" . mysqli_error();
+					echo "problem inserting into SurveyInstances" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}
@@ -107,7 +107,7 @@ if (isset($_POST['bUpdate'])||isset($_POST['bCreate']))
 				$result_query = @mysqli_query($db_connection, $uSurveyInstances);
 				if ($result_query == false)
 					{
-					echo "problem updating SurveyInstances" . mysqli_error();
+					echo "problem updating SurveyInstances" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}

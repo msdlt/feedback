@@ -18,7 +18,7 @@ function addItem($text, $title, $lastModified, $questionID)
 	$itemID = mysqli_insert_id();
 	if (($result_query == false))
 		{
-		echo "problem inserting into Items" . mysqli_error();
+		echo "problem inserting into Items" . mysqli_error($db_connection);
 		$bSuccess = false;
 		}
 	//Now need to add it to QuestionItems
@@ -29,7 +29,7 @@ function addItem($text, $title, $lastModified, $questionID)
 	$result_query = @mysqli_query($db_connection, $qMaxPosition);
 	if (($result_query == false))
 		{
-		echo "problem querying qMaxPosition" . mysqli_error();
+		echo "problem querying qMaxPosition" . mysqli_error($db_connection);
 		}
 	$rowMaxPosition = mysqli_fetch_array($result_query);
 	$maxPosition = $rowMaxPosition[maxPosition];
@@ -48,7 +48,7 @@ function addItem($text, $title, $lastModified, $questionID)
 	$result_query = @mysqli_query($db_connection, $iQuestionItems);
 	if (($result_query == false))
 		{
-		echo "problem insering into QuestionItems" . mysqli_error();
+		echo "problem insering into QuestionItems" . mysqli_error($db_connection);
 		$bSuccess = false;
 		}
 	}
@@ -145,7 +145,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 					$result_query = @mysqli_query($db_connection, $uItems);
 					if (($result_query == false))
 						{
-						echo "problem updating Items" . mysqli_error();
+						echo "problem updating Items" . mysqli_error($db_connection);
 						$bSuccess = false;
 						}
 					}

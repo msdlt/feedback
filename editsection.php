@@ -71,7 +71,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$sectionID = mysqli_insert_id();
 				if (($result_query == false))
 					{
-					echo "problem inserting into Sections" . mysqli_error();
+					echo "problem inserting into Sections" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				//Now need to add it to BlockSections
@@ -82,7 +82,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$result_query = @mysqli_query($db_connection, $qMaxPosition);
 				if (($result_query == false))
 					{
-					echo "problem querying qMaxPosition" . mysqli_error();
+					echo "problem querying qMaxPosition" . mysqli_error($db_connection);
 					}
 				$rowMaxPosition = mysqli_fetch_array($result_query);
 				$maxPosition = $rowMaxPosition[maxPosition];
@@ -101,7 +101,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$result_query = @mysqli_query($db_connection, $iBlockSections);
 				if (($result_query == false))
 					{
-					echo "problem insering into BlockSections" . mysqli_error();
+					echo "problem insering into BlockSections" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}
@@ -120,7 +120,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$result_query = @mysqli_query($db_connection, $uSections);
 				if (($result_query == false))
 					{
-					echo "problem updating Sections" . mysqli_error();
+					echo "problem updating Sections" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}
@@ -155,7 +155,7 @@ else if (isset($_POST['bDelete'])&&$_POST['bDelete']!="")
 			$result_query = @mysqli_query($db_connection, $uSectionQuestions);
 			if (($result_query == false))
 					{
-					echo "problem updating SectionQuestions" . mysqli_error();
+					echo "problem updating SectionQuestions" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 			}
@@ -168,7 +168,7 @@ else if (isset($_POST['bDelete'])&&$_POST['bDelete']!="")
 			$dResSectionQuestions = @mysqli_query($db_connection, $dSectionQuestions);
 			if (($dResSectionQuestions == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem deleting from SectionQuestions " . mysqli_error();
+				echo "problem deleting from SectionQuestions " . mysqli_error($db_connection);
 				}
 			}
 		}
@@ -196,7 +196,7 @@ else if (isset($_POST['bReinstate'])&&$_POST['bReinstate']!="")
 		$result_query = @mysqli_query($db_connection, $uSectionQuestions);
 		if (($result_query == false))
 			{
-			echo "problem updating SectionQuestions" . mysqli_error();
+			echo "problem updating SectionQuestions" . mysqli_error($db_connection);
 			$bSuccess = false;
 			}
 		}
@@ -224,7 +224,7 @@ else if (isset($_POST['hReOrder']) && $_POST['bReOrder'] != "")
 		$result_query = @mysqli_query($db_connection, $uSectionQuestions);
 		if (($result_query == false))
 			{
-			echo "problem updating SectionQuestions" . mysqli_error();
+			echo "problem updating SectionQuestions" . mysqli_error($db_connection);
 			$bSuccess = false;
 			}
 		}
@@ -573,7 +573,7 @@ if($sectionID !="add")
 	
 	if (($qResQuestions == false))
 		{
-		echo "problem querying Questions" . mysqli_error();
+		echo "problem querying Questions" . mysqli_error($db_connection);
 		}
 	else
 		{
@@ -653,7 +653,7 @@ if($sectionID !="add")
 										$qResItems = mysqli_query($db_connection, $qItems);
 										if (($qResItems == false))
 											{
-											echo "problem querying Items" . mysqli_error();
+											echo "problem querying Items" . mysqli_error($db_connection);
 											}
 										else
 											{
@@ -812,7 +812,7 @@ if($sectionID !="add")
 	
 	if (($qResQuestions == false))
 		{
-		echo "problem querying Questions" . mysqli_error();
+		echo "problem querying Questions" . mysqli_error($db_connection);
 		}
 	else
 		{
@@ -854,7 +854,7 @@ if($sectionID !="add")
 										$qResItems = mysqli_query($db_connection, $qItems);
 										if (($qResItems == false))
 											{
-											echo "problem querying Items" . mysqli_error();
+											echo "problem querying Items" . mysqli_error($db_connection);
 											}
 										else
 											{

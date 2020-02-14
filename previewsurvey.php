@@ -23,7 +23,7 @@ if (IsAuthor($heraldID))
 		$qResSurvey = mysqli_query($db_connection, $qSurvey);
 		if (($qResSurvey == false))
 			{
-			echo "problem querying Surveys" . mysqli_error();
+			echo "problem querying Surveys" . mysqli_error($db_connection);
 			}
 		else
 			{

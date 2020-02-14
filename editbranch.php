@@ -58,7 +58,7 @@ if (isset($_POST['addBranch'])||isset($_POST['deleteBranch']))
 			$result_query = @mysqli_query($db_connection, $iBranch);
 			if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem inserting into Branches" . mysqli_error();
+				echo "problem inserting into Branches" . mysqli_error($db_connection);
 				}	
 			//remember this so we can refer to.
 			$iBranchID = mysqli_insert_id();
@@ -69,7 +69,7 @@ if (isset($_POST['addBranch'])||isset($_POST['deleteBranch']))
 		$result_query = @mysqli_query($db_connection, $iBranchDestinations);
 		if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 			{
-			echo "problem inserting into BranchDestinations" . mysqli_error();
+			echo "problem inserting into BranchDestinations" . mysqli_error($db_connection);
 			}	
 		}
 	else if (isset($_POST['deleteBranch'])&&$_POST['deleteBranch']!="")
@@ -89,7 +89,7 @@ if (isset($_POST['addBranch'])||isset($_POST['deleteBranch']))
 			$result_query = @mysqli_query($db_connection, $delBranch);
 			if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem deleting from Branches" . mysqli_error();
+				echo "problem deleting from Branches" . mysqli_error($db_connection);
 				}
 			}
 		//now delete branchDestination
@@ -101,7 +101,7 @@ if (isset($_POST['addBranch'])||isset($_POST['deleteBranch']))
 		$result_query = @mysqli_query($db_connection, $delBranchDestination);
 		if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 			{
-			echo "problem deleting from BranchDestinations" . mysqli_error();
+			echo "problem deleting from BranchDestinations" . mysqli_error($db_connection);
 			$bSuccess = false;
 			}
 		}

@@ -76,7 +76,7 @@ if (isset($_POST['bAddExisting']))
 	$result_query = @mysqli_query($db_connection, $qMaxPosition);
 	if (($result_query == false))
 		{
-		echo "problem querying qMaxPosition" . mysqli_error();
+		echo "problem querying qMaxPosition" . mysqli_error($db_connection);
 		}
 	$rowMaxPosition = mysqli_fetch_array($result_query);
 	$position = $rowMaxPosition[maxPosition];
@@ -117,7 +117,7 @@ if (isset($_POST['bAddExisting']))
 		$result_query = @mysqli_query($db_connection, $iExistingObject);
 		if (($result_query == false))
 			{
-			echo "problem insering Existing Object" . mysqli_error();
+			echo "problem insering Existing Object" . mysqli_error($db_connection);
 			$bSuccess = false;
 			}
 		else
@@ -298,7 +298,7 @@ switch ($addingWhat)
 $qResObjects = mysqli_query($db_connection, $qObjects);
 if (($qResObjects == false))
 	{
-	echo "problem querying Objects" . mysqli_error();
+	echo "problem querying Objects" . mysqli_error($db_connection);
 	}
 else
 	{
@@ -348,7 +348,7 @@ else
 					$qAlreadyInParent = mysqli_query($db_connection, $qAlreadyInParent);
 					if ($qAlreadyInParent == false)
 						{
-						echo "problem querying AlreadyInParent" . mysqli_error();
+						echo "problem querying AlreadyInParent" . mysqli_error($db_connection);
 						}
 					else if(mysqli_num_rows($qAlreadyInParent) == 0)
 						{
@@ -397,7 +397,7 @@ else
 							$qResChildrenOfObject = mysqli_query($db_connection, $qChildrenOfObject);
 							if (($qResChildrenOfObject == false))
 								{
-								echo "problem querying ChildrenOfObject" . mysqli_error();
+								echo "problem querying ChildrenOfObject" . mysqli_error($db_connection);
 								}
 							else
 								{

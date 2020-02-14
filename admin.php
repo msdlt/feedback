@@ -36,7 +36,7 @@ if (isset($_POST['delete']))
 		$qResAuthors = mysqli_query($db_connection, $qAuthors);
 		if (($qResAuthors == false))
 			{
-			echo "problem querying Authors" . mysqli_error();
+			echo "problem querying Authors" . mysqli_error($db_connection);
 			}
 		else
 			{
@@ -57,7 +57,7 @@ if (isset($_POST['delete']))
 					$dResAuthor = @mysqli_query($db_connection, $dAuthor);
 					if (($dResAuthor == false) && mysqli_affected_rows($db_connection) == 0)
 						{
-						echo "problem deleting from Authors " . mysqli_error();
+						echo "problem deleting from Authors " . mysqli_error($db_connection);
 						}
 					}
 				//delete from Survey Authors
@@ -67,7 +67,7 @@ if (isset($_POST['delete']))
 				$dResSurveyAuthor = @mysqli_query($db_connection, $dSurveyAuthor);
 				if (($dResSurveyAuthor == false) && mysqli_affected_rows($db_connection) == 0)
 					{
-					echo "problem deleting from SurveyAuthors " . mysqli_error();
+					echo "problem deleting from SurveyAuthors " . mysqli_error($db_connection);
 					}
 				}
 			}
@@ -76,7 +76,7 @@ if (isset($_POST['delete']))
 		$result_query = @mysqli_query($db_connection, $delSurveys);
 		if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 			{
-			echo "problem deleting from Surveys" . mysqli_error();
+			echo "problem deleting from Surveys" . mysqli_error($db_connection);
 			}
 		//Then delete it from SurveyBlocks
 		
@@ -122,7 +122,7 @@ echo "<a name=\"maintext\" id=\"maintext\"></a>
 					
 if (($qResSurveys == false))
 	{
-	echo "problem querying Surveys" . mysqli_error();
+	echo "problem querying Surveys" . mysqli_error($db_connection);
 	}
 else
 	{

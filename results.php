@@ -59,7 +59,7 @@ echo "
 	$qResSurveys = @mysqli_query($db_connection, $qSurveys);
 	if (($qResSurveys == false))
 		{
-		echo "problem querying Surveys" . mysqli_error();
+		echo "problem querying Surveys" . mysqli_error($db_connection);
 		}
 	else
 		{
@@ -79,7 +79,7 @@ echo "
 			$qResLgTextQuestions = @mysqli_query($db_connection, $qLgTextQuestions);
 			if (($qResLgTextQuestions == false))
 				{
-				echo "problem querying Questions" . mysqli_error();
+				echo "problem querying Questions" . mysqli_error($db_connection);
 				}
 			else
 				{

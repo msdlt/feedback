@@ -128,7 +128,7 @@
 				$result_query = @mysqli_query($db_connection, $iParticipantItems);
 				if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 					{
-					echo "problem inserting into ParticipantItems" . mysqli_error();
+					echo "problem inserting into ParticipantItems" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}
@@ -189,7 +189,7 @@ $qStudents = "	SELECT DISTINCT SurveyInstanceParticipants.heraldID
 $qResStudents = @mysqli_query($db_connection, $qStudents);
 if (($qResStudents == false))
 	{
-	echo "problem querying SurveyInstanceParticipants" . mysqli_error();
+	echo "problem querying SurveyInstanceParticipants" . mysqli_error($db_connection);
 	}
 echo "<h2>Total number of students = ".mysqli_num_rows($qResStudents)."</h2>";
 	echo "<ul>";

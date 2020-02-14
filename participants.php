@@ -36,7 +36,7 @@ if (isset($_POST['delete']))
 		$result_query = @mysqli_query($db_connection,$delParticipants);
 		if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 			{
-			echo "problem deleting from Participants" . mysqli_error();
+			echo "problem deleting from Participants" . mysqli_error($db_connection);
 			}
 		}
 	}
@@ -94,7 +94,7 @@ echo "				<table width=\"100%\" class=\"matrix\" summary=\"\">
 						";		
 if (($qResParticipants == false))
 	{
-	echo "problem querying Surveys" . mysqli_error();
+	echo "problem querying Surveys" . mysqli_error($db_connection);
 	}
 else
 	{

@@ -116,7 +116,7 @@ $qStudents = "	SELECT DISTINCT SurveyInstanceParticipants.heraldID
 $qResStudents = @mysqli_query($db_connection, $qStudents);
 if (($qResStudents == false))
 	{
-	echo "problem querying SurveyInstanceParticipants" . mysqli_error();
+	echo "problem querying SurveyInstanceParticipants" . mysqli_error($db_connection);
 	}
 echo "<h2>Total number of students = ".mysqli_num_rows($qResStudents)."</h2>";
 
@@ -199,7 +199,7 @@ while($rowStudent=mysqli_fetch_array($qResStudents))
 	$qResStudentName = @mysqli_query($dbstudent_connection, $qStudentName);
 	if (($qResStudentName == false))
 		{
-		echo "problem querying cards" . mysqli_error();
+		echo "problem querying cards" . mysqli_error($dbstudent_connection);
 		}
 	else
 		{

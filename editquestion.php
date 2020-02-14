@@ -63,7 +63,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$questionID = mysqli_insert_id();
 				if (($result_query == false))
 					{
-					echo "problem inserting into Questions" . mysqli_error();
+					echo "problem inserting into Questions" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				//Now need to add it to SectionQuestions
@@ -74,7 +74,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$result_query = @mysqli_query($db_connection, $qMaxPosition);
 				if (($result_query == false))
 					{
-					echo "problem querying qMaxPosition" . mysqli_error();
+					echo "problem querying qMaxPosition" . mysqli_error($db_connection);
 					}
 				$rowMaxPosition = mysqli_fetch_array($result_query);
 				$maxPosition = $rowMaxPosition[maxPosition];
@@ -93,7 +93,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$result_query = @mysqli_query($db_connection, $iSectionQuestions);
 				if (($result_query == false))
 					{
-					echo "problem insering into SectionQuestions" . mysqli_error();
+					echo "problem insering into SectionQuestions" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}
@@ -110,7 +110,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$result_query = @mysqli_query($db_connection, $uQuestions);
 				if (($result_query == false))
 					{
-					echo "problem updating Questions" . mysqli_error();
+					echo "problem updating Questions" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}
@@ -146,7 +146,7 @@ else if (isset($_POST['bDelete'])&&$_POST['bDelete']!="")
 			$result_query = @mysqli_query($db_connection, $uQuestionItems);
 			if (($result_query == false))
 					{
-					echo "problem updating QuestionItems" . mysqli_error();
+					echo "problem updating QuestionItems" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 			}
@@ -159,7 +159,7 @@ else if (isset($_POST['bDelete'])&&$_POST['bDelete']!="")
 			$dResQuestionItems = @mysqli_query($db_connection, $dQuestionItems);
 			if (($dResQuestionItems == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem deleting from QuestionItems " . mysqli_error();
+				echo "problem deleting from QuestionItems " . mysqli_error($db_connection);
 				}
 			}
 		}
@@ -188,7 +188,7 @@ else if (isset($_POST['bReinstate'])&&$_POST['bReinstate']!="")
 		$result_query = @mysqli_query($db_connection, $uQuestionItems);
 		if (($result_query == false))
 			{
-			echo "problem updating QuestionItems" . mysqli_error();
+			echo "problem updating QuestionItems" . mysqli_error($db_connection);
 			$bSuccess = false;
 			}
 		}
@@ -217,7 +217,7 @@ else if (isset($_POST['hReOrder']) && $_POST['bReOrder'] != "")
 		$result_query = @mysqli_query($db_connection, $uQuestionItems);
 		if (($result_query == false))
 			{
-			echo "problem updating QuestionItems" . mysqli_error();
+			echo "problem updating QuestionItems" . mysqli_error($db_connection);
 			$bSuccess = false;
 			}
 		}
@@ -578,10 +578,10 @@ if($questionID !="add")
 				AND QuestionItems.visible = 1
 				AND Items.itemID = QuestionItems.itemID
 				ORDER BY QuestionItems.position";
-	$qResItems = mysqli_query($qItems);
+	$qResItems = mysqli_query($db_connection, $qItems);
 	if (($qResItems == false))
 		{
-		echo "problem querying Items" . mysqli_error();
+		echo "problem querying Items" . mysqli_error($db_connection);
 		}
 	else
 		{
@@ -772,10 +772,10 @@ if($questionID !="add")
 				AND QuestionItems.visible = 0
 				AND Items.itemID = QuestionItems.itemID
 				ORDER BY QuestionItems.position";
-	$qResItems = mysqli_query($qHiddenItems);
+	$qResItems = mysqli_query($db_connection, $qHiddenItems);
 	if (($qResItems == false))
 		{
-		echo "problem querying Items" . mysqli_error();
+		echo "problem querying Items" . mysqli_error($db_connection);
 		}
 	else
 		{

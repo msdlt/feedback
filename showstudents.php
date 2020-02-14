@@ -98,7 +98,7 @@ $qStudents = "	SELECT DISTINCT SurveyInstanceParticipants.heraldID
 $qResStudents = @mysqli_query($db_connection, $qStudents);
 if (($qResStudents == false))
 	{
-	echo "problem querying SurveyInstanceParticipants" . mysqli_error();
+	echo "problem querying SurveyInstanceParticipants" . mysqli_error($db_connection);
 	}
 else
 	{

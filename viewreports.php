@@ -92,7 +92,7 @@ echo "<div class=\"block\">
 
 if (($qResSurveys == false))
 	{
-	echo "problem querying Surveys" . mysqli_error();
+	echo "problem querying Surveys" . mysqli_error($db_connection);
 	}
 else
 	{
@@ -139,7 +139,7 @@ if(isset($_POST['bChooseSurveys']))
 	
 	if (($qResSurveys == false))
 		{
-		echo "problem querying Surveys" . mysqli_error();
+		echo "problem querying Surveys" . mysqli_error($db_connection);
 		}
 	else
 		{
@@ -156,7 +156,7 @@ if(isset($_POST['bChooseSurveys']))
 						$qResSurveyInstances = mysqli_query($db_connection, $qSurveyInstances);
 						if ($qResSurveyInstances == false)
 							{
-							echo "problem querying SurveyInstances" . mysqli_error();
+							echo "problem querying SurveyInstances" . mysqli_error($db_connection);
 							}
 						else
 							{

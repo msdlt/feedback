@@ -43,7 +43,7 @@ elseif (isset($_POST['delete']))
 			$result_query = @mysqli_query($db_connection, $delInstances);
 			if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem deleting from Instancess" . mysqli_error();
+				echo "problem deleting from Instancess" . mysqli_error($db_connection);
 				}
 			}
 		}
@@ -97,7 +97,7 @@ else
 $qResSurveyInstances = mysqli_query($db_connection, $qSurveyInstances);
 if (($qResSurveyInstances == false))
 	{
-	echo "problem querying SurveyInstances" . mysqli_error();
+	echo "problem querying SurveyInstances" . mysqli_error($db_connection);
 	}
 else
 	{

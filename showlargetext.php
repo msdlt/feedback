@@ -33,7 +33,7 @@
 		$qResStudentName = @mysqli_query($dbstudent_connection, $qStudentName);
 		if (($qResStudentName == false))
 			{
-			echo "problem querying cards" . mysqli_error();
+			echo "problem querying cards" . mysqli_error($dbstudent_connection);
 			}
 		else
 			{
@@ -174,7 +174,7 @@ echo "<form id=\"frmSurvey\" name=\"frmSurvey\" action=\"".$_SERVER['PHP_SELF'].
 		$qResLgTextQuestions = @mysqli_query($db_connection, $qLgTextQuestions);
 		if (($qResLgTextQuestions == false))
 			{
-			echo "problem querying Questions" . mysqli_error();
+			echo "problem querying Questions" . mysqli_error($db_connection);
 			}
 		else
 			{

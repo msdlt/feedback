@@ -21,12 +21,8 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 		$updateTitle = quote_smart($db_connection, $_POST['tTitle']);
 		$updateIntroduction = quote_smart($db_connection, $_POST['tIntroduction']);
 		$updateEpilogue = quote_smart($db_connection, $_POST['tEpilogue']);
-		if(isset($_POST['rAllowSave'])) {
-			$updateAllowSave = quote_smart($db_connection, $_POST['rAllowSave']);
-		}
-		if(isset($_POST['rAllowViewByStudent'])) {
-			$updateAllowViewByStudent = quote_smart($db_connection, $_POST['rAllowViewByStudent']);
-		}
+		$updateAllowSave = quote_smart($db_connection, $_POST['rAllowSave']);
+		$updateAllowViewByStudent = quote_smart($db_connection, $_POST['rAllowViewByStudent']);
 		$updateLastModified = "CURDATE()";
 		//**********************************************************
 		//Server-side validation of data entered - 
@@ -69,7 +65,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$surveyID = mysqli_insert_id();
 				if (($result_query == false))
 					{
-					echo "problem insering into Surveys" . mysqli_error();
+					echo "problem insering into Surveys" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}
@@ -87,7 +83,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$result_query = @mysqli_query($db_connection, $uSurveys);
 				if (($result_query == false))
 					{
-					echo "problem updating Surveys" . mysqli_error();
+					echo "problem updating Surveys" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 				}
@@ -99,7 +95,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 			$qResAuthors = mysqli_query($db_connection, $qAuthors);
 			if (($qResAuthors == false))
 				{
-				echo "problem querying Authors" . mysqli_error();
+				echo "problem querying Authors" . mysqli_error($db_connection);
 				}
 			else
 				{
@@ -132,7 +128,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 					$iResAuthor = @mysqli_query($db_connection, $iAuthor);
 					if (($iResAuthor == false) && mysqli_affected_rows($db_connection) == 0)
 						{
-						echo "problem inserting into Authors" . mysqli_error();
+						echo "problem inserting into Authors" . mysqli_error($db_connection);
 						}
 					else
 						{
@@ -152,7 +148,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$iResSurveyAuthor = @mysqli_query($db_connection, $iSurveyAuthor);
 				if (($iResSurveyAuthor == false) && mysqli_affected_rows($db_connection) == 0)
 					{
-					echo "problem inserting into SurveyAuthors" . mysqli_error();
+					echo "problem inserting into SurveyAuthors" . mysqli_error($db_connection);
 					}
 				}
 			//check if any authors in aExistingAuthors are not in aUpdateAuthors - i.e. they have been removed
@@ -181,7 +177,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 					$dResAuthor = @mysqli_query($db_connection, $dAuthor);
 					if (($dResAuthor == false) && mysqli_affected_rows($db_connection) == 0)
 						{
-						echo "problem deleting from Authors " . mysqli_error();
+						echo "problem deleting from Authors " . mysqli_error($db_connection);
 						}
 					}
 				//remove from SurveyAuthors
@@ -191,7 +187,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				$dResSurveyAuthor = @mysqli_query($db_connection, $dSurveyAuthor);
 				if (($dResSurveyAuthor == false) && mysqli_affected_rows($db_connection) == 0)
 					{
-					echo "problem deleting from SurveyAuthors " . mysqli_error();
+					echo "problem deleting from SurveyAuthors " . mysqli_error($db_connection);
 					}
 				}
 			//send the user back to schedulesurvey.php after they have added
@@ -223,7 +219,7 @@ else if (isset($_POST['bDelete'])&& $_POST['bDelete']!= "")
 			$result_query = @mysqli_query($db_connection, $uSurveyBlocks);
 			if (($result_query == false))
 					{
-					echo "problem updating SurveyBlocks" . mysqli_error();
+					echo "problem updating SurveyBlocks" . mysqli_error($db_connection);
 					$bSuccess = false;
 					}
 			}
@@ -236,7 +232,7 @@ else if (isset($_POST['bDelete'])&& $_POST['bDelete']!= "")
 			$dResSurveyBlocks = @mysqli_query($db_connection, $dSurveyBlocks);
 			if (($dResSurveyBlocks == false) && mysqli_affected_rows($db_connection) == 0)
 				{
-				echo "problem deleting from SurveyBlocks " . mysqli_error();
+				echo "problem deleting from SurveyBlocks " . mysqli_error($db_connection);
 				}
 			}
 		}
@@ -262,7 +258,7 @@ else if (isset($_POST['bReinstate'])&& $_POST['bReinstate']!= "")
 		$result_query = @mysqli_query($db_connection, $uSurveyBlocks);
 		if (($result_query == false))
 			{
-			echo "problem updating SurveyBlocks" . mysqli_error();
+			echo "problem updating SurveyBlocks" . mysqli_error($db_connection);
 			$bSuccess = false;
 			}
 		}
@@ -288,7 +284,7 @@ else if (isset($_POST['hReOrder']) && $_POST['bReOrder'] != "")
 		$result_query = @mysqli_query($db_connection, $uSurveyBlocks);
 		if (($result_query == false))
 			{
-			echo "problem updating SurveyBlocks" . mysqli_error();
+			echo "problem updating SurveyBlocks" . mysqli_error($db_connection);
 			$bSuccess = false;
 			}
 		}
@@ -604,7 +600,7 @@ if($surveyID!="add")
 	{
 	if (($qResAuthors == false))
 		{
-		echo "problem querying Authors" . mysqli_error();
+		echo "problem querying Authors" . mysqli_error($db_connection);
 		}
 	else
 		{
@@ -688,7 +684,7 @@ if($surveyID !="add")
 	$qResBlocks = mysqli_query($db_connection, $qBlocks);
 	if (($qResBlocks == false))
 		{
-		echo "problem querying Blocks" . mysqli_error();
+		echo "problem querying Blocks" . mysqli_error($db_connection);
 		}
 	else
 		{
@@ -729,7 +725,7 @@ if($surveyID !="add")
 										
 										if (($qResSections == false))
 											{
-											echo "problem querying Sections" . mysqli_error();
+											echo "problem querying Sections" . mysqli_error($db_connection);
 											}
 										else
 											{
@@ -883,7 +879,7 @@ if($surveyID !="add")
 	$qResBlocks = mysqli_query($db_connection, $qHiddenBlocks);
 	if (($qResBlocks == false))
 		{
-		echo "problem querying Blocks" . mysqli_error();
+		echo "problem querying Blocks" . mysqli_error($db_connection);
 		}
 	else
 		{
@@ -924,7 +920,7 @@ if($surveyID !="add")
 										
 										if (($qResSections == false))
 											{
-											echo "problem querying Sections" . mysqli_error();
+											echo "problem querying Sections" . mysqli_error($db_connection);
 											}
 										else
 											{

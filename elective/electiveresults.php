@@ -281,7 +281,7 @@ function bodyOnLoad(){
 						$result_query = @mysqli_query($db_connection,$iParticipantItems);
 						if (($result_query == false) || mysqli_affected_rows($db_connection) == 0)
 							{
-							echo "problem inserting into ParticipantItems" . mysqli_error();
+							echo "problem inserting into ParticipantItems" . mysqli_error($db_connection);
 							$bSuccess = false;
 							}
 						}
@@ -294,7 +294,7 @@ function bodyOnLoad(){
 					$result_query = @mysqli_query($db_connection,$iParticipantItems);
 					if (($result_query == false) || mysqli_affected_rows($db_connection) == 0)
 						{
-						echo "problem inserting into ParticipantItems" . mysqli_error();
+						echo "problem inserting into ParticipantItems" . mysqli_error($db_connection);
 						$bSuccess = false;
 						}
 				}
@@ -365,7 +365,7 @@ function bodyOnLoad(){
 					$result_query = @mysqli_query($db_connection,$dParticipants);
 					if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 						{
-						echo "problem deleting from ParticipantItems" . mysqli_error();
+						echo "problem deleting from ParticipantItems" . mysqli_error($db_connection);
 						$bSuccess = false;
 						}
 					}
