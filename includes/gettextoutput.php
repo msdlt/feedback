@@ -3,7 +3,7 @@
 // Returns a string which contains the stored data for a surveyInstanceID and
 // heraldID combination
 //************************************************************************************
-function getTextOutput($surveyInstanceID, $heraldID)
+function getTextOutput($surveyInstanceID, $heraldID, $db_connection)
 	{
 	if (isset($surveyInstanceID))
 		{

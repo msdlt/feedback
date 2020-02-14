@@ -27,7 +27,7 @@ else
 </head>
 <body onload="window.print()">
 <?php
-echo getTextOutput($surveyInstanceID,$heraldID);	
+echo getTextOutput($surveyInstanceID,$heraldID,$db_connection);	
 echo "<h3>Printed: ". date('H:i, d/m/y') . ".";
 ?>
 <INPUT type="button" value="Close Window" onClick="window.close()"> 

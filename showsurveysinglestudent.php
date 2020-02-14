@@ -1463,7 +1463,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 	// WRITE TO LOG TABLE - XML with XHTML contents
 	//*************************************
 	
-	$textToWrite = quote_smart(getTextOutput($surveyInstanceID,$heraldID));
+	$textToWrite = quote_smart(getTextOutput($surveyInstanceID,$heraldID,$db_connection));
 	$iSubmissionLog = "INSERT INTO SubmissionLog
 						VALUES(0,'$heraldID',NOW(),$status,$textToWrite)";
 	$result_query = @mysqli_query($db_connection, $iSubmissionLog);

@@ -8,7 +8,7 @@
 	require_once("includes/isauthor.php");
 	require_once("includes/limitstring.php");
 	require_once("includes/ODBCDateToTextDate.php");
-	require_once("includes/gettextoutput.php");
+	//require_once("includes/gettextoutput.php");
 	require_once("includes/getinstancesforblockandsection.php");
 
 	if($_SERVER['REQUEST_METHOD'] != 'POST') //see http://stackoverflow.com/questions/22004789/if-isset-post-not-working-for-internet-explorer
