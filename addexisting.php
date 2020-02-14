@@ -175,7 +175,7 @@ if(isset($_GET['surveyID']))
 						WHERE sectionID = $sectionID";
 			$qResSection = mysqli_query($db_connection, $qSection);
 			$rowSection = mysqli_fetch_array($qResSection);
-			$sectionTitle = $rowSection'[title'];
+			$sectionTitle = $rowSection['title'];
 			$IdName = "questionID";
 			if(isset($_GET['questionID']))
 				{
