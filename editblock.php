@@ -479,7 +479,7 @@ echo"
 	</tr>
 	<tr>
 		<td>Last modified:</td>
-		<td>".ODBCDateToTextDateShort($blockLastModified)."</td>
+		<td>".(isset($blockLastModified)?ODBCDateToTextDateShort($blockLastModified):'Not set')."</td>
 	</tr>
 	<tr>
 		<td valign=\"top\">Introduction:</td>
