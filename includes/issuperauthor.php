@@ -35,7 +35,7 @@ function IsSuperAuthor($heraldID, $blockID, $sectionID = false, $questionID = fa
 								WHERE SurveyBlocks.blockID = $blockID";
 		}
 		
-	$qResContainingSurveys = mysqli_query($qContainingSurveys, $db_connection);
+	$qResContainingSurveys = mysqli_query($db_connection, $qContainingSurveys);
 	if($qResContainingSurveys == false)
 		{
 		echo "Problem querying qContainingSurveys in IsSuperAuthor";

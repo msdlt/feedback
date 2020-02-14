@@ -554,7 +554,7 @@ echo "<h1>$pageTitleText: $surveyTitle</h1>
 <form id=\"frmEdit\" name=\"frmEdit\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\" onSubmit=\"return ValidateForm(this)\">
 <h2>Survey properties:</h2>
 <div class=\"questionNormal\">";
-if($validationProblem==true)
+if(isset($validationProblem) && $validationProblem==true)
 	{
 	echo "<span class=\"errorMessage\"><strong>Please fix the following errors:</strong><br/>";
 	if($title_check > 0)
@@ -709,7 +709,7 @@ if($surveyID !="add")
 											<td>
 												<input type=\"checkbox\" id=\"check_$blockID\" name=\"checkBlockIDs[]\" value=\"$blockID\"/>
 											</td>
-											<td class=\"question\">Block: ".$rowBlocks[title]."</td>
+											<td class=\"question\">Block: ".$rowBlocks['title']."</td>
 											<td>Last modified: ".ODBCDateToTextDateShort($rowBlocks['lastModified'])."</td>
 											<td><input type=\"button\" id=\"editBlock_$blockID\" name=\"editBlock_$blockID\" value=\"Edit block\" onClick=\"goTo('editblock.php?surveyID=$surveyID&blockID=$blockID')\"".(IsSuperAuthor($heraldID, $blockID)==false ? "disabled" : "" )."/></td>
 										</tr>";
@@ -743,7 +743,7 @@ if($surveyID !="add")
 												//show section titles
 								echo "			<tr class=\"$rowClass\">
 													<td></td>
-													<td  colspan=\"3\" valign=\"top\">Section: ".$rowSections[title]."</td>
+													<td  colspan=\"3\" valign=\"top\">Section: ".$rowSections['title']."</td>
 												</tr>";
 												$bRowOdd = !$bRowOdd;
 												}
@@ -778,7 +778,7 @@ if($surveyID !="add")
 										while($rowBlocks = mysqli_fetch_array($qResBlocks))
 											{
 											$blockID = $rowBlocks['blockID'];
-											$blockTitle = $rowBlocks[title];
+											$blockTitle = $rowBlocks['title'];
 											echo "<option value=\"$blockID\">".($blockTitle==""?"Block":limitString($blockTitle,30))."";
 											}
 										echo "
