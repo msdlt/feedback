@@ -28,7 +28,7 @@ if (IsAuthor($heraldID))
 		else
 			{
 			$rowSurvey = mysqli_fetch_array($qResSurvey);
-			$surveyTitle = $rowSurvey[title];
+			$surveyTitle = $rowSurvey['title'];
 						
 			//****************************************************************************************************************
 			//First read the blocks, sections, questions and items into arrays so that we do not need to repeatedly query them
@@ -96,9 +96,9 @@ if (IsAuthor($heraldID))
 						$iItem = 1;
 						while($rowItems = mysqli_fetch_array($qResItems))
 							{
-							$aItems[$iBlock][$iSection][$iQuestion][$iItem]["itemID"] = $rowItems[itemID];
+							$aItems[$iBlock][$iSection][$iQuestion][$iItem]["itemID"] = $rowItems['itemID'];
 							$aItems[$iBlock][$iSection][$iQuestion][$iItem]["text"] = $rowItems['text'];
-							$aItems[$iBlock][$iSection][$iQuestion][$iItem]["position"] = $rowItems[position];
+							$aItems[$iBlock][$iSection][$iQuestion][$iItem]["position"] = $rowItems['position'];
 							$iItem++;
 							}						
 						$iQuestion++;
