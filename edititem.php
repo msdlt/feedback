@@ -432,7 +432,7 @@ else
 	</tr>
 	<tr>
 		<td>Last modified:</td>
-		<td>".ODBCDateToTextDateShort($itemLastModified)."</td>
+		<td>".(isset($itemLastModified)?ODBCDateToTextDateShort($itemLastModified):'Not set')."</td>
 	</tr>
 	<tr>
 		<td valign=\"top\">Item text:</td>
