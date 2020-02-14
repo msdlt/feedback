@@ -191,9 +191,9 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 					}
 				}
 			//send the user back to schedulesurvey.php after they have added
-			/*header("Location: https://" . $_SERVER['HTTP_HOST']
+			header("Location: https://" . $_SERVER['HTTP_HOST']
                      . dirname($_SERVER['PHP_SELF'])
-                     . "/" . "admin.php");*/
+                     . "/" . "admin.php");
 			exit();
 			}
 		}
