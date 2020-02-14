@@ -121,10 +121,10 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 					$bSuccess = false;
 					}
 				}
-			//send the user back to schedulesurvey.php after they have added
-			header("Location: https://" . $_SERVER['HTTP_HOST']
+			//send the user back to editsurvey.php after they have added
+			/*header("Location: https://" . $_SERVER['HTTP_HOST']
                      . dirname($_SERVER['PHP_SELF'])
-                     . "/" . "editsurvey.php?surveyID=$surveyID");
+                     . "/" . "editsurvey.php?surveyID=$surveyID");*/
 			exit();
 			}
 		}
