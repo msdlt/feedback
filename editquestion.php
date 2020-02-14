@@ -26,7 +26,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 		//Server-side validation of data entered - 
 		//**********************************************************
 		/* Checking and ensure that the question title does not already exist in the database */
-		$sql_title_check = mysqli_query("SELECT title FROM Questions
+		$sql_title_check = mysqli_query($db_connection, "SELECT title FROM Questions
 										WHERE title=$updateTitle" . ($questionID !="add" ? "AND questionID <> $questionID" : ""));
 										//that last if statement allows edited question to have the same name as it had before
 										//but prevents added questions having the same name as an existing question.
@@ -424,21 +424,21 @@ function QuestionTypeHasChanged(list,btnSubmit)
 $qSurveys = "SELECT title
 			FROM Surveys
 			WHERE surveyID = $surveyID";
-$qResSurvey = mysqli_query($qSurveys);
+$qResSurvey = mysqli_query($db_connection, $qSurveys);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
 $surveyTitle = $rowSurvey['title'];
 //Get info about block
 $qBlocks = "SELECT title
 			FROM Blocks
 			WHERE blockID = $blockID";
-$qResBlock = mysqli_query($qBlocks);
+$qResBlock = mysqli_query($db_connection, $qBlocks);
 $rowBlock = mysqli_fetch_array($qResBlock);
 $blockTitle = $rowBlock['title'];
 //Get info about section
 $qSections = "	SELECT title
 				FROM Sections
 				WHERE sectionID = $sectionID";
-$qResSections = mysqli_query($qSections);
+$qResSections = mysqli_query($db_connection, $qSections);
 $rowSection = mysqli_fetch_array($qResSections);
 $sectionTitle = $rowSection['title'];
 //get info about question
@@ -448,7 +448,7 @@ if($questionID!="add")
 	$qQuestions = "	SELECT title, text, comments, questionTypeID, lastModified 
 					FROM Questions
 					WHERE questionID = $questionID";
-	$qResQuestions = mysqli_query($qQuestions);
+	$qResQuestions = mysqli_query($db_connection, $qQuestions);
 	$rowQuestion = mysqli_fetch_array($qResQuestions);
 	$questionTitle = $rowQuestion['title'];
 	$questionText = $rowQuestion['text'];
@@ -473,7 +473,7 @@ else
 //get question types
 $qQuestionTypes = "	SELECT questionTypeID, type
 					FROM QuestionTypes";
-$qResQuestionTypes = mysqli_query($qQuestionTypes);		
+$qResQuestionTypes = mysqli_query($db_connection, $qQuestionTypes);		
 				
 if(IsAuthor($heraldID))
 	{
@@ -498,7 +498,7 @@ echo "<a name=\"maintext\" id=\"maintext\"></a>
 <form id=\"frmEdit\" name=\"frmEdit\" action=\"".$_SERVER['PHP_SELF']."\" method=\"post\" onSubmit=\"return ValidateForm(this)\">
 <h2>Question properties:</h2>
 <div class=\"questionNormal\">";
-if($validationProblem==true)
+if(isset($validationProblem) && $validationProblem==true)
 	{
 	echo "<span class=\"errorMessage\"><strong>Please fix the following errors:</strong><br/>";
 	if($title_check > 0)
@@ -525,7 +525,7 @@ echo"
 	</tr>
 	<tr>
 		<td>Last modified:</td>
-		<td>".ODBCDateToTextDateShort($questionLastModified)."</td>
+		<td>".(isset($questionLastModified)?ODBCDateToTextDateShort($questionLastModified):'Not set')."</td>
 	</tr>
 	<tr>
 		<td valign=\"top\">Question text:</td>
@@ -612,7 +612,7 @@ if($questionID !="add")
 																AND Branches.questionID = $questionID
 																AND Branches.itemID = $itemID
 																AND BranchDestinations.branchID = Branches.branchID";
-										$qResBranchesFromItem = mysqli_query($qBranchesFromItem);
+										$qResBranchesFromItem = mysqli_query($db_connection, $qBranchesFromItem);
 										if(mysqli_num_rows($qResBranchesFromItem)>0)
 											{
 											$itemIsInvolvedInBranching = true;
