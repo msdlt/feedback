@@ -740,7 +740,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 						FROM AnswerDates
 						WHERE answerID = $answerID";
 
-		$qResAnswerDates = ($db_connection, $qAnswerDates);
+		$qResAnswerDates = mysqli_query($db_connection, $qAnswerDates);
 		$textOutput = $textOutput . "<td>";
 		$textOutput = $textOutput . $date;
 		$textOutput = $textOutput . "</td></tr>";
@@ -1312,7 +1312,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											AND Items.itemID = QuestionItems.itemID
 											ORDER BY QuestionItems.position";
 														
-									$qResItems = ($db_connection, $qItems);
+									$qResItems = mysqli_query($db_connection, $qItems);
 									//check whether any of the items for this question have been checked ('on')
 									$iNoOfCheckedItems = 0;
 									for($iItem=1; $iItem<=count($aItems[$iBlock][$iSection][$iQuestion])-1;$iItem++)
