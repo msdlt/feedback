@@ -182,28 +182,28 @@ function writeDestinationInfo(block,section,question)
 $qSurvey = "SELECT title, introduction, epilogue, lastModified
 			FROM Surveys
 			WHERE surveyID = $surveyID";
-$qResSurvey = mysqli_query($qSurvey);
+$qResSurvey = mysqli_query($db_connection, $qSurvey);
 $rowSurvey = mysqli_fetch_array($qResSurvey);
 $surveyTitle = $rowSurvey['title'];
 //Get info about block
 $qBlock = "SELECT title
 			FROM Blocks 
 			WHERE blockID = $branchBlockID";
-$qResBlock = mysqli_query($qBlock);
+$qResBlock = mysqli_query($db_connection, $qBlock);
 $rowBlock = mysqli_fetch_array($qResBlock);
 $branchBlockTitle = $rowBlock['title'];
 //Get info about section
 $qSection = "SELECT title
 			FROM Sections 
 			WHERE sectionID = $branchSectionID";
-$qResSection = mysqli_query($qSection);
+$qResSection = mysqli_query($db_connection, $qSection);
 $rowSection = mysqli_fetch_array($qResSection);
 $branchSectionTitle = $rowSection['title'];
 //Get info about question
 $qQuestion = "SELECT title
 			FROM Questions 
 			WHERE questionID = $branchQuestionID";
-$qResQuestion = mysqli_query($qQuestion);
+$qResQuestion = mysqli_query($db_connection, $qQuestion);
 $rowQuestion = mysqli_fetch_array($qResQuestion);
 $branchQuestionTitle = $rowQuestion['title'];
 
@@ -252,7 +252,7 @@ $qBranchesFromItem = "	SELECT BranchDestinations.blockID,BranchDestinations.sect
 						AND Branches.questionID = $branchQuestionID
 						AND Branches.itemID = $itemID
 						AND BranchDestinations.branchID = Branches.branchID";
-$qResBranchesFromItem = mysqli_query($qBranchesFromItem);
+$qResBranchesFromItem = mysqli_query($db_connection, $qBranchesFromItem);
 
 //get blocks
 $qBlocks = "SELECT Blocks.blockID, Blocks.title, Blocks.text, Blocks.introduction, Blocks.epilogue, SurveyBlocks.position, Blocks.instanceable
@@ -262,7 +262,7 @@ $qBlocks = "SELECT Blocks.blockID, Blocks.title, Blocks.text, Blocks.introductio
 			AND Blocks.blockID = SurveyBlocks.blockID
 			ORDER BY SurveyBlocks.position";
 
-$qResBlocks = mysqli_query($qBlocks);
+$qResBlocks = mysqli_query($db_connection, $qBlocks);
 //counter for questions 
 $questionNo = 1;
 while($rowBlocks = mysqli_fetch_array($qResBlocks))

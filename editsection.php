@@ -34,7 +34,7 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 		//Server-side validation of data entered - 
 		//**********************************************************
 		/* Checking and ensure that the section title does not already exist in the database */
-		$sql_title_check = mysqli_query("SELECT title FROM Sections
+		$sql_title_check = mysqli_query($db_connection, "SELECT title FROM Sections
 										WHERE title=$updateTitle" . ($sectionID !="add" ? "AND sectionID <> $sectionID" : ""));
 										//that last if statement allows edited section to have the same name as it had before
 										//but prevents added sections having the same name as an existing section.

@@ -183,7 +183,7 @@ else
 					$qStudentName = "	SELECT LASTNAME, FORENAMES
 									FROM cards
 									WHERE USERNAME = '".$rowStudents['heraldID']."'";
-					$qResStudentName = @mysqli_query($qStudentName, $dbstudent_connection);
+					$qResStudentName = @mysqli_query($dbstudent_connection, $qStudentName);
 					if (($qResStudentName == false))
 						{
 						echo "problem querying cards" . mysqli_error($dbstudent_connection);
@@ -237,7 +237,7 @@ while($rowStudents = mysqli_fetch_array($qResStudents))
 	$qStudentName = "	SELECT LASTNAME, FORENAMES
 					FROM cards
 					WHERE USERNAME = '".$rowStudents['heraldID']."'";
-	$qResStudentName = @mysqli_query($qStudentName, $dbstudent_connection);
+	$qResStudentName = @mysqli_query($dbstudent_connection, $qStudentName);
 	if (($qResStudentName == false))
 		{
 		echo "problem querying cards" . mysqli_error($dbstudent_connection);

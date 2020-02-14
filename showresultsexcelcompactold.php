@@ -199,7 +199,7 @@ echo "<h2>Total number of students = ".mysqli_num_rows($qResStudents)."</h2>";
 		$qSurveyInstances = "SELECT title, startDate, finishDate
 							FROM SurveyInstances
 							WHERE surveyInstanceID = $instanceID";
-		$qResSurveyInstance = mysqli_query($qSurveyInstances);
+		$qResSurveyInstance = mysqli_query($db_connection, $qSurveyInstances);
 		$rowSurveyInstance = mysqli_fetch_array($qResSurveyInstance);
 		$surveyInstanceTitle = $rowSurveyInstance['title'];
 		$surveyInstanceStartDate = $rowSurveyInstance['startDate'];

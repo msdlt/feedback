@@ -484,9 +484,9 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 								AND Answers.surveyInstanceID = SurveyInstances.surveyInstanceID
 								AND Answers.blockID = $blockID
 								AND Answers.sectionID = $sectionID";
-				$qResCountAnswers = mysqli_query($qCountAnswers);
+				$qResCountAnswers = mysqli_query($db_connection, $qCountAnswers);
 				
-				$NoOfAnswers = mysqli_num_rows($db_connection, $qResCountAnswers);
+				$NoOfAnswers = mysqli_num_rows($qResCountAnswers);
 				
 				//get participants comments for this question
 				$qComments = "SELECT AnswerComments.text
