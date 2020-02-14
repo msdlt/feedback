@@ -51,7 +51,7 @@ function IsSuperAuthor($heraldID, $blockID, $sectionID = false, $questionID = fa
 								WHERE SurveyAuthors.surveyID = $surveyID
 								AND Authors.authorID = SurveyAuthors.authorID
 								AND Authors.heraldID = '$heraldID'";
-			$qResSurveyAuthor = @mysqli_query($qSurveyAuthor, $db_connection);
+			$qResSurveyAuthor = @mysqli_query($db_connection, $qSurveyAuthor);
 			if (mysqli_num_rows($qResSurveyAuthor)==0)
 				{
 				return(false);
