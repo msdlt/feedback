@@ -14,7 +14,7 @@ if (isset($_POST['bUpdate'])||isset($_POST['bCreate']))
 		{
 		$surveyID = $_POST['hSurveyID'];
 		$surveyInstanceID = $_POST['hSurveyInstanceID'];
-		$updateTitle = quote_smart($_POST['tTitle']);
+		$updateTitle = quote_smart($db_connection, $_POST['tTitle']);
 		if($_POST['rStartDate']==0)
 			{
 			$startDate="NULL";
@@ -23,7 +23,7 @@ if (isset($_POST['bUpdate'])||isset($_POST['bCreate']))
 		else
 			{
 			$startDate = date("Y-m-d", mktime(0, 0, 0, $_POST['startMonth'], $_POST['startDay'], $_POST['startYear'])); 
-			$updateStartDate = quote_smart($startDate);
+			$updateStartDate = quote_smart($db_connection, $startDate);
 			}
 		if($_POST['rFinishDate']==0)
 			{
@@ -33,7 +33,7 @@ if (isset($_POST['bUpdate'])||isset($_POST['bCreate']))
 		else
 			{
 			$finishDate = date("Y-m-d", mktime(0, 0, 0, $_POST['finishMonth'], $_POST['finishDay'], $_POST['finishYear']));
-			$updateFinishDate = quote_smart($finishDate);
+			$updateFinishDate = quote_smart($db_connection, $finishDate);
 			}
 		$updateLastModified = "CURDATE()";
 		

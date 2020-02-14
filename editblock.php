@@ -15,10 +15,10 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 		{
 		$blockID = $_POST['hBlockID'];
 		$surveyID = $_POST['hSurveyID'];
-		$updateTitle = quote_smart($_POST['tTitle']);
-		$updateText = quote_smart($_POST['tText']);
-		$updateIntroduction = quote_smart($_POST['tIntroduction']);
-		$updateEpilogue = quote_smart($_POST['tEpilogue']);
+		$updateTitle = quote_smart($db_connection, $_POST['tTitle']);
+		$updateText = quote_smart($db_connection, $_POST['tText']);
+		$updateIntroduction = quote_smart($db_connection, $_POST['tIntroduction']);
+		$updateEpilogue = quote_smart($db_connection, $_POST['tEpilogue']);
 		if($_POST['rInstanceable']=="true")
 			{
 			$updateInstanceable = 1;

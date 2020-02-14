@@ -2,7 +2,7 @@
 require_once("includes/config.php"); 
 require_once("includes/getuser.php");
 require_once("includes/isauthor.php");
-require_once("includes/quote_smart.php");
+//require_once("includes/quote_smart.php");
 require_once("includes/ODBCDateToTextDate.php");
 //require_once("includes/gettextoutput.php");
 require_once("includes/getinstancesforblockandsection.php");

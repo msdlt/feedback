@@ -5,7 +5,7 @@
 	require_once("includes/issuperauthor.php");
 	require_once("includes/limitstring.php");
 	//require_once("includes/arethereanyresultsforthisobject.php");
-	require_once("includes/quote_smart.php");
+	//require_once("includes/quote_smart.php");
 ?>
 <?php
 //********************************

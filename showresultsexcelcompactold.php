@@ -144,7 +144,7 @@
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey['title'];
 	$surveyTitleNoSpaces = str_replace(' ', '', $surveyTitle);
-	$surveyTitleNoSpaces = quote_smart($surveyTitleNoSpaces);
+	$surveyTitleNoSpaces = quote_smart($db_connection, $surveyTitleNoSpaces);
 	//echo"surveyTitle = " . $surveyTitle;
 	//echo"surveyTitleNoSpaces = " . $surveyTitleNoSpaces;
 	$filename=$surveyTitleNoSpaces."_CompactResults.xls";

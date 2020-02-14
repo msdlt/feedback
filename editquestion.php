@@ -17,10 +17,10 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 		$blockID = $_POST['hBlockID'];
 		$sectionID = $_POST['hSectionID'];
 		$questionID = $_POST['hQuestionID'];
-		$updateTitle = quote_smart($_POST['tTitle']);
-		$updateComments = quote_smart($_POST['rComments']);
+		$updateTitle = quote_smart($db_connection, $_POST['tTitle']);
+		$updateComments = quote_smart($db_connection, $_POST['rComments']);
 		$updateType = $_POST['sQuestionType'];
-		$updateText = quote_smart($_POST['tText']);
+		$updateText = quote_smart($db_connection, $_POST['tText']);
 		$updateLastModified = "CURDATE()";
 		//**********************************************************
 		//Server-side validation of data entered - 

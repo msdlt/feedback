@@ -70,7 +70,7 @@
 	$rowSurvey = mysqli_fetch_array($qResSurvey);
 	$surveyTitle = $rowSurvey['title'];
 	$surveyTitleNoSpaces = str_replace(' ', '', $surveyTitle);
-	$surveyTitleNoSpaces = quote_smart($surveyTitleNoSpaces);
+	$surveyTitleNoSpaces = quote_smart($db_connection, $surveyTitleNoSpaces);
 	$filename=$surveyTitleNoSpaces."_Results.xls";
 	
 	//the following is necessary to allow IE to open downloads under https

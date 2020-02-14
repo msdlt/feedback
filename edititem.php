@@ -88,8 +88,8 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 			//on this first run through the data, we are simply validating it
 			//it's worth doing this to prevent half the data being written before finding an error
 			$aItemComponents = explode($strSeparator,$aItemRows[$i]);
-			$updateText = quote_smart($aItemComponents[1]);
-			$updateTitle = quote_smart($aItemComponents[0]);
+			$updateText = quote_smart($db_connection, $aItemComponents[1]);
+			$updateTitle = quote_smart($db_connection, $aItemComponents[0]);
 			//**********************************************************
 			//Server-side validation of data entered - 
 			//**********************************************************
@@ -115,8 +115,8 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 				{	
 				//on this second run through, now that initial validation is complete, we will actually write it to the database
 				$aItemComponents = explode($strSeparator,$aItemRows[$i]);
-				$updateText = quote_smart($aItemComponents[1]);
-				$updateTitle = quote_smart($aItemComponents[0]);
+				$updateText = quote_smart($db_connection, $aItemComponents[1]);
+				$updateTitle = quote_smart($db_connection, $aItemComponents[0]);
 				$updateLastModified = "CURDATE()";
 				//Still need to check for repeat item titles as there could be repeats within the data pasted in
 				/* Checking and ensure that the item title does not already exist in the database */

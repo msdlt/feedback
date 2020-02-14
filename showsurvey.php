@@ -681,7 +681,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 	function writeComment($answerID,$text,&$bSuccess,&$textOutput)
 		{
 		global $db_connection; //makes this available within the function
-		$text = quote_smart($text);
+		$text = quote_smart($db_connection, $text);
 		//now need to check whether the record exists in the AnswerComments table
 		$qAnswerComments = "SELECT answerCommentID
 						FROM AnswerComments
@@ -734,7 +734,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 	function writeDate($answerID,$date,&$bSuccess,&$textOutput)
 		{
 		global $db_connection; //makes this available within the function
-		$date = quote_smart($date);
+		$date = quote_smart($db_connection, $date);
 		//now need to check whether the record exists in the AnswerComments table
 		$qAnswerDates = "SELECT answerDateID
 						FROM AnswerDates
@@ -1646,7 +1646,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 	//*************************************
 	// WRITE TO LOG TABLE - XML with XHTML contents
 	//*************************************
-	$textToWrite = quote_smart($textOutput);
+	$textToWrite = quote_smart($db_connection, $textOutput);
 	$iSubmissionLog = "INSERT INTO SubmissionLog
 						VALUES(0,'$heraldID',NOW(),$status,$textToWrite)";
 	$result_query = @mysqli_query($db_connection, $iSubmissionLog);
