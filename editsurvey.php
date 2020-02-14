@@ -21,8 +21,12 @@ if ((isset($_POST['bUpdate'])&& $_POST['bUpdate']!= "")||(isset($_POST['bCreate'
 		$updateTitle = quote_smart($db_connection, $_POST['tTitle']);
 		$updateIntroduction = quote_smart($db_connection, $_POST['tIntroduction']);
 		$updateEpilogue = quote_smart($db_connection, $_POST['tEpilogue']);
-		$updateAllowSave = quote_smart($db_connection, $_POST['rAllowSave']);
-		$updateAllowViewByStudent = quote_smart($db_connection, $_POST['rAllowViewByStudent']);
+		if(isset($_POST['rAllowSave'])) {
+			$updateAllowSave = quote_smart($db_connection, $_POST['rAllowSave']);
+		}
+		if(isset($_POST['rAllowViewByStudent'])) {
+			$updateAllowViewByStudent = quote_smart($db_connection, $_POST['rAllowViewByStudent']);
+		}
 		$updateLastModified = "CURDATE()";
 		//**********************************************************
 		//Server-side validation of data entered - 
