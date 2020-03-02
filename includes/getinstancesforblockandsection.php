@@ -25,7 +25,7 @@ function getInstancesForBlock($blockID)
 		else
 			{
 			$rowAnswerInstances = mysqli_fetch_array($qResAnswerInstances);
-			if ($rowAnswerInstances['countInstance'] > 0 && $rowAnswerInstances[maxInstance] > 0)
+			if ($rowAnswerInstances['countInstance'] > 0 && $rowAnswerInstances['maxInstance'] > 0)
 				{			
 				//User has already submitted entire survey - how many instances did they create? 
 				$noOfInstances = $rowAnswerInstances['maxInstance'];
@@ -67,7 +67,7 @@ function getInstancesForSection($blockID, $sectionID, $inst)
 		else
 			{
 			$rowAnswerInstances = mysqli_fetch_array($qResAnswerInstances);
-			if ($rowAnswerInstances[countInstance] > 0 && $rowAnswerInstances['maxInstance'] > 0)
+			if ($rowAnswerInstances['countInstance'] > 0 && $rowAnswerInstances['maxInstance'] > 0)
 				{			
 				//User has already submitted entire survey - how many instances did they create? 
 				$noOfSectionInstances = $rowAnswerInstances['maxInstance'];

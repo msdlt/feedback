@@ -421,14 +421,14 @@ echo"<link rel=\"stylesheet\" type=\"text/css\" href=\"css/msdstyle2.css\" media
 				if($aItems[$iBlock][$iSection][0]["instanceable"]==1)		
 					{
 					$sectionIsInstanceable = true;
-					if (isset($_POST[bAddSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst]))
+					if (isset($_POST["bAddSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst]))
 						{
-						$noOfCurrentSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst];
+						$noOfCurrentSectionInstances = $_POST["hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst];
 						$noOfSectionInstances = $noOfCurrentSectionInstances + 1;
 						}
-					elseif (isset($_POST[bDeleteSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst]))
+					elseif (isset($_POST["bDeleteSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst]))
 						{
-						$noOfCurrentSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst];
+						$noOfCurrentSectionInstances = $_POST["hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst];
 						$noOfSectionInstances = $noOfCurrentSectionInstances - 1;
 						}
 					else

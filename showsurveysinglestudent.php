@@ -256,7 +256,7 @@ function goTo(URL)
 						{
 						$blockID = $rowBlocks['blockID'];
 						$blockIsInstanceable = false;
-						if($rowBlocks[instanceable]==1)
+						if($rowBlocks['instanceable']==1)
 							{
 							$blockIsInstanceable = true;
 							if (isset($_POST[bAddInstance . "_" . $blockID]))
@@ -713,7 +713,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		while($rowBlocks = mysqli_fetch_array($qResBlocks))
 			{
 			$blockID = $rowBlocks['blockID'];
-			if($rowBlocks[instanceable]==1)
+			if($rowBlocks['instanceable']==1)
 				{
 				$noOfInstances = $_POST[hCurrentInstance . "_" . $blockID];
 				}
@@ -739,9 +739,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				while($rowSections = mysqli_fetch_array($qResSections))
 					{
 					$sectionID = $rowSections['sectionID'];
-					if($rowSections[instanceable]==1)
+					if($rowSections['instanceable']==1)
 						{
-						$noOfSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID . "_i" . $inst];
+						$noOfSectionInstances = $_POST["hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID . "_i" . $inst];
 						}
 					else
 						{
@@ -975,9 +975,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			{
 			$blockID = $rowBlocks['blockID'];
 			
-			if($rowBlocks[instanceable]==1)
+			if($rowBlocks['instanceable']==1)
 				{
-				$noOfInstances = $_POST[hCurrentInstance . "_" . $blockID];
+				$noOfInstances = $_POST["hCurrentInstance" . "_" . $blockID];
 				}
 			else
 				{
@@ -1000,9 +1000,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				while($rowSections = mysqli_fetch_array($qResSections))
 					{
 					$sectionID = $rowSections['sectionID'];
-					if($rowSections[instanceable]==1)
+					if($rowSections['instanceable']==1)
 						{
-						$noOfSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst];
+						$noOfSectionInstances = $_POST["hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst];
 						}
 					else
 						{
@@ -1574,17 +1574,17 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		{
 		$blockIsInstanceable = false;
 		$blockID = $rowBlocks['blockID'];
-		if($rowBlocks[instanceable]==1)
+		if($rowBlocks['instanceable']==1)
 			{
 			$blockIsInstanceable = true;
-			if (isset($_POST[bAddInstance . "_" . $blockID]))
+			if (isset($_POST["bAddInstance" . "_" . $blockID]))
 				{
-				$noOfCurrentInstances = $_POST[hCurrentInstance . "_" . $blockID];
+				$noOfCurrentInstances = $_POST["hCurrentInstance" . "_" . $blockID];
 				$noOfInstances = $noOfCurrentInstances + 1;
 				}
-			elseif (isset($_POST[bDeleteInstance . "_" . $blockID]))
+			elseif (isset($_POST["bDeleteInstance" . "_" . $blockID]))
 				{
-				$noOfCurrentInstances = $_POST[hCurrentInstance . "_" . $blockID];
+				$noOfCurrentInstances = $_POST["hCurrentInstance" . "_" . $blockID];
 				$noOfInstances = $noOfCurrentInstances - 1;
 				}
 			else
@@ -1628,7 +1628,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				{
 				//only output a block title if there is one
 				echo "<h2>".$rowBlocks['text'];
-				if ($rowBlocks[instanceable]==1)
+				if ($rowBlocks['instanceable']==1)
 					{
 					echo ": ".$inst;
 					} 
@@ -1643,17 +1643,17 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 				{			
 				$sectionIsInstanceable = false;
 				$sectionID = $rowSections['sectionID'];
-				if($rowSections[instanceable]==1)
+				if($rowSections['instanceable']==1)
 					{
 					$sectionIsInstanceable = true;
-					if (isset($_POST[bAddSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst]))
+					if (isset($_POST["bAddSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst]))
 						{
-						$noOfCurrentSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst];
+						$noOfCurrentSectionInstances = $_POST["hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst];
 						$noOfSectionInstances = $noOfCurrentSectionInstances + 1;
 						}
-					elseif (isset($_POST[bDeleteSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst]))
+					elseif (isset($_POST["bDeleteSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst]))
 						{
-						$noOfCurrentSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst];
+						$noOfCurrentSectionInstances = $_POST["hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst];
 						$noOfSectionInstances = $noOfCurrentSectionInstances - 1;
 						}
 					else
@@ -1699,7 +1699,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 						{
 						//only output a section title if there is one
 						echo "<h3> ".$rowSections['text'];
-						if ($rowSections[instanceable]==1)
+						if ($rowSections['instanceable']==1)
 							{
 							echo ": ".$sinst;
 							} 
@@ -2646,17 +2646,17 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		{
 		$blockIsInstanceable = false;
 		$blockID = $rowBlocks['blockID'];
-		if($rowBlocks[instanceable]==1)
+		if($rowBlocks['instanceable']==1)
 			{
 			$blockIsInstanceable = true;
-			if (isset($_POST[bAddInstance . "_" . $blockID]))
+			if (isset($_POST["bAddInstance" . "_" . $blockID]))
 				{
-				$noOfCurrentInstances = $_POST[hCurrentInstance . "_" . $blockID];
+				$noOfCurrentInstances = $_POST["hCurrentInstance" . "_" . $blockID];
 				$noOfInstances = $noOfCurrentInstances + 1;
 				}
-			elseif (isset($_POST[bDeleteInstance . "_" . $blockID]))
+			elseif (isset($_POST["bDeleteInstance" . "_" . $blockID]))
 				{
-				$noOfCurrentInstances = $_POST[hCurrentInstance . "_" . $blockID];
+				$noOfCurrentInstances = $_POST["hCurrentInstance" . "_" . $blockID];
 				$noOfInstances = $noOfCurrentInstances - 1;
 				}
 			else

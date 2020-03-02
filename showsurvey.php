@@ -947,7 +947,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 					$sectionID = $aItems[$iBlock][$iSection][0]["sectionID"];
 					if($aItems[$iBlock][$iSection][0]["instanceable"]==1)
 						{
-						$noOfSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID . "_i" . $inst];
+						$noOfSectionInstances = $_POST["hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID . "_i" . $inst];
 						}
 					else
 						{
@@ -1183,7 +1183,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 					$sectionID = $aItems[$iBlock][$iSection][0]["sectionID"];
 					if($aItems[$iBlock][$iSection][0]["instanceable"]==1)		
 						{
-						$noOfSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst];
+						$noOfSectionInstances = $_POST["hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst];
 						}
 					else
 						{

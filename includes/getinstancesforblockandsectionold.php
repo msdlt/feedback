@@ -19,10 +19,10 @@ function getInstancesForBlock($blockID)
 								AND heraldID = '$heraldID'";
 		$qResAnswerInstances = mysqli_query($db_connection, $qAnswerInstances);
 		$rowAnswerInstances = mysqli_fetch_array($qResAnswerInstances);
-		if ($rowAnswerInstances[countInstance] > 0 && $rowAnswerInstances[maxInstance] > 0)
+		if ($rowAnswerInstances['countInstance'] > 0 && $rowAnswerInstances['maxInstance'] > 0)
 			{			
 			//User has already submitted entire survey - how many instances did they create? 
-			$noOfInstances = $rowAnswerInstances[maxInstance];
+			$noOfInstances = $rowAnswerInstances['maxInstance'];
 			}
 		else
 			{
@@ -38,9 +38,9 @@ function getInstancesForSection($blockID, $sectionID, $inst)
 	global $surveyInstanceID; 
 	global $heraldID;
 	
-	if(isset($_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID . "_i" . $inst]))
+	if(isset($_POST["hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID . "_i" . $inst]))
 		{
-		$noOfSectionInstances = $_POST[hCurrentSectionInstance . "_" . $blockID . "_" . $sectionID."_i".$inst];	
+		$noOfSectionInstances = $_POST["hCurrentSectionInstance" . "_" . $blockID . "_" . $sectionID."_i".$inst];	
 		}
 	else
 		{
@@ -54,10 +54,10 @@ function getInstancesForSection($blockID, $sectionID, $inst)
 								AND heraldID = '$heraldID'";
 		$qResAnswerInstances = mysqli_query($db_connection, $qAnswerInstances);
 		$rowAnswerInstances = mysqli_fetch_array($qResAnswerInstances);
-		if ($rowAnswerInstances[countInstance] > 0 && $rowAnswerInstances[maxInstance] > 0)
+		if ($rowAnswerInstances['countInstance'] > 0 && $rowAnswerInstances['maxInstance'] > 0)
 			{			
 			//User has already submitted entire survey - how many instances did they create? 
-			$noOfSectionInstances = $rowAnswerInstances[maxInstance];
+			$noOfSectionInstances = $rowAnswerInstances['maxInstance'];
 			}
 		else
 			{
