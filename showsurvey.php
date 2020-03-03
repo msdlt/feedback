@@ -37,7 +37,8 @@ if ($refererIsOK==true || IsAuthor($heraldID))
 			}
 		else
 			{
-			$surveyInstanceID=$_POST['surveyInstanceID'];
+			$surveyInstanceID = $_POST['surveyInstanceID'];
+			print_r($surveyInstanceID);
 			}
 		//find out which survey this is an instance of
 		$qSurvey = "	SELECT surveyID, title, startDate, finishDate  
