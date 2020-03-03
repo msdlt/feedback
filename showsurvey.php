@@ -2194,10 +2194,11 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											echo "	<tr>
 														<td colspan=\"$recordCount\">
 															<textarea class=\"comments\" id=\"$mchoicCommentID\" name=\"$mchoicCommentName\">";
-															if ($addingInstance || $deletingInstance)
-																{
-																echo stripslashes($_POST[$mchoicCommentName]); 
+															if ($addingInstance || $deletingInstance){
+																if(isset($_POST[$mchoicCommentName])){
+																	echo stripslashes($_POST[$mchoicCommentName]); 
 																}
+															}
 															elseif($answersExist=="true")
 																{
 																//if so, write the text into the textarea
@@ -3225,10 +3226,12 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 								$showvalue = false;
 								if ($addingInstance || $deletingInstance)
 									{
-									$drdownOptionValue = $_POST[$drdownID];
-									if($drdownOptionValue!="" &&  $drdownOptionValue!="0")
-										{
-										$showvalue = true; //used to decide whether to write javascript to update value
+									if(isset($_POST[$drdownID])) {
+										$drdownOptionValue = $_POST[$drdownID];
+										if($drdownOptionValue!="" &&  $drdownOptionValue!="0")
+											{
+											$showvalue = true; //used to decide whether to write javascript to update value
+											}
 										}
 									}
 								else
