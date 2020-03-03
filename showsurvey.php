@@ -1747,7 +1747,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		</noscript>
 		<h1>$surveyInstanceTitle</h1>";
-		if($instanceStartDate=="null")
+		if(!isset($instanceStartDate) || $instanceStartDate =="null")
 			{
 			$unixStartDate = "null";
 			}
@@ -1755,7 +1755,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			{
 			$unixStartDate = strtotime($instanceStartDate); 
 			}
-		if($instanceFinishDate=="null")
+		if(!isset($instanceFinishDate) || $instanceFinishDate=="null")
 			{
 			$unixFinishDate = "null";
 			}
@@ -3092,13 +3092,21 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 								if ($addingInstance || $deletingInstance)
 									{
 									$mchoicName = $blockID . "_" . $sectionID . "_" . $questionID . "_i" . $inst . "_si" . $sinst;
-									$mchoicID = $_POST[$mchoicName];
-									if($mchoicID != "")
-										{
-										echo "	<script language=\"javascript\" type=\"text/javascript\">";
-											echo "document.getElementById(\"$mchoicID\").click();";
-										echo "	</script>";
-										}
+									if(isset($_POST[$mchoicName])){
+										$mchoicID = $_POST[$mchoicName];
+										if($mchoicID != ""){
+											echo "	<script language=\"javascript\" type=\"text/javascript\">";
+												echo "document.getElementById(\"$mchoicID\").click();";
+											echo "	</script>";
+										}	
+									}
+									//$mchoicID = $_POST[$mchoicName];
+									//if($mchoicID != "")
+									//	{
+									//	echo "	<script language=\"javascript\" type=\"text/javascript\">";
+									//		echo "document.getElementById(\"$mchoicID\").click();";
+									//	echo "	</script>";
+									//	}
 									//echo "mchoicID = " . $mchoicID;
 									}
 								else if(mysqli_num_rows($qResItemAnswered)==1)
