@@ -419,14 +419,14 @@ function goTo(URL)
 						if($aItems[$iBlock][0]["instanceable"]==1)
 							{
 							$blockIsInstanceable = true;
-							if (isset($_POST[bAddInstance . "_" . $blockID]))
+							if (isset($_POST["bAddInstance_" . $blockID]))
 								{
-								$noOfCurrentInstances = $_POST[hCurrentInstance . "_" . $blockID];
+								$noOfCurrentInstances = $_POST"[hCurrentInstance_" . $blockID];
 								$noOfInstances = $noOfCurrentInstances + 1;
 								}
-							elseif (isset($_POST[bDeleteInstance . "_" . $blockID]))
+							elseif (isset($_POST["bDeleteInstance_" . $blockID]))
 								{
-								$noOfCurrentInstances = $_POST[hCurrentInstance . "_" . $blockID];
+								$noOfCurrentInstances = $_POST["hCurrentInstance_" . $blockID];
 								$noOfInstances = $noOfCurrentInstances - 1;
 								}
 							else
@@ -1161,7 +1161,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			$blockID = $aItems[$iBlock][0]["blockID"];
 			if($aItems[$iBlock][0]["instanceable"]==1)	
 				{
-				$noOfInstances = $_POST[hCurrentInstance . "_" . $blockID];
+				$noOfInstances = $_POST["hCurrentInstance_" . $blockID];
 				}
 			else
 				{
@@ -1482,7 +1482,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												echo "problem updating Answers" . mysqli_error($db_connection);
 												$bSuccess = false;
 												}
-											writeDate($rowAnswers[answerID], $date, $bSuccess, $textOutput);
+											writeDate($rowAnswers['answerID'], $date, $bSuccess, $textOutput);
 											}
 										else if (mysqli_num_rows($qResAnswers)==0)
 											{ //insert it
@@ -1534,7 +1534,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 													echo "problem updating Answers" . mysqli_error($db_connection);
 													$bSuccess = false;
 													}
-												writeComment($rowAnswers[answerID], $_POST[$textName], $bSuccess, $textOutput);
+												writeComment($rowAnswers['answerID'], $_POST[$textName], $bSuccess, $textOutput);
 												}
 											else if (mysqli_num_rows($qResAnswers)==0)
 												{ //insert it
@@ -1820,14 +1820,14 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		//if($rowBlocks[instanceable]==1)
 			{
 			$blockIsInstanceable = true;
-			if (isset($_POST[bAddInstance . "_" . $blockID]))
+			if (isset($_POST["bAddInstance_" . $blockID]))
 				{
-				$noOfCurrentInstances = $_POST[hCurrentInstance . "_" . $blockID];
+				$noOfCurrentInstances = $_POST["hCurrentInstance_" . $blockID];
 				$noOfInstances = $noOfCurrentInstances + 1;
 				}
-			elseif (isset($_POST[bDeleteInstance . "_" . $blockID]))
+			elseif (isset($_POST["bDeleteInstance_" . $blockID]))
 				{
-				$noOfCurrentInstances = $_POST[hCurrentInstance . "_" . $blockID];
+				$noOfCurrentInstances = $_POST["hCurrentInstance_" . $blockID];
 				$noOfInstances = $noOfCurrentInstances - 1;
 				}
 			else
@@ -2990,14 +2990,14 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 		if($aItems[$iBlock][0]["instanceable"]==1)
 			{
 			$blockIsInstanceable = true;
-			if (isset($_POST[bAddInstance . "_" . $blockID]))
+			if (isset($_POST["bAddInstance_" . $blockID]))
 				{
-				$noOfCurrentInstances = $_POST[hCurrentInstance . "_" . $blockID];
+				$noOfCurrentInstances = $_POST["hCurrentInstance_" . $blockID];
 				$noOfInstances = $noOfCurrentInstances + 1;
 				}
-			elseif (isset($_POST[bDeleteInstance . "_" . $blockID]))
+			elseif (isset($_POST["bDeleteInstance_" . $blockID]))
 				{
-				$noOfCurrentInstances = $_POST[hCurrentInstance . "_" . $blockID];
+				$noOfCurrentInstances = $_POST["hCurrentInstance_" . $blockID];
 				$noOfInstances = $noOfCurrentInstances - 1;
 				}
 			else
