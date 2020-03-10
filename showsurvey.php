@@ -2487,9 +2487,12 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										echo "	<tr>";
 										echo " 		<td class=\"question\">$questionNo ".$aItems[$iBlock][$iSection][$iQuestion][0]["text"]."</td>";
 										echo "	</tr>";
-										echo "	<tr>
-													<td colspan=\"$recordCount\">
-														<textarea class=\"comments\" id=\"$textID\" name=\"$textName\" rows=\"5\">";
+										if(isset($recordCount)) {
+											echo "<td colspan=\"$recordCount\">";
+										} else {
+											echo "<td>";
+										}
+											echo "	<textarea class=\"comments\" id=\"$textID\" name=\"$textName\" rows=\"5\">";
 														if ($addingInstance || $deletingInstance)
 															{
 															echo stripslashes($_POST[$textName]); 
@@ -2515,10 +2518,13 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										echo "	<tr>";
 										echo " 		<td class=\"question\">$questionNo ".$aItems[$iBlock][$iSection][$iQuestion][0]["text"]."</td>";
 										echo "	</tr>";
-										echo "	<tr>
-													<td colspan=\"$recordCount\">
-														<!--<textarea class=\"richtext\" id=\"$textID\" name=\"$textName\" rows=\"30\">-->
-														<textarea class=\"ckeditor\" id=\"$textID\" name=\"$textName\" rows=\"30\">";
+										echo "	<tr>";
+										if(isset($recordCount)) {
+											echo "<td colspan=\"$recordCount\">";
+										} else {
+											echo "<td>";
+										}
+											echo "	<textarea class=\"ckeditor\" id=\"$textID\" name=\"$textName\" rows=\"30\">";
 														if ($addingInstance || $deletingInstance)
 															{
 															echo stripslashes($_POST[$textName]); 
