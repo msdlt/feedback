@@ -2450,9 +2450,13 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										
 										if($aItems[$iBlock][$iSection][$iQuestion][0]["comments"]=="true")
 											{
-											echo "	<tr>
-														<td colspan=\"$recordCount\">
-															<textarea class=\"comments\" id=\"$drdownCommentID\" name=\"$drdownCommentName\">";
+											echo "	<tr> ";
+											if(isset($recordCount)) {
+												echo "<td colspan=\"$recordCount\">";
+											} else {
+												echo "<td>";
+											}
+												echo "	<textarea class=\"comments\" id=\"$drdownCommentID\" name=\"$drdownCommentName\">";
 															if ($addingInstance || $deletingInstance)
 																{
 																echo stripslashes($_POST[$drdownCommentName]); 
