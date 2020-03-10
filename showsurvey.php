@@ -2630,7 +2630,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 															} else {
 																$dayValue = 0;
 																$monthValue = 0;
-																yearValue = 0;	
+																$yearValue = 0;	
 															}
 															
 															}
