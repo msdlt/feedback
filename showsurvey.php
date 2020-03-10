@@ -421,7 +421,7 @@ function goTo(URL)
 							$blockIsInstanceable = true;
 							if (isset($_POST["bAddInstance_" . $blockID]))
 								{
-								$noOfCurrentInstances = $_POST"[hCurrentInstance_" . $blockID];
+								$noOfCurrentInstances = $_POST["hCurrentInstance_" . $blockID];
 								$noOfInstances = $noOfCurrentInstances + 1;
 								}
 							elseif (isset($_POST["bDeleteInstance_" . $blockID]))
@@ -2602,8 +2602,13 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										echo "	<tr>";
 										echo " 		<td class=\"question\">$questionNo ".$aItems[$iBlock][$iSection][$iQuestion][0]["text"]."</td>";
 										echo "	</tr>";
-										echo "	<tr>
-													<td colspan=\"$recordCount\">";
+										echo "	<tr>";
+										if(isset($recordCount)) {
+											echo "<td colspan=\"$recordCount\">";
+										} else {
+											echo "<td>";
+										}
+											
 														if ($addingInstance || $deletingInstance)
 															{
 															$dayValue = $_POST[$dateDayName];
