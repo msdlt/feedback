@@ -2323,7 +2323,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												echo "	<textarea class=\"comments\" id=\"$mselecCommentID\" name=\"$mselecCommentName\">";
 															if ($addingInstance || $deletingInstance)
 																{
-																echo stripslashes($_POST[$mselecCommentName]); 
+																if(isset($_POST[$mselecCommentName])) {
+																	echo stripslashes($_POST[$mselecCommentName]); 
+																}
 																}
 															elseif($answersExist=="true")
 																{
@@ -2503,7 +2505,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											echo "	<textarea class=\"comments\" id=\"$textID\" name=\"$textName\" rows=\"5\">";
 														if ($addingInstance || $deletingInstance)
 															{
-															echo stripslashes($_POST[$textName]); 
+															if(isset($_POST[$textName])){
+																echo stripslashes($_POST[$textName]); 
+															}
 															}
 														elseif($answersExist=="true")
 															{
@@ -2617,11 +2621,18 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											echo "<td>";
 										}
 											
-														if (($addingInstance || $deletingInstance) && isset($_POST[$dateDayName]) && isset($_POST[$dateMonthName]) && isset($_POST[$dateYearName]))
+														if (($addingInstance || $deletingInstance))
 															{
-															$dayValue = $_POST[$dateDayName];
-															$monthValue = $_POST[$dateMonthName];
-															$yearValue = $_POST[$dateYearName];
+															if(isset($_POST[$dateDayName]) && isset($_POST[$dateMonthName]) && isset($_POST[$dateYearName])) {
+																$dayValue = $_POST[$dateDayName];
+																$monthValue = $_POST[$dateMonthName];
+																$yearValue = $_POST[$dateYearName];
+															} else {
+																$dayValue = 0;
+																$monthValue = 0;
+																yearValue = 0;	
+															}
+															
 															}
 														elseif($answersExist=="true")
 															{
@@ -3168,7 +3179,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 										{
 										$mselecID = $blockID . "_" . $sectionID . "_" . $questionID . "_" . $itemID . "_i" . $inst . "_si" . $sinst;
 										$mselecName = $blockID . "_" . $sectionID . "_" . $questionID . "_" . $itemID . "_i" . $inst . "_si" . $sinst;
-										if ($_POST[$mselecName]=="on")
+										if (isset($_POST[$mselecName]) && $_POST[$mselecName]=="on")
 											{
 											echo "	<script language=\"javascript\" type=\"text/javascript\">";
 											echo "	document.getElementById(\"$mselecID\").checked = true;";
