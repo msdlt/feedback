@@ -2191,9 +2191,13 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																	
 										if($aItems[$iBlock][$iSection][$iQuestion][0]["comments"]=="true")
 											{
-											echo "	<tr>
-														<td colspan=\"$recordCount\">
-															<textarea class=\"comments\" id=\"$mchoicCommentID\" name=\"$mchoicCommentName\">";
+											echo "	<tr> ";
+											if(isset($recordCount)) {
+												echo "<td colspan=\"$recordCount\">";
+											} else {
+												echo "<td>";
+											}
+												echo "	<textarea class=\"comments\" id=\"$mchoicCommentID\" name=\"$mchoicCommentName\">";
 															if ($addingInstance || $deletingInstance){
 																if(isset($_POST[$mchoicCommentName])){
 																	echo stripslashes($_POST[$mchoicCommentName]); 
@@ -2310,9 +2314,13 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											}
 										if($aItems[$iBlock][$iSection][$iQuestion][0]["comments"]=="true")
 											{
-											echo "	<tr>
-														<td colspan=\"$recordCount\">
-															<textarea class=\"comments\" id=\"$mselecCommentID\" name=\"$mselecCommentName\">";
+											echo "	<tr> ";
+											if(isset($recordCount)) {
+												echo "<td colspan=\"$recordCount\">";
+											} else {
+												echo "<td>";
+											}
+												echo "	<textarea class=\"comments\" id=\"$mselecCommentID\" name=\"$mselecCommentName\">";
 															if ($addingInstance || $deletingInstance)
 																{
 																echo stripslashes($_POST[$mselecCommentName]); 
@@ -2609,7 +2617,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											echo "<td>";
 										}
 											
-														if ($addingInstance || $deletingInstance)
+														if (($addingInstance || $deletingInstance) && isset($_POST[$dateDayName]) && isset($_POST[$dateMonthName]) && isset($_POST[$dateYearName]))
 															{
 															$dayValue = $_POST[$dateDayName];
 															$monthValue = $_POST[$dateMonthName];
