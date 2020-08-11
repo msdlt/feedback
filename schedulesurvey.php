@@ -60,7 +60,7 @@ $qSurveys = "SELECT title
 			FROM Surveys
 			WHERE surveyID = $surveyID";
 $qResSurvey = mysqli_query($db_connection, $qSurveys);
-$rowSurvey = mysqli_fetch_array($db_connection, $qResSurvey);
+$rowSurvey = mysqli_fetch_array($qResSurvey);
 $surveyTitle = $rowSurvey['title'];
 if(IsAuthor($heraldID))
 	{

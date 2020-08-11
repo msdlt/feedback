@@ -2469,7 +2469,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 												echo "	<textarea class=\"comments\" id=\"$drdownCommentID\" name=\"$drdownCommentName\">";
 															if ($addingInstance || $deletingInstance)
 																{
-																echo stripslashes($_POST[$drdownCommentName]); 
+																if(isset($_POST[$drdownCommentName])) {
+																	echo stripslashes($_POST[$drdownCommentName]); 
+																}
 																}
 															elseif($answersExist=="true")
 																{
@@ -2539,7 +2541,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 											echo "	<textarea class=\"ckeditor\" id=\"$textID\" name=\"$textName\" rows=\"30\">";
 														if ($addingInstance || $deletingInstance)
 															{
-															echo stripslashes($_POST[$textName]); 
+																if(isset($_POST[$textName])) {
+																	echo stripslashes($_POST[$textName]); 
+																}
 															}
 														elseif($answersExist=="true")
 															{
@@ -2851,7 +2855,9 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 														echo">";
 														if ($addingInstance || $deletingInstance)
 															{
-															echo stripslashes($_POST[$CommentName]);
+																if(isset($_POST[$CommentName])) {
+																	echo stripslashes($_POST[$CommentName]);
+																}
 															}
 														elseif($answersExist=="true")
 															{
