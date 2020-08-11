@@ -1041,7 +1041,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			if($aQuestions[$i][3]==1)
 				{
 				//MCHOIC
-				if(isset($_POST[$aQuestions[$i]]) && $_POST[$aQuestions[$i][0]]=="")
+				if(isset($_POST[$aQuestions[$i][0]]) && $_POST[$aQuestions[$i][0]]=="")
 					{
 					$questionAnswered = false;
 					}
