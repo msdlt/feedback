@@ -1041,7 +1041,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 			if($aQuestions[$i][3]==1)
 				{
 				//MCHOIC
-				if($_POST[$aQuestions[$i][0]]=="")
+				if(isset($_POST[$aQuestions[$i]]) && $_POST[$aQuestions[$i][0]]=="")
 					{
 					$questionAnswered = false;
 					}
@@ -1262,17 +1262,17 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 															date = NOW(),
 															instance = $expInstance,
 															sinstance = $expSectionInstance
-														WHERE answerID = $rowAnswers[answerID]";
+														WHERE answerID = $rowAnswers['answerID']";
 											$result_query = @mysqli_query($db_connection, $uAnswers);
 											if (($result_query == false))
 												{
 												echo "problem updating Answers" . mysqli_error($db_connection);
 												$bSuccess = false;
 												}
-											writeItem($rowAnswers[answerID], $expItemID, $bSuccess, $textOutput);
+											writeItem($rowAnswers['answerID'], $expItemID, $bSuccess, $textOutput);
 											if(isset($_POST[$mchoicCommentName]))
 												{
-												writeComment($rowAnswers[answerID], $_POST[$mchoicCommentName], $bSuccess, $textOutput);
+												writeComment($rowAnswers['answerID'], $_POST[$mchoicCommentName], $bSuccess, $textOutput);
 												}
 											}
 										else if (mysqli_num_rows($qResAnswers)==0)
@@ -1412,7 +1412,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																date = NOW(),
 																instance = $expInstance,
 																sinstance = $expSectionInstance
-															WHERE answerID = $rowAnswers[answerID]";
+															WHERE answerID = $rowAnswers['answerID']";
 												$result_query = @mysqli_query($db_connection, $uAnswers);
 												if (($result_query == false))
 													{
@@ -1475,7 +1475,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 															date = NOW(),
 															instance = $inst,
 															sinstance = $sinst
-														WHERE answerID = $rowAnswers[answerID]";
+														WHERE answerID = $rowAnswers['answerID']";
 											$result_query = @mysqli_query($db_connection, $uAnswers);
 											if (($result_query == false))
 												{
@@ -1527,7 +1527,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																date = NOW(),
 																instance = $inst,
 																sinstance = $sinst
-															WHERE answerID = $rowAnswers[answerID]";
+															WHERE answerID = $rowAnswers['answerID']";
 												$result_query = @mysqli_query($db_connection, $uAnswers);
 												if (($result_query == false))
 													{
