@@ -41,7 +41,7 @@ function ValidateSecondForm()
 <script language="javascript" type="text/javascript">
 
 //dynamically filling date lists
-function buildsel(Month,Year,DayList,btnSubmit) 
+function buildsel(Month,Year,DayList) 
 	{
 	//Calculate no of days in month
 	days = daysInMonth(Month,Year);
@@ -94,7 +94,8 @@ function daysInMonth(Month, Year)
 	if (Month==11) return 30;
 	if (Month==12) return 31;
 	}
-function toggleStartDate(value, btnSubmit)
+//function toggleStartDate(value, btnSubmit)
+function toggleStartDate(value)
 	{
 	if (value==0)
 		{
@@ -109,7 +110,8 @@ function toggleStartDate(value, btnSubmit)
 		document.getElementById("startYear").disabled = false;
 		}
 	}
-function toggleFinishDate(value,btnSubmit)
+//function toggleFinishDate(value,btnSubmit)
+function toggleFinishDate(value)
 	{
 	if (value==0)
 		{
@@ -263,9 +265,15 @@ function OnbGenerateCompactExcelResults()
 			{
 			$finishDate = date("Y-m-d", mktime(0, 0, 0, $_POST['finishMonth'], $_POST['finishDay'], $_POST['finishYear']));
 			}
-		$showSaved = $_POST['chkSaved'];
-		$showSubmitted = $_POST['chkSubmitted'];
-		$instanceID = $_POST['sSchedule'];
+		if(isset($_POST['chkSaved'])) {
+			$showSaved = $_POST['chkSaved'];
+		}
+		if(isset($_POST['chkSubmitted'])) {
+			$showSubmitted = $_POST['chkSubmitted'];
+		}
+		if(isset($_POST['sSchedule'])) {
+			$instanceID = $_POST['sSchedule'];
+		}
 		echo "	<script language=\"JavaScript\" src=\"script/OptionTransfer.js\"></script>";
 		//write script to handle option transfers
 		echo "<script language=\"JavaScript\">";
@@ -519,8 +527,11 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 								}
 							$yearMin = date("Y")-5;
 							$yearMax = date("Y")+10;
-							echo "	<input type=\"radio\" id=\"rStartDateNone\" name=\"rStartDate\" value=\"0\" onclick=\"toggleStartDate(this.value,'".$btnSubmitName."')\"".((isset($_POST['rStartDate']) && $_POST['rStartDate']==0)?"checked": "")."><label for=\"rStartDateNone\">None</label>";
-							echo "	<input type=\"radio\" id=\"rStartDate\" name=\"rStartDate\" value=\"1\" onclick=\"toggleStartDate(this.value,'".$btnSubmitName."')\"".((isset($_POST['rStartDate']) && $_POST['rStartDate']==1)?"checked": "").">";
+							//echo "	<input type=\"radio\" id=\"rStartDateNone\" name=\"rStartDate\" value=\"0\" onclick=\"toggleStartDate(this.value,'".$btnSubmitName."')\"".((isset($_POST['rStartDate']) && $_POST['rStartDate']==0)?"checked": "")."><label for=\"rStartDateNone\">None</label>";
+							//echo "	<input type=\"radio\" id=\"rStartDate\" name=\"rStartDate\" value=\"1\" onclick=\"toggleStartDate(this.value,'".$btnSubmitName."')\"".((isset($_POST['rStartDate']) && $_POST['rStartDate']==1)?"checked": "").">";
+							echo "	<input type=\"radio\" id=\"rStartDateNone\" name=\"rStartDate\" value=\"0\" onclick=\"toggleStartDate(this.value)\"".((isset($_POST['rStartDate']) && $_POST['rStartDate']==0)?"checked": "")."><label for=\"rStartDateNone\">None</label>";
+							echo "	<input type=\"radio\" id=\"rStartDate\" name=\"rStartDate\" value=\"1\" onclick=\"toggleStartDate(this.value)\"".((isset($_POST['rStartDate']) && $_POST['rStartDate']==1)?"checked": "").">";
+							
 							echo "	<select id=\"startDay\" name=\"startDay\" size=\"1\">";
 									for($i=1;$i<=31;$i++)
 										{
@@ -532,7 +543,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 											echo "value=\"$i\">$i</option>";
 										}
 							echo "	</select> / ";
-							echo "	<select id=\"startMonth\" name=\"startMonth\" size=\"1\" onChange=\"buildsel(this[this.selectedIndex].value,startYear[startYear.selectedIndex].value,startDay,'".$btnSubmitName."')\">";
+							echo "	<select id=\"startMonth\" name=\"startMonth\" size=\"1\" onChange=\"buildsel(this[this.selectedIndex].value,startYear[startYear.selectedIndex].value,startDay)\">";
 									for($i=1;$i<=12;$i++)
 										{
 										echo "		<option ";
@@ -543,7 +554,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 											echo "value=\"$i\">$i</option>";
 										}
 							echo "		</select> / ";
-							echo "	<select id=\"startYear\" name=\"startYear\" size=\"1\" onChange=\"buildsel(startMonth[startMonth.selectedIndex].value,this[this.selectedIndex].value,startDay,'".$btnSubmitName."')\">";
+							echo "	<select id=\"startYear\" name=\"startYear\" size=\"1\" onChange=\"buildsel(startMonth[startMonth.selectedIndex].value,this[this.selectedIndex].value,startDay)\">";
 									for($i=$yearMin;$i<=$yearMax;$i++)
 										{
 										echo "		<option ";
@@ -574,8 +585,8 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 								}
 							$yearMin = date("Y")-5;
 							$yearMax = date("Y")+10;
-							echo "	<input type=\"radio\" id=\"rFinishDateNone\" name=\"rFinishDate\" value=\"0\" onclick=\"toggleFinishDate(this.value,'$btnSubmitName')\"".((isset($_POST['rFinishDate']) && $_POST['rFinishDate']==0)?"checked": "")."><label for=\"rFinishDateNone\">None</label>";
-							echo "	<input type=\"radio\" id=\"rFinishDate\" name=\"rFinishDate\" value=\"1\" onclick=\"toggleFinishDate(this.value,'$btnSubmitName')\"".((isset($_POST['rFinishDate']) && $_POST['rFinishDate']==1)?"checked": "").">";
+							echo "	<input type=\"radio\" id=\"rFinishDateNone\" name=\"rFinishDate\" value=\"0\" onclick=\"toggleFinishDate(this.value)\"".((isset($_POST['rFinishDate']) && $_POST['rFinishDate']==0)?"checked": "")."><label for=\"rFinishDateNone\">None</label>";
+							echo "	<input type=\"radio\" id=\"rFinishDate\" name=\"rFinishDate\" value=\"1\" onclick=\"toggleFinishDate(this.value)\"".((isset($_POST['rFinishDate']) && $_POST['rFinishDate']==1)?"checked": "").">";
 							echo "	<select id=\"finishDay\" name=\"finishDay\" size=\"1\">";
 									for($i=1;$i<=31;$i++)
 										{
@@ -587,7 +598,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 											echo "value=\"$i\">$i</option>";
 										}
 							echo "	</select> / ";
-							echo "	<select id=\"finishMonth\" name=\"finishMonth\" size=\"1\" onChange=\"buildsel(this[this.selectedIndex].value,finishYear[finishYear.selectedIndex].value,startDay,'$btnSubmitName')\">";
+							echo "	<select id=\"finishMonth\" name=\"finishMonth\" size=\"1\" onChange=\"buildsel(this[this.selectedIndex].value,finishYear[finishYear.selectedIndex].value,startDay)\">";
 									for($i=1;$i<=12;$i++)
 										{
 										echo "		<option ";
@@ -598,7 +609,7 @@ if(isset($_POST['bChooseSurveys'])||isset($_POST['bAddCriterion'])||isset($_POST
 											echo "value=\"$i\">$i</option>";
 										}
 							echo "		</select> / ";
-							echo "	<select id=\"finishYear\" name=\"finishYear\" size=\"1\" onChange=\"buildsel(finishMonth[finishMonth.selectedIndex].value,this[this.selectedIndex].value,startDay,'$btnSubmitName')\">";
+							echo "	<select id=\"finishYear\" name=\"finishYear\" size=\"1\" onChange=\"buildsel(finishMonth[finishMonth.selectedIndex].value,this[this.selectedIndex].value,startDay)\">";
 									for($i=$yearMin;$i<=$yearMax;$i++)
 										{
 										echo "		<option ";
