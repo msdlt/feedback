@@ -128,7 +128,7 @@ echo "	<div class=\"questionNormal\">
 			{
 			$surveyInstanceStartDate = ODBCDateToTextDateShort($rowSurveyInstances['startDate']);
 			}
-		if($rowSurveyInstances[finishDate]==NULL)
+		if($rowSurveyInstances['finishDate']==NULL)
 			{
 			$surveyInstanceFinishDate = "Unlimited";
 			}
