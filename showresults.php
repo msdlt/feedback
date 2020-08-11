@@ -57,7 +57,9 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 	//extract data from viewresults.php
 	$surveyID = $_POST['surveyID'];
 	$noOfCriteria = $_POST['hNoOfCriteria'];
-	$showHidden = $_POST['chkShowHidden'];
+	if(isset($_POST['chkShowHidden'])){
+		$showHidden = $_POST['chkShowHidden'];
+	}
 	if($_POST['rStartDate']==0)
 		{
 		$startDate="NULL";
@@ -120,9 +122,16 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 			$aQuestionsToAnalyse[$i] = explode(",",$_POST[$hidQuestionsName]);
 			}
 		//split question to analyse by inro Block, Section and Question IDs
-		$QuestionToAnalyseByBlockID = intval($aQuestionToAnalyseBy[$i][0]);
-		$QuestionToAnalyseBySectionID = intval($aQuestionToAnalyseBy[$i][1]);
-		$QuestionToAnalyseByQuestionID = intval($aQuestionToAnalyseBy[$i][2]);
+		if(isset($aQuestionToAnalyseBy[$i][0])) {
+			$QuestionToAnalyseByBlockID = intval($aQuestionToAnalyseBy[$i][0]);
+		}
+		if(isset($aQuestionToAnalyseBy[$i][1])) {
+			$QuestionToAnalyseBySectionID = intval($aQuestionToAnalyseBy[$i][1]);
+		}
+		if(isset($aQuestionToAnalyseBy[$i][2])) {
+			$QuestionToAnalyseByQuestionID = intval($aQuestionToAnalyseBy[$i][2]);
+		}
+		
 		//get the items for the $QuestionToAnalyseBy 
 		$qQuestionItems = "SELECT QuestionItems.itemID, QuestionItems.position, Items.text as itemText, Questions.text as questionText
 						FROM QuestionItems, Questions, Items
@@ -312,8 +321,13 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					{
 					$aTemp = explode("_",$aQuestionsToAnalyse[$i][$j]);
 					$qBlockID = $aTemp[0];
-					$qSectionID = $aTemp[1];
-					$qQuestionID = $aTemp[2];
+					if(isset($aTemp[1])) {
+						$qSectionID = $aTemp[1];
+					}
+					if(isset($aTemp[2])) {
+						$qQuestionID = $aTemp[2];
+					}
+					
 					if ($qBlockID==$blockID && $qSectionID==$sectionID && $qQuestionID==$questionID)
 						{
 						//we need to output this question according to the participants who chose QuestionToAnalyseBy
