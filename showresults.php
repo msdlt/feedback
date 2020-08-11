@@ -141,7 +141,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 						FROM QuestionItems, Questions, Items
 						WHERE Questions.questionID = $QuestionToAnalyseByQuestionID
 						AND QuestionItems.questionID = Questions.questionID".
-						($showHidden && $showHidden=='on'?" " : " AND QuestionItems.visible = 1 ").
+						(($showHidden && $showHidden=='on')?" " : " AND QuestionItems.visible = 1 ").
 						"AND Items.itemID = QuestionItems.itemID
 						ORDER BY position";
 		
@@ -572,7 +572,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 				$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
 						FROM Items, QuestionItems
 						WHERE QuestionItems.questionID = ".$rowQuestions['questionID'].
-						($showHidden && $showHidden=='on'?" " : " AND QuestionItems.visible = 1 ").
+						(($showHidden && $showHidden=='on')?" " : " AND QuestionItems.visible = 1 ").
 						"AND Items.itemID = QuestionItems.itemID
 						ORDER BY QuestionItems.position";
 									
