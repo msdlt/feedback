@@ -1262,7 +1262,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 															date = NOW(),
 															instance = $expInstance,
 															sinstance = $expSectionInstance
-														WHERE answerID = $rowAnswers['answerID']";
+														WHERE answerID = ".$rowAnswers['answerID'];
 											$result_query = @mysqli_query($db_connection, $uAnswers);
 											if (($result_query == false))
 												{
@@ -1412,7 +1412,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																date = NOW(),
 																instance = $expInstance,
 																sinstance = $expSectionInstance
-															WHERE answerID = $rowAnswers['answerID']";
+															WHERE answerID = ".$rowAnswers['answerID'];
 												$result_query = @mysqli_query($db_connection, $uAnswers);
 												if (($result_query == false))
 													{
@@ -1475,7 +1475,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 															date = NOW(),
 															instance = $inst,
 															sinstance = $sinst
-														WHERE answerID = $rowAnswers['answerID']";
+														WHERE answerID = ".$rowAnswers['answerID'];
 											$result_query = @mysqli_query($db_connection, $uAnswers);
 											if (($result_query == false))
 												{
@@ -1527,7 +1527,7 @@ if (isset($_POST['bSubmitSurvey'])||isset($_POST['bSaveSurvey']))
 																date = NOW(),
 																instance = $inst,
 																sinstance = $sinst
-															WHERE answerID = $rowAnswers['answerID']";
+															WHERE answerID = ".$rowAnswers['answerID'];
 												$result_query = @mysqli_query($db_connection, $uAnswers);
 												if (($result_query == false))
 													{
