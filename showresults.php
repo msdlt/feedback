@@ -57,6 +57,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 	//extract data from viewresults.php
 	$surveyID = $_POST['surveyID'];
 	$noOfCriteria = $_POST['hNoOfCriteria'];
+	$showHidden = 'off';
 	if(isset($_POST['chkShowHidden'])){
 		$showHidden = $_POST['chkShowHidden'];
 	}
