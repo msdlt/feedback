@@ -176,7 +176,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 					if ($instanceMatch == true)
 						{
 						$iParticipantItems = "	INSERT INTO $TableForThisUser
-										VALUES(0,$rowParticipants['heraldID'],$QuestionToAnalyseByBlockID,$QuestionToAnalyseBySectionID,$QuestionToAnalyseByQuestionID,0,$rowParticipants[instance],$rowParticipants[sinstance])";
+										VALUES(0,".$rowParticipants['heraldID'].",".$QuestionToAnalyseByBlockID.",".$QuestionToAnalyseBySectionID.",".$QuestionToAnalyseByQuestionID.", 0,".$rowParticipants['instance'].",".$rowParticipants['sinstance'].")";
 						$result_query = @mysqli_query($db_connection, $iParticipantItems);
 						if (($result_query == false) || mysqli_affected_rows($db_connection) == 0)
 							{
@@ -189,7 +189,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 			else
 				{
 				$iParticipantItems = "	INSERT INTO $TableForThisUser
-									VALUES(0,$rowParticipants['heraldID'],$QuestionToAnalyseByBlockID,$QuestionToAnalyseBySectionID,$QuestionToAnalyseByQuestionID,0,$rowParticipants[instance],$rowParticipants[sinstance])";
+									VALUES(0,".$rowParticipants['heraldID'].",".$QuestionToAnalyseByBlockID.",".$QuestionToAnalyseBySectionID.",".$QuestionToAnalyseByQuestionID.", 0,".$rowParticipants['instance'].",".$rowParticipants['sinstance'])";
 					$result_query = @mysqli_query($db_connection, $iParticipantItems);
 					if (($result_query == false) || mysqli_affected_rows($db_connection) == 0)
 						{
