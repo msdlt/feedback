@@ -143,47 +143,49 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 		
 		$qResQuestionItems = mysqli_query($db_connection, $qQuestionItems);
 		$itemCounter = 0;
-		while($rowQuestionItems = mysqli_fetch_array($qResQuestionItems))
-			{
-			$aQuestionItem = array();
-			$aQuestionItem[0] = $rowQuestionItems['itemID'];
-			$aQuestionItem[1] = $rowQuestionItems['questionText'];
-			$aQuestionItem[2] = $rowQuestionItems['itemText'];
-			$aQuestionToAnalyseByItems[$i][$itemCounter] = $aQuestionItem;
-			//get the IDs of participants who answered this item in:
-			// - the specified instances survey
-			// - between the dates specified
-			// - and of the specified status
-			$QuestionToAnalyseByItem = intval($aQuestionToAnalyseByItems[$i][$itemCounter][0]);
-			$qParticipants = "	SELECT Answers.heraldID, Answers.instance,Answers.sinstance
-								FROM Answers, AnswerItems, SurveyInstances, SurveyInstanceParticipants
-								WHERE Answers.heraldID = SurveyInstanceParticipants.heraldID ".
-								($strStatusQuery!=""?$strStatusQuery:"").
-								($instanceID!=0?" AND SurveyInstances.surveyInstanceID = $instanceID" : " AND SurveyInstances.surveyID = $surveyID").
-								($startDate!="NULL"?" AND SurveyInstanceParticipants.date >= '$startDate'":"").
-								($finishDate!="NULL"?" AND SurveyInstanceParticipants.date <= '$finishDate'":"").
-								" AND Answers.surveyInstanceID = SurveyInstances.surveyInstanceID
-								AND Answers.blockID = $QuestionToAnalyseByBlockID
-								AND Answers.sectionID = $QuestionToAnalyseBySectionID
-								AND Answers.questionID = $QuestionToAnalyseByQuestionID
-								AND AnswerItems.answerID = Answers.answerID
-								AND AnswerItems.itemID = $QuestionToAnalyseByItem
-								AND SurveyInstanceParticipants.surveyInstanceID = SurveyInstances.surveyInstanceID";
-			$qResParticipants = mysqli_query($db_connection, $qParticipants);
-			$NoOfParticipants = mysqli_num_rows($qResParticipants);
-			//now write those participants to a table to store them temporarily next to the item they chose
-			while($rowParticipants = mysqli_fetch_array($qResParticipants))
+		if($qResQuestionItems) {
+			while($rowQuestionItems = mysqli_fetch_array($qResQuestionItems))
 				{
-				$iParticipantItems = "	INSERT INTO ParticipantItems
-										VALUES(0,".$rowParticipants['heraldID'].",".$QuestionToAnalyseByBlockID.",".$QuestionToAnalyseBySectionID.",".$QuestionToAnalyseByQuestionID.",".$QuestionToAnalyseByItem.",".$rowParticipants['instance'].",".$rowParticipants['sinstance'].")";
-				$result_query = @mysqli_query($db_connection, $iParticipantItems);
-				if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
+				$aQuestionItem = array();
+				$aQuestionItem[0] = $rowQuestionItems['itemID'];
+				$aQuestionItem[1] = $rowQuestionItems['questionText'];
+				$aQuestionItem[2] = $rowQuestionItems['itemText'];
+				$aQuestionToAnalyseByItems[$i][$itemCounter] = $aQuestionItem;
+				//get the IDs of participants who answered this item in:
+				// - the specified instances survey
+				// - between the dates specified
+				// - and of the specified status
+				$QuestionToAnalyseByItem = intval($aQuestionToAnalyseByItems[$i][$itemCounter][0]);
+				$qParticipants = "	SELECT Answers.heraldID, Answers.instance,Answers.sinstance
+									FROM Answers, AnswerItems, SurveyInstances, SurveyInstanceParticipants
+									WHERE Answers.heraldID = SurveyInstanceParticipants.heraldID ".
+									($strStatusQuery!=""?$strStatusQuery:"").
+									($instanceID!=0?" AND SurveyInstances.surveyInstanceID = $instanceID" : " AND SurveyInstances.surveyID = $surveyID").
+									($startDate!="NULL"?" AND SurveyInstanceParticipants.date >= '$startDate'":"").
+									($finishDate!="NULL"?" AND SurveyInstanceParticipants.date <= '$finishDate'":"").
+									" AND Answers.surveyInstanceID = SurveyInstances.surveyInstanceID
+									AND Answers.blockID = $QuestionToAnalyseByBlockID
+									AND Answers.sectionID = $QuestionToAnalyseBySectionID
+									AND Answers.questionID = $QuestionToAnalyseByQuestionID
+									AND AnswerItems.answerID = Answers.answerID
+									AND AnswerItems.itemID = $QuestionToAnalyseByItem
+									AND SurveyInstanceParticipants.surveyInstanceID = SurveyInstances.surveyInstanceID";
+				$qResParticipants = mysqli_query($db_connection, $qParticipants);
+				$NoOfParticipants = mysqli_num_rows($qResParticipants);
+				//now write those participants to a table to store them temporarily next to the item they chose
+				while($rowParticipants = mysqli_fetch_array($qResParticipants))
 					{
-					echo "problem inserting into ParticipantItems" . mysqli_error($db_connection);
-					$bSuccess = false;
+					$iParticipantItems = "	INSERT INTO ParticipantItems
+											VALUES(0,".$rowParticipants['heraldID'].",".$QuestionToAnalyseByBlockID.",".$QuestionToAnalyseBySectionID.",".$QuestionToAnalyseByQuestionID.",".$QuestionToAnalyseByItem.",".$rowParticipants['instance'].",".$rowParticipants['sinstance'].")";
+					$result_query = @mysqli_query($db_connection, $iParticipantItems);
+					if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
+						{
+						echo "problem inserting into ParticipantItems" . mysqli_error($db_connection);
+						$bSuccess = false;
+						}
 					}
+				$itemCounter = $itemCounter + 1;
 				}
-			$itemCounter = $itemCounter + 1;
 			}
 		}
 	
