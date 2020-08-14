@@ -128,6 +128,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 		if(isset($aQuestionToAnalyseBy[$i][1])) {
 			$QuestionToAnalyseBySectionID = intval($aQuestionToAnalyseBy[$i][1]);
 		}
+		$QuestionToAnalyseByQuestionID = null;
 		if(isset($aQuestionToAnalyseBy[$i][2])) {
 			$QuestionToAnalyseByQuestionID = intval($aQuestionToAnalyseBy[$i][2]);
 		}		
