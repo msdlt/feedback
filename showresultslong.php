@@ -420,8 +420,8 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					//get items
 					$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
 							FROM Items, QuestionItems
-							WHERE QuestionItems.questionID = $rowQuestions['questionID']".
-							($showHidden=='on'?" " : " AND QuestionItems.visible = 1 ").
+							WHERE QuestionItems.questionID = ".$rowQuestions['questionID'].
+							(($showHidden && $showHidden=='on')?" " : " AND QuestionItems.visible = 1 ").
 							"AND Items.itemID = QuestionItems.itemID
 							ORDER BY QuestionItems.position";
 										
@@ -584,8 +584,8 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 				//get items
 				$qItems = "SELECT Items.itemID, Items.text, QuestionItems.position
 						FROM Items, QuestionItems
-						WHERE QuestionItems.questionID = $rowQuestions['questionID']".
-						($showHidden=='on'?" " : " AND QuestionItems.visible = 1 ").
+						WHERE QuestionItems.questionID = ". $rowQuestions['questionID'] .
+						(($showHidden && $showHidden=='on')?" " : " AND QuestionItems.visible = 1 ").
 						"AND Items.itemID = QuestionItems.itemID
 						ORDER BY QuestionItems.position";
 									
