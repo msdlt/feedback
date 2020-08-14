@@ -264,8 +264,12 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					{
 					$aTemp = explode("_",$aQuestionsToAnalyse[$i][$j]);
 					$qBlockID = $aTemp[0];
-					$qSectionID = $aTemp[1];
-					$qQuestionID = $aTemp[2];
+					if(isset($aTemp[1])) {
+						$qSectionID = $aTemp[1];
+					}
+					if(isset($aTemp[2])) {
+						$qQuestionID = $aTemp[2];
+					}
 					if ($qBlockID==$blockID && $qSectionID==$sectionID && $qQuestionID==$questionID)
 						{
 						//we need to output this question according to the participants who chose QuestionToAnalyseBy
@@ -568,7 +572,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 					$aRowHTMLByItem = $aRowHTMLByItem . "<td>$PercentageOfAnswers</td><td>[$NoOfItems]</td>";
 					}
 				
-				$bRowOdd = !$bRowOdd;
+				//$bRowOdd = !$bRowOdd;
 				if(($blockVisible==1 && $sectionVisible==1 && $questionVisible==1) || $showHidden=='on') echo $aRowHTMLTopRow . "</tr>";
 				if(($blockVisible==1 && $sectionVisible==1 && $questionVisible==1) || $showHidden=='on') echo $aRowHTMLByItem . "</tr>"; 
 				$colSpan = mysqli_num_rows($qResItems)+1;
