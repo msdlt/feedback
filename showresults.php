@@ -178,7 +178,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 				$qResParticipants = mysqli_query($db_connection, $qParticipants);
 				$NoOfParticipants = mysqli_num_rows($qResParticipants);
 
-				print_r($qParticipants);
+				print_r($NoOfParticipants);
 
 				//now write those participants to a table to store them temporarily next to the item they chose
 				while($rowParticipants = mysqli_fetch_array($qResParticipants))
@@ -186,6 +186,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 					$iParticipantItems = "	INSERT INTO ParticipantItems
 											VALUES(0,".$rowParticipants['heraldID'].",".$QuestionToAnalyseByBlockID.",".$QuestionToAnalyseBySectionID.",".$QuestionToAnalyseByQuestionID.",".$QuestionToAnalyseByItem.",".$rowParticipants['instance'].",".$rowParticipants['sinstance'].")";
 					$result_query = @mysqli_query($db_connection, $iParticipantItems);
+					print_r($iParticipantItems);
 					if (($result_query == false) && mysqli_affected_rows($db_connection) == 0)
 						{
 						echo "problem inserting into ParticipantItems" . mysqli_error($db_connection);
