@@ -184,7 +184,7 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 				while($rowParticipants = mysqli_fetch_array($qResParticipants))
 					{
 					$iParticipantItems = "	INSERT INTO ParticipantItems
-											VALUES(0,".$rowParticipants['heraldID'].",".$QuestionToAnalyseByBlockID.",".$QuestionToAnalyseBySectionID.",".$QuestionToAnalyseByQuestionID.",".$QuestionToAnalyseByItem.",".$rowParticipants['instance'].",".$rowParticipants['sinstance'].")";
+											VALUES(0,'".$rowParticipants['heraldID']."',".$QuestionToAnalyseByBlockID.",".$QuestionToAnalyseBySectionID.",".$QuestionToAnalyseByQuestionID.",".$QuestionToAnalyseByItem.",".$rowParticipants['instance'].",".$rowParticipants['sinstance'].")";
 					//$result_query = @mysqli_query($db_connection, $iParticipantItems);
 					$result_query = mysqli_query($db_connection, $iParticipantItems);
 					print_r($iParticipantItems);
