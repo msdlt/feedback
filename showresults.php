@@ -194,10 +194,11 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 						}
 					}
 				$itemCounter = $itemCounter + 1;
-				exit;
 				}
 			}
 		}
+
+		exit;
 	
 	//Get survey information
 	$qSurveys = "SELECT title
