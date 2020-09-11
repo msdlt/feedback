@@ -472,7 +472,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 										AND AnswerItems.itemID = ".$rowItems['itemID'];
 						$qResCountItems = mysqli_query($db_connection, $qCountItems);
 
-						print_r($qResCountItems);
+						print_r($qCountItems);
 						
 						$NoOfItems = mysqli_num_rows($qResCountItems);
 						if($NoOfAnswers>0)
