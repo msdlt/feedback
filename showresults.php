@@ -177,6 +177,9 @@ function getElementsByAttributeValue(tagName, attrName, attrValue) {
 									AND SurveyInstanceParticipants.surveyInstanceID = SurveyInstances.surveyInstanceID";
 				$qResParticipants = mysqli_query($db_connection, $qParticipants);
 				$NoOfParticipants = mysqli_num_rows($qResParticipants);
+
+				print_r($qParticipants);
+
 				//now write those participants to a table to store them temporarily next to the item they chose
 				while($rowParticipants = mysqli_fetch_array($qResParticipants))
 					{
@@ -471,9 +474,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 										AND Answers.answerID = AnswerItems.answerID
 										AND AnswerItems.itemID = ".$rowItems['itemID'];
 						$qResCountItems = mysqli_query($db_connection, $qCountItems);
-
-						print_r($qCountItems);
-						
+	
 						$NoOfItems = mysqli_num_rows($qResCountItems);
 						if($NoOfAnswers>0)
 							{
