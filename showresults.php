@@ -398,7 +398,7 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 									AND Answers.sectionID = $sectionID
 									AND Answers.questionID = $questionID
 									";
-					
+
 					$qResCountAnswers = mysqli_query($db_connection, $qCountAnswers);
 					
 					$NoOfAnswers = mysqli_num_rows($qResCountAnswers);
@@ -471,6 +471,8 @@ while($rowBlocks = mysqli_fetch_array($qResBlocks))
 										AND Answers.answerID = AnswerItems.answerID
 										AND AnswerItems.itemID = ".$rowItems['itemID'];
 						$qResCountItems = mysqli_query($db_connection, $qCountItems);
+
+						print_r($qResCountItems);
 						
 						$NoOfItems = mysqli_num_rows($qResCountItems);
 						if($NoOfAnswers>0)
